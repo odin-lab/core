@@ -1,0 +1,46 @@
+version: v1
+managed:
+  enabled: true
+  cc_enable_arenas: true
+  java_multiple_files: true
+  optimize_for: SPEED
+
+plugins:
+  # Python generation for backend modules
+  - plugin: buf.build/protocolbuffers/python
+    out: gen/python
+    opt:
+      - pyi_out=gen/python  # Generate .pyi stub files for type hints
+
+  # TypeScript generation for React frontend
+  - plugin: buf.build/bufbuild/es
+    out: gen/typescript
+    opt:
+      - target=ts
+      - import_extension=none
+  
+  # Additional TypeScript plugin for better NATS integration
+  - plugin: buf.build/connectrpc/es
+    out: gen/typescript
+    opt:
+      - target=ts
+      - import_extension=none
+
+  # C++ generation for ESP32 hardware client
+  - plugin: buf.build/protocolbuffers/cpp
+    out: gen/cpp
+    opt:
+      - lite_runtime=true  # Optimized for embedded systems
+      - optimize_for=LITE_RUNTIME
+
+  # Optional: Generate JSON schema for validation
+  - plugin: buf.build/bufbuild/validate
+    out: gen/validate
+    opt:
+      - lang=json
+
+  # Optional: Generate documentation
+  - plugin: buf.build/bufbuild/doc
+    out: gen/docs
+    opt:
+      - type=html 

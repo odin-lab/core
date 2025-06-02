@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package odin.v1;
+
+import "odin/v1/common.proto";
+import "odin/v1/options.proto";
+
+option go_package = "github.com/odin/proto/gen/go/odin/v1;odinv1";
+
+// Partial speech-to-text results
+message SpeechTranscriptionPartial {
+  option (odin.v1.nats_subject) = "speech.transcription.partial";
+
+  TranscriptionResult transcription = 1;
+  SessionInfo session = 2;
+}
+
+// Final speech-to-text results
+message SpeechTranscriptionFinal {
+  option (odin.v1.nats_subject) = "speech.transcription.final";
+  option (odin.v1.nats_jetstream) = true;
+
+  TranscriptionResult transcription = 1;
+  SessionInfo session = 2;
+}
+
+// Voice activity detection results
+message SpeechTurnDetected {
+  option (odin.v1.nats_subject) = "speech.turn.detected";
+
+  bool is_speaking = 1;
+  float confidence = 2;
+  SessionInfo session = 3;
+}

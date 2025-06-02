@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package odin.v1;
+
+import "odin/v1/common.proto";
+import "odin/v1/options.proto";
+
+option go_package = "github.com/odin/proto/gen/go/odin/v1;odinv1";
+
+// Text input for LLM processing
+message TextRequestLlm {
+  option (odin.v1.nats_subject) = "text.request.llm";
+  option (odin.v1.nats_jetstream) = true;
+
+  string input_text = 1;
+  map<string, string> context = 2;
+  SessionInfo session = 3;
+}
+
+// Generated text response from LLM
+message TextResponseLlm {
+  option (odin.v1.nats_subject) = "text.response.llm";
+  option (odin.v1.nats_jetstream) = true;
+
+  string output_text = 1;
+  bool is_complete = 2;
+  SessionInfo session = 3;
+}

@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package odin.v1;
+
+import "odin/v1/common.proto";
+import "odin/v1/options.proto";
+
+option go_package = "github.com/odin/proto/gen/go/odin/v1;odinv1";
+
+// Tool/function invocation requests
+message ToolsCallRequest {
+  option (odin.v1.nats_subject) = "tools.call.request";
+  option (odin.v1.nats_jetstream) = true;
+
+  ToolCall tool = 1;
+  SessionInfo session = 2;
+}
+
+// Tool execution results
+message ToolsCallResponse {
+  option (odin.v1.nats_subject) = "tools.call.response";
+  option (odin.v1.nats_jetstream) = true;
+
+  string result = 1;
+  bool success = 2;
+  string error_msg = 3;
+  SessionInfo session = 4;
+}

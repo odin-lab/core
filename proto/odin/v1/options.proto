@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package odin.v1;
+
+import "google/protobuf/descriptor.proto";
+
+option go_package = "github.com/odin/proto/gen/go/odin/v1;odinv1";
+
+// Custom option to define NATS subject for messages
+extend google.protobuf.MessageOptions {
+  string nats_subject = 50001;
+}
+
+// Optional: Custom option for message routing patterns
+extend google.protobuf.MessageOptions {
+  bool nats_jetstream = 50002;
+  string nats_stream = 50003;
+} 

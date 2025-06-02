@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package odin.v1;
+
+import "odin/v1/common.proto";
+import "odin/v1/options.proto";
+
+// option go_package = "github.com/odin/proto/gen/go/odin/v1;odinv1";
+
+// Session start command
+message SessionControlStart {
+  option (odin.v1.nats_subject) = "session.control.start";
+  option (odin.v1.nats_jetstream) = true;
+
+  string session_id = 1;
+  int64 timestamp = 2;
+  map<string, string> metadata = 3;
+}
+
+// Session stop command
+message SessionControlStop {
+  option (odin.v1.nats_subject) = "session.control.stop";
+  option (odin.v1.nats_jetstream) = true;
+
+  SessionInfo session = 1;
+}

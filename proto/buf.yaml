@@ -1,0 +1,10 @@
+version: v1
+name: buf.build/odin/proto
+breaking:
+  use:
+    - FILE
+lint:
+  use:
+    - DEFAULT
+  except:
+    - PACKAGE_DIRECTORY_MATCH 
