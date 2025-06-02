@@ -2,8 +2,6 @@ syntax = "proto3";
 
 package odin.v1;
 
-option go_package = "github.com/odin/proto/gen/go/odin/v1;odinv1";
-
 // Common session information used across all messages
 message SessionInfo {
   string session_id = 1;
@@ -32,4 +30,4 @@ message ToolCall {
 message ModuleInfo {
   string module_name = 1;
   string status = 2;
-} 
+}

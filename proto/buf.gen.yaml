@@ -29,18 +29,18 @@ plugins:
   # C++ generation for ESP32 hardware client
   - plugin: buf.build/protocolbuffers/cpp
     out: gen/cpp
-    opt:
-      - lite_runtime=true  # Optimized for embedded systems
-      - optimize_for=LITE_RUNTIME
+    # opt:
+    #   - lite_runtime=true  # Optimized for embedded systems
+      # - optimize_for=LITE_RUNTIME
 
   # Optional: Generate JSON schema for validation
-  - plugin: buf.build/bufbuild/validate
-    out: gen/validate
-    opt:
-      - lang=json
+  # - plugin: buf.build/bufbuild/validate
+  #   out: gen/validate
+  #   opt:
+  #     - lang=json
 
   # Optional: Generate documentation
-  - plugin: buf.build/bufbuild/doc
-    out: gen/docs
-    opt:
-      - type=html 
+  # - plugin: buf.build/bufbuild/doc
+  #   out: gen/docs
+  #   opt:
+  #     - type=html 

@@ -5,8 +5,6 @@ package odin.v1;
 import "odin/v1/common.proto";
 import "odin/v1/options.proto";
 
-option go_package = "github.com/odin/proto/gen/go/odin/v1;odinv1";
-
 // Module health/status updates
 message SystemStatusModule {
   option (odin.v1.nats_subject) = "system.status.module";
