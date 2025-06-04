@@ -33,6 +33,10 @@ plugins:
     #   - lite_runtime=true  # Optimized for embedded systems
       # - optimize_for=LITE_RUNTIME
 
+  - plugin: buf.build/community/protobuf-c
+    out: gen/c
+    
+
   # Optional: Generate JSON schema for validation
   # - plugin: buf.build/bufbuild/validate
   #   out: gen/validate
