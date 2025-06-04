@@ -157,21 +157,21 @@ static const ProtobufCFieldDescriptor odin__v1__audio_input_chunk__field_descrip
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "session",
+    "client_id",
     2,
     PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_MESSAGE,
+    PROTOBUF_C_TYPE_STRING,
     0,   /* quantifier_offset */
-    offsetof(Odin__V1__AudioInputChunk, session),
-    &odin__v1__session_info__descriptor,
+    offsetof(Odin__V1__AudioInputChunk, client_id),
     NULL,
+    &protobuf_c_empty_string,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
 };
 static const unsigned odin__v1__audio_input_chunk__field_indices_by_name[] = {
   0,   /* field[0] = audio */
-  1,   /* field[1] = session */
+  1,   /* field[1] = client_id */
 };
 static const ProtobufCIntRange odin__v1__audio_input_chunk__number_ranges[1 + 1] =
 {

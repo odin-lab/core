@@ -26,7 +26,7 @@ from odin.v1 import common_pb2 as odin_dot_v1_dot_common__pb2
 from odin.v1 import options_pb2 as odin_dot_v1_dot_options__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x13odin/v1/audio.proto\x12\x07odin.v1\x1a\x14odin/v1/common.proto\x1a\x15odin/v1/options.proto\"\x86\x01\n\x0f\x41udioInputChunk\x12(\n\x05\x61udio\x18\x01 \x01(\x0b\x32\x12.odin.v1.AudioDataR\x05\x61udio\x12.\n\x07session\x18\x02 \x01(\x0b\x32\x14.odin.v1.SessionInfoR\x07session:\x19\x8a\xb5\x18\x11\x61udio.input.chunk\x90\xb5\x18\x01\"\x8a\x01\n\x11\x41udioOutputSpeech\x12(\n\x05\x61udio\x18\x01 \x01(\x0b\x32\x12.odin.v1.AudioDataR\x05\x61udio\x12.\n\x07session\x18\x02 \x01(\x0b\x32\x14.odin.v1.SessionInfoR\x07session:\x1b\x8a\xb5\x18\x13\x61udio.output.speech\x90\xb5\x18\x01\"\x8d\x01\n\x18\x41udioOutputVisualization\x12!\n\x0c\x61udio_levels\x18\x01 \x03(\x02R\x0b\x61udioLevels\x12.\n\x07session\x18\x02 \x01(\x0b\x32\x14.odin.v1.SessionInfoR\x07session:\x1e\x8a\xb5\x18\x1a\x61udio.output.visualizationBV\n\x0b\x63om.odin.v1B\nAudioProtoP\x01\xa2\x02\x03OXX\xaa\x02\x07Odin.V1\xca\x02\x07Odin\\V1\xe2\x02\x13Odin\\V1\\GPBMetadata\xea\x02\x08Odin::V1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x13odin/v1/audio.proto\x12\x07odin.v1\x1a\x14odin/v1/common.proto\x1a\x15odin/v1/options.proto\"s\n\x0f\x41udioInputChunk\x12(\n\x05\x61udio\x18\x01 \x01(\x0b\x32\x12.odin.v1.AudioDataR\x05\x61udio\x12\x1b\n\tclient_id\x18\x02 \x01(\tR\x08\x63lientId:\x19\x8a\xb5\x18\x11\x61udio.input.chunk\x90\xb5\x18\x01\"\x8a\x01\n\x11\x41udioOutputSpeech\x12(\n\x05\x61udio\x18\x01 \x01(\x0b\x32\x12.odin.v1.AudioDataR\x05\x61udio\x12.\n\x07session\x18\x02 \x01(\x0b\x32\x14.odin.v1.SessionInfoR\x07session:\x1b\x8a\xb5\x18\x13\x61udio.output.speech\x90\xb5\x18\x01\"\x8d\x01\n\x18\x41udioOutputVisualization\x12!\n\x0c\x61udio_levels\x18\x01 \x03(\x02R\x0b\x61udioLevels\x12.\n\x07session\x18\x02 \x01(\x0b\x32\x14.odin.v1.SessionInfoR\x07session:\x1e\x8a\xb5\x18\x1a\x61udio.output.visualizationBV\n\x0b\x63om.odin.v1B\nAudioProtoP\x01\xa2\x02\x03OXX\xaa\x02\x07Odin.V1\xca\x02\x07Odin\\V1\xe2\x02\x13Odin\\V1\\GPBMetadata\xea\x02\x08Odin::V1b\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -40,10 +40,10 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_AUDIOOUTPUTSPEECH']._serialized_options = b'\212\265\030\023audio.output.speech\220\265\030\001'
   _globals['_AUDIOOUTPUTVISUALIZATION']._loaded_options = None
   _globals['_AUDIOOUTPUTVISUALIZATION']._serialized_options = b'\212\265\030\032audio.output.visualization'
-  _globals['_AUDIOINPUTCHUNK']._serialized_start=78
-  _globals['_AUDIOINPUTCHUNK']._serialized_end=212
-  _globals['_AUDIOOUTPUTSPEECH']._serialized_start=215
-  _globals['_AUDIOOUTPUTSPEECH']._serialized_end=353
-  _globals['_AUDIOOUTPUTVISUALIZATION']._serialized_start=356
-  _globals['_AUDIOOUTPUTVISUALIZATION']._serialized_end=497
+  _globals['_AUDIOINPUTCHUNK']._serialized_start=77
+  _globals['_AUDIOINPUTCHUNK']._serialized_end=192
+  _globals['_AUDIOOUTPUTSPEECH']._serialized_start=195
+  _globals['_AUDIOOUTPUTSPEECH']._serialized_end=333
+  _globals['_AUDIOOUTPUTVISUALIZATION']._serialized_start=336
+  _globals['_AUDIOOUTPUTVISUALIZATION']._serialized_end=477
 # @@protoc_insertion_point(module_scope)

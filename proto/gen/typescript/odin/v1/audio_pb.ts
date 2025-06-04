@@ -13,7 +13,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file odin/v1/audio.proto.
  */
 export const file_odin_v1_audio: GenFile = /*@__PURE__*/
-  fileDesc("ChNvZGluL3YxL2F1ZGlvLnByb3RvEgdvZGluLnYxInYKD0F1ZGlvSW5wdXRDaHVuaxIhCgVhdWRpbxgBIAEoCzISLm9kaW4udjEuQXVkaW9EYXRhEiUKB3Nlc3Npb24YAiABKAsyFC5vZGluLnYxLlNlc3Npb25JbmZvOhmKtRgRYXVkaW8uaW5wdXQuY2h1bmuQtRgBInoKEUF1ZGlvT3V0cHV0U3BlZWNoEiEKBWF1ZGlvGAEgASgLMhIub2Rpbi52MS5BdWRpb0RhdGESJQoHc2Vzc2lvbhgCIAEoCzIULm9kaW4udjEuU2Vzc2lvbkluZm86G4q1GBNhdWRpby5vdXRwdXQuc3BlZWNokLUYASJ3ChhBdWRpb091dHB1dFZpc3VhbGl6YXRpb24SFAoMYXVkaW9fbGV2ZWxzGAEgAygCEiUKB3Nlc3Npb24YAiABKAsyFC5vZGluLnYxLlNlc3Npb25JbmZvOh6KtRgaYXVkaW8ub3V0cHV0LnZpc3VhbGl6YXRpb25CVgoLY29tLm9kaW4udjFCCkF1ZGlvUHJvdG9QAaICA09YWKoCB09kaW4uVjHKAgdPZGluXFYx4gITT2RpblxWMVxHUEJNZXRhZGF0YeoCCE9kaW46OlYxYgZwcm90bzM", [file_odin_v1_common, file_odin_v1_options]);
+  fileDesc("ChNvZGluL3YxL2F1ZGlvLnByb3RvEgdvZGluLnYxImIKD0F1ZGlvSW5wdXRDaHVuaxIhCgVhdWRpbxgBIAEoCzISLm9kaW4udjEuQXVkaW9EYXRhEhEKCWNsaWVudF9pZBgCIAEoCToZirUYEWF1ZGlvLmlucHV0LmNodW5rkLUYASJ6ChFBdWRpb091dHB1dFNwZWVjaBIhCgVhdWRpbxgBIAEoCzISLm9kaW4udjEuQXVkaW9EYXRhEiUKB3Nlc3Npb24YAiABKAsyFC5vZGluLnYxLlNlc3Npb25JbmZvOhuKtRgTYXVkaW8ub3V0cHV0LnNwZWVjaJC1GAEidwoYQXVkaW9PdXRwdXRWaXN1YWxpemF0aW9uEhQKDGF1ZGlvX2xldmVscxgBIAMoAhIlCgdzZXNzaW9uGAIgASgLMhQub2Rpbi52MS5TZXNzaW9uSW5mbzoeirUYGmF1ZGlvLm91dHB1dC52aXN1YWxpemF0aW9uQlYKC2NvbS5vZGluLnYxQgpBdWRpb1Byb3RvUAGiAgNPWFiqAgdPZGluLlYxygIHT2RpblxWMeICE09kaW5cVjFcR1BCTWV0YWRhdGHqAghPZGluOjpWMWIGcHJvdG8z", [file_odin_v1_common, file_odin_v1_options]);
 
 /**
  * Raw audio data chunks from microphone input
@@ -27,9 +27,9 @@ export type AudioInputChunk = Message<"odin.v1.AudioInputChunk"> & {
   audio?: AudioData;
 
   /**
-   * @generated from field: odin.v1.SessionInfo session = 2;
+   * @generated from field: string client_id = 2;
    */
-  session?: SessionInfo;
+  clientId: string;
 };
 
 /**

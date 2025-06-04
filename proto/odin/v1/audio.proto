@@ -11,7 +11,7 @@ message AudioInputChunk {
   option (odin.v1.nats_jetstream) = true;
 
   AudioData audio = 1;
-  SessionInfo session = 2;
+  string client_id = 2;
 }
 
 // Generated speech audio from TTS

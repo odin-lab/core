@@ -19,136 +19,111 @@ PROTOBUF_C__BEGIN_DECLS
 
 typedef struct Odin__V1__AudioInputChunk Odin__V1__AudioInputChunk;
 typedef struct Odin__V1__AudioOutputSpeech Odin__V1__AudioOutputSpeech;
-typedef struct Odin__V1__AudioOutputVisualization Odin__V1__AudioOutputVisualization;
-
+typedef struct Odin__V1__AudioOutputVisualization
+    Odin__V1__AudioOutputVisualization;
 
 /* --- enums --- */
-
 
 /* --- messages --- */
 
 /*
  * Raw audio data chunks from microphone input
  */
-struct  Odin__V1__AudioInputChunk
-{
+struct Odin__V1__AudioInputChunk {
   ProtobufCMessage base;
   Odin__V1__AudioData *audio;
-  Odin__V1__SessionInfo *session;
+  char *client_id;
 };
-#define ODIN__V1__AUDIO_INPUT_CHUNK__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&odin__v1__audio_input_chunk__descriptor) \
-    , NULL, NULL }
-
+#define ODIN__V1__AUDIO_INPUT_CHUNK__INIT                                      \
+  {PROTOBUF_C_MESSAGE_INIT(&odin__v1__audio_input_chunk__descriptor), NULL,    \
+   (char *)protobuf_c_empty_string}
 
 /*
  * Generated speech audio from TTS
  */
-struct  Odin__V1__AudioOutputSpeech
-{
+struct Odin__V1__AudioOutputSpeech {
   ProtobufCMessage base;
   Odin__V1__AudioData *audio;
   Odin__V1__SessionInfo *session;
 };
-#define ODIN__V1__AUDIO_OUTPUT_SPEECH__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&odin__v1__audio_output_speech__descriptor) \
-    , NULL, NULL }
-
+#define ODIN__V1__AUDIO_OUTPUT_SPEECH__INIT                                    \
+  {PROTOBUF_C_MESSAGE_INIT(&odin__v1__audio_output_speech__descriptor), NULL,  \
+   NULL}
 
 /*
  * Audio visualization data for frontend
  */
-struct  Odin__V1__AudioOutputVisualization
-{
+struct Odin__V1__AudioOutputVisualization {
   ProtobufCMessage base;
   size_t n_audio_levels;
   float *audio_levels;
   Odin__V1__SessionInfo *session;
 };
-#define ODIN__V1__AUDIO_OUTPUT_VISUALIZATION__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&odin__v1__audio_output_visualization__descriptor) \
-    , 0,NULL, NULL }
-
+#define ODIN__V1__AUDIO_OUTPUT_VISUALIZATION__INIT                             \
+  {PROTOBUF_C_MESSAGE_INIT(&odin__v1__audio_output_visualization__descriptor), \
+   0, NULL, NULL}
 
 /* Odin__V1__AudioInputChunk methods */
-void   odin__v1__audio_input_chunk__init
-                     (Odin__V1__AudioInputChunk         *message);
-size_t odin__v1__audio_input_chunk__get_packed_size
-                     (const Odin__V1__AudioInputChunk   *message);
-size_t odin__v1__audio_input_chunk__pack
-                     (const Odin__V1__AudioInputChunk   *message,
-                      uint8_t             *out);
-size_t odin__v1__audio_input_chunk__pack_to_buffer
-                     (const Odin__V1__AudioInputChunk   *message,
-                      ProtobufCBuffer     *buffer);
+void odin__v1__audio_input_chunk__init(Odin__V1__AudioInputChunk *message);
+size_t odin__v1__audio_input_chunk__get_packed_size(
+    const Odin__V1__AudioInputChunk *message);
+size_t
+odin__v1__audio_input_chunk__pack(const Odin__V1__AudioInputChunk *message,
+                                  uint8_t *out);
+size_t odin__v1__audio_input_chunk__pack_to_buffer(
+    const Odin__V1__AudioInputChunk *message, ProtobufCBuffer *buffer);
 Odin__V1__AudioInputChunk *
-       odin__v1__audio_input_chunk__unpack
-                     (ProtobufCAllocator  *allocator,
-                      size_t               len,
-                      const uint8_t       *data);
-void   odin__v1__audio_input_chunk__free_unpacked
-                     (Odin__V1__AudioInputChunk *message,
-                      ProtobufCAllocator *allocator);
+odin__v1__audio_input_chunk__unpack(ProtobufCAllocator *allocator, size_t len,
+                                    const uint8_t *data);
+void odin__v1__audio_input_chunk__free_unpacked(
+    Odin__V1__AudioInputChunk *message, ProtobufCAllocator *allocator);
 /* Odin__V1__AudioOutputSpeech methods */
-void   odin__v1__audio_output_speech__init
-                     (Odin__V1__AudioOutputSpeech         *message);
-size_t odin__v1__audio_output_speech__get_packed_size
-                     (const Odin__V1__AudioOutputSpeech   *message);
-size_t odin__v1__audio_output_speech__pack
-                     (const Odin__V1__AudioOutputSpeech   *message,
-                      uint8_t             *out);
-size_t odin__v1__audio_output_speech__pack_to_buffer
-                     (const Odin__V1__AudioOutputSpeech   *message,
-                      ProtobufCBuffer     *buffer);
+void odin__v1__audio_output_speech__init(Odin__V1__AudioOutputSpeech *message);
+size_t odin__v1__audio_output_speech__get_packed_size(
+    const Odin__V1__AudioOutputSpeech *message);
+size_t
+odin__v1__audio_output_speech__pack(const Odin__V1__AudioOutputSpeech *message,
+                                    uint8_t *out);
+size_t odin__v1__audio_output_speech__pack_to_buffer(
+    const Odin__V1__AudioOutputSpeech *message, ProtobufCBuffer *buffer);
 Odin__V1__AudioOutputSpeech *
-       odin__v1__audio_output_speech__unpack
-                     (ProtobufCAllocator  *allocator,
-                      size_t               len,
-                      const uint8_t       *data);
-void   odin__v1__audio_output_speech__free_unpacked
-                     (Odin__V1__AudioOutputSpeech *message,
-                      ProtobufCAllocator *allocator);
+odin__v1__audio_output_speech__unpack(ProtobufCAllocator *allocator, size_t len,
+                                      const uint8_t *data);
+void odin__v1__audio_output_speech__free_unpacked(
+    Odin__V1__AudioOutputSpeech *message, ProtobufCAllocator *allocator);
 /* Odin__V1__AudioOutputVisualization methods */
-void   odin__v1__audio_output_visualization__init
-                     (Odin__V1__AudioOutputVisualization         *message);
-size_t odin__v1__audio_output_visualization__get_packed_size
-                     (const Odin__V1__AudioOutputVisualization   *message);
-size_t odin__v1__audio_output_visualization__pack
-                     (const Odin__V1__AudioOutputVisualization   *message,
-                      uint8_t             *out);
-size_t odin__v1__audio_output_visualization__pack_to_buffer
-                     (const Odin__V1__AudioOutputVisualization   *message,
-                      ProtobufCBuffer     *buffer);
+void odin__v1__audio_output_visualization__init(
+    Odin__V1__AudioOutputVisualization *message);
+size_t odin__v1__audio_output_visualization__get_packed_size(
+    const Odin__V1__AudioOutputVisualization *message);
+size_t odin__v1__audio_output_visualization__pack(
+    const Odin__V1__AudioOutputVisualization *message, uint8_t *out);
+size_t odin__v1__audio_output_visualization__pack_to_buffer(
+    const Odin__V1__AudioOutputVisualization *message, ProtobufCBuffer *buffer);
 Odin__V1__AudioOutputVisualization *
-       odin__v1__audio_output_visualization__unpack
-                     (ProtobufCAllocator  *allocator,
-                      size_t               len,
-                      const uint8_t       *data);
-void   odin__v1__audio_output_visualization__free_unpacked
-                     (Odin__V1__AudioOutputVisualization *message,
-                      ProtobufCAllocator *allocator);
+odin__v1__audio_output_visualization__unpack(ProtobufCAllocator *allocator,
+                                             size_t len, const uint8_t *data);
+void odin__v1__audio_output_visualization__free_unpacked(
+    Odin__V1__AudioOutputVisualization *message, ProtobufCAllocator *allocator);
 /* --- per-message closures --- */
 
-typedef void (*Odin__V1__AudioInputChunk_Closure)
-                 (const Odin__V1__AudioInputChunk *message,
-                  void *closure_data);
-typedef void (*Odin__V1__AudioOutputSpeech_Closure)
-                 (const Odin__V1__AudioOutputSpeech *message,
-                  void *closure_data);
-typedef void (*Odin__V1__AudioOutputVisualization_Closure)
-                 (const Odin__V1__AudioOutputVisualization *message,
-                  void *closure_data);
+typedef void (*Odin__V1__AudioInputChunk_Closure)(
+    const Odin__V1__AudioInputChunk *message, void *closure_data);
+typedef void (*Odin__V1__AudioOutputSpeech_Closure)(
+    const Odin__V1__AudioOutputSpeech *message, void *closure_data);
+typedef void (*Odin__V1__AudioOutputVisualization_Closure)(
+    const Odin__V1__AudioOutputVisualization *message, void *closure_data);
 
 /* --- services --- */
-
 
 /* --- descriptors --- */
 
 extern const ProtobufCMessageDescriptor odin__v1__audio_input_chunk__descriptor;
-extern const ProtobufCMessageDescriptor odin__v1__audio_output_speech__descriptor;
-extern const ProtobufCMessageDescriptor odin__v1__audio_output_visualization__descriptor;
+extern const ProtobufCMessageDescriptor
+    odin__v1__audio_output_speech__descriptor;
+extern const ProtobufCMessageDescriptor
+    odin__v1__audio_output_visualization__descriptor;
 
 PROTOBUF_C__END_DECLS
 
-
-#endif  /* PROTOBUF_C_odin_2fv1_2faudio_2eproto__INCLUDED */
+#endif /* PROTOBUF_C_odin_2fv1_2faudio_2eproto__INCLUDED */

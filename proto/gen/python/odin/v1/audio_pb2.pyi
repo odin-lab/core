@@ -9,12 +9,12 @@ from typing import ClassVar as _ClassVar, Optional as _Optional, Union as _Union
 DESCRIPTOR: _descriptor.FileDescriptor
 
 class AudioInputChunk(_message.Message):
-    __slots__ = ("audio", "session")
+    __slots__ = ("audio", "client_id")
     AUDIO_FIELD_NUMBER: _ClassVar[int]
-    SESSION_FIELD_NUMBER: _ClassVar[int]
+    CLIENT_ID_FIELD_NUMBER: _ClassVar[int]
     audio: _common_pb2.AudioData
-    session: _common_pb2.SessionInfo
-    def __init__(self, audio: _Optional[_Union[_common_pb2.AudioData, _Mapping]] = ..., session: _Optional[_Union[_common_pb2.SessionInfo, _Mapping]] = ...) -> None: ...
+    client_id: str
+    def __init__(self, audio: _Optional[_Union[_common_pb2.AudioData, _Mapping]] = ..., client_id: _Optional[str] = ...) -> None: ...
 
 class AudioOutputSpeech(_message.Message):
     __slots__ = ("audio", "session")

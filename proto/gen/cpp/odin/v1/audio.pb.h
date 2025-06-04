@@ -655,9 +655,24 @@ class AudioInputChunk final : public ::google::protobuf::Message
 
   // accessors -------------------------------------------------------
   enum : int {
+    kClientIdFieldNumber = 2,
     kAudioFieldNumber = 1,
-    kSessionFieldNumber = 2,
   };
+  // string client_id = 2 [json_name = "clientId"];
+  void clear_client_id() ;
+  const ::std::string& client_id() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_client_id(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_client_id();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_client_id();
+  void set_allocated_client_id(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_client_id() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_client_id(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_client_id();
+
+  public:
   // .odin.v1.AudioData audio = 1 [json_name = "audio"];
   bool has_audio() const;
   void clear_audio() ;
@@ -673,27 +688,12 @@ class AudioInputChunk final : public ::google::protobuf::Message
   ::odin::v1::AudioData* PROTOBUF_NONNULL _internal_mutable_audio();
 
   public:
-  // .odin.v1.SessionInfo session = 2 [json_name = "session"];
-  bool has_session() const;
-  void clear_session() ;
-  const ::odin::v1::SessionInfo& session() const;
-  [[nodiscard]] ::odin::v1::SessionInfo* PROTOBUF_NULLABLE release_session();
-  ::odin::v1::SessionInfo* PROTOBUF_NONNULL mutable_session();
-  void set_allocated_session(::odin::v1::SessionInfo* PROTOBUF_NULLABLE value);
-  void unsafe_arena_set_allocated_session(::odin::v1::SessionInfo* PROTOBUF_NULLABLE value);
-  ::odin::v1::SessionInfo* PROTOBUF_NULLABLE unsafe_arena_release_session();
-
-  private:
-  const ::odin::v1::SessionInfo& _internal_session() const;
-  ::odin::v1::SessionInfo* PROTOBUF_NONNULL _internal_mutable_session();
-
-  public:
   // @@protoc_insertion_point(class_scope:odin.v1.AudioInputChunk)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<1, 2,
-                                   2, 0,
+                                   1, 41,
                                    2>
       _table_;
 
@@ -714,8 +714,8 @@ class AudioInputChunk final : public ::google::protobuf::Message
         const AudioInputChunk& from_msg);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr client_id_;
     ::odin::v1::AudioData* PROTOBUF_NULLABLE audio_;
-    ::odin::v1::SessionInfo* PROTOBUF_NULLABLE session_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -742,7 +742,7 @@ extern const ::google::protobuf::internal::ClassDataFull AudioInputChunk_class_d
 
 // .odin.v1.AudioData audio = 1 [json_name = "audio"];
 inline bool AudioInputChunk::has_audio() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.audio_ != nullptr);
   return value;
 }
@@ -763,16 +763,16 @@ inline void AudioInputChunk::unsafe_arena_set_allocated_audio(
   }
   _impl_.audio_ = reinterpret_cast<::odin::v1::AudioData*>(value);
   if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000001u;
+    _impl_._has_bits_[0] |= 0x00000002u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000001u;
+    _impl_._has_bits_[0] &= ~0x00000002u;
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:odin.v1.AudioInputChunk.audio)
 }
 inline ::odin::v1::AudioData* PROTOBUF_NULLABLE AudioInputChunk::release_audio() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
 
-  _impl_._has_bits_[0] &= ~0x00000001u;
+  _impl_._has_bits_[0] &= ~0x00000002u;
   ::odin::v1::AudioData* released = _impl_.audio_;
   _impl_.audio_ = nullptr;
   if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
@@ -792,7 +792,7 @@ inline ::odin::v1::AudioData* PROTOBUF_NULLABLE AudioInputChunk::unsafe_arena_re
   ::google::protobuf::internal::TSanWrite(&_impl_);
   // @@protoc_insertion_point(field_release:odin.v1.AudioInputChunk.audio)
 
-  _impl_._has_bits_[0] &= ~0x00000001u;
+  _impl_._has_bits_[0] &= ~0x00000002u;
   ::odin::v1::AudioData* temp = _impl_.audio_;
   _impl_.audio_ = nullptr;
   return temp;
@@ -807,7 +807,7 @@ inline ::odin::v1::AudioData* PROTOBUF_NONNULL AudioInputChunk::_internal_mutabl
 }
 inline ::odin::v1::AudioData* PROTOBUF_NONNULL AudioInputChunk::mutable_audio()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_._has_bits_[0] |= 0x00000002u;
   ::odin::v1::AudioData* _msg = _internal_mutable_audio();
   // @@protoc_insertion_point(field_mutable:odin.v1.AudioInputChunk.audio)
   return _msg;
@@ -824,106 +824,78 @@ inline void AudioInputChunk::set_allocated_audio(::odin::v1::AudioData* PROTOBUF
     if (message_arena != submessage_arena) {
       value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
     }
-    _impl_._has_bits_[0] |= 0x00000001u;
+    _impl_._has_bits_[0] |= 0x00000002u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000001u;
+    _impl_._has_bits_[0] &= ~0x00000002u;
   }
 
   _impl_.audio_ = reinterpret_cast<::odin::v1::AudioData*>(value);
   // @@protoc_insertion_point(field_set_allocated:odin.v1.AudioInputChunk.audio)
 }
 
-// .odin.v1.SessionInfo session = 2 [json_name = "session"];
-inline bool AudioInputChunk::has_session() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
-  PROTOBUF_ASSUME(!value || _impl_.session_ != nullptr);
-  return value;
+// string client_id = 2 [json_name = "clientId"];
+inline void AudioInputChunk::clear_client_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.client_id_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000001u;
 }
-inline const ::odin::v1::SessionInfo& AudioInputChunk::_internal_session() const {
+inline const ::std::string& AudioInputChunk::client_id() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:odin.v1.AudioInputChunk.client_id)
+  return _internal_client_id();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void AudioInputChunk::set_client_id(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.client_id_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:odin.v1.AudioInputChunk.client_id)
+}
+inline ::std::string* PROTOBUF_NONNULL AudioInputChunk::mutable_client_id()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::std::string* _s = _internal_mutable_client_id();
+  // @@protoc_insertion_point(field_mutable:odin.v1.AudioInputChunk.client_id)
+  return _s;
+}
+inline const ::std::string& AudioInputChunk::_internal_client_id() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  const ::odin::v1::SessionInfo* p = _impl_.session_;
-  return p != nullptr ? *p : reinterpret_cast<const ::odin::v1::SessionInfo&>(::odin::v1::_SessionInfo_default_instance_);
+  return _impl_.client_id_.Get();
 }
-inline const ::odin::v1::SessionInfo& AudioInputChunk::session() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:odin.v1.AudioInputChunk.session)
-  return _internal_session();
-}
-inline void AudioInputChunk::unsafe_arena_set_allocated_session(
-    ::odin::v1::SessionInfo* PROTOBUF_NULLABLE value) {
+inline void AudioInputChunk::_internal_set_client_id(const ::std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (GetArena() == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.session_);
-  }
-  _impl_.session_ = reinterpret_cast<::odin::v1::SessionInfo*>(value);
-  if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000002u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000002u;
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:odin.v1.AudioInputChunk.session)
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.client_id_.Set(value, GetArena());
 }
-inline ::odin::v1::SessionInfo* PROTOBUF_NULLABLE AudioInputChunk::release_session() {
+inline ::std::string* PROTOBUF_NONNULL AudioInputChunk::_internal_mutable_client_id() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-
-  _impl_._has_bits_[0] &= ~0x00000002u;
-  ::odin::v1::SessionInfo* released = _impl_.session_;
-  _impl_.session_ = nullptr;
-  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
-    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
-    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-    if (GetArena() == nullptr) {
-      delete old;
-    }
-  } else {
-    if (GetArena() != nullptr) {
-      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-    }
+  _impl_._has_bits_[0] |= 0x00000001u;
+  return _impl_.client_id_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE AudioInputChunk::release_client_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:odin.v1.AudioInputChunk.client_id)
+  if ((_impl_._has_bits_[0] & 0x00000001u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  auto* released = _impl_.client_id_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.client_id_.Set("", GetArena());
   }
   return released;
 }
-inline ::odin::v1::SessionInfo* PROTOBUF_NULLABLE AudioInputChunk::unsafe_arena_release_session() {
+inline void AudioInputChunk::set_allocated_client_id(::std::string* PROTOBUF_NULLABLE value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:odin.v1.AudioInputChunk.session)
-
-  _impl_._has_bits_[0] &= ~0x00000002u;
-  ::odin::v1::SessionInfo* temp = _impl_.session_;
-  _impl_.session_ = nullptr;
-  return temp;
-}
-inline ::odin::v1::SessionInfo* PROTOBUF_NONNULL AudioInputChunk::_internal_mutable_session() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.session_ == nullptr) {
-    auto* p = ::google::protobuf::Message::DefaultConstruct<::odin::v1::SessionInfo>(GetArena());
-    _impl_.session_ = reinterpret_cast<::odin::v1::SessionInfo*>(p);
-  }
-  return _impl_.session_;
-}
-inline ::odin::v1::SessionInfo* PROTOBUF_NONNULL AudioInputChunk::mutable_session()
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  _impl_._has_bits_[0] |= 0x00000002u;
-  ::odin::v1::SessionInfo* _msg = _internal_mutable_session();
-  // @@protoc_insertion_point(field_mutable:odin.v1.AudioInputChunk.session)
-  return _msg;
-}
-inline void AudioInputChunk::set_allocated_session(::odin::v1::SessionInfo* PROTOBUF_NULLABLE value) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (message_arena == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.session_);
-  }
-
   if (value != nullptr) {
-    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::google::protobuf::Message*>(value)->GetArena();
-    if (message_arena != submessage_arena) {
-      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
-    }
-    _impl_._has_bits_[0] |= 0x00000002u;
+    _impl_._has_bits_[0] |= 0x00000001u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000002u;
+    _impl_._has_bits_[0] &= ~0x00000001u;
   }
-
-  _impl_.session_ = reinterpret_cast<::odin::v1::SessionInfo*>(value);
-  // @@protoc_insertion_point(field_set_allocated:odin.v1.AudioInputChunk.session)
+  _impl_.client_id_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.client_id_.IsDefault()) {
+    _impl_.client_id_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:odin.v1.AudioInputChunk.client_id)
 }
 
 // -------------------------------------------------------------------
