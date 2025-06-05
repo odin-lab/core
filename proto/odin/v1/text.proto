@@ -4,23 +4,40 @@ package odin.v1;
 
 import "odin/v1/common.proto";
 import "odin/v1/options.proto";
+import "odin/v1/text_helper.proto";
 
-// Text input for LLM processing
-message TextRequestLlm {
-  option (odin.v1.nats_subject) = "text.request.llm";
+// output STT
+message STTranscript {
+  option (odin.v1.nats_subject) = "text.segments";
   option (odin.v1.nats_jetstream) = true;
 
-  string input_text = 1;
-  map<string, string> context = 2;
-  SessionInfo session = 3;
+  TranscriptionResult transcription = 1;
+  SessionInfo session = 2;
+}
+
+// Text input for LLM processing
+message TextComplete {
+  option (odin.v1.nats_subject) = "text.complete";
+  option (odin.v1.nats_jetstream) = true;
+
+  TurnResult turn_result = 1;
+  SessionInfo session = 2;
 }
 
 // Generated text response from LLM
-message TextResponseLlm {
-  option (odin.v1.nats_subject) = "text.response.llm";
+message TextOut {
+  option (odin.v1.nats_subject) = "text.out";
   option (odin.v1.nats_jetstream) = true;
 
   string output_text = 1;
-  bool is_complete = 2;
   SessionInfo session = 3;
+}
+
+// Checked output for TTS
+message TextSpeech {
+  option (odin.v1.nats_subject) = "text.speech";
+  option (odin.v1.nats_jetstream) = true;
+
+  string output_text = 1;
+  SessionInfo session = 2;
 }

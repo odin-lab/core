@@ -6,8 +6,8 @@ import "odin/v1/common.proto";
 import "odin/v1/options.proto";
 
 // Raw audio data chunks from microphone input
-message AudioInputChunk {
-  option (odin.v1.nats_subject) = "audio.input.chunk";
+message AudioBufferMic {
+  option (odin.v1.nats_subject) = "audio.buffer.mic";
   option (odin.v1.nats_jetstream) = true;
 
   AudioData audio = 1;
@@ -15,8 +15,8 @@ message AudioInputChunk {
 }
 
 // Generated speech audio from TTS
-message AudioOutputSpeech {
-  option (odin.v1.nats_subject) = "audio.output.speech";
+message AudioBufferSpeaker {
+  option (odin.v1.nats_subject) = "audio.buffer.speaker";
   option (odin.v1.nats_jetstream) = true;
 
   AudioData audio = 1;
@@ -24,9 +24,9 @@ message AudioOutputSpeech {
 }
 
 // Audio visualization data for frontend
-message AudioOutputVisualization {
-  option (odin.v1.nats_subject) = "audio.output.visualization";
+message AudioBufferSession {
+  option (odin.v1.nats_subject) = "audio.buffer.session";
 
-  repeated float audio_levels = 1;
+  AudioData audio = 1;
   SessionInfo session = 2;
 }
