@@ -10,7 +10,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file odin/v1/common.proto.
  */
 export const file_odin_v1_common: GenFile = /*@__PURE__*/
-  fileDesc("ChRvZGluL3YxL2NvbW1vbi5wcm90bxIHb2Rpbi52MSI0CgtTZXNzaW9uSW5mbxISCgpzZXNzaW9uX2lkGAEgASgJEhEKCXRpbWVzdGFtcBgCIAEoAyI0CglBdWRpb0RhdGESEgoKYXVkaW9fZGF0YRgBIAEoDBITCgtzYW1wbGVfcmF0ZRgCIAEoBSI3ChNUcmFuc2NyaXB0aW9uUmVzdWx0EgwKBHRleHQYASABKAkSEgoKY29uZmlkZW5jZRgCIAEoAiI1CghUb29sQ2FsbBIVCg1mdW5jdGlvbl9uYW1lGAEgASgJEhIKCnBhcmFtZXRlcnMYAiABKAkiMQoKTW9kdWxlSW5mbxITCgttb2R1bGVfbmFtZRgBIAEoCRIOCgZzdGF0dXMYAiABKAlCVwoLY29tLm9kaW4udjFCC0NvbW1vblByb3RvUAGiAgNPWFiqAgdPZGluLlYxygIHT2RpblxWMeICE09kaW5cVjFcR1BCTWV0YWRhdGHqAghPZGluOjpWMWIGcHJvdG8z");
+  fileDesc("ChRvZGluL3YxL2NvbW1vbi5wcm90bxIHb2Rpbi52MSJECgtTZXNzaW9uSW5mbxISCgpzZXNzaW9uX2lkGAEgASgJEg4KBnN0YXR1cxgCIAEoCRIRCgl0aW1lc3RhbXAYAyABKAMiNAoJQXVkaW9EYXRhEhIKCmF1ZGlvX2RhdGEYASABKAwSEwoLc2FtcGxlX3JhdGUYAiABKAVCVwoLY29tLm9kaW4udjFCC0NvbW1vblByb3RvUAGiAgNPWFiqAgdPZGluLlYxygIHT2RpblxWMeICE09kaW5cVjFcR1BCTWV0YWRhdGHqAghPZGluOjpWMWIGcHJvdG8z");
 
 /**
  * Common session information used across all messages
@@ -24,7 +24,12 @@ export type SessionInfo = Message<"odin.v1.SessionInfo"> & {
   sessionId: string;
 
   /**
-   * @generated from field: int64 timestamp = 2;
+   * @generated from field: string status = 2;
+   */
+  status: string;
+
+  /**
+   * @generated from field: int64 timestamp = 3;
    */
   timestamp: bigint;
 };
@@ -59,76 +64,4 @@ export type AudioData = Message<"odin.v1.AudioData"> & {
  */
 export const AudioDataSchema: GenMessage<AudioData> = /*@__PURE__*/
   messageDesc(file_odin_v1_common, 1);
-
-/**
- * Speech transcription result with confidence
- *
- * @generated from message odin.v1.TranscriptionResult
- */
-export type TranscriptionResult = Message<"odin.v1.TranscriptionResult"> & {
-  /**
-   * @generated from field: string text = 1;
-   */
-  text: string;
-
-  /**
-   * @generated from field: float confidence = 2;
-   */
-  confidence: number;
-};
-
-/**
- * Describes the message odin.v1.TranscriptionResult.
- * Use `create(TranscriptionResultSchema)` to create a new message.
- */
-export const TranscriptionResultSchema: GenMessage<TranscriptionResult> = /*@__PURE__*/
-  messageDesc(file_odin_v1_common, 2);
-
-/**
- * Tool function call information
- *
- * @generated from message odin.v1.ToolCall
- */
-export type ToolCall = Message<"odin.v1.ToolCall"> & {
-  /**
-   * @generated from field: string function_name = 1;
-   */
-  functionName: string;
-
-  /**
-   * @generated from field: string parameters = 2;
-   */
-  parameters: string;
-};
-
-/**
- * Describes the message odin.v1.ToolCall.
- * Use `create(ToolCallSchema)` to create a new message.
- */
-export const ToolCallSchema: GenMessage<ToolCall> = /*@__PURE__*/
-  messageDesc(file_odin_v1_common, 3);
-
-/**
- * Module identification and status
- *
- * @generated from message odin.v1.ModuleInfo
- */
-export type ModuleInfo = Message<"odin.v1.ModuleInfo"> & {
-  /**
-   * @generated from field: string module_name = 1;
-   */
-  moduleName: string;
-
-  /**
-   * @generated from field: string status = 2;
-   */
-  status: string;
-};
-
-/**
- * Describes the message odin.v1.ModuleInfo.
- * Use `create(ModuleInfoSchema)` to create a new message.
- */
-export const ModuleInfoSchema: GenMessage<ModuleInfo> = /*@__PURE__*/
-  messageDesc(file_odin_v1_common, 4);
 

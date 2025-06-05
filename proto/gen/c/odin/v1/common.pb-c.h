@@ -17,9 +17,6 @@ PROTOBUF_C__BEGIN_DECLS
 
 typedef struct Odin__V1__SessionInfo Odin__V1__SessionInfo;
 typedef struct Odin__V1__AudioData Odin__V1__AudioData;
-typedef struct Odin__V1__TranscriptionResult Odin__V1__TranscriptionResult;
-typedef struct Odin__V1__ToolCall Odin__V1__ToolCall;
-typedef struct Odin__V1__ModuleInfo Odin__V1__ModuleInfo;
 
 
 /* --- enums --- */
@@ -34,11 +31,12 @@ struct  Odin__V1__SessionInfo
 {
   ProtobufCMessage base;
   char *session_id;
+  char *status;
   int64_t timestamp;
 };
 #define ODIN__V1__SESSION_INFO__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&odin__v1__session_info__descriptor) \
-    , (char *)protobuf_c_empty_string, 0 }
+    , (char *)protobuf_c_empty_string, (char *)protobuf_c_empty_string, 0 }
 
 
 /*
@@ -53,48 +51,6 @@ struct  Odin__V1__AudioData
 #define ODIN__V1__AUDIO_DATA__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&odin__v1__audio_data__descriptor) \
     , {0,NULL}, 0 }
-
-
-/*
- * Speech transcription result with confidence
- */
-struct  Odin__V1__TranscriptionResult
-{
-  ProtobufCMessage base;
-  char *text;
-  float confidence;
-};
-#define ODIN__V1__TRANSCRIPTION_RESULT__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&odin__v1__transcription_result__descriptor) \
-    , (char *)protobuf_c_empty_string, 0 }
-
-
-/*
- * Tool function call information
- */
-struct  Odin__V1__ToolCall
-{
-  ProtobufCMessage base;
-  char *function_name;
-  char *parameters;
-};
-#define ODIN__V1__TOOL_CALL__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&odin__v1__tool_call__descriptor) \
-    , (char *)protobuf_c_empty_string, (char *)protobuf_c_empty_string }
-
-
-/*
- * Module identification and status
- */
-struct  Odin__V1__ModuleInfo
-{
-  ProtobufCMessage base;
-  char *module_name;
-  char *status;
-};
-#define ODIN__V1__MODULE_INFO__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&odin__v1__module_info__descriptor) \
-    , (char *)protobuf_c_empty_string, (char *)protobuf_c_empty_string }
 
 
 /* Odin__V1__SessionInfo methods */
@@ -135,63 +91,6 @@ Odin__V1__AudioData *
 void   odin__v1__audio_data__free_unpacked
                      (Odin__V1__AudioData *message,
                       ProtobufCAllocator *allocator);
-/* Odin__V1__TranscriptionResult methods */
-void   odin__v1__transcription_result__init
-                     (Odin__V1__TranscriptionResult         *message);
-size_t odin__v1__transcription_result__get_packed_size
-                     (const Odin__V1__TranscriptionResult   *message);
-size_t odin__v1__transcription_result__pack
-                     (const Odin__V1__TranscriptionResult   *message,
-                      uint8_t             *out);
-size_t odin__v1__transcription_result__pack_to_buffer
-                     (const Odin__V1__TranscriptionResult   *message,
-                      ProtobufCBuffer     *buffer);
-Odin__V1__TranscriptionResult *
-       odin__v1__transcription_result__unpack
-                     (ProtobufCAllocator  *allocator,
-                      size_t               len,
-                      const uint8_t       *data);
-void   odin__v1__transcription_result__free_unpacked
-                     (Odin__V1__TranscriptionResult *message,
-                      ProtobufCAllocator *allocator);
-/* Odin__V1__ToolCall methods */
-void   odin__v1__tool_call__init
-                     (Odin__V1__ToolCall         *message);
-size_t odin__v1__tool_call__get_packed_size
-                     (const Odin__V1__ToolCall   *message);
-size_t odin__v1__tool_call__pack
-                     (const Odin__V1__ToolCall   *message,
-                      uint8_t             *out);
-size_t odin__v1__tool_call__pack_to_buffer
-                     (const Odin__V1__ToolCall   *message,
-                      ProtobufCBuffer     *buffer);
-Odin__V1__ToolCall *
-       odin__v1__tool_call__unpack
-                     (ProtobufCAllocator  *allocator,
-                      size_t               len,
-                      const uint8_t       *data);
-void   odin__v1__tool_call__free_unpacked
-                     (Odin__V1__ToolCall *message,
-                      ProtobufCAllocator *allocator);
-/* Odin__V1__ModuleInfo methods */
-void   odin__v1__module_info__init
-                     (Odin__V1__ModuleInfo         *message);
-size_t odin__v1__module_info__get_packed_size
-                     (const Odin__V1__ModuleInfo   *message);
-size_t odin__v1__module_info__pack
-                     (const Odin__V1__ModuleInfo   *message,
-                      uint8_t             *out);
-size_t odin__v1__module_info__pack_to_buffer
-                     (const Odin__V1__ModuleInfo   *message,
-                      ProtobufCBuffer     *buffer);
-Odin__V1__ModuleInfo *
-       odin__v1__module_info__unpack
-                     (ProtobufCAllocator  *allocator,
-                      size_t               len,
-                      const uint8_t       *data);
-void   odin__v1__module_info__free_unpacked
-                     (Odin__V1__ModuleInfo *message,
-                      ProtobufCAllocator *allocator);
 /* --- per-message closures --- */
 
 typedef void (*Odin__V1__SessionInfo_Closure)
@@ -199,15 +98,6 @@ typedef void (*Odin__V1__SessionInfo_Closure)
                   void *closure_data);
 typedef void (*Odin__V1__AudioData_Closure)
                  (const Odin__V1__AudioData *message,
-                  void *closure_data);
-typedef void (*Odin__V1__TranscriptionResult_Closure)
-                 (const Odin__V1__TranscriptionResult *message,
-                  void *closure_data);
-typedef void (*Odin__V1__ToolCall_Closure)
-                 (const Odin__V1__ToolCall *message,
-                  void *closure_data);
-typedef void (*Odin__V1__ModuleInfo_Closure)
-                 (const Odin__V1__ModuleInfo *message,
                   void *closure_data);
 
 /* --- services --- */
@@ -217,9 +107,6 @@ typedef void (*Odin__V1__ModuleInfo_Closure)
 
 extern const ProtobufCMessageDescriptor odin__v1__session_info__descriptor;
 extern const ProtobufCMessageDescriptor odin__v1__audio_data__descriptor;
-extern const ProtobufCMessageDescriptor odin__v1__transcription_result__descriptor;
-extern const ProtobufCMessageDescriptor odin__v1__tool_call__descriptor;
-extern const ProtobufCMessageDescriptor odin__v1__module_info__descriptor;
 
 PROTOBUF_C__END_DECLS
 

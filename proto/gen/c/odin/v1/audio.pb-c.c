@@ -7,142 +7,142 @@
 #endif
 
 #include "odin/v1/audio.pb-c.h"
-void   odin__v1__audio_input_chunk__init
-                     (Odin__V1__AudioInputChunk         *message)
+void   odin__v1__audio_buffer_mic__init
+                     (Odin__V1__AudioBufferMic         *message)
 {
-  static const Odin__V1__AudioInputChunk init_value = ODIN__V1__AUDIO_INPUT_CHUNK__INIT;
+  static const Odin__V1__AudioBufferMic init_value = ODIN__V1__AUDIO_BUFFER_MIC__INIT;
   *message = init_value;
 }
-size_t odin__v1__audio_input_chunk__get_packed_size
-                     (const Odin__V1__AudioInputChunk *message)
+size_t odin__v1__audio_buffer_mic__get_packed_size
+                     (const Odin__V1__AudioBufferMic *message)
 {
-  assert(message->base.descriptor == &odin__v1__audio_input_chunk__descriptor);
+  assert(message->base.descriptor == &odin__v1__audio_buffer_mic__descriptor);
   return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
 }
-size_t odin__v1__audio_input_chunk__pack
-                     (const Odin__V1__AudioInputChunk *message,
+size_t odin__v1__audio_buffer_mic__pack
+                     (const Odin__V1__AudioBufferMic *message,
                       uint8_t       *out)
 {
-  assert(message->base.descriptor == &odin__v1__audio_input_chunk__descriptor);
+  assert(message->base.descriptor == &odin__v1__audio_buffer_mic__descriptor);
   return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
 }
-size_t odin__v1__audio_input_chunk__pack_to_buffer
-                     (const Odin__V1__AudioInputChunk *message,
+size_t odin__v1__audio_buffer_mic__pack_to_buffer
+                     (const Odin__V1__AudioBufferMic *message,
                       ProtobufCBuffer *buffer)
 {
-  assert(message->base.descriptor == &odin__v1__audio_input_chunk__descriptor);
+  assert(message->base.descriptor == &odin__v1__audio_buffer_mic__descriptor);
   return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
 }
-Odin__V1__AudioInputChunk *
-       odin__v1__audio_input_chunk__unpack
+Odin__V1__AudioBufferMic *
+       odin__v1__audio_buffer_mic__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data)
 {
-  return (Odin__V1__AudioInputChunk *)
-     protobuf_c_message_unpack (&odin__v1__audio_input_chunk__descriptor,
+  return (Odin__V1__AudioBufferMic *)
+     protobuf_c_message_unpack (&odin__v1__audio_buffer_mic__descriptor,
                                 allocator, len, data);
 }
-void   odin__v1__audio_input_chunk__free_unpacked
-                     (Odin__V1__AudioInputChunk *message,
+void   odin__v1__audio_buffer_mic__free_unpacked
+                     (Odin__V1__AudioBufferMic *message,
                       ProtobufCAllocator *allocator)
 {
   if(!message)
     return;
-  assert(message->base.descriptor == &odin__v1__audio_input_chunk__descriptor);
+  assert(message->base.descriptor == &odin__v1__audio_buffer_mic__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-void   odin__v1__audio_output_speech__init
-                     (Odin__V1__AudioOutputSpeech         *message)
+void   odin__v1__audio_buffer_speaker__init
+                     (Odin__V1__AudioBufferSpeaker         *message)
 {
-  static const Odin__V1__AudioOutputSpeech init_value = ODIN__V1__AUDIO_OUTPUT_SPEECH__INIT;
+  static const Odin__V1__AudioBufferSpeaker init_value = ODIN__V1__AUDIO_BUFFER_SPEAKER__INIT;
   *message = init_value;
 }
-size_t odin__v1__audio_output_speech__get_packed_size
-                     (const Odin__V1__AudioOutputSpeech *message)
+size_t odin__v1__audio_buffer_speaker__get_packed_size
+                     (const Odin__V1__AudioBufferSpeaker *message)
 {
-  assert(message->base.descriptor == &odin__v1__audio_output_speech__descriptor);
+  assert(message->base.descriptor == &odin__v1__audio_buffer_speaker__descriptor);
   return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
 }
-size_t odin__v1__audio_output_speech__pack
-                     (const Odin__V1__AudioOutputSpeech *message,
+size_t odin__v1__audio_buffer_speaker__pack
+                     (const Odin__V1__AudioBufferSpeaker *message,
                       uint8_t       *out)
 {
-  assert(message->base.descriptor == &odin__v1__audio_output_speech__descriptor);
+  assert(message->base.descriptor == &odin__v1__audio_buffer_speaker__descriptor);
   return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
 }
-size_t odin__v1__audio_output_speech__pack_to_buffer
-                     (const Odin__V1__AudioOutputSpeech *message,
+size_t odin__v1__audio_buffer_speaker__pack_to_buffer
+                     (const Odin__V1__AudioBufferSpeaker *message,
                       ProtobufCBuffer *buffer)
 {
-  assert(message->base.descriptor == &odin__v1__audio_output_speech__descriptor);
+  assert(message->base.descriptor == &odin__v1__audio_buffer_speaker__descriptor);
   return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
 }
-Odin__V1__AudioOutputSpeech *
-       odin__v1__audio_output_speech__unpack
+Odin__V1__AudioBufferSpeaker *
+       odin__v1__audio_buffer_speaker__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data)
 {
-  return (Odin__V1__AudioOutputSpeech *)
-     protobuf_c_message_unpack (&odin__v1__audio_output_speech__descriptor,
+  return (Odin__V1__AudioBufferSpeaker *)
+     protobuf_c_message_unpack (&odin__v1__audio_buffer_speaker__descriptor,
                                 allocator, len, data);
 }
-void   odin__v1__audio_output_speech__free_unpacked
-                     (Odin__V1__AudioOutputSpeech *message,
+void   odin__v1__audio_buffer_speaker__free_unpacked
+                     (Odin__V1__AudioBufferSpeaker *message,
                       ProtobufCAllocator *allocator)
 {
   if(!message)
     return;
-  assert(message->base.descriptor == &odin__v1__audio_output_speech__descriptor);
+  assert(message->base.descriptor == &odin__v1__audio_buffer_speaker__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-void   odin__v1__audio_output_visualization__init
-                     (Odin__V1__AudioOutputVisualization         *message)
+void   odin__v1__audio_buffer_session__init
+                     (Odin__V1__AudioBufferSession         *message)
 {
-  static const Odin__V1__AudioOutputVisualization init_value = ODIN__V1__AUDIO_OUTPUT_VISUALIZATION__INIT;
+  static const Odin__V1__AudioBufferSession init_value = ODIN__V1__AUDIO_BUFFER_SESSION__INIT;
   *message = init_value;
 }
-size_t odin__v1__audio_output_visualization__get_packed_size
-                     (const Odin__V1__AudioOutputVisualization *message)
+size_t odin__v1__audio_buffer_session__get_packed_size
+                     (const Odin__V1__AudioBufferSession *message)
 {
-  assert(message->base.descriptor == &odin__v1__audio_output_visualization__descriptor);
+  assert(message->base.descriptor == &odin__v1__audio_buffer_session__descriptor);
   return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
 }
-size_t odin__v1__audio_output_visualization__pack
-                     (const Odin__V1__AudioOutputVisualization *message,
+size_t odin__v1__audio_buffer_session__pack
+                     (const Odin__V1__AudioBufferSession *message,
                       uint8_t       *out)
 {
-  assert(message->base.descriptor == &odin__v1__audio_output_visualization__descriptor);
+  assert(message->base.descriptor == &odin__v1__audio_buffer_session__descriptor);
   return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
 }
-size_t odin__v1__audio_output_visualization__pack_to_buffer
-                     (const Odin__V1__AudioOutputVisualization *message,
+size_t odin__v1__audio_buffer_session__pack_to_buffer
+                     (const Odin__V1__AudioBufferSession *message,
                       ProtobufCBuffer *buffer)
 {
-  assert(message->base.descriptor == &odin__v1__audio_output_visualization__descriptor);
+  assert(message->base.descriptor == &odin__v1__audio_buffer_session__descriptor);
   return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
 }
-Odin__V1__AudioOutputVisualization *
-       odin__v1__audio_output_visualization__unpack
+Odin__V1__AudioBufferSession *
+       odin__v1__audio_buffer_session__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data)
 {
-  return (Odin__V1__AudioOutputVisualization *)
-     protobuf_c_message_unpack (&odin__v1__audio_output_visualization__descriptor,
+  return (Odin__V1__AudioBufferSession *)
+     protobuf_c_message_unpack (&odin__v1__audio_buffer_session__descriptor,
                                 allocator, len, data);
 }
-void   odin__v1__audio_output_visualization__free_unpacked
-                     (Odin__V1__AudioOutputVisualization *message,
+void   odin__v1__audio_buffer_session__free_unpacked
+                     (Odin__V1__AudioBufferSession *message,
                       ProtobufCAllocator *allocator)
 {
   if(!message)
     return;
-  assert(message->base.descriptor == &odin__v1__audio_output_visualization__descriptor);
+  assert(message->base.descriptor == &odin__v1__audio_buffer_session__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-static const ProtobufCFieldDescriptor odin__v1__audio_input_chunk__field_descriptors[2] =
+static const ProtobufCFieldDescriptor odin__v1__audio_buffer_mic__field_descriptors[2] =
 {
   {
     "audio",
@@ -150,7 +150,7 @@ static const ProtobufCFieldDescriptor odin__v1__audio_input_chunk__field_descrip
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_MESSAGE,
     0,   /* quantifier_offset */
-    offsetof(Odin__V1__AudioInputChunk, audio),
+    offsetof(Odin__V1__AudioBufferMic, audio),
     &odin__v1__audio_data__descriptor,
     NULL,
     0,             /* flags */
@@ -162,38 +162,38 @@ static const ProtobufCFieldDescriptor odin__v1__audio_input_chunk__field_descrip
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_STRING,
     0,   /* quantifier_offset */
-    offsetof(Odin__V1__AudioInputChunk, client_id),
+    offsetof(Odin__V1__AudioBufferMic, client_id),
     NULL,
     &protobuf_c_empty_string,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
 };
-static const unsigned odin__v1__audio_input_chunk__field_indices_by_name[] = {
+static const unsigned odin__v1__audio_buffer_mic__field_indices_by_name[] = {
   0,   /* field[0] = audio */
   1,   /* field[1] = client_id */
 };
-static const ProtobufCIntRange odin__v1__audio_input_chunk__number_ranges[1 + 1] =
+static const ProtobufCIntRange odin__v1__audio_buffer_mic__number_ranges[1 + 1] =
 {
   { 1, 0 },
   { 0, 2 }
 };
-const ProtobufCMessageDescriptor odin__v1__audio_input_chunk__descriptor =
+const ProtobufCMessageDescriptor odin__v1__audio_buffer_mic__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "odin.v1.AudioInputChunk",
-  "AudioInputChunk",
-  "Odin__V1__AudioInputChunk",
+  "odin.v1.AudioBufferMic",
+  "AudioBufferMic",
+  "Odin__V1__AudioBufferMic",
   "odin.v1",
-  sizeof(Odin__V1__AudioInputChunk),
+  sizeof(Odin__V1__AudioBufferMic),
   2,
-  odin__v1__audio_input_chunk__field_descriptors,
-  odin__v1__audio_input_chunk__field_indices_by_name,
-  1,  odin__v1__audio_input_chunk__number_ranges,
-  (ProtobufCMessageInit) odin__v1__audio_input_chunk__init,
+  odin__v1__audio_buffer_mic__field_descriptors,
+  odin__v1__audio_buffer_mic__field_indices_by_name,
+  1,  odin__v1__audio_buffer_mic__number_ranges,
+  (ProtobufCMessageInit) odin__v1__audio_buffer_mic__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor odin__v1__audio_output_speech__field_descriptors[2] =
+static const ProtobufCFieldDescriptor odin__v1__audio_buffer_speaker__field_descriptors[2] =
 {
   {
     "audio",
@@ -201,7 +201,7 @@ static const ProtobufCFieldDescriptor odin__v1__audio_output_speech__field_descr
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_MESSAGE,
     0,   /* quantifier_offset */
-    offsetof(Odin__V1__AudioOutputSpeech, audio),
+    offsetof(Odin__V1__AudioBufferSpeaker, audio),
     &odin__v1__audio_data__descriptor,
     NULL,
     0,             /* flags */
@@ -213,49 +213,49 @@ static const ProtobufCFieldDescriptor odin__v1__audio_output_speech__field_descr
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_MESSAGE,
     0,   /* quantifier_offset */
-    offsetof(Odin__V1__AudioOutputSpeech, session),
+    offsetof(Odin__V1__AudioBufferSpeaker, session),
     &odin__v1__session_info__descriptor,
     NULL,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
 };
-static const unsigned odin__v1__audio_output_speech__field_indices_by_name[] = {
+static const unsigned odin__v1__audio_buffer_speaker__field_indices_by_name[] = {
   0,   /* field[0] = audio */
   1,   /* field[1] = session */
 };
-static const ProtobufCIntRange odin__v1__audio_output_speech__number_ranges[1 + 1] =
+static const ProtobufCIntRange odin__v1__audio_buffer_speaker__number_ranges[1 + 1] =
 {
   { 1, 0 },
   { 0, 2 }
 };
-const ProtobufCMessageDescriptor odin__v1__audio_output_speech__descriptor =
+const ProtobufCMessageDescriptor odin__v1__audio_buffer_speaker__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "odin.v1.AudioOutputSpeech",
-  "AudioOutputSpeech",
-  "Odin__V1__AudioOutputSpeech",
+  "odin.v1.AudioBufferSpeaker",
+  "AudioBufferSpeaker",
+  "Odin__V1__AudioBufferSpeaker",
   "odin.v1",
-  sizeof(Odin__V1__AudioOutputSpeech),
+  sizeof(Odin__V1__AudioBufferSpeaker),
   2,
-  odin__v1__audio_output_speech__field_descriptors,
-  odin__v1__audio_output_speech__field_indices_by_name,
-  1,  odin__v1__audio_output_speech__number_ranges,
-  (ProtobufCMessageInit) odin__v1__audio_output_speech__init,
+  odin__v1__audio_buffer_speaker__field_descriptors,
+  odin__v1__audio_buffer_speaker__field_indices_by_name,
+  1,  odin__v1__audio_buffer_speaker__number_ranges,
+  (ProtobufCMessageInit) odin__v1__audio_buffer_speaker__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor odin__v1__audio_output_visualization__field_descriptors[2] =
+static const ProtobufCFieldDescriptor odin__v1__audio_buffer_session__field_descriptors[2] =
 {
   {
-    "audio_levels",
+    "audio",
     1,
-    PROTOBUF_C_LABEL_REPEATED,
-    PROTOBUF_C_TYPE_FLOAT,
-    offsetof(Odin__V1__AudioOutputVisualization, n_audio_levels),
-    offsetof(Odin__V1__AudioOutputVisualization, audio_levels),
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_MESSAGE,
+    0,   /* quantifier_offset */
+    offsetof(Odin__V1__AudioBufferSession, audio),
+    &odin__v1__audio_data__descriptor,
     NULL,
-    NULL,
-    PROTOBUF_C_FIELD_FLAG_PACKED,             /* flags */
+    0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
@@ -264,34 +264,34 @@ static const ProtobufCFieldDescriptor odin__v1__audio_output_visualization__fiel
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_MESSAGE,
     0,   /* quantifier_offset */
-    offsetof(Odin__V1__AudioOutputVisualization, session),
+    offsetof(Odin__V1__AudioBufferSession, session),
     &odin__v1__session_info__descriptor,
     NULL,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
 };
-static const unsigned odin__v1__audio_output_visualization__field_indices_by_name[] = {
-  0,   /* field[0] = audio_levels */
+static const unsigned odin__v1__audio_buffer_session__field_indices_by_name[] = {
+  0,   /* field[0] = audio */
   1,   /* field[1] = session */
 };
-static const ProtobufCIntRange odin__v1__audio_output_visualization__number_ranges[1 + 1] =
+static const ProtobufCIntRange odin__v1__audio_buffer_session__number_ranges[1 + 1] =
 {
   { 1, 0 },
   { 0, 2 }
 };
-const ProtobufCMessageDescriptor odin__v1__audio_output_visualization__descriptor =
+const ProtobufCMessageDescriptor odin__v1__audio_buffer_session__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "odin.v1.AudioOutputVisualization",
-  "AudioOutputVisualization",
-  "Odin__V1__AudioOutputVisualization",
+  "odin.v1.AudioBufferSession",
+  "AudioBufferSession",
+  "Odin__V1__AudioBufferSession",
   "odin.v1",
-  sizeof(Odin__V1__AudioOutputVisualization),
+  sizeof(Odin__V1__AudioBufferSession),
   2,
-  odin__v1__audio_output_visualization__field_descriptors,
-  odin__v1__audio_output_visualization__field_indices_by_name,
-  1,  odin__v1__audio_output_visualization__number_ranges,
-  (ProtobufCMessageInit) odin__v1__audio_output_visualization__init,
+  odin__v1__audio_buffer_session__field_descriptors,
+  odin__v1__audio_buffer_session__field_indices_by_name,
+  1,  odin__v1__audio_buffer_session__number_ranges,
+  (ProtobufCMessageInit) odin__v1__audio_buffer_session__init,
   NULL,NULL,NULL    /* reserved[123] */
 };

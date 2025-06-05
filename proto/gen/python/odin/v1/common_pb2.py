@@ -24,7 +24,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x14odin/v1/common.proto\x12\x07odin.v1\"J\n\x0bSessionInfo\x12\x1d\n\nsession_id\x18\x01 \x01(\tR\tsessionId\x12\x1c\n\ttimestamp\x18\x02 \x01(\x03R\ttimestamp\"K\n\tAudioData\x12\x1d\n\naudio_data\x18\x01 \x01(\x0cR\taudioData\x12\x1f\n\x0bsample_rate\x18\x02 \x01(\x05R\nsampleRate\"I\n\x13TranscriptionResult\x12\x12\n\x04text\x18\x01 \x01(\tR\x04text\x12\x1e\n\nconfidence\x18\x02 \x01(\x02R\nconfidence\"O\n\x08ToolCall\x12#\n\rfunction_name\x18\x01 \x01(\tR\x0c\x66unctionName\x12\x1e\n\nparameters\x18\x02 \x01(\tR\nparameters\"E\n\nModuleInfo\x12\x1f\n\x0bmodule_name\x18\x01 \x01(\tR\nmoduleName\x12\x16\n\x06status\x18\x02 \x01(\tR\x06statusBW\n\x0b\x63om.odin.v1B\x0b\x43ommonProtoP\x01\xa2\x02\x03OXX\xaa\x02\x07Odin.V1\xca\x02\x07Odin\\V1\xe2\x02\x13Odin\\V1\\GPBMetadata\xea\x02\x08Odin::V1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x14odin/v1/common.proto\x12\x07odin.v1\"b\n\x0bSessionInfo\x12\x1d\n\nsession_id\x18\x01 \x01(\tR\tsessionId\x12\x16\n\x06status\x18\x02 \x01(\tR\x06status\x12\x1c\n\ttimestamp\x18\x03 \x01(\x03R\ttimestamp\"K\n\tAudioData\x12\x1d\n\naudio_data\x18\x01 \x01(\x0cR\taudioData\x12\x1f\n\x0bsample_rate\x18\x02 \x01(\x05R\nsampleRateBW\n\x0b\x63om.odin.v1B\x0b\x43ommonProtoP\x01\xa2\x02\x03OXX\xaa\x02\x07Odin.V1\xca\x02\x07Odin\\V1\xe2\x02\x13Odin\\V1\\GPBMetadata\xea\x02\x08Odin::V1b\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -33,13 +33,7 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['DESCRIPTOR']._loaded_options = None
   _globals['DESCRIPTOR']._serialized_options = b'\n\013com.odin.v1B\013CommonProtoP\001\242\002\003OXX\252\002\007Odin.V1\312\002\007Odin\\V1\342\002\023Odin\\V1\\GPBMetadata\352\002\010Odin::V1'
   _globals['_SESSIONINFO']._serialized_start=33
-  _globals['_SESSIONINFO']._serialized_end=107
-  _globals['_AUDIODATA']._serialized_start=109
-  _globals['_AUDIODATA']._serialized_end=184
-  _globals['_TRANSCRIPTIONRESULT']._serialized_start=186
-  _globals['_TRANSCRIPTIONRESULT']._serialized_end=259
-  _globals['_TOOLCALL']._serialized_start=261
-  _globals['_TOOLCALL']._serialized_end=340
-  _globals['_MODULEINFO']._serialized_start=342
-  _globals['_MODULEINFO']._serialized_end=411
+  _globals['_SESSIONINFO']._serialized_end=131
+  _globals['_AUDIODATA']._serialized_start=133
+  _globals['_AUDIODATA']._serialized_end=208
 # @@protoc_insertion_point(module_scope)
