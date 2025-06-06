@@ -15,8 +15,21 @@ SUBJECT = "audio.input.chunk"  # Matches the nats_subject option in audio.proto
 SESSION_ID = str(uuid.uuid4())
 
 async def main():
+    # Establish NATS connection and JetStream context
     nc = NATS()
-    await nc.connect("nats://127.0.0.1:4222")
+    await nc.connect("nats://127.0.0.1:9090")
+
+    # JetStream context (provides persistence & at-least-once semantics)
+    js = nc.jetstream()
+
+    # Create (or verify) a stream that will hold our audio chunks.
+    # This is idempotent: an error is raised if the stream exists, so we ignore it.
+    try:
+        await js.add_stream(name="AUDIO", subjects=[SUBJECT])
+    except Exception:
+        # Stream probably already exists – that is fine for our purposes.
+        pass
+
     print("🎤  Streaming mic → NATS …  (Ctrl-C to stop)")
 
     try:
@@ -38,17 +51,18 @@ async def main():
                     session_id=SESSION_ID,
                     timestamp=int(time.time() * 1000),  # epoch-ms
                 )
-                chunk_msg = audio_pb2.AudioInputChunk(
+                chunk_msg = audio_pb2.AudioBufferSession(
                     audio=audio_msg,
                     session=session_msg,
                 )
 
-                await nc.publish(SUBJECT, chunk_msg.SerializeToString())
+                # Publish through JetStream so the data is persisted
+                await js.publish(SUBJECT, chunk_msg.SerializeToString())
     except KeyboardInterrupt:
         pass
     finally:
-        # Tell the server we're finished (simple sentinel)
-        await nc.publish(SUBJECT, b"EOS:" + SESSION_ID.encode())
+        # Notify listeners that this session has finished using JetStream as well
+        await js.publish(SUBJECT, b"EOS:" + SESSION_ID.encode())
         await nc.drain()
         print("✅  Client closed.")
 

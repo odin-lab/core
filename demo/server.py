@@ -11,9 +11,19 @@ SAMPLE_RATE = 16_000
 SUBJECT = "audio.input.chunk"
 
 async def main():
+    # Establish NATS connection and JetStream context
     nc = NATS()
-    await nc.connect("nats://127.0.0.1:4222")
-    print("📡  Listening on", SUBJECT)
+    await nc.connect("nats://127.0.0.1:9090")
+
+    js = nc.jetstream()
+
+    # Create (or verify) the audio stream – idempotent
+    try:
+        await js.add_stream(name="AUDIO", subjects=[SUBJECT])
+    except Exception:
+        pass
+
+    print("📡  Listening on", SUBJECT, "via JetStream")
 
     #buffer = bytearray()
     buffer = {}
@@ -39,7 +49,7 @@ async def main():
 
         else:
             # Deserialize protobuf message
-            chunk = audio_pb2.AudioInputChunk()
+            chunk = audio_pb2.AudioBufferSession()
             chunk.ParseFromString(msg.data)
 
             sid = chunk.session.session_id
@@ -50,7 +60,11 @@ async def main():
 
             buffer[sid].extend(chunk.audio.audio_data)
 
-    await nc.subscribe(SUBJECT, cb=on_msg)
+            # Ack message so JetStream knows we've processed it
+            await msg.ack()
+
+    # Subscribe via JetStream with a durable consumer so we can resume after restarts
+    await js.subscribe(SUBJECT, durable="audio_recorder", cb=on_msg)
 
     try:
         while True:
