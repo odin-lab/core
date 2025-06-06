@@ -37,10 +37,10 @@ async def main():
             samplerate=SAMPLE_RATE,
             channels=1,
             blocksize=CHUNK,
-            dtype="int16",
+            dtype="float32",
         ) as stream:
             while True:
-                data, _ = stream.read(CHUNK)          # ndarray[int16]
+                data, _ = stream.read(CHUNK)          # ndarray[int32]
 
                 # Build the protobuf message
                 audio_msg = common_pb2.AudioData(
@@ -48,7 +48,7 @@ async def main():
                     sample_rate=SAMPLE_RATE,
                 )
                 session_msg = common_pb2.SessionInfo(
-                    session_id=SESSION_ID,
+                    id=SESSION_ID,
                     timestamp=int(time.time() * 1000),  # epoch-ms
                 )
                 chunk_msg = audio_pb2.AudioBufferSession(
