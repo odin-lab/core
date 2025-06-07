@@ -31,7 +31,7 @@ inline constexpr TurnResult::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
         text_{},
-        is_speaking_{false} {}
+        odins_turn_{false} {}
 
 template <typename>
 PROTOBUF_CONSTEXPR TurnResult::TurnResult(::_pbi::ConstantInitialized)
@@ -98,7 +98,7 @@ const ::uint32_t
         PROTOBUF_FIELD_OFFSET(::odin::v1::TurnResult, _impl_._has_bits_),
         5, // hasbit index offset
         PROTOBUF_FIELD_OFFSET(::odin::v1::TurnResult, _impl_.text_),
-        PROTOBUF_FIELD_OFFSET(::odin::v1::TurnResult, _impl_.is_speaking_),
+        PROTOBUF_FIELD_OFFSET(::odin::v1::TurnResult, _impl_.odins_turn_),
         ~0u,
         0,
 };
@@ -117,17 +117,17 @@ const char descriptor_table_protodef_odin_2fv1_2ftext_5fhelper_2eproto[] ABSL_AT
     "\n\031odin/v1/text_helper.proto\022\007odin.v1\"o\n\023"
     "TranscriptionResult\022\022\n\004text\030\001 \003(\tR\004text\022"
     "\034\n\tcompleted\030\002 \003(\010R\tcompleted\022\024\n\005start\030\003"
-    " \003(\002R\005start\022\020\n\003end\030\004 \003(\002R\003end\"A\n\nTurnRes"
-    "ult\022\022\n\004text\030\001 \003(\tR\004text\022\037\n\013is_speaking\030\002"
-    " \001(\010R\nisSpeakingB[\n\013com.odin.v1B\017TextHel"
-    "perProtoP\001\242\002\003OXX\252\002\007Odin.V1\312\002\007Odin\\V1\342\002\023O"
-    "din\\V1\\GPBMetadata\352\002\010Odin::V1b\006proto3"
+    " \003(\002R\005start\022\020\n\003end\030\004 \003(\002R\003end\"\?\n\nTurnRes"
+    "ult\022\022\n\004text\030\001 \003(\tR\004text\022\035\n\nodins_turn\030\002 "
+    "\001(\010R\todinsTurnB[\n\013com.odin.v1B\017TextHelpe"
+    "rProtoP\001\242\002\003OXX\252\002\007Odin.V1\312\002\007Odin\\V1\342\002\023Odi"
+    "n\\V1\\GPBMetadata\352\002\010Odin::V1b\006proto3"
 };
 static ::absl::once_flag descriptor_table_odin_2fv1_2ftext_5fhelper_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_odin_2fv1_2ftext_5fhelper_2eproto = {
     false,
     false,
-    317,
+    315,
     descriptor_table_protodef_odin_2fv1_2ftext_5fhelper_2eproto,
     "odin/v1/text_helper.proto",
     &descriptor_table_odin_2fv1_2ftext_5fhelper_2eproto_once,
@@ -523,7 +523,7 @@ TurnResult::TurnResult(
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
-  _impl_.is_speaking_ = from._impl_.is_speaking_;
+  _impl_.odins_turn_ = from._impl_.odins_turn_;
 
   // @@protoc_insertion_point(copy_constructor:odin.v1.TurnResult)
 }
@@ -535,7 +535,7 @@ PROTOBUF_NDEBUG_INLINE TurnResult::Impl_::Impl_(
 
 inline void TurnResult::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
-  _impl_.is_speaking_ = {};
+  _impl_.odins_turn_ = {};
 }
 TurnResult::~TurnResult() {
   // @@protoc_insertion_point(destructor:odin.v1.TurnResult)
@@ -622,9 +622,9 @@ TurnResult::_table_ = {
     ::_pbi::TcParser::GetTable<::odin::v1::TurnResult>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    // bool is_speaking = 2 [json_name = "isSpeaking"];
-    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(TurnResult, _impl_.is_speaking_), 0>(),
-     {16, 0, 0, PROTOBUF_FIELD_OFFSET(TurnResult, _impl_.is_speaking_)}},
+    // bool odins_turn = 2 [json_name = "odinsTurn"];
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(TurnResult, _impl_.odins_turn_), 0>(),
+     {16, 0, 0, PROTOBUF_FIELD_OFFSET(TurnResult, _impl_.odins_turn_)}},
     // repeated string text = 1 [json_name = "text"];
     {::_pbi::TcParser::FastUR1,
      {10, 63, 0, PROTOBUF_FIELD_OFFSET(TurnResult, _impl_.text_)}},
@@ -634,8 +634,8 @@ TurnResult::_table_ = {
     // repeated string text = 1 [json_name = "text"];
     {PROTOBUF_FIELD_OFFSET(TurnResult, _impl_.text_), -1, 0,
     (0 | ::_fl::kFcRepeated | ::_fl::kUtf8String | ::_fl::kRepSString)},
-    // bool is_speaking = 2 [json_name = "isSpeaking"];
-    {PROTOBUF_FIELD_OFFSET(TurnResult, _impl_.is_speaking_), _Internal::kHasBitsOffset + 0, 0,
+    // bool odins_turn = 2 [json_name = "odinsTurn"];
+    {PROTOBUF_FIELD_OFFSET(TurnResult, _impl_.odins_turn_), _Internal::kHasBitsOffset + 0, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kBool)},
   }},
   // no aux_entries
@@ -653,7 +653,7 @@ PROTOBUF_NOINLINE void TurnResult::Clear() {
   (void) cached_has_bits;
 
   _impl_.text_.Clear();
-  _impl_.is_speaking_ = false;
+  _impl_.odins_turn_ = false;
   _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
@@ -681,12 +681,12 @@ PROTOBUF_NOINLINE void TurnResult::Clear() {
     target = stream->WriteString(1, s, target);
   }
 
-  // bool is_speaking = 2 [json_name = "isSpeaking"];
+  // bool odins_turn = 2 [json_name = "odinsTurn"];
   if ((this_._impl_._has_bits_[0] & 0x00000001u) != 0) {
-    if (this_._internal_is_speaking() != 0) {
+    if (this_._internal_odins_turn() != 0) {
       target = stream->EnsureSpace(target);
       target = ::_pbi::WireFormatLite::WriteBoolToArray(
-          2, this_._internal_is_speaking(), target);
+          2, this_._internal_odins_turn(), target);
     }
   }
 
@@ -726,10 +726,10 @@ PROTOBUF_NOINLINE void TurnResult::Clear() {
     }
   }
    {
-    // bool is_speaking = 2 [json_name = "isSpeaking"];
+    // bool odins_turn = 2 [json_name = "odinsTurn"];
     cached_has_bits = this_._impl_._has_bits_[0];
     if ((cached_has_bits & 0x00000001u) != 0) {
-      if (this_._internal_is_speaking() != 0) {
+      if (this_._internal_odins_turn() != 0) {
         total_size += 2;
       }
     }
@@ -749,8 +749,8 @@ void TurnResult::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::goog
   _this->_internal_mutable_text()->MergeFrom(from._internal_text());
   cached_has_bits = from._impl_._has_bits_[0];
   if ((cached_has_bits & 0x00000001u) != 0) {
-    if (from._internal_is_speaking() != 0) {
-      _this->_impl_.is_speaking_ = from._impl_.is_speaking_;
+    if (from._internal_odins_turn() != 0) {
+      _this->_impl_.odins_turn_ = from._impl_.odins_turn_;
     }
   }
   _this->_impl_._has_bits_[0] |= cached_has_bits;
@@ -770,7 +770,7 @@ void TurnResult::InternalSwap(TurnResult* PROTOBUF_RESTRICT PROTOBUF_NONNULL oth
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
   _impl_.text_.InternalSwap(&other->_impl_.text_);
-  swap(_impl_.is_speaking_, other->_impl_.is_speaking_);
+  swap(_impl_.odins_turn_, other->_impl_.odins_turn_);
 }
 
 ::google::protobuf::Metadata TurnResult::GetMetadata() const {

@@ -10,7 +10,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file odin/v1/text_helper.proto.
  */
 export const file_odin_v1_text_helper: GenFile = /*@__PURE__*/
-  fileDesc("ChlvZGluL3YxL3RleHRfaGVscGVyLnByb3RvEgdvZGluLnYxIlIKE1RyYW5zY3JpcHRpb25SZXN1bHQSDAoEdGV4dBgBIAMoCRIRCgljb21wbGV0ZWQYAiADKAgSDQoFc3RhcnQYAyADKAISCwoDZW5kGAQgAygCIi8KClR1cm5SZXN1bHQSDAoEdGV4dBgBIAMoCRITCgtpc19zcGVha2luZxgCIAEoCEJbCgtjb20ub2Rpbi52MUIPVGV4dEhlbHBlclByb3RvUAGiAgNPWFiqAgdPZGluLlYxygIHT2RpblxWMeICE09kaW5cVjFcR1BCTWV0YWRhdGHqAghPZGluOjpWMWIGcHJvdG8z");
+  fileDesc("ChlvZGluL3YxL3RleHRfaGVscGVyLnByb3RvEgdvZGluLnYxIlIKE1RyYW5zY3JpcHRpb25SZXN1bHQSDAoEdGV4dBgBIAMoCRIRCgljb21wbGV0ZWQYAiADKAgSDQoFc3RhcnQYAyADKAISCwoDZW5kGAQgAygCIi4KClR1cm5SZXN1bHQSDAoEdGV4dBgBIAMoCRISCgpvZGluc190dXJuGAIgASgIQlsKC2NvbS5vZGluLnYxQg9UZXh0SGVscGVyUHJvdG9QAaICA09YWKoCB09kaW4uVjHKAgdPZGluXFYx4gITT2RpblxWMVxHUEJNZXRhZGF0YeoCCE9kaW46OlYxYgZwcm90bzM");
 
 /**
  * Speech transcription result with confidence
@@ -58,9 +58,9 @@ export type TurnResult = Message<"odin.v1.TurnResult"> & {
   text: string[];
 
   /**
-   * @generated from field: bool is_speaking = 2;
+   * @generated from field: bool odins_turn = 2;
    */
-  isSpeaking: boolean;
+  odinsTurn: boolean;
 };
 
 /**

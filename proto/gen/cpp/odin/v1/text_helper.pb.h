@@ -221,7 +221,7 @@ class TurnResult final : public ::google::protobuf::Message
   // accessors -------------------------------------------------------
   enum : int {
     kTextFieldNumber = 1,
-    kIsSpeakingFieldNumber = 2,
+    kOdinsTurnFieldNumber = 2,
   };
   // repeated string text = 1 [json_name = "text"];
   int text_size() const;
@@ -245,14 +245,14 @@ class TurnResult final : public ::google::protobuf::Message
   ::google::protobuf::RepeatedPtrField<::std::string>* PROTOBUF_NONNULL _internal_mutable_text();
 
   public:
-  // bool is_speaking = 2 [json_name = "isSpeaking"];
-  void clear_is_speaking() ;
-  bool is_speaking() const;
-  void set_is_speaking(bool value);
+  // bool odins_turn = 2 [json_name = "odinsTurn"];
+  void clear_odins_turn() ;
+  bool odins_turn() const;
+  void set_odins_turn(bool value);
 
   private:
-  bool _internal_is_speaking() const;
-  void _internal_set_is_speaking(bool value);
+  bool _internal_odins_turn() const;
+  void _internal_set_odins_turn(bool value);
 
   public:
   // @@protoc_insertion_point(class_scope:odin.v1.TurnResult)
@@ -282,7 +282,7 @@ class TurnResult final : public ::google::protobuf::Message
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::RepeatedPtrField<::std::string> text_;
-    bool is_speaking_;
+    bool odins_turn_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -839,28 +839,28 @@ TurnResult::_internal_mutable_text() {
   return &_impl_.text_;
 }
 
-// bool is_speaking = 2 [json_name = "isSpeaking"];
-inline void TurnResult::clear_is_speaking() {
+// bool odins_turn = 2 [json_name = "odinsTurn"];
+inline void TurnResult::clear_odins_turn() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.is_speaking_ = false;
+  _impl_.odins_turn_ = false;
   _impl_._has_bits_[0] &= ~0x00000001u;
 }
-inline bool TurnResult::is_speaking() const {
-  // @@protoc_insertion_point(field_get:odin.v1.TurnResult.is_speaking)
-  return _internal_is_speaking();
+inline bool TurnResult::odins_turn() const {
+  // @@protoc_insertion_point(field_get:odin.v1.TurnResult.odins_turn)
+  return _internal_odins_turn();
 }
-inline void TurnResult::set_is_speaking(bool value) {
-  _internal_set_is_speaking(value);
+inline void TurnResult::set_odins_turn(bool value) {
+  _internal_set_odins_turn(value);
   _impl_._has_bits_[0] |= 0x00000001u;
-  // @@protoc_insertion_point(field_set:odin.v1.TurnResult.is_speaking)
+  // @@protoc_insertion_point(field_set:odin.v1.TurnResult.odins_turn)
 }
-inline bool TurnResult::_internal_is_speaking() const {
+inline bool TurnResult::_internal_odins_turn() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.is_speaking_;
+  return _impl_.odins_turn_;
 }
-inline void TurnResult::_internal_set_is_speaking(bool value) {
+inline void TurnResult::_internal_set_odins_turn(bool value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.is_speaking_ = value;
+  _impl_.odins_turn_ = value;
 }
 
 #ifdef __GNUC__

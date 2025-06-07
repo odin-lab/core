@@ -19,9 +19,9 @@ class TranscriptionResult(_message.Message):
     def __init__(self, text: _Optional[_Iterable[str]] = ..., completed: _Optional[_Iterable[bool]] = ..., start: _Optional[_Iterable[float]] = ..., end: _Optional[_Iterable[float]] = ...) -> None: ...
 
 class TurnResult(_message.Message):
-    __slots__ = ("text", "is_speaking")
+    __slots__ = ("text", "odins_turn")
     TEXT_FIELD_NUMBER: _ClassVar[int]
-    IS_SPEAKING_FIELD_NUMBER: _ClassVar[int]
+    ODINS_TURN_FIELD_NUMBER: _ClassVar[int]
     text: _containers.RepeatedScalarFieldContainer[str]
-    is_speaking: bool
-    def __init__(self, text: _Optional[_Iterable[str]] = ..., is_speaking: bool = ...) -> None: ...
+    odins_turn: bool
+    def __init__(self, text: _Optional[_Iterable[str]] = ..., odins_turn: bool = ...) -> None: ...

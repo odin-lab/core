@@ -52,7 +52,7 @@ struct  Odin__V1__TurnResult
   ProtobufCMessage base;
   size_t n_text;
   char **text;
-  protobuf_c_boolean is_speaking;
+  protobuf_c_boolean odins_turn;
 };
 #define ODIN__V1__TURN_RESULT__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&odin__v1__turn_result__descriptor) \
