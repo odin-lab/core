@@ -8,13 +8,13 @@ dependencies = [
     "google>=3.0.0",
     "nats-py>=2",
     "numpy>=2.2.6",
-    "odin-protobuf",
+    "odin-proto",
     "protobuf>=6.31.1",
     "sounddevice>=0.5.2",
 ]
 
 [tool.uv.sources]
-odin-protobuf = { path = "../proto/gen/python", editable = true }
+odin-proto = { path = "../proto/gen/python", editable = true }
 
 [dependency-groups]
 dev = [
