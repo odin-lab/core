@@ -5,7 +5,9 @@ package odin.v1;
 // Speech transcription result with confidence
 message TranscriptionResult {
   repeated string text = 1;
-  float confidence = 2;
+  repeated bool completed = 2;
+  repeated float start = 3;
+  repeated float end = 4;
 }
 
 // Turn information with role and content
