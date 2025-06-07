@@ -1,14 +1,13 @@
 from odin.v1 import common_pb2 as _common_pb2
 from odin.v1 import options_pb2 as _options_pb2
-from google.protobuf.internal import containers as _containers
 from google.protobuf import descriptor as _descriptor
 from google.protobuf import message as _message
-from collections.abc import Iterable as _Iterable, Mapping as _Mapping
+from collections.abc import Mapping as _Mapping
 from typing import ClassVar as _ClassVar, Optional as _Optional, Union as _Union
 
 DESCRIPTOR: _descriptor.FileDescriptor
 
-class AudioInputChunk(_message.Message):
+class AudioBufferMic(_message.Message):
     __slots__ = ("audio", "client_id")
     AUDIO_FIELD_NUMBER: _ClassVar[int]
     CLIENT_ID_FIELD_NUMBER: _ClassVar[int]
@@ -16,7 +15,7 @@ class AudioInputChunk(_message.Message):
     client_id: str
     def __init__(self, audio: _Optional[_Union[_common_pb2.AudioData, _Mapping]] = ..., client_id: _Optional[str] = ...) -> None: ...
 
-class AudioOutputSpeech(_message.Message):
+class AudioBufferSpeaker(_message.Message):
     __slots__ = ("audio", "session")
     AUDIO_FIELD_NUMBER: _ClassVar[int]
     SESSION_FIELD_NUMBER: _ClassVar[int]
@@ -24,10 +23,10 @@ class AudioOutputSpeech(_message.Message):
     session: _common_pb2.SessionInfo
     def __init__(self, audio: _Optional[_Union[_common_pb2.AudioData, _Mapping]] = ..., session: _Optional[_Union[_common_pb2.SessionInfo, _Mapping]] = ...) -> None: ...
 
-class AudioOutputVisualization(_message.Message):
-    __slots__ = ("audio_levels", "session")
-    AUDIO_LEVELS_FIELD_NUMBER: _ClassVar[int]
+class AudioBufferSession(_message.Message):
+    __slots__ = ("audio", "session")
+    AUDIO_FIELD_NUMBER: _ClassVar[int]
     SESSION_FIELD_NUMBER: _ClassVar[int]
-    audio_levels: _containers.RepeatedScalarFieldContainer[float]
+    audio: _common_pb2.AudioData
     session: _common_pb2.SessionInfo
-    def __init__(self, audio_levels: _Optional[_Iterable[float]] = ..., session: _Optional[_Union[_common_pb2.SessionInfo, _Mapping]] = ...) -> None: ...
+    def __init__(self, audio: _Optional[_Union[_common_pb2.AudioData, _Mapping]] = ..., session: _Optional[_Union[_common_pb2.SessionInfo, _Mapping]] = ...) -> None: ...

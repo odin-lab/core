@@ -28,13 +28,10 @@
 #include "google/protobuf/message_lite.h"
 #include "google/protobuf/repeated_field.h"  // IWYU pragma: export
 #include "google/protobuf/extension_set.h"  // IWYU pragma: export
-#include "google/protobuf/map.h"  // IWYU pragma: export
-#include "google/protobuf/map_type_handler.h"  // IWYU pragma: export
-#include "google/protobuf/map_entry.h"
-#include "google/protobuf/map_field.h"
 #include "google/protobuf/unknown_field_set.h"
 #include "odin/v1/common.pb.h"
 #include "odin/v1/options.pb.h"
+#include "odin/v1/text_helper.pb.h"
 // @@protoc_insertion_point(includes)
 
 // Must be included last.
@@ -60,18 +57,22 @@ extern const ::google::protobuf::internal::DescriptorTable descriptor_table_odin
 }  // extern "C"
 namespace odin {
 namespace v1 {
-class TextRequestLlm;
-struct TextRequestLlmDefaultTypeInternal;
-extern TextRequestLlmDefaultTypeInternal _TextRequestLlm_default_instance_;
-extern const ::google::protobuf::internal::ClassDataFull TextRequestLlm_class_data_;
-class TextRequestLlm_ContextEntry_DoNotUse;
-struct TextRequestLlm_ContextEntry_DoNotUseDefaultTypeInternal;
-extern TextRequestLlm_ContextEntry_DoNotUseDefaultTypeInternal _TextRequestLlm_ContextEntry_DoNotUse_default_instance_;
-extern const ::google::protobuf::internal::ClassDataFull TextRequestLlm_ContextEntry_DoNotUse_class_data_;
-class TextResponseLlm;
-struct TextResponseLlmDefaultTypeInternal;
-extern TextResponseLlmDefaultTypeInternal _TextResponseLlm_default_instance_;
-extern const ::google::protobuf::internal::ClassDataFull TextResponseLlm_class_data_;
+class STTranscript;
+struct STTranscriptDefaultTypeInternal;
+extern STTranscriptDefaultTypeInternal _STTranscript_default_instance_;
+extern const ::google::protobuf::internal::ClassDataFull STTranscript_class_data_;
+class TextComplete;
+struct TextCompleteDefaultTypeInternal;
+extern TextCompleteDefaultTypeInternal _TextComplete_default_instance_;
+extern const ::google::protobuf::internal::ClassDataFull TextComplete_class_data_;
+class TextOut;
+struct TextOutDefaultTypeInternal;
+extern TextOutDefaultTypeInternal _TextOut_default_instance_;
+extern const ::google::protobuf::internal::ClassDataFull TextOut_class_data_;
+class TextSpeech;
+struct TextSpeechDefaultTypeInternal;
+extern TextSpeechDefaultTypeInternal _TextSpeech_default_instance_;
+extern const ::google::protobuf::internal::ClassDataFull TextSpeech_class_data_;
 }  // namespace v1
 }  // namespace odin
 namespace google {
@@ -87,69 +88,30 @@ namespace v1 {
 
 // -------------------------------------------------------------------
 
-class TextRequestLlm_ContextEntry_DoNotUse final
-    : public ::google::protobuf::internal::MapEntry<std::string, std::string,
-                             ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
-                             ::google::protobuf::internal::WireFormatLite::TYPE_STRING> {
+class TextSpeech final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:odin.v1.TextSpeech) */ {
  public:
-  using SuperType =
-      ::google::protobuf::internal::MapEntry<std::string, std::string,
-                      ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
-                      ::google::protobuf::internal::WireFormatLite::TYPE_STRING>;
-  TextRequestLlm_ContextEntry_DoNotUse();
-  template <typename = void>
-  explicit PROTOBUF_CONSTEXPR TextRequestLlm_ContextEntry_DoNotUse(::google::protobuf::internal::ConstantInitialized);
-  explicit TextRequestLlm_ContextEntry_DoNotUse(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-  static constexpr const void* PROTOBUF_NONNULL internal_default_instance() {
-    return &_TextRequestLlm_ContextEntry_DoNotUse_default_instance_;
-  }
-
-
-  static constexpr auto InternalGenerateClassData_();
-
- private:
-  friend class ::google::protobuf::MessageLite;
-  friend struct ::TableStruct_odin_2fv1_2ftext_2eproto;
-
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<1, 2,
-                                   0, 52,
-                                   2>
-      _table_;
-
-  const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
-  static void* PROTOBUF_NONNULL PlacementNew_(
-      const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
-      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-  static constexpr auto InternalNewImpl_();
-};
-extern const ::google::protobuf::internal::ClassDataFull TextRequestLlm_ContextEntry_DoNotUse_class_data_;
-// -------------------------------------------------------------------
-
-class TextResponseLlm final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:odin.v1.TextResponseLlm) */ {
- public:
-  inline TextResponseLlm() : TextResponseLlm(nullptr) {}
-  ~TextResponseLlm() PROTOBUF_FINAL;
+  inline TextSpeech() : TextSpeech(nullptr) {}
+  ~TextSpeech() PROTOBUF_FINAL;
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(TextResponseLlm* PROTOBUF_NONNULL msg, std::destroying_delete_t) {
+  void operator delete(TextSpeech* PROTOBUF_NONNULL msg, std::destroying_delete_t) {
     SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(TextResponseLlm));
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(TextSpeech));
   }
 #endif
 
   template <typename = void>
-  explicit PROTOBUF_CONSTEXPR TextResponseLlm(::google::protobuf::internal::ConstantInitialized);
+  explicit PROTOBUF_CONSTEXPR TextSpeech(::google::protobuf::internal::ConstantInitialized);
 
-  inline TextResponseLlm(const TextResponseLlm& from) : TextResponseLlm(nullptr, from) {}
-  inline TextResponseLlm(TextResponseLlm&& from) noexcept
-      : TextResponseLlm(nullptr, ::std::move(from)) {}
-  inline TextResponseLlm& operator=(const TextResponseLlm& from) {
+  inline TextSpeech(const TextSpeech& from) : TextSpeech(nullptr, from) {}
+  inline TextSpeech(TextSpeech&& from) noexcept
+      : TextSpeech(nullptr, ::std::move(from)) {}
+  inline TextSpeech& operator=(const TextSpeech& from) {
     CopyFrom(from);
     return *this;
   }
-  inline TextResponseLlm& operator=(TextResponseLlm&& from) noexcept {
+  inline TextSpeech& operator=(TextSpeech&& from) noexcept {
     if (this == &from) return *this;
     if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
       InternalSwap(&from);
@@ -177,13 +139,13 @@ class TextResponseLlm final : public ::google::protobuf::Message
   static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const TextResponseLlm& default_instance() {
-    return *reinterpret_cast<const TextResponseLlm*>(
-        &_TextResponseLlm_default_instance_);
+  static const TextSpeech& default_instance() {
+    return *reinterpret_cast<const TextSpeech*>(
+        &_TextSpeech_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 2;
-  friend void swap(TextResponseLlm& a, TextResponseLlm& b) { a.Swap(&b); }
-  inline void Swap(TextResponseLlm* PROTOBUF_NONNULL other) {
+  static constexpr int kIndexInFileMessages = 3;
+  friend void swap(TextSpeech& a, TextSpeech& b) { a.Swap(&b); }
+  inline void Swap(TextSpeech* PROTOBUF_NONNULL other) {
     if (other == this) return;
     if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
       InternalSwap(other);
@@ -191,7 +153,7 @@ class TextResponseLlm final : public ::google::protobuf::Message
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(TextResponseLlm* PROTOBUF_NONNULL other) {
+  void UnsafeArenaSwap(TextSpeech* PROTOBUF_NONNULL other) {
     if (other == this) return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -199,13 +161,13 @@ class TextResponseLlm final : public ::google::protobuf::Message
 
   // implements Message ----------------------------------------------
 
-  TextResponseLlm* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<TextResponseLlm>(arena);
+  TextSpeech* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<TextSpeech>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const TextResponseLlm& from);
+  void CopyFrom(const TextSpeech& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const TextResponseLlm& from) { TextResponseLlm::MergeImpl(*this, from); }
+  void MergeFrom(const TextSpeech& from) { TextSpeech::MergeImpl(*this, from); }
 
   private:
   static void MergeImpl(::google::protobuf::MessageLite& to_msg,
@@ -241,18 +203,231 @@ class TextResponseLlm final : public ::google::protobuf::Message
   private:
   void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
   static void SharedDtor(MessageLite& self);
-  void InternalSwap(TextResponseLlm* PROTOBUF_NONNULL other);
+  void InternalSwap(TextSpeech* PROTOBUF_NONNULL other);
  private:
   template <typename T>
   friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "odin.v1.TextResponseLlm"; }
+  static ::absl::string_view FullMessageName() { return "odin.v1.TextSpeech"; }
 
  protected:
-  explicit TextResponseLlm(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-  TextResponseLlm(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const TextResponseLlm& from);
-  TextResponseLlm(
-      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, TextResponseLlm&& from) noexcept
-      : TextResponseLlm(arena) {
+  explicit TextSpeech(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  TextSpeech(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const TextSpeech& from);
+  TextSpeech(
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, TextSpeech&& from) noexcept
+      : TextSpeech(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
+  static void* PROTOBUF_NONNULL PlacementNew_(
+      const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static constexpr auto InternalNewImpl_();
+
+ public:
+  static constexpr auto InternalGenerateClassData_();
+
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kOutputTextFieldNumber = 1,
+    kSessionFieldNumber = 2,
+  };
+  // string output_text = 1 [json_name = "outputText"];
+  void clear_output_text() ;
+  const ::std::string& output_text() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_output_text(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_output_text();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_output_text();
+  void set_allocated_output_text(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_output_text() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_output_text(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_output_text();
+
+  public:
+  // .odin.v1.SessionInfo session = 2 [json_name = "session"];
+  bool has_session() const;
+  void clear_session() ;
+  const ::odin::v1::SessionInfo& session() const;
+  [[nodiscard]] ::odin::v1::SessionInfo* PROTOBUF_NULLABLE release_session();
+  ::odin::v1::SessionInfo* PROTOBUF_NONNULL mutable_session();
+  void set_allocated_session(::odin::v1::SessionInfo* PROTOBUF_NULLABLE value);
+  void unsafe_arena_set_allocated_session(::odin::v1::SessionInfo* PROTOBUF_NULLABLE value);
+  ::odin::v1::SessionInfo* PROTOBUF_NULLABLE unsafe_arena_release_session();
+
+  private:
+  const ::odin::v1::SessionInfo& _internal_session() const;
+  ::odin::v1::SessionInfo* PROTOBUF_NONNULL _internal_mutable_session();
+
+  public:
+  // @@protoc_insertion_point(class_scope:odin.v1.TextSpeech)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<1, 2,
+                                   1, 38,
+                                   2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+        const TextSpeech& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr output_text_;
+    ::odin::v1::SessionInfo* PROTOBUF_NULLABLE session_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_odin_2fv1_2ftext_2eproto;
+};
+
+extern const ::google::protobuf::internal::ClassDataFull TextSpeech_class_data_;
+// -------------------------------------------------------------------
+
+class TextOut final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:odin.v1.TextOut) */ {
+ public:
+  inline TextOut() : TextOut(nullptr) {}
+  ~TextOut() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(TextOut* PROTOBUF_NONNULL msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(TextOut));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR TextOut(::google::protobuf::internal::ConstantInitialized);
+
+  inline TextOut(const TextOut& from) : TextOut(nullptr, from) {}
+  inline TextOut(TextOut&& from) noexcept
+      : TextOut(nullptr, ::std::move(from)) {}
+  inline TextOut& operator=(const TextOut& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline TextOut& operator=(TextOut&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* PROTOBUF_NONNULL mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const TextOut& default_instance() {
+    return *reinterpret_cast<const TextOut*>(
+        &_TextOut_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 2;
+  friend void swap(TextOut& a, TextOut& b) { a.Swap(&b); }
+  inline void Swap(TextOut* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(TextOut* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  TextOut* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<TextOut>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const TextOut& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const TextOut& from) { TextOut::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(::google::protobuf::MessageLite& to_msg,
+                        const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      const ::google::protobuf::MessageLite& msg, ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(TextOut* PROTOBUF_NONNULL other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "odin.v1.TextOut"; }
+
+ protected:
+  explicit TextOut(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  TextOut(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const TextOut& from);
+  TextOut(
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, TextOut&& from) noexcept
+      : TextOut(arena) {
     *this = ::std::move(from);
   }
   const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
@@ -271,7 +446,6 @@ class TextResponseLlm final : public ::google::protobuf::Message
   enum : int {
     kOutputTextFieldNumber = 1,
     kSessionFieldNumber = 3,
-    kIsCompleteFieldNumber = 2,
   };
   // string output_text = 1 [json_name = "outputText"];
   void clear_output_text() ;
@@ -303,22 +477,12 @@ class TextResponseLlm final : public ::google::protobuf::Message
   ::odin::v1::SessionInfo* PROTOBUF_NONNULL _internal_mutable_session();
 
   public:
-  // bool is_complete = 2 [json_name = "isComplete"];
-  void clear_is_complete() ;
-  bool is_complete() const;
-  void set_is_complete(bool value);
-
-  private:
-  bool _internal_is_complete() const;
-  void _internal_set_is_complete(bool value);
-
-  public:
-  // @@protoc_insertion_point(class_scope:odin.v1.TextResponseLlm)
+  // @@protoc_insertion_point(class_scope:odin.v1.TextOut)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<2, 3,
-                                   1, 43,
+  static const ::google::protobuf::internal::TcParseTable<2, 2,
+                                   1, 35,
                                    2>
       _table_;
 
@@ -336,45 +500,44 @@ class TextResponseLlm final : public ::google::protobuf::Message
     inline explicit Impl_(
         ::google::protobuf::internal::InternalVisibility visibility,
         ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
-        const TextResponseLlm& from_msg);
+        const TextOut& from_msg);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::internal::ArenaStringPtr output_text_;
     ::odin::v1::SessionInfo* PROTOBUF_NULLABLE session_;
-    bool is_complete_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
   friend struct ::TableStruct_odin_2fv1_2ftext_2eproto;
 };
 
-extern const ::google::protobuf::internal::ClassDataFull TextResponseLlm_class_data_;
+extern const ::google::protobuf::internal::ClassDataFull TextOut_class_data_;
 // -------------------------------------------------------------------
 
-class TextRequestLlm final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:odin.v1.TextRequestLlm) */ {
+class TextComplete final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:odin.v1.TextComplete) */ {
  public:
-  inline TextRequestLlm() : TextRequestLlm(nullptr) {}
-  ~TextRequestLlm() PROTOBUF_FINAL;
+  inline TextComplete() : TextComplete(nullptr) {}
+  ~TextComplete() PROTOBUF_FINAL;
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(TextRequestLlm* PROTOBUF_NONNULL msg, std::destroying_delete_t) {
+  void operator delete(TextComplete* PROTOBUF_NONNULL msg, std::destroying_delete_t) {
     SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(TextRequestLlm));
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(TextComplete));
   }
 #endif
 
   template <typename = void>
-  explicit PROTOBUF_CONSTEXPR TextRequestLlm(::google::protobuf::internal::ConstantInitialized);
+  explicit PROTOBUF_CONSTEXPR TextComplete(::google::protobuf::internal::ConstantInitialized);
 
-  inline TextRequestLlm(const TextRequestLlm& from) : TextRequestLlm(nullptr, from) {}
-  inline TextRequestLlm(TextRequestLlm&& from) noexcept
-      : TextRequestLlm(nullptr, ::std::move(from)) {}
-  inline TextRequestLlm& operator=(const TextRequestLlm& from) {
+  inline TextComplete(const TextComplete& from) : TextComplete(nullptr, from) {}
+  inline TextComplete(TextComplete&& from) noexcept
+      : TextComplete(nullptr, ::std::move(from)) {}
+  inline TextComplete& operator=(const TextComplete& from) {
     CopyFrom(from);
     return *this;
   }
-  inline TextRequestLlm& operator=(TextRequestLlm&& from) noexcept {
+  inline TextComplete& operator=(TextComplete&& from) noexcept {
     if (this == &from) return *this;
     if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
       InternalSwap(&from);
@@ -402,13 +565,13 @@ class TextRequestLlm final : public ::google::protobuf::Message
   static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const TextRequestLlm& default_instance() {
-    return *reinterpret_cast<const TextRequestLlm*>(
-        &_TextRequestLlm_default_instance_);
+  static const TextComplete& default_instance() {
+    return *reinterpret_cast<const TextComplete*>(
+        &_TextComplete_default_instance_);
   }
   static constexpr int kIndexInFileMessages = 1;
-  friend void swap(TextRequestLlm& a, TextRequestLlm& b) { a.Swap(&b); }
-  inline void Swap(TextRequestLlm* PROTOBUF_NONNULL other) {
+  friend void swap(TextComplete& a, TextComplete& b) { a.Swap(&b); }
+  inline void Swap(TextComplete* PROTOBUF_NONNULL other) {
     if (other == this) return;
     if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
       InternalSwap(other);
@@ -416,7 +579,7 @@ class TextRequestLlm final : public ::google::protobuf::Message
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(TextRequestLlm* PROTOBUF_NONNULL other) {
+  void UnsafeArenaSwap(TextComplete* PROTOBUF_NONNULL other) {
     if (other == this) return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -424,13 +587,13 @@ class TextRequestLlm final : public ::google::protobuf::Message
 
   // implements Message ----------------------------------------------
 
-  TextRequestLlm* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<TextRequestLlm>(arena);
+  TextComplete* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<TextComplete>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const TextRequestLlm& from);
+  void CopyFrom(const TextComplete& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const TextRequestLlm& from) { TextRequestLlm::MergeImpl(*this, from); }
+  void MergeFrom(const TextComplete& from) { TextComplete::MergeImpl(*this, from); }
 
   private:
   static void MergeImpl(::google::protobuf::MessageLite& to_msg,
@@ -466,18 +629,18 @@ class TextRequestLlm final : public ::google::protobuf::Message
   private:
   void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
   static void SharedDtor(MessageLite& self);
-  void InternalSwap(TextRequestLlm* PROTOBUF_NONNULL other);
+  void InternalSwap(TextComplete* PROTOBUF_NONNULL other);
  private:
   template <typename T>
   friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "odin.v1.TextRequestLlm"; }
+  static ::absl::string_view FullMessageName() { return "odin.v1.TextComplete"; }
 
  protected:
-  explicit TextRequestLlm(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-  TextRequestLlm(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const TextRequestLlm& from);
-  TextRequestLlm(
-      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, TextRequestLlm&& from) noexcept
-      : TextRequestLlm(arena) {
+  explicit TextComplete(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  TextComplete(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const TextComplete& from);
+  TextComplete(
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, TextComplete&& from) noexcept
+      : TextComplete(arena) {
     *this = ::std::move(from);
   }
   const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
@@ -494,41 +657,25 @@ class TextRequestLlm final : public ::google::protobuf::Message
 
   // accessors -------------------------------------------------------
   enum : int {
-    kContextFieldNumber = 2,
-    kInputTextFieldNumber = 1,
-    kSessionFieldNumber = 3,
+    kTurnResultFieldNumber = 1,
+    kSessionFieldNumber = 2,
   };
-  // map<string, string> context = 2 [json_name = "context"];
-  int context_size() const;
-  private:
-  int _internal_context_size() const;
-
-  public:
-  void clear_context() ;
-  const ::google::protobuf::Map<std::string, std::string>& context() const;
-  ::google::protobuf::Map<std::string, std::string>* PROTOBUF_NONNULL mutable_context();
-
-  private:
-  const ::google::protobuf::Map<std::string, std::string>& _internal_context() const;
-  ::google::protobuf::Map<std::string, std::string>* PROTOBUF_NONNULL _internal_mutable_context();
-
-  public:
-  // string input_text = 1 [json_name = "inputText"];
-  void clear_input_text() ;
-  const ::std::string& input_text() const;
-  template <typename Arg_ = const ::std::string&, typename... Args_>
-  void set_input_text(Arg_&& arg, Args_... args);
-  ::std::string* PROTOBUF_NONNULL mutable_input_text();
-  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_input_text();
-  void set_allocated_input_text(::std::string* PROTOBUF_NULLABLE value);
+  // .odin.v1.TurnResult turn_result = 1 [json_name = "turnResult"];
+  bool has_turn_result() const;
+  void clear_turn_result() ;
+  const ::odin::v1::TurnResult& turn_result() const;
+  [[nodiscard]] ::odin::v1::TurnResult* PROTOBUF_NULLABLE release_turn_result();
+  ::odin::v1::TurnResult* PROTOBUF_NONNULL mutable_turn_result();
+  void set_allocated_turn_result(::odin::v1::TurnResult* PROTOBUF_NULLABLE value);
+  void unsafe_arena_set_allocated_turn_result(::odin::v1::TurnResult* PROTOBUF_NULLABLE value);
+  ::odin::v1::TurnResult* PROTOBUF_NULLABLE unsafe_arena_release_turn_result();
 
   private:
-  const ::std::string& _internal_input_text() const;
-  PROTOBUF_ALWAYS_INLINE void _internal_set_input_text(const ::std::string& value);
-  ::std::string* PROTOBUF_NONNULL _internal_mutable_input_text();
+  const ::odin::v1::TurnResult& _internal_turn_result() const;
+  ::odin::v1::TurnResult* PROTOBUF_NONNULL _internal_mutable_turn_result();
 
   public:
-  // .odin.v1.SessionInfo session = 3 [json_name = "session"];
+  // .odin.v1.SessionInfo session = 2 [json_name = "session"];
   bool has_session() const;
   void clear_session() ;
   const ::odin::v1::SessionInfo& session() const;
@@ -543,12 +690,12 @@ class TextRequestLlm final : public ::google::protobuf::Message
   ::odin::v1::SessionInfo* PROTOBUF_NONNULL _internal_mutable_session();
 
   public:
-  // @@protoc_insertion_point(class_scope:odin.v1.TextRequestLlm)
+  // @@protoc_insertion_point(class_scope:odin.v1.TextComplete)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<2, 3,
-                                   2, 48,
+  static const ::google::protobuf::internal::TcParseTable<1, 2,
+                                   2, 0,
                                    2>
       _table_;
 
@@ -566,14 +713,10 @@ class TextRequestLlm final : public ::google::protobuf::Message
     inline explicit Impl_(
         ::google::protobuf::internal::InternalVisibility visibility,
         ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
-        const TextRequestLlm& from_msg);
+        const TextComplete& from_msg);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
-    ::google::protobuf::internal::MapField<TextRequestLlm_ContextEntry_DoNotUse, std::string, std::string,
-                      ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
-                      ::google::protobuf::internal::WireFormatLite::TYPE_STRING>
-        context_;
-    ::google::protobuf::internal::ArenaStringPtr input_text_;
+    ::odin::v1::TurnResult* PROTOBUF_NULLABLE turn_result_;
     ::odin::v1::SessionInfo* PROTOBUF_NULLABLE session_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -581,7 +724,220 @@ class TextRequestLlm final : public ::google::protobuf::Message
   friend struct ::TableStruct_odin_2fv1_2ftext_2eproto;
 };
 
-extern const ::google::protobuf::internal::ClassDataFull TextRequestLlm_class_data_;
+extern const ::google::protobuf::internal::ClassDataFull TextComplete_class_data_;
+// -------------------------------------------------------------------
+
+class STTranscript final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:odin.v1.STTranscript) */ {
+ public:
+  inline STTranscript() : STTranscript(nullptr) {}
+  ~STTranscript() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(STTranscript* PROTOBUF_NONNULL msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(STTranscript));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR STTranscript(::google::protobuf::internal::ConstantInitialized);
+
+  inline STTranscript(const STTranscript& from) : STTranscript(nullptr, from) {}
+  inline STTranscript(STTranscript&& from) noexcept
+      : STTranscript(nullptr, ::std::move(from)) {}
+  inline STTranscript& operator=(const STTranscript& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline STTranscript& operator=(STTranscript&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* PROTOBUF_NONNULL mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const STTranscript& default_instance() {
+    return *reinterpret_cast<const STTranscript*>(
+        &_STTranscript_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 0;
+  friend void swap(STTranscript& a, STTranscript& b) { a.Swap(&b); }
+  inline void Swap(STTranscript* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(STTranscript* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  STTranscript* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<STTranscript>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const STTranscript& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const STTranscript& from) { STTranscript::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(::google::protobuf::MessageLite& to_msg,
+                        const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      const ::google::protobuf::MessageLite& msg, ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(STTranscript* PROTOBUF_NONNULL other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "odin.v1.STTranscript"; }
+
+ protected:
+  explicit STTranscript(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  STTranscript(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const STTranscript& from);
+  STTranscript(
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, STTranscript&& from) noexcept
+      : STTranscript(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
+  static void* PROTOBUF_NONNULL PlacementNew_(
+      const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static constexpr auto InternalNewImpl_();
+
+ public:
+  static constexpr auto InternalGenerateClassData_();
+
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kTranscriptionFieldNumber = 1,
+    kSessionFieldNumber = 2,
+  };
+  // .odin.v1.TranscriptionResult transcription = 1 [json_name = "transcription"];
+  bool has_transcription() const;
+  void clear_transcription() ;
+  const ::odin::v1::TranscriptionResult& transcription() const;
+  [[nodiscard]] ::odin::v1::TranscriptionResult* PROTOBUF_NULLABLE release_transcription();
+  ::odin::v1::TranscriptionResult* PROTOBUF_NONNULL mutable_transcription();
+  void set_allocated_transcription(::odin::v1::TranscriptionResult* PROTOBUF_NULLABLE value);
+  void unsafe_arena_set_allocated_transcription(::odin::v1::TranscriptionResult* PROTOBUF_NULLABLE value);
+  ::odin::v1::TranscriptionResult* PROTOBUF_NULLABLE unsafe_arena_release_transcription();
+
+  private:
+  const ::odin::v1::TranscriptionResult& _internal_transcription() const;
+  ::odin::v1::TranscriptionResult* PROTOBUF_NONNULL _internal_mutable_transcription();
+
+  public:
+  // .odin.v1.SessionInfo session = 2 [json_name = "session"];
+  bool has_session() const;
+  void clear_session() ;
+  const ::odin::v1::SessionInfo& session() const;
+  [[nodiscard]] ::odin::v1::SessionInfo* PROTOBUF_NULLABLE release_session();
+  ::odin::v1::SessionInfo* PROTOBUF_NONNULL mutable_session();
+  void set_allocated_session(::odin::v1::SessionInfo* PROTOBUF_NULLABLE value);
+  void unsafe_arena_set_allocated_session(::odin::v1::SessionInfo* PROTOBUF_NULLABLE value);
+  ::odin::v1::SessionInfo* PROTOBUF_NULLABLE unsafe_arena_release_session();
+
+  private:
+  const ::odin::v1::SessionInfo& _internal_session() const;
+  ::odin::v1::SessionInfo* PROTOBUF_NONNULL _internal_mutable_session();
+
+  public:
+  // @@protoc_insertion_point(class_scope:odin.v1.STTranscript)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<1, 2,
+                                   2, 0,
+                                   2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+        const STTranscript& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::odin::v1::TranscriptionResult* PROTOBUF_NULLABLE transcription_;
+    ::odin::v1::SessionInfo* PROTOBUF_NULLABLE session_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_odin_2fv1_2ftext_2eproto;
+};
+
+extern const ::google::protobuf::internal::ClassDataFull STTranscript_class_data_;
 
 // ===================================================================
 
@@ -597,120 +953,117 @@ extern const ::google::protobuf::internal::ClassDataFull TextRequestLlm_class_da
 #endif  // __GNUC__
 // -------------------------------------------------------------------
 
-// -------------------------------------------------------------------
+// STTranscript
 
-// TextRequestLlm
-
-// string input_text = 1 [json_name = "inputText"];
-inline void TextRequestLlm::clear_input_text() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.input_text_.ClearToEmpty();
-  _impl_._has_bits_[0] &= ~0x00000001u;
+// .odin.v1.TranscriptionResult transcription = 1 [json_name = "transcription"];
+inline bool STTranscript::has_transcription() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.transcription_ != nullptr);
+  return value;
 }
-inline const ::std::string& TextRequestLlm::input_text() const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:odin.v1.TextRequestLlm.input_text)
-  return _internal_input_text();
-}
-template <typename Arg_, typename... Args_>
-PROTOBUF_ALWAYS_INLINE void TextRequestLlm::set_input_text(Arg_&& arg, Args_... args) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_._has_bits_[0] |= 0x00000001u;
-  _impl_.input_text_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:odin.v1.TextRequestLlm.input_text)
-}
-inline ::std::string* PROTOBUF_NONNULL TextRequestLlm::mutable_input_text()
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::std::string* _s = _internal_mutable_input_text();
-  // @@protoc_insertion_point(field_mutable:odin.v1.TextRequestLlm.input_text)
-  return _s;
-}
-inline const ::std::string& TextRequestLlm::_internal_input_text() const {
+inline const ::odin::v1::TranscriptionResult& STTranscript::_internal_transcription() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.input_text_.Get();
+  const ::odin::v1::TranscriptionResult* p = _impl_.transcription_;
+  return p != nullptr ? *p : reinterpret_cast<const ::odin::v1::TranscriptionResult&>(::odin::v1::_TranscriptionResult_default_instance_);
 }
-inline void TextRequestLlm::_internal_set_input_text(const ::std::string& value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_._has_bits_[0] |= 0x00000001u;
-  _impl_.input_text_.Set(value, GetArena());
+inline const ::odin::v1::TranscriptionResult& STTranscript::transcription() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:odin.v1.STTranscript.transcription)
+  return _internal_transcription();
 }
-inline ::std::string* PROTOBUF_NONNULL TextRequestLlm::_internal_mutable_input_text() {
+inline void STTranscript::unsafe_arena_set_allocated_transcription(
+    ::odin::v1::TranscriptionResult* PROTOBUF_NULLABLE value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_._has_bits_[0] |= 0x00000001u;
-  return _impl_.input_text_.Mutable( GetArena());
-}
-inline ::std::string* PROTOBUF_NULLABLE TextRequestLlm::release_input_text() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:odin.v1.TextRequestLlm.input_text)
-  if ((_impl_._has_bits_[0] & 0x00000001u) == 0) {
-    return nullptr;
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.transcription_);
   }
-  _impl_._has_bits_[0] &= ~0x00000001u;
-  auto* released = _impl_.input_text_.Release();
-  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
-    _impl_.input_text_.Set("", GetArena());
-  }
-  return released;
-}
-inline void TextRequestLlm::set_allocated_input_text(::std::string* PROTOBUF_NULLABLE value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.transcription_ = reinterpret_cast<::odin::v1::TranscriptionResult*>(value);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000001u;
   } else {
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
-  _impl_.input_text_.SetAllocated(value, GetArena());
-  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.input_text_.IsDefault()) {
-    _impl_.input_text_.Set("", GetArena());
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:odin.v1.STTranscript.transcription)
+}
+inline ::odin::v1::TranscriptionResult* PROTOBUF_NULLABLE STTranscript::release_transcription() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::odin::v1::TranscriptionResult* released = _impl_.transcription_;
+  _impl_.transcription_ = nullptr;
+  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
+    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    if (GetArena() == nullptr) {
+      delete old;
+    }
+  } else {
+    if (GetArena() != nullptr) {
+      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    }
   }
-  // @@protoc_insertion_point(field_set_allocated:odin.v1.TextRequestLlm.input_text)
+  return released;
 }
+inline ::odin::v1::TranscriptionResult* PROTOBUF_NULLABLE STTranscript::unsafe_arena_release_transcription() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:odin.v1.STTranscript.transcription)
 
-// map<string, string> context = 2 [json_name = "context"];
-inline int TextRequestLlm::_internal_context_size() const {
-  return _internal_context().size();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::odin::v1::TranscriptionResult* temp = _impl_.transcription_;
+  _impl_.transcription_ = nullptr;
+  return temp;
 }
-inline int TextRequestLlm::context_size() const {
-  return _internal_context_size();
-}
-inline void TextRequestLlm::clear_context() {
+inline ::odin::v1::TranscriptionResult* PROTOBUF_NONNULL STTranscript::_internal_mutable_transcription() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.context_.Clear();
+  if (_impl_.transcription_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::odin::v1::TranscriptionResult>(GetArena());
+    _impl_.transcription_ = reinterpret_cast<::odin::v1::TranscriptionResult*>(p);
+  }
+  return _impl_.transcription_;
 }
-inline const ::google::protobuf::Map<std::string, std::string>& TextRequestLlm::_internal_context() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.context_.GetMap();
-}
-inline const ::google::protobuf::Map<std::string, std::string>& TextRequestLlm::context() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_map:odin.v1.TextRequestLlm.context)
-  return _internal_context();
-}
-inline ::google::protobuf::Map<std::string, std::string>* PROTOBUF_NONNULL TextRequestLlm::_internal_mutable_context() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  return _impl_.context_.MutableMap();
-}
-inline ::google::protobuf::Map<std::string, std::string>* PROTOBUF_NONNULL TextRequestLlm::mutable_context()
+inline ::odin::v1::TranscriptionResult* PROTOBUF_NONNULL STTranscript::mutable_transcription()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable_map:odin.v1.TextRequestLlm.context)
-  return _internal_mutable_context();
+  _impl_._has_bits_[0] |= 0x00000001u;
+  ::odin::v1::TranscriptionResult* _msg = _internal_mutable_transcription();
+  // @@protoc_insertion_point(field_mutable:odin.v1.STTranscript.transcription)
+  return _msg;
+}
+inline void STTranscript::set_allocated_transcription(::odin::v1::TranscriptionResult* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.transcription_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::google::protobuf::Message*>(value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.transcription_ = reinterpret_cast<::odin::v1::TranscriptionResult*>(value);
+  // @@protoc_insertion_point(field_set_allocated:odin.v1.STTranscript.transcription)
 }
 
-// .odin.v1.SessionInfo session = 3 [json_name = "session"];
-inline bool TextRequestLlm::has_session() const {
+// .odin.v1.SessionInfo session = 2 [json_name = "session"];
+inline bool STTranscript::has_session() const {
   bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.session_ != nullptr);
   return value;
 }
-inline const ::odin::v1::SessionInfo& TextRequestLlm::_internal_session() const {
+inline const ::odin::v1::SessionInfo& STTranscript::_internal_session() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   const ::odin::v1::SessionInfo* p = _impl_.session_;
   return p != nullptr ? *p : reinterpret_cast<const ::odin::v1::SessionInfo&>(::odin::v1::_SessionInfo_default_instance_);
 }
-inline const ::odin::v1::SessionInfo& TextRequestLlm::session() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:odin.v1.TextRequestLlm.session)
+inline const ::odin::v1::SessionInfo& STTranscript::session() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:odin.v1.STTranscript.session)
   return _internal_session();
 }
-inline void TextRequestLlm::unsafe_arena_set_allocated_session(
+inline void STTranscript::unsafe_arena_set_allocated_session(
     ::odin::v1::SessionInfo* PROTOBUF_NULLABLE value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (GetArena() == nullptr) {
@@ -722,9 +1075,9 @@ inline void TextRequestLlm::unsafe_arena_set_allocated_session(
   } else {
     _impl_._has_bits_[0] &= ~0x00000002u;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:odin.v1.TextRequestLlm.session)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:odin.v1.STTranscript.session)
 }
-inline ::odin::v1::SessionInfo* PROTOBUF_NULLABLE TextRequestLlm::release_session() {
+inline ::odin::v1::SessionInfo* PROTOBUF_NULLABLE STTranscript::release_session() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
 
   _impl_._has_bits_[0] &= ~0x00000002u;
@@ -743,16 +1096,16 @@ inline ::odin::v1::SessionInfo* PROTOBUF_NULLABLE TextRequestLlm::release_sessio
   }
   return released;
 }
-inline ::odin::v1::SessionInfo* PROTOBUF_NULLABLE TextRequestLlm::unsafe_arena_release_session() {
+inline ::odin::v1::SessionInfo* PROTOBUF_NULLABLE STTranscript::unsafe_arena_release_session() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:odin.v1.TextRequestLlm.session)
+  // @@protoc_insertion_point(field_release:odin.v1.STTranscript.session)
 
   _impl_._has_bits_[0] &= ~0x00000002u;
   ::odin::v1::SessionInfo* temp = _impl_.session_;
   _impl_.session_ = nullptr;
   return temp;
 }
-inline ::odin::v1::SessionInfo* PROTOBUF_NONNULL TextRequestLlm::_internal_mutable_session() {
+inline ::odin::v1::SessionInfo* PROTOBUF_NONNULL STTranscript::_internal_mutable_session() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (_impl_.session_ == nullptr) {
     auto* p = ::google::protobuf::Message::DefaultConstruct<::odin::v1::SessionInfo>(GetArena());
@@ -760,14 +1113,14 @@ inline ::odin::v1::SessionInfo* PROTOBUF_NONNULL TextRequestLlm::_internal_mutab
   }
   return _impl_.session_;
 }
-inline ::odin::v1::SessionInfo* PROTOBUF_NONNULL TextRequestLlm::mutable_session()
+inline ::odin::v1::SessionInfo* PROTOBUF_NONNULL STTranscript::mutable_session()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   _impl_._has_bits_[0] |= 0x00000002u;
   ::odin::v1::SessionInfo* _msg = _internal_mutable_session();
-  // @@protoc_insertion_point(field_mutable:odin.v1.TextRequestLlm.session)
+  // @@protoc_insertion_point(field_mutable:odin.v1.STTranscript.session)
   return _msg;
 }
-inline void TextRequestLlm::set_allocated_session(::odin::v1::SessionInfo* PROTOBUF_NULLABLE value) {
+inline void STTranscript::set_allocated_session(::odin::v1::SessionInfo* PROTOBUF_NULLABLE value) {
   ::google::protobuf::Arena* message_arena = GetArena();
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (message_arena == nullptr) {
@@ -785,54 +1138,244 @@ inline void TextRequestLlm::set_allocated_session(::odin::v1::SessionInfo* PROTO
   }
 
   _impl_.session_ = reinterpret_cast<::odin::v1::SessionInfo*>(value);
-  // @@protoc_insertion_point(field_set_allocated:odin.v1.TextRequestLlm.session)
+  // @@protoc_insertion_point(field_set_allocated:odin.v1.STTranscript.session)
 }
 
 // -------------------------------------------------------------------
 
-// TextResponseLlm
+// TextComplete
+
+// .odin.v1.TurnResult turn_result = 1 [json_name = "turnResult"];
+inline bool TextComplete::has_turn_result() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.turn_result_ != nullptr);
+  return value;
+}
+inline const ::odin::v1::TurnResult& TextComplete::_internal_turn_result() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::odin::v1::TurnResult* p = _impl_.turn_result_;
+  return p != nullptr ? *p : reinterpret_cast<const ::odin::v1::TurnResult&>(::odin::v1::_TurnResult_default_instance_);
+}
+inline const ::odin::v1::TurnResult& TextComplete::turn_result() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:odin.v1.TextComplete.turn_result)
+  return _internal_turn_result();
+}
+inline void TextComplete::unsafe_arena_set_allocated_turn_result(
+    ::odin::v1::TurnResult* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.turn_result_);
+  }
+  _impl_.turn_result_ = reinterpret_cast<::odin::v1::TurnResult*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:odin.v1.TextComplete.turn_result)
+}
+inline ::odin::v1::TurnResult* PROTOBUF_NULLABLE TextComplete::release_turn_result() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::odin::v1::TurnResult* released = _impl_.turn_result_;
+  _impl_.turn_result_ = nullptr;
+  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
+    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    if (GetArena() == nullptr) {
+      delete old;
+    }
+  } else {
+    if (GetArena() != nullptr) {
+      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    }
+  }
+  return released;
+}
+inline ::odin::v1::TurnResult* PROTOBUF_NULLABLE TextComplete::unsafe_arena_release_turn_result() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:odin.v1.TextComplete.turn_result)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::odin::v1::TurnResult* temp = _impl_.turn_result_;
+  _impl_.turn_result_ = nullptr;
+  return temp;
+}
+inline ::odin::v1::TurnResult* PROTOBUF_NONNULL TextComplete::_internal_mutable_turn_result() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.turn_result_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::odin::v1::TurnResult>(GetArena());
+    _impl_.turn_result_ = reinterpret_cast<::odin::v1::TurnResult*>(p);
+  }
+  return _impl_.turn_result_;
+}
+inline ::odin::v1::TurnResult* PROTOBUF_NONNULL TextComplete::mutable_turn_result()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  ::odin::v1::TurnResult* _msg = _internal_mutable_turn_result();
+  // @@protoc_insertion_point(field_mutable:odin.v1.TextComplete.turn_result)
+  return _msg;
+}
+inline void TextComplete::set_allocated_turn_result(::odin::v1::TurnResult* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.turn_result_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::google::protobuf::Message*>(value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.turn_result_ = reinterpret_cast<::odin::v1::TurnResult*>(value);
+  // @@protoc_insertion_point(field_set_allocated:odin.v1.TextComplete.turn_result)
+}
+
+// .odin.v1.SessionInfo session = 2 [json_name = "session"];
+inline bool TextComplete::has_session() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.session_ != nullptr);
+  return value;
+}
+inline const ::odin::v1::SessionInfo& TextComplete::_internal_session() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::odin::v1::SessionInfo* p = _impl_.session_;
+  return p != nullptr ? *p : reinterpret_cast<const ::odin::v1::SessionInfo&>(::odin::v1::_SessionInfo_default_instance_);
+}
+inline const ::odin::v1::SessionInfo& TextComplete::session() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:odin.v1.TextComplete.session)
+  return _internal_session();
+}
+inline void TextComplete::unsafe_arena_set_allocated_session(
+    ::odin::v1::SessionInfo* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.session_);
+  }
+  _impl_.session_ = reinterpret_cast<::odin::v1::SessionInfo*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:odin.v1.TextComplete.session)
+}
+inline ::odin::v1::SessionInfo* PROTOBUF_NULLABLE TextComplete::release_session() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  ::odin::v1::SessionInfo* released = _impl_.session_;
+  _impl_.session_ = nullptr;
+  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
+    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    if (GetArena() == nullptr) {
+      delete old;
+    }
+  } else {
+    if (GetArena() != nullptr) {
+      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    }
+  }
+  return released;
+}
+inline ::odin::v1::SessionInfo* PROTOBUF_NULLABLE TextComplete::unsafe_arena_release_session() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:odin.v1.TextComplete.session)
+
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  ::odin::v1::SessionInfo* temp = _impl_.session_;
+  _impl_.session_ = nullptr;
+  return temp;
+}
+inline ::odin::v1::SessionInfo* PROTOBUF_NONNULL TextComplete::_internal_mutable_session() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.session_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::odin::v1::SessionInfo>(GetArena());
+    _impl_.session_ = reinterpret_cast<::odin::v1::SessionInfo*>(p);
+  }
+  return _impl_.session_;
+}
+inline ::odin::v1::SessionInfo* PROTOBUF_NONNULL TextComplete::mutable_session()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000002u;
+  ::odin::v1::SessionInfo* _msg = _internal_mutable_session();
+  // @@protoc_insertion_point(field_mutable:odin.v1.TextComplete.session)
+  return _msg;
+}
+inline void TextComplete::set_allocated_session(::odin::v1::SessionInfo* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.session_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::google::protobuf::Message*>(value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+
+  _impl_.session_ = reinterpret_cast<::odin::v1::SessionInfo*>(value);
+  // @@protoc_insertion_point(field_set_allocated:odin.v1.TextComplete.session)
+}
+
+// -------------------------------------------------------------------
+
+// TextOut
 
 // string output_text = 1 [json_name = "outputText"];
-inline void TextResponseLlm::clear_output_text() {
+inline void TextOut::clear_output_text() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.output_text_.ClearToEmpty();
   _impl_._has_bits_[0] &= ~0x00000001u;
 }
-inline const ::std::string& TextResponseLlm::output_text() const
+inline const ::std::string& TextOut::output_text() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:odin.v1.TextResponseLlm.output_text)
+  // @@protoc_insertion_point(field_get:odin.v1.TextOut.output_text)
   return _internal_output_text();
 }
 template <typename Arg_, typename... Args_>
-PROTOBUF_ALWAYS_INLINE void TextResponseLlm::set_output_text(Arg_&& arg, Args_... args) {
+PROTOBUF_ALWAYS_INLINE void TextOut::set_output_text(Arg_&& arg, Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000001u;
   _impl_.output_text_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:odin.v1.TextResponseLlm.output_text)
+  // @@protoc_insertion_point(field_set:odin.v1.TextOut.output_text)
 }
-inline ::std::string* PROTOBUF_NONNULL TextResponseLlm::mutable_output_text()
+inline ::std::string* PROTOBUF_NONNULL TextOut::mutable_output_text()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   ::std::string* _s = _internal_mutable_output_text();
-  // @@protoc_insertion_point(field_mutable:odin.v1.TextResponseLlm.output_text)
+  // @@protoc_insertion_point(field_mutable:odin.v1.TextOut.output_text)
   return _s;
 }
-inline const ::std::string& TextResponseLlm::_internal_output_text() const {
+inline const ::std::string& TextOut::_internal_output_text() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.output_text_.Get();
 }
-inline void TextResponseLlm::_internal_set_output_text(const ::std::string& value) {
+inline void TextOut::_internal_set_output_text(const ::std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000001u;
   _impl_.output_text_.Set(value, GetArena());
 }
-inline ::std::string* PROTOBUF_NONNULL TextResponseLlm::_internal_mutable_output_text() {
+inline ::std::string* PROTOBUF_NONNULL TextOut::_internal_mutable_output_text() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000001u;
   return _impl_.output_text_.Mutable( GetArena());
 }
-inline ::std::string* PROTOBUF_NULLABLE TextResponseLlm::release_output_text() {
+inline ::std::string* PROTOBUF_NULLABLE TextOut::release_output_text() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:odin.v1.TextResponseLlm.output_text)
+  // @@protoc_insertion_point(field_release:odin.v1.TextOut.output_text)
   if ((_impl_._has_bits_[0] & 0x00000001u) == 0) {
     return nullptr;
   }
@@ -843,7 +1386,7 @@ inline ::std::string* PROTOBUF_NULLABLE TextResponseLlm::release_output_text() {
   }
   return released;
 }
-inline void TextResponseLlm::set_allocated_output_text(::std::string* PROTOBUF_NULLABLE value) {
+inline void TextOut::set_allocated_output_text(::std::string* PROTOBUF_NULLABLE value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000001u;
@@ -854,49 +1397,25 @@ inline void TextResponseLlm::set_allocated_output_text(::std::string* PROTOBUF_N
   if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.output_text_.IsDefault()) {
     _impl_.output_text_.Set("", GetArena());
   }
-  // @@protoc_insertion_point(field_set_allocated:odin.v1.TextResponseLlm.output_text)
-}
-
-// bool is_complete = 2 [json_name = "isComplete"];
-inline void TextResponseLlm::clear_is_complete() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.is_complete_ = false;
-  _impl_._has_bits_[0] &= ~0x00000004u;
-}
-inline bool TextResponseLlm::is_complete() const {
-  // @@protoc_insertion_point(field_get:odin.v1.TextResponseLlm.is_complete)
-  return _internal_is_complete();
-}
-inline void TextResponseLlm::set_is_complete(bool value) {
-  _internal_set_is_complete(value);
-  _impl_._has_bits_[0] |= 0x00000004u;
-  // @@protoc_insertion_point(field_set:odin.v1.TextResponseLlm.is_complete)
-}
-inline bool TextResponseLlm::_internal_is_complete() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.is_complete_;
-}
-inline void TextResponseLlm::_internal_set_is_complete(bool value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.is_complete_ = value;
+  // @@protoc_insertion_point(field_set_allocated:odin.v1.TextOut.output_text)
 }
 
 // .odin.v1.SessionInfo session = 3 [json_name = "session"];
-inline bool TextResponseLlm::has_session() const {
+inline bool TextOut::has_session() const {
   bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.session_ != nullptr);
   return value;
 }
-inline const ::odin::v1::SessionInfo& TextResponseLlm::_internal_session() const {
+inline const ::odin::v1::SessionInfo& TextOut::_internal_session() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   const ::odin::v1::SessionInfo* p = _impl_.session_;
   return p != nullptr ? *p : reinterpret_cast<const ::odin::v1::SessionInfo&>(::odin::v1::_SessionInfo_default_instance_);
 }
-inline const ::odin::v1::SessionInfo& TextResponseLlm::session() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:odin.v1.TextResponseLlm.session)
+inline const ::odin::v1::SessionInfo& TextOut::session() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:odin.v1.TextOut.session)
   return _internal_session();
 }
-inline void TextResponseLlm::unsafe_arena_set_allocated_session(
+inline void TextOut::unsafe_arena_set_allocated_session(
     ::odin::v1::SessionInfo* PROTOBUF_NULLABLE value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (GetArena() == nullptr) {
@@ -908,9 +1427,9 @@ inline void TextResponseLlm::unsafe_arena_set_allocated_session(
   } else {
     _impl_._has_bits_[0] &= ~0x00000002u;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:odin.v1.TextResponseLlm.session)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:odin.v1.TextOut.session)
 }
-inline ::odin::v1::SessionInfo* PROTOBUF_NULLABLE TextResponseLlm::release_session() {
+inline ::odin::v1::SessionInfo* PROTOBUF_NULLABLE TextOut::release_session() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
 
   _impl_._has_bits_[0] &= ~0x00000002u;
@@ -929,16 +1448,16 @@ inline ::odin::v1::SessionInfo* PROTOBUF_NULLABLE TextResponseLlm::release_sessi
   }
   return released;
 }
-inline ::odin::v1::SessionInfo* PROTOBUF_NULLABLE TextResponseLlm::unsafe_arena_release_session() {
+inline ::odin::v1::SessionInfo* PROTOBUF_NULLABLE TextOut::unsafe_arena_release_session() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:odin.v1.TextResponseLlm.session)
+  // @@protoc_insertion_point(field_release:odin.v1.TextOut.session)
 
   _impl_._has_bits_[0] &= ~0x00000002u;
   ::odin::v1::SessionInfo* temp = _impl_.session_;
   _impl_.session_ = nullptr;
   return temp;
 }
-inline ::odin::v1::SessionInfo* PROTOBUF_NONNULL TextResponseLlm::_internal_mutable_session() {
+inline ::odin::v1::SessionInfo* PROTOBUF_NONNULL TextOut::_internal_mutable_session() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (_impl_.session_ == nullptr) {
     auto* p = ::google::protobuf::Message::DefaultConstruct<::odin::v1::SessionInfo>(GetArena());
@@ -946,14 +1465,14 @@ inline ::odin::v1::SessionInfo* PROTOBUF_NONNULL TextResponseLlm::_internal_muta
   }
   return _impl_.session_;
 }
-inline ::odin::v1::SessionInfo* PROTOBUF_NONNULL TextResponseLlm::mutable_session()
+inline ::odin::v1::SessionInfo* PROTOBUF_NONNULL TextOut::mutable_session()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   _impl_._has_bits_[0] |= 0x00000002u;
   ::odin::v1::SessionInfo* _msg = _internal_mutable_session();
-  // @@protoc_insertion_point(field_mutable:odin.v1.TextResponseLlm.session)
+  // @@protoc_insertion_point(field_mutable:odin.v1.TextOut.session)
   return _msg;
 }
-inline void TextResponseLlm::set_allocated_session(::odin::v1::SessionInfo* PROTOBUF_NULLABLE value) {
+inline void TextOut::set_allocated_session(::odin::v1::SessionInfo* PROTOBUF_NULLABLE value) {
   ::google::protobuf::Arena* message_arena = GetArena();
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (message_arena == nullptr) {
@@ -971,7 +1490,169 @@ inline void TextResponseLlm::set_allocated_session(::odin::v1::SessionInfo* PROT
   }
 
   _impl_.session_ = reinterpret_cast<::odin::v1::SessionInfo*>(value);
-  // @@protoc_insertion_point(field_set_allocated:odin.v1.TextResponseLlm.session)
+  // @@protoc_insertion_point(field_set_allocated:odin.v1.TextOut.session)
+}
+
+// -------------------------------------------------------------------
+
+// TextSpeech
+
+// string output_text = 1 [json_name = "outputText"];
+inline void TextSpeech::clear_output_text() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.output_text_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::std::string& TextSpeech::output_text() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:odin.v1.TextSpeech.output_text)
+  return _internal_output_text();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void TextSpeech::set_output_text(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.output_text_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:odin.v1.TextSpeech.output_text)
+}
+inline ::std::string* PROTOBUF_NONNULL TextSpeech::mutable_output_text()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::std::string* _s = _internal_mutable_output_text();
+  // @@protoc_insertion_point(field_mutable:odin.v1.TextSpeech.output_text)
+  return _s;
+}
+inline const ::std::string& TextSpeech::_internal_output_text() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.output_text_.Get();
+}
+inline void TextSpeech::_internal_set_output_text(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.output_text_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL TextSpeech::_internal_mutable_output_text() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  return _impl_.output_text_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE TextSpeech::release_output_text() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:odin.v1.TextSpeech.output_text)
+  if ((_impl_._has_bits_[0] & 0x00000001u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  auto* released = _impl_.output_text_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.output_text_.Set("", GetArena());
+  }
+  return released;
+}
+inline void TextSpeech::set_allocated_output_text(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  _impl_.output_text_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.output_text_.IsDefault()) {
+    _impl_.output_text_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:odin.v1.TextSpeech.output_text)
+}
+
+// .odin.v1.SessionInfo session = 2 [json_name = "session"];
+inline bool TextSpeech::has_session() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.session_ != nullptr);
+  return value;
+}
+inline const ::odin::v1::SessionInfo& TextSpeech::_internal_session() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::odin::v1::SessionInfo* p = _impl_.session_;
+  return p != nullptr ? *p : reinterpret_cast<const ::odin::v1::SessionInfo&>(::odin::v1::_SessionInfo_default_instance_);
+}
+inline const ::odin::v1::SessionInfo& TextSpeech::session() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:odin.v1.TextSpeech.session)
+  return _internal_session();
+}
+inline void TextSpeech::unsafe_arena_set_allocated_session(
+    ::odin::v1::SessionInfo* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.session_);
+  }
+  _impl_.session_ = reinterpret_cast<::odin::v1::SessionInfo*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:odin.v1.TextSpeech.session)
+}
+inline ::odin::v1::SessionInfo* PROTOBUF_NULLABLE TextSpeech::release_session() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  ::odin::v1::SessionInfo* released = _impl_.session_;
+  _impl_.session_ = nullptr;
+  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
+    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    if (GetArena() == nullptr) {
+      delete old;
+    }
+  } else {
+    if (GetArena() != nullptr) {
+      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    }
+  }
+  return released;
+}
+inline ::odin::v1::SessionInfo* PROTOBUF_NULLABLE TextSpeech::unsafe_arena_release_session() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:odin.v1.TextSpeech.session)
+
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  ::odin::v1::SessionInfo* temp = _impl_.session_;
+  _impl_.session_ = nullptr;
+  return temp;
+}
+inline ::odin::v1::SessionInfo* PROTOBUF_NONNULL TextSpeech::_internal_mutable_session() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.session_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::odin::v1::SessionInfo>(GetArena());
+    _impl_.session_ = reinterpret_cast<::odin::v1::SessionInfo*>(p);
+  }
+  return _impl_.session_;
+}
+inline ::odin::v1::SessionInfo* PROTOBUF_NONNULL TextSpeech::mutable_session()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000002u;
+  ::odin::v1::SessionInfo* _msg = _internal_mutable_session();
+  // @@protoc_insertion_point(field_mutable:odin.v1.TextSpeech.session)
+  return _msg;
+}
+inline void TextSpeech::set_allocated_session(::odin::v1::SessionInfo* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.session_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::google::protobuf::Message*>(value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+
+  _impl_.session_ = reinterpret_cast<::odin::v1::SessionInfo*>(value);
+  // @@protoc_insertion_point(field_set_allocated:odin.v1.TextSpeech.session)
 }
 
 #ifdef __GNUC__

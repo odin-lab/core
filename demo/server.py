@@ -22,9 +22,12 @@ def save_wav(pcm, sr, filename):
 
 
 async def main():
+    # Establish NATS connection and JetStream context
     nc = NATS()
-    await nc.connect("nats://127.0.0.1:4222")
-    print("📡  Listening on", SUBJECT)
+    await nc.connect("nats://127.0.0.1:9090")
+
+    js = nc.jetstream()
+    print("📡  Listening on", SUBJECT, "via JetStream")
 
     # buffer = bytearray()
     buffer = {}
@@ -46,7 +49,7 @@ async def main():
 
         else:
             # Deserialize protobuf message
-            chunk = audio_pb2.AudioInputChunk()
+            chunk = audio_pb2.AudioBufferSession()
             chunk.ParseFromString(msg.data)
 
             # # store as pickly
@@ -66,17 +69,11 @@ async def main():
 
             buffer[sid].extend(chunk.audio.audio_data)
 
-            if len(buffer[sid]) > 32 * sample_rates[sid]:
-                save_wav(
-                    buffer[sid],
-                    sample_rates[sid],
-                    f"recording_{sid}_{int(time.time())}.wav",
-                )
-                print("💾  Saved", f"recording_{sid}_{int(time.time())}.wav")
-                buffer[sid] = bytearray()
-                sample_rates[sid] = chunk.audio.sample_rate or SAMPLE_RATE
+            # Ack message so JetStream knows we've processed it
+            await msg.ack()
 
-    await nc.subscribe(SUBJECT, cb=on_msg)
+    # Subscribe via JetStream with a durable consumer so we can resume after restarts
+    await js.subscribe(SUBJECT, durable="audio_recorder", cb=on_msg)
 
     try:
         while True:

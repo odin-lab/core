@@ -97,150 +97,39 @@ void   odin__v1__audio_data__free_unpacked
   assert(message->base.descriptor == &odin__v1__audio_data__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-void   odin__v1__transcription_result__init
-                     (Odin__V1__TranscriptionResult         *message)
-{
-  static const Odin__V1__TranscriptionResult init_value = ODIN__V1__TRANSCRIPTION_RESULT__INIT;
-  *message = init_value;
-}
-size_t odin__v1__transcription_result__get_packed_size
-                     (const Odin__V1__TranscriptionResult *message)
-{
-  assert(message->base.descriptor == &odin__v1__transcription_result__descriptor);
-  return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
-}
-size_t odin__v1__transcription_result__pack
-                     (const Odin__V1__TranscriptionResult *message,
-                      uint8_t       *out)
-{
-  assert(message->base.descriptor == &odin__v1__transcription_result__descriptor);
-  return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
-}
-size_t odin__v1__transcription_result__pack_to_buffer
-                     (const Odin__V1__TranscriptionResult *message,
-                      ProtobufCBuffer *buffer)
-{
-  assert(message->base.descriptor == &odin__v1__transcription_result__descriptor);
-  return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
-}
-Odin__V1__TranscriptionResult *
-       odin__v1__transcription_result__unpack
-                     (ProtobufCAllocator  *allocator,
-                      size_t               len,
-                      const uint8_t       *data)
-{
-  return (Odin__V1__TranscriptionResult *)
-     protobuf_c_message_unpack (&odin__v1__transcription_result__descriptor,
-                                allocator, len, data);
-}
-void   odin__v1__transcription_result__free_unpacked
-                     (Odin__V1__TranscriptionResult *message,
-                      ProtobufCAllocator *allocator)
-{
-  if(!message)
-    return;
-  assert(message->base.descriptor == &odin__v1__transcription_result__descriptor);
-  protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
-}
-void   odin__v1__tool_call__init
-                     (Odin__V1__ToolCall         *message)
-{
-  static const Odin__V1__ToolCall init_value = ODIN__V1__TOOL_CALL__INIT;
-  *message = init_value;
-}
-size_t odin__v1__tool_call__get_packed_size
-                     (const Odin__V1__ToolCall *message)
-{
-  assert(message->base.descriptor == &odin__v1__tool_call__descriptor);
-  return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
-}
-size_t odin__v1__tool_call__pack
-                     (const Odin__V1__ToolCall *message,
-                      uint8_t       *out)
-{
-  assert(message->base.descriptor == &odin__v1__tool_call__descriptor);
-  return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
-}
-size_t odin__v1__tool_call__pack_to_buffer
-                     (const Odin__V1__ToolCall *message,
-                      ProtobufCBuffer *buffer)
-{
-  assert(message->base.descriptor == &odin__v1__tool_call__descriptor);
-  return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
-}
-Odin__V1__ToolCall *
-       odin__v1__tool_call__unpack
-                     (ProtobufCAllocator  *allocator,
-                      size_t               len,
-                      const uint8_t       *data)
-{
-  return (Odin__V1__ToolCall *)
-     protobuf_c_message_unpack (&odin__v1__tool_call__descriptor,
-                                allocator, len, data);
-}
-void   odin__v1__tool_call__free_unpacked
-                     (Odin__V1__ToolCall *message,
-                      ProtobufCAllocator *allocator)
-{
-  if(!message)
-    return;
-  assert(message->base.descriptor == &odin__v1__tool_call__descriptor);
-  protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
-}
-void   odin__v1__module_info__init
-                     (Odin__V1__ModuleInfo         *message)
-{
-  static const Odin__V1__ModuleInfo init_value = ODIN__V1__MODULE_INFO__INIT;
-  *message = init_value;
-}
-size_t odin__v1__module_info__get_packed_size
-                     (const Odin__V1__ModuleInfo *message)
-{
-  assert(message->base.descriptor == &odin__v1__module_info__descriptor);
-  return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
-}
-size_t odin__v1__module_info__pack
-                     (const Odin__V1__ModuleInfo *message,
-                      uint8_t       *out)
-{
-  assert(message->base.descriptor == &odin__v1__module_info__descriptor);
-  return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
-}
-size_t odin__v1__module_info__pack_to_buffer
-                     (const Odin__V1__ModuleInfo *message,
-                      ProtobufCBuffer *buffer)
-{
-  assert(message->base.descriptor == &odin__v1__module_info__descriptor);
-  return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
-}
-Odin__V1__ModuleInfo *
-       odin__v1__module_info__unpack
-                     (ProtobufCAllocator  *allocator,
-                      size_t               len,
-                      const uint8_t       *data)
-{
-  return (Odin__V1__ModuleInfo *)
-     protobuf_c_message_unpack (&odin__v1__module_info__descriptor,
-                                allocator, len, data);
-}
-void   odin__v1__module_info__free_unpacked
-                     (Odin__V1__ModuleInfo *message,
-                      ProtobufCAllocator *allocator)
-{
-  if(!message)
-    return;
-  assert(message->base.descriptor == &odin__v1__module_info__descriptor);
-  protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
-}
-static const ProtobufCFieldDescriptor odin__v1__session_info__field_descriptors[2] =
+static const ProtobufCFieldDescriptor odin__v1__session_info__field_descriptors[4] =
 {
   {
-    "session_id",
+    "id",
     1,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_STRING,
     0,   /* quantifier_offset */
-    offsetof(Odin__V1__SessionInfo, session_id),
+    offsetof(Odin__V1__SessionInfo, id),
+    NULL,
+    &protobuf_c_empty_string,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "status",
+    2,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_STRING,
+    0,   /* quantifier_offset */
+    offsetof(Odin__V1__SessionInfo, status),
+    NULL,
+    &protobuf_c_empty_string,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "language",
+    3,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_STRING,
+    0,   /* quantifier_offset */
+    offsetof(Odin__V1__SessionInfo, language),
     NULL,
     &protobuf_c_empty_string,
     0,             /* flags */
@@ -248,7 +137,7 @@ static const ProtobufCFieldDescriptor odin__v1__session_info__field_descriptors[
   },
   {
     "timestamp",
-    2,
+    4,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_INT64,
     0,   /* quantifier_offset */
@@ -260,13 +149,15 @@ static const ProtobufCFieldDescriptor odin__v1__session_info__field_descriptors[
   },
 };
 static const unsigned odin__v1__session_info__field_indices_by_name[] = {
-  0,   /* field[0] = session_id */
-  1,   /* field[1] = timestamp */
+  0,   /* field[0] = id */
+  2,   /* field[2] = language */
+  1,   /* field[1] = status */
+  3,   /* field[3] = timestamp */
 };
 static const ProtobufCIntRange odin__v1__session_info__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 2 }
+  { 0, 4 }
 };
 const ProtobufCMessageDescriptor odin__v1__session_info__descriptor =
 {
@@ -276,7 +167,7 @@ const ProtobufCMessageDescriptor odin__v1__session_info__descriptor =
   "Odin__V1__SessionInfo",
   "odin.v1",
   sizeof(Odin__V1__SessionInfo),
-  2,
+  4,
   odin__v1__session_info__field_descriptors,
   odin__v1__session_info__field_indices_by_name,
   1,  odin__v1__session_info__number_ranges,
@@ -332,158 +223,5 @@ const ProtobufCMessageDescriptor odin__v1__audio_data__descriptor =
   odin__v1__audio_data__field_indices_by_name,
   1,  odin__v1__audio_data__number_ranges,
   (ProtobufCMessageInit) odin__v1__audio_data__init,
-  NULL,NULL,NULL    /* reserved[123] */
-};
-static const ProtobufCFieldDescriptor odin__v1__transcription_result__field_descriptors[2] =
-{
-  {
-    "text",
-    1,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_STRING,
-    0,   /* quantifier_offset */
-    offsetof(Odin__V1__TranscriptionResult, text),
-    NULL,
-    &protobuf_c_empty_string,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "confidence",
-    2,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_FLOAT,
-    0,   /* quantifier_offset */
-    offsetof(Odin__V1__TranscriptionResult, confidence),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-};
-static const unsigned odin__v1__transcription_result__field_indices_by_name[] = {
-  1,   /* field[1] = confidence */
-  0,   /* field[0] = text */
-};
-static const ProtobufCIntRange odin__v1__transcription_result__number_ranges[1 + 1] =
-{
-  { 1, 0 },
-  { 0, 2 }
-};
-const ProtobufCMessageDescriptor odin__v1__transcription_result__descriptor =
-{
-  PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "odin.v1.TranscriptionResult",
-  "TranscriptionResult",
-  "Odin__V1__TranscriptionResult",
-  "odin.v1",
-  sizeof(Odin__V1__TranscriptionResult),
-  2,
-  odin__v1__transcription_result__field_descriptors,
-  odin__v1__transcription_result__field_indices_by_name,
-  1,  odin__v1__transcription_result__number_ranges,
-  (ProtobufCMessageInit) odin__v1__transcription_result__init,
-  NULL,NULL,NULL    /* reserved[123] */
-};
-static const ProtobufCFieldDescriptor odin__v1__tool_call__field_descriptors[2] =
-{
-  {
-    "function_name",
-    1,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_STRING,
-    0,   /* quantifier_offset */
-    offsetof(Odin__V1__ToolCall, function_name),
-    NULL,
-    &protobuf_c_empty_string,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "parameters",
-    2,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_STRING,
-    0,   /* quantifier_offset */
-    offsetof(Odin__V1__ToolCall, parameters),
-    NULL,
-    &protobuf_c_empty_string,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-};
-static const unsigned odin__v1__tool_call__field_indices_by_name[] = {
-  0,   /* field[0] = function_name */
-  1,   /* field[1] = parameters */
-};
-static const ProtobufCIntRange odin__v1__tool_call__number_ranges[1 + 1] =
-{
-  { 1, 0 },
-  { 0, 2 }
-};
-const ProtobufCMessageDescriptor odin__v1__tool_call__descriptor =
-{
-  PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "odin.v1.ToolCall",
-  "ToolCall",
-  "Odin__V1__ToolCall",
-  "odin.v1",
-  sizeof(Odin__V1__ToolCall),
-  2,
-  odin__v1__tool_call__field_descriptors,
-  odin__v1__tool_call__field_indices_by_name,
-  1,  odin__v1__tool_call__number_ranges,
-  (ProtobufCMessageInit) odin__v1__tool_call__init,
-  NULL,NULL,NULL    /* reserved[123] */
-};
-static const ProtobufCFieldDescriptor odin__v1__module_info__field_descriptors[2] =
-{
-  {
-    "module_name",
-    1,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_STRING,
-    0,   /* quantifier_offset */
-    offsetof(Odin__V1__ModuleInfo, module_name),
-    NULL,
-    &protobuf_c_empty_string,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "status",
-    2,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_STRING,
-    0,   /* quantifier_offset */
-    offsetof(Odin__V1__ModuleInfo, status),
-    NULL,
-    &protobuf_c_empty_string,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-};
-static const unsigned odin__v1__module_info__field_indices_by_name[] = {
-  0,   /* field[0] = module_name */
-  1,   /* field[1] = status */
-};
-static const ProtobufCIntRange odin__v1__module_info__number_ranges[1 + 1] =
-{
-  { 1, 0 },
-  { 0, 2 }
-};
-const ProtobufCMessageDescriptor odin__v1__module_info__descriptor =
-{
-  PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "odin.v1.ModuleInfo",
-  "ModuleInfo",
-  "Odin__V1__ModuleInfo",
-  "odin.v1",
-  sizeof(Odin__V1__ModuleInfo),
-  2,
-  odin__v1__module_info__field_descriptors,
-  odin__v1__module_info__field_indices_by_name,
-  1,  odin__v1__module_info__number_ranges,
-  (ProtobufCMessageInit) odin__v1__module_info__init,
   NULL,NULL,NULL    /* reserved[123] */
 };

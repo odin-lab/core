@@ -4,30 +4,14 @@ package odin.v1;
 
 // Common session information used across all messages
 message SessionInfo {
-  string session_id = 1;
-  int64 timestamp = 2;
+  string id = 1;
+  string status = 2;
+  string language = 3;
+  int64 timestamp = 4;
 }
 
 // Audio data with sample rate information
 message AudioData {
   bytes audio_data = 1;
   int32 sample_rate = 2;
-}
-
-// Speech transcription result with confidence
-message TranscriptionResult {
-  string text = 1;
-  float confidence = 2;
-}
-
-// Tool function call information
-message ToolCall {
-  string function_name = 1;
-  string parameters = 2;
-}
-
-// Module identification and status
-message ModuleInfo {
-  string module_name = 1;
-  string status = 2;
 }

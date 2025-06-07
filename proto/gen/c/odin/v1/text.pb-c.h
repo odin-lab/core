@@ -16,10 +16,12 @@ PROTOBUF_C__BEGIN_DECLS
 
 #include "odin/v1/common.pb-c.h"
 #include "odin/v1/options.pb-c.h"
+#include "odin/v1/text_helper.pb-c.h"
 
-typedef struct Odin__V1__TextRequestLlm Odin__V1__TextRequestLlm;
-typedef struct Odin__V1__TextRequestLlm__ContextEntry Odin__V1__TextRequestLlm__ContextEntry;
-typedef struct Odin__V1__TextResponseLlm Odin__V1__TextResponseLlm;
+typedef struct Odin__V1__STTranscript Odin__V1__STTranscript;
+typedef struct Odin__V1__TextComplete Odin__V1__TextComplete;
+typedef struct Odin__V1__TextOut Odin__V1__TextOut;
+typedef struct Odin__V1__TextSpeech Odin__V1__TextSpeech;
 
 
 /* --- enums --- */
@@ -27,99 +29,151 @@ typedef struct Odin__V1__TextResponseLlm Odin__V1__TextResponseLlm;
 
 /* --- messages --- */
 
-struct  Odin__V1__TextRequestLlm__ContextEntry
+/*
+ * output STT
+ */
+struct  Odin__V1__STTranscript
 {
   ProtobufCMessage base;
-  char *key;
-  char *value;
+  Odin__V1__TranscriptionResult *transcription;
+  Odin__V1__SessionInfo *session;
 };
-#define ODIN__V1__TEXT_REQUEST_LLM__CONTEXT_ENTRY__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&odin__v1__text_request_llm__context_entry__descriptor) \
-    , (char *)protobuf_c_empty_string, (char *)protobuf_c_empty_string }
+#define ODIN__V1__STTRANSCRIPT__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&odin__v1__sttranscript__descriptor) \
+    , NULL, NULL }
 
 
 /*
  * Text input for LLM processing
  */
-struct  Odin__V1__TextRequestLlm
+struct  Odin__V1__TextComplete
 {
   ProtobufCMessage base;
-  char *input_text;
-  size_t n_context;
-  Odin__V1__TextRequestLlm__ContextEntry **context;
+  Odin__V1__TurnResult *turn_result;
   Odin__V1__SessionInfo *session;
 };
-#define ODIN__V1__TEXT_REQUEST_LLM__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&odin__v1__text_request_llm__descriptor) \
-    , (char *)protobuf_c_empty_string, 0,NULL, NULL }
+#define ODIN__V1__TEXT_COMPLETE__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&odin__v1__text_complete__descriptor) \
+    , NULL, NULL }
 
 
 /*
  * Generated text response from LLM
  */
-struct  Odin__V1__TextResponseLlm
+struct  Odin__V1__TextOut
 {
   ProtobufCMessage base;
   char *output_text;
-  protobuf_c_boolean is_complete;
   Odin__V1__SessionInfo *session;
 };
-#define ODIN__V1__TEXT_RESPONSE_LLM__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&odin__v1__text_response_llm__descriptor) \
-    , (char *)protobuf_c_empty_string, 0, NULL }
+#define ODIN__V1__TEXT_OUT__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&odin__v1__text_out__descriptor) \
+    , (char *)protobuf_c_empty_string, NULL }
 
 
-/* Odin__V1__TextRequestLlm__ContextEntry methods */
-void   odin__v1__text_request_llm__context_entry__init
-                     (Odin__V1__TextRequestLlm__ContextEntry         *message);
-/* Odin__V1__TextRequestLlm methods */
-void   odin__v1__text_request_llm__init
-                     (Odin__V1__TextRequestLlm         *message);
-size_t odin__v1__text_request_llm__get_packed_size
-                     (const Odin__V1__TextRequestLlm   *message);
-size_t odin__v1__text_request_llm__pack
-                     (const Odin__V1__TextRequestLlm   *message,
+/*
+ * Checked output for TTS
+ */
+struct  Odin__V1__TextSpeech
+{
+  ProtobufCMessage base;
+  char *output_text;
+  Odin__V1__SessionInfo *session;
+};
+#define ODIN__V1__TEXT_SPEECH__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&odin__v1__text_speech__descriptor) \
+    , (char *)protobuf_c_empty_string, NULL }
+
+
+/* Odin__V1__STTranscript methods */
+void   odin__v1__sttranscript__init
+                     (Odin__V1__STTranscript         *message);
+size_t odin__v1__sttranscript__get_packed_size
+                     (const Odin__V1__STTranscript   *message);
+size_t odin__v1__sttranscript__pack
+                     (const Odin__V1__STTranscript   *message,
                       uint8_t             *out);
-size_t odin__v1__text_request_llm__pack_to_buffer
-                     (const Odin__V1__TextRequestLlm   *message,
+size_t odin__v1__sttranscript__pack_to_buffer
+                     (const Odin__V1__STTranscript   *message,
                       ProtobufCBuffer     *buffer);
-Odin__V1__TextRequestLlm *
-       odin__v1__text_request_llm__unpack
+Odin__V1__STTranscript *
+       odin__v1__sttranscript__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data);
-void   odin__v1__text_request_llm__free_unpacked
-                     (Odin__V1__TextRequestLlm *message,
+void   odin__v1__sttranscript__free_unpacked
+                     (Odin__V1__STTranscript *message,
                       ProtobufCAllocator *allocator);
-/* Odin__V1__TextResponseLlm methods */
-void   odin__v1__text_response_llm__init
-                     (Odin__V1__TextResponseLlm         *message);
-size_t odin__v1__text_response_llm__get_packed_size
-                     (const Odin__V1__TextResponseLlm   *message);
-size_t odin__v1__text_response_llm__pack
-                     (const Odin__V1__TextResponseLlm   *message,
+/* Odin__V1__TextComplete methods */
+void   odin__v1__text_complete__init
+                     (Odin__V1__TextComplete         *message);
+size_t odin__v1__text_complete__get_packed_size
+                     (const Odin__V1__TextComplete   *message);
+size_t odin__v1__text_complete__pack
+                     (const Odin__V1__TextComplete   *message,
                       uint8_t             *out);
-size_t odin__v1__text_response_llm__pack_to_buffer
-                     (const Odin__V1__TextResponseLlm   *message,
+size_t odin__v1__text_complete__pack_to_buffer
+                     (const Odin__V1__TextComplete   *message,
                       ProtobufCBuffer     *buffer);
-Odin__V1__TextResponseLlm *
-       odin__v1__text_response_llm__unpack
+Odin__V1__TextComplete *
+       odin__v1__text_complete__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data);
-void   odin__v1__text_response_llm__free_unpacked
-                     (Odin__V1__TextResponseLlm *message,
+void   odin__v1__text_complete__free_unpacked
+                     (Odin__V1__TextComplete *message,
+                      ProtobufCAllocator *allocator);
+/* Odin__V1__TextOut methods */
+void   odin__v1__text_out__init
+                     (Odin__V1__TextOut         *message);
+size_t odin__v1__text_out__get_packed_size
+                     (const Odin__V1__TextOut   *message);
+size_t odin__v1__text_out__pack
+                     (const Odin__V1__TextOut   *message,
+                      uint8_t             *out);
+size_t odin__v1__text_out__pack_to_buffer
+                     (const Odin__V1__TextOut   *message,
+                      ProtobufCBuffer     *buffer);
+Odin__V1__TextOut *
+       odin__v1__text_out__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data);
+void   odin__v1__text_out__free_unpacked
+                     (Odin__V1__TextOut *message,
+                      ProtobufCAllocator *allocator);
+/* Odin__V1__TextSpeech methods */
+void   odin__v1__text_speech__init
+                     (Odin__V1__TextSpeech         *message);
+size_t odin__v1__text_speech__get_packed_size
+                     (const Odin__V1__TextSpeech   *message);
+size_t odin__v1__text_speech__pack
+                     (const Odin__V1__TextSpeech   *message,
+                      uint8_t             *out);
+size_t odin__v1__text_speech__pack_to_buffer
+                     (const Odin__V1__TextSpeech   *message,
+                      ProtobufCBuffer     *buffer);
+Odin__V1__TextSpeech *
+       odin__v1__text_speech__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data);
+void   odin__v1__text_speech__free_unpacked
+                     (Odin__V1__TextSpeech *message,
                       ProtobufCAllocator *allocator);
 /* --- per-message closures --- */
 
-typedef void (*Odin__V1__TextRequestLlm__ContextEntry_Closure)
-                 (const Odin__V1__TextRequestLlm__ContextEntry *message,
+typedef void (*Odin__V1__STTranscript_Closure)
+                 (const Odin__V1__STTranscript *message,
                   void *closure_data);
-typedef void (*Odin__V1__TextRequestLlm_Closure)
-                 (const Odin__V1__TextRequestLlm *message,
+typedef void (*Odin__V1__TextComplete_Closure)
+                 (const Odin__V1__TextComplete *message,
                   void *closure_data);
-typedef void (*Odin__V1__TextResponseLlm_Closure)
-                 (const Odin__V1__TextResponseLlm *message,
+typedef void (*Odin__V1__TextOut_Closure)
+                 (const Odin__V1__TextOut *message,
+                  void *closure_data);
+typedef void (*Odin__V1__TextSpeech_Closure)
+                 (const Odin__V1__TextSpeech *message,
                   void *closure_data);
 
 /* --- services --- */
@@ -127,9 +181,10 @@ typedef void (*Odin__V1__TextResponseLlm_Closure)
 
 /* --- descriptors --- */
 
-extern const ProtobufCMessageDescriptor odin__v1__text_request_llm__descriptor;
-extern const ProtobufCMessageDescriptor odin__v1__text_request_llm__context_entry__descriptor;
-extern const ProtobufCMessageDescriptor odin__v1__text_response_llm__descriptor;
+extern const ProtobufCMessageDescriptor odin__v1__sttranscript__descriptor;
+extern const ProtobufCMessageDescriptor odin__v1__text_complete__descriptor;
+extern const ProtobufCMessageDescriptor odin__v1__text_out__descriptor;
+extern const ProtobufCMessageDescriptor odin__v1__text_speech__descriptor;
 
 PROTOBUF_C__END_DECLS
 

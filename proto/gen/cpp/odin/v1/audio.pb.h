@@ -56,18 +56,18 @@ extern const ::google::protobuf::internal::DescriptorTable descriptor_table_odin
 }  // extern "C"
 namespace odin {
 namespace v1 {
-class AudioInputChunk;
-struct AudioInputChunkDefaultTypeInternal;
-extern AudioInputChunkDefaultTypeInternal _AudioInputChunk_default_instance_;
-extern const ::google::protobuf::internal::ClassDataFull AudioInputChunk_class_data_;
-class AudioOutputSpeech;
-struct AudioOutputSpeechDefaultTypeInternal;
-extern AudioOutputSpeechDefaultTypeInternal _AudioOutputSpeech_default_instance_;
-extern const ::google::protobuf::internal::ClassDataFull AudioOutputSpeech_class_data_;
-class AudioOutputVisualization;
-struct AudioOutputVisualizationDefaultTypeInternal;
-extern AudioOutputVisualizationDefaultTypeInternal _AudioOutputVisualization_default_instance_;
-extern const ::google::protobuf::internal::ClassDataFull AudioOutputVisualization_class_data_;
+class AudioBufferMic;
+struct AudioBufferMicDefaultTypeInternal;
+extern AudioBufferMicDefaultTypeInternal _AudioBufferMic_default_instance_;
+extern const ::google::protobuf::internal::ClassDataFull AudioBufferMic_class_data_;
+class AudioBufferSession;
+struct AudioBufferSessionDefaultTypeInternal;
+extern AudioBufferSessionDefaultTypeInternal _AudioBufferSession_default_instance_;
+extern const ::google::protobuf::internal::ClassDataFull AudioBufferSession_class_data_;
+class AudioBufferSpeaker;
+struct AudioBufferSpeakerDefaultTypeInternal;
+extern AudioBufferSpeakerDefaultTypeInternal _AudioBufferSpeaker_default_instance_;
+extern const ::google::protobuf::internal::ClassDataFull AudioBufferSpeaker_class_data_;
 }  // namespace v1
 }  // namespace odin
 namespace google {
@@ -83,30 +83,30 @@ namespace v1 {
 
 // -------------------------------------------------------------------
 
-class AudioOutputVisualization final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:odin.v1.AudioOutputVisualization) */ {
+class AudioBufferSpeaker final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:odin.v1.AudioBufferSpeaker) */ {
  public:
-  inline AudioOutputVisualization() : AudioOutputVisualization(nullptr) {}
-  ~AudioOutputVisualization() PROTOBUF_FINAL;
+  inline AudioBufferSpeaker() : AudioBufferSpeaker(nullptr) {}
+  ~AudioBufferSpeaker() PROTOBUF_FINAL;
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(AudioOutputVisualization* PROTOBUF_NONNULL msg, std::destroying_delete_t) {
+  void operator delete(AudioBufferSpeaker* PROTOBUF_NONNULL msg, std::destroying_delete_t) {
     SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(AudioOutputVisualization));
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(AudioBufferSpeaker));
   }
 #endif
 
   template <typename = void>
-  explicit PROTOBUF_CONSTEXPR AudioOutputVisualization(::google::protobuf::internal::ConstantInitialized);
+  explicit PROTOBUF_CONSTEXPR AudioBufferSpeaker(::google::protobuf::internal::ConstantInitialized);
 
-  inline AudioOutputVisualization(const AudioOutputVisualization& from) : AudioOutputVisualization(nullptr, from) {}
-  inline AudioOutputVisualization(AudioOutputVisualization&& from) noexcept
-      : AudioOutputVisualization(nullptr, ::std::move(from)) {}
-  inline AudioOutputVisualization& operator=(const AudioOutputVisualization& from) {
+  inline AudioBufferSpeaker(const AudioBufferSpeaker& from) : AudioBufferSpeaker(nullptr, from) {}
+  inline AudioBufferSpeaker(AudioBufferSpeaker&& from) noexcept
+      : AudioBufferSpeaker(nullptr, ::std::move(from)) {}
+  inline AudioBufferSpeaker& operator=(const AudioBufferSpeaker& from) {
     CopyFrom(from);
     return *this;
   }
-  inline AudioOutputVisualization& operator=(AudioOutputVisualization&& from) noexcept {
+  inline AudioBufferSpeaker& operator=(AudioBufferSpeaker&& from) noexcept {
     if (this == &from) return *this;
     if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
       InternalSwap(&from);
@@ -134,229 +134,13 @@ class AudioOutputVisualization final : public ::google::protobuf::Message
   static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const AudioOutputVisualization& default_instance() {
-    return *reinterpret_cast<const AudioOutputVisualization*>(
-        &_AudioOutputVisualization_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages = 2;
-  friend void swap(AudioOutputVisualization& a, AudioOutputVisualization& b) { a.Swap(&b); }
-  inline void Swap(AudioOutputVisualization* PROTOBUF_NONNULL other) {
-    if (other == this) return;
-    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(AudioOutputVisualization* PROTOBUF_NONNULL other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  AudioOutputVisualization* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<AudioOutputVisualization>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const AudioOutputVisualization& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const AudioOutputVisualization& from) { AudioOutputVisualization::MergeImpl(*this, from); }
-
-  private:
-  static void MergeImpl(::google::protobuf::MessageLite& to_msg,
-                        const ::google::protobuf::MessageLite& from_msg);
-
-  public:
-  bool IsInitialized() const {
-    return true;
-  }
-  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
-  #if defined(PROTOBUF_CUSTOM_VTABLE)
-  private:
-  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
-  static ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
-      const ::google::protobuf::MessageLite& msg, ::uint8_t* PROTOBUF_NONNULL target,
-      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream);
-
-  public:
-  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
-  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
-      ::uint8_t* PROTOBUF_NONNULL target,
-      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
-    return _InternalSerialize(*this, target, stream);
-  }
-  #else   // PROTOBUF_CUSTOM_VTABLE
-  ::size_t ByteSizeLong() const final;
-  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
-      ::uint8_t* PROTOBUF_NONNULL target,
-      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const final;
-  #endif  // PROTOBUF_CUSTOM_VTABLE
-  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-  static void SharedDtor(MessageLite& self);
-  void InternalSwap(AudioOutputVisualization* PROTOBUF_NONNULL other);
- private:
-  template <typename T>
-  friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "odin.v1.AudioOutputVisualization"; }
-
- protected:
-  explicit AudioOutputVisualization(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-  AudioOutputVisualization(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const AudioOutputVisualization& from);
-  AudioOutputVisualization(
-      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, AudioOutputVisualization&& from) noexcept
-      : AudioOutputVisualization(arena) {
-    *this = ::std::move(from);
-  }
-  const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
-  static void* PROTOBUF_NONNULL PlacementNew_(
-      const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
-      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-  static constexpr auto InternalNewImpl_();
-
- public:
-  static constexpr auto InternalGenerateClassData_();
-
-  ::google::protobuf::Metadata GetMetadata() const;
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-  enum : int {
-    kAudioLevelsFieldNumber = 1,
-    kSessionFieldNumber = 2,
-  };
-  // repeated float audio_levels = 1 [json_name = "audioLevels"];
-  int audio_levels_size() const;
-  private:
-  int _internal_audio_levels_size() const;
-
-  public:
-  void clear_audio_levels() ;
-  float audio_levels(int index) const;
-  void set_audio_levels(int index, float value);
-  void add_audio_levels(float value);
-  const ::google::protobuf::RepeatedField<float>& audio_levels() const;
-  ::google::protobuf::RepeatedField<float>* PROTOBUF_NONNULL mutable_audio_levels();
-
-  private:
-  const ::google::protobuf::RepeatedField<float>& _internal_audio_levels() const;
-  ::google::protobuf::RepeatedField<float>* PROTOBUF_NONNULL _internal_mutable_audio_levels();
-
-  public:
-  // .odin.v1.SessionInfo session = 2 [json_name = "session"];
-  bool has_session() const;
-  void clear_session() ;
-  const ::odin::v1::SessionInfo& session() const;
-  [[nodiscard]] ::odin::v1::SessionInfo* PROTOBUF_NULLABLE release_session();
-  ::odin::v1::SessionInfo* PROTOBUF_NONNULL mutable_session();
-  void set_allocated_session(::odin::v1::SessionInfo* PROTOBUF_NULLABLE value);
-  void unsafe_arena_set_allocated_session(::odin::v1::SessionInfo* PROTOBUF_NULLABLE value);
-  ::odin::v1::SessionInfo* PROTOBUF_NULLABLE unsafe_arena_release_session();
-
-  private:
-  const ::odin::v1::SessionInfo& _internal_session() const;
-  ::odin::v1::SessionInfo* PROTOBUF_NONNULL _internal_mutable_session();
-
-  public:
-  // @@protoc_insertion_point(class_scope:odin.v1.AudioOutputVisualization)
- private:
-  class _Internal;
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<1, 2,
-                                   1, 0,
-                                   2>
-      _table_;
-
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-    inline explicit constexpr Impl_(::google::protobuf::internal::ConstantInitialized) noexcept;
-    inline explicit Impl_(
-        ::google::protobuf::internal::InternalVisibility visibility,
-        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-    inline explicit Impl_(
-        ::google::protobuf::internal::InternalVisibility visibility,
-        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
-        const AudioOutputVisualization& from_msg);
-    ::google::protobuf::internal::HasBits<1> _has_bits_;
-    ::google::protobuf::internal::CachedSize _cached_size_;
-    ::google::protobuf::RepeatedField<float> audio_levels_;
-    ::odin::v1::SessionInfo* PROTOBUF_NULLABLE session_;
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_odin_2fv1_2faudio_2eproto;
-};
-
-extern const ::google::protobuf::internal::ClassDataFull AudioOutputVisualization_class_data_;
-// -------------------------------------------------------------------
-
-class AudioOutputSpeech final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:odin.v1.AudioOutputSpeech) */ {
- public:
-  inline AudioOutputSpeech() : AudioOutputSpeech(nullptr) {}
-  ~AudioOutputSpeech() PROTOBUF_FINAL;
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(AudioOutputSpeech* PROTOBUF_NONNULL msg, std::destroying_delete_t) {
-    SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(AudioOutputSpeech));
-  }
-#endif
-
-  template <typename = void>
-  explicit PROTOBUF_CONSTEXPR AudioOutputSpeech(::google::protobuf::internal::ConstantInitialized);
-
-  inline AudioOutputSpeech(const AudioOutputSpeech& from) : AudioOutputSpeech(nullptr, from) {}
-  inline AudioOutputSpeech(AudioOutputSpeech&& from) noexcept
-      : AudioOutputSpeech(nullptr, ::std::move(from)) {}
-  inline AudioOutputSpeech& operator=(const AudioOutputSpeech& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline AudioOutputSpeech& operator=(AudioOutputSpeech&& from) noexcept {
-    if (this == &from) return *this;
-    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* PROTOBUF_NONNULL mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const AudioOutputSpeech& default_instance() {
-    return *reinterpret_cast<const AudioOutputSpeech*>(
-        &_AudioOutputSpeech_default_instance_);
+  static const AudioBufferSpeaker& default_instance() {
+    return *reinterpret_cast<const AudioBufferSpeaker*>(
+        &_AudioBufferSpeaker_default_instance_);
   }
   static constexpr int kIndexInFileMessages = 1;
-  friend void swap(AudioOutputSpeech& a, AudioOutputSpeech& b) { a.Swap(&b); }
-  inline void Swap(AudioOutputSpeech* PROTOBUF_NONNULL other) {
+  friend void swap(AudioBufferSpeaker& a, AudioBufferSpeaker& b) { a.Swap(&b); }
+  inline void Swap(AudioBufferSpeaker* PROTOBUF_NONNULL other) {
     if (other == this) return;
     if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
       InternalSwap(other);
@@ -364,7 +148,7 @@ class AudioOutputSpeech final : public ::google::protobuf::Message
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(AudioOutputSpeech* PROTOBUF_NONNULL other) {
+  void UnsafeArenaSwap(AudioBufferSpeaker* PROTOBUF_NONNULL other) {
     if (other == this) return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -372,13 +156,13 @@ class AudioOutputSpeech final : public ::google::protobuf::Message
 
   // implements Message ----------------------------------------------
 
-  AudioOutputSpeech* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<AudioOutputSpeech>(arena);
+  AudioBufferSpeaker* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<AudioBufferSpeaker>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const AudioOutputSpeech& from);
+  void CopyFrom(const AudioBufferSpeaker& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const AudioOutputSpeech& from) { AudioOutputSpeech::MergeImpl(*this, from); }
+  void MergeFrom(const AudioBufferSpeaker& from) { AudioBufferSpeaker::MergeImpl(*this, from); }
 
   private:
   static void MergeImpl(::google::protobuf::MessageLite& to_msg,
@@ -414,18 +198,18 @@ class AudioOutputSpeech final : public ::google::protobuf::Message
   private:
   void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
   static void SharedDtor(MessageLite& self);
-  void InternalSwap(AudioOutputSpeech* PROTOBUF_NONNULL other);
+  void InternalSwap(AudioBufferSpeaker* PROTOBUF_NONNULL other);
  private:
   template <typename T>
   friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "odin.v1.AudioOutputSpeech"; }
+  static ::absl::string_view FullMessageName() { return "odin.v1.AudioBufferSpeaker"; }
 
  protected:
-  explicit AudioOutputSpeech(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-  AudioOutputSpeech(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const AudioOutputSpeech& from);
-  AudioOutputSpeech(
-      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, AudioOutputSpeech&& from) noexcept
-      : AudioOutputSpeech(arena) {
+  explicit AudioBufferSpeaker(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  AudioBufferSpeaker(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const AudioBufferSpeaker& from);
+  AudioBufferSpeaker(
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, AudioBufferSpeaker&& from) noexcept
+      : AudioBufferSpeaker(arena) {
     *this = ::std::move(from);
   }
   const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
@@ -475,7 +259,7 @@ class AudioOutputSpeech final : public ::google::protobuf::Message
   ::odin::v1::SessionInfo* PROTOBUF_NONNULL _internal_mutable_session();
 
   public:
-  // @@protoc_insertion_point(class_scope:odin.v1.AudioOutputSpeech)
+  // @@protoc_insertion_point(class_scope:odin.v1.AudioBufferSpeaker)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
@@ -498,7 +282,7 @@ class AudioOutputSpeech final : public ::google::protobuf::Message
     inline explicit Impl_(
         ::google::protobuf::internal::InternalVisibility visibility,
         ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
-        const AudioOutputSpeech& from_msg);
+        const AudioBufferSpeaker& from_msg);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     ::odin::v1::AudioData* PROTOBUF_NULLABLE audio_;
@@ -509,33 +293,33 @@ class AudioOutputSpeech final : public ::google::protobuf::Message
   friend struct ::TableStruct_odin_2fv1_2faudio_2eproto;
 };
 
-extern const ::google::protobuf::internal::ClassDataFull AudioOutputSpeech_class_data_;
+extern const ::google::protobuf::internal::ClassDataFull AudioBufferSpeaker_class_data_;
 // -------------------------------------------------------------------
 
-class AudioInputChunk final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:odin.v1.AudioInputChunk) */ {
+class AudioBufferSession final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:odin.v1.AudioBufferSession) */ {
  public:
-  inline AudioInputChunk() : AudioInputChunk(nullptr) {}
-  ~AudioInputChunk() PROTOBUF_FINAL;
+  inline AudioBufferSession() : AudioBufferSession(nullptr) {}
+  ~AudioBufferSession() PROTOBUF_FINAL;
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(AudioInputChunk* PROTOBUF_NONNULL msg, std::destroying_delete_t) {
+  void operator delete(AudioBufferSession* PROTOBUF_NONNULL msg, std::destroying_delete_t) {
     SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(AudioInputChunk));
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(AudioBufferSession));
   }
 #endif
 
   template <typename = void>
-  explicit PROTOBUF_CONSTEXPR AudioInputChunk(::google::protobuf::internal::ConstantInitialized);
+  explicit PROTOBUF_CONSTEXPR AudioBufferSession(::google::protobuf::internal::ConstantInitialized);
 
-  inline AudioInputChunk(const AudioInputChunk& from) : AudioInputChunk(nullptr, from) {}
-  inline AudioInputChunk(AudioInputChunk&& from) noexcept
-      : AudioInputChunk(nullptr, ::std::move(from)) {}
-  inline AudioInputChunk& operator=(const AudioInputChunk& from) {
+  inline AudioBufferSession(const AudioBufferSession& from) : AudioBufferSession(nullptr, from) {}
+  inline AudioBufferSession(AudioBufferSession&& from) noexcept
+      : AudioBufferSession(nullptr, ::std::move(from)) {}
+  inline AudioBufferSession& operator=(const AudioBufferSession& from) {
     CopyFrom(from);
     return *this;
   }
-  inline AudioInputChunk& operator=(AudioInputChunk&& from) noexcept {
+  inline AudioBufferSession& operator=(AudioBufferSession&& from) noexcept {
     if (this == &from) return *this;
     if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
       InternalSwap(&from);
@@ -563,13 +347,13 @@ class AudioInputChunk final : public ::google::protobuf::Message
   static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const AudioInputChunk& default_instance() {
-    return *reinterpret_cast<const AudioInputChunk*>(
-        &_AudioInputChunk_default_instance_);
+  static const AudioBufferSession& default_instance() {
+    return *reinterpret_cast<const AudioBufferSession*>(
+        &_AudioBufferSession_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 0;
-  friend void swap(AudioInputChunk& a, AudioInputChunk& b) { a.Swap(&b); }
-  inline void Swap(AudioInputChunk* PROTOBUF_NONNULL other) {
+  static constexpr int kIndexInFileMessages = 2;
+  friend void swap(AudioBufferSession& a, AudioBufferSession& b) { a.Swap(&b); }
+  inline void Swap(AudioBufferSession* PROTOBUF_NONNULL other) {
     if (other == this) return;
     if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
       InternalSwap(other);
@@ -577,7 +361,7 @@ class AudioInputChunk final : public ::google::protobuf::Message
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(AudioInputChunk* PROTOBUF_NONNULL other) {
+  void UnsafeArenaSwap(AudioBufferSession* PROTOBUF_NONNULL other) {
     if (other == this) return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -585,13 +369,13 @@ class AudioInputChunk final : public ::google::protobuf::Message
 
   // implements Message ----------------------------------------------
 
-  AudioInputChunk* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<AudioInputChunk>(arena);
+  AudioBufferSession* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<AudioBufferSession>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const AudioInputChunk& from);
+  void CopyFrom(const AudioBufferSession& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const AudioInputChunk& from) { AudioInputChunk::MergeImpl(*this, from); }
+  void MergeFrom(const AudioBufferSession& from) { AudioBufferSession::MergeImpl(*this, from); }
 
   private:
   static void MergeImpl(::google::protobuf::MessageLite& to_msg,
@@ -627,18 +411,231 @@ class AudioInputChunk final : public ::google::protobuf::Message
   private:
   void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
   static void SharedDtor(MessageLite& self);
-  void InternalSwap(AudioInputChunk* PROTOBUF_NONNULL other);
+  void InternalSwap(AudioBufferSession* PROTOBUF_NONNULL other);
  private:
   template <typename T>
   friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "odin.v1.AudioInputChunk"; }
+  static ::absl::string_view FullMessageName() { return "odin.v1.AudioBufferSession"; }
 
  protected:
-  explicit AudioInputChunk(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-  AudioInputChunk(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const AudioInputChunk& from);
-  AudioInputChunk(
-      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, AudioInputChunk&& from) noexcept
-      : AudioInputChunk(arena) {
+  explicit AudioBufferSession(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  AudioBufferSession(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const AudioBufferSession& from);
+  AudioBufferSession(
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, AudioBufferSession&& from) noexcept
+      : AudioBufferSession(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
+  static void* PROTOBUF_NONNULL PlacementNew_(
+      const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static constexpr auto InternalNewImpl_();
+
+ public:
+  static constexpr auto InternalGenerateClassData_();
+
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kAudioFieldNumber = 1,
+    kSessionFieldNumber = 2,
+  };
+  // .odin.v1.AudioData audio = 1 [json_name = "audio"];
+  bool has_audio() const;
+  void clear_audio() ;
+  const ::odin::v1::AudioData& audio() const;
+  [[nodiscard]] ::odin::v1::AudioData* PROTOBUF_NULLABLE release_audio();
+  ::odin::v1::AudioData* PROTOBUF_NONNULL mutable_audio();
+  void set_allocated_audio(::odin::v1::AudioData* PROTOBUF_NULLABLE value);
+  void unsafe_arena_set_allocated_audio(::odin::v1::AudioData* PROTOBUF_NULLABLE value);
+  ::odin::v1::AudioData* PROTOBUF_NULLABLE unsafe_arena_release_audio();
+
+  private:
+  const ::odin::v1::AudioData& _internal_audio() const;
+  ::odin::v1::AudioData* PROTOBUF_NONNULL _internal_mutable_audio();
+
+  public:
+  // .odin.v1.SessionInfo session = 2 [json_name = "session"];
+  bool has_session() const;
+  void clear_session() ;
+  const ::odin::v1::SessionInfo& session() const;
+  [[nodiscard]] ::odin::v1::SessionInfo* PROTOBUF_NULLABLE release_session();
+  ::odin::v1::SessionInfo* PROTOBUF_NONNULL mutable_session();
+  void set_allocated_session(::odin::v1::SessionInfo* PROTOBUF_NULLABLE value);
+  void unsafe_arena_set_allocated_session(::odin::v1::SessionInfo* PROTOBUF_NULLABLE value);
+  ::odin::v1::SessionInfo* PROTOBUF_NULLABLE unsafe_arena_release_session();
+
+  private:
+  const ::odin::v1::SessionInfo& _internal_session() const;
+  ::odin::v1::SessionInfo* PROTOBUF_NONNULL _internal_mutable_session();
+
+  public:
+  // @@protoc_insertion_point(class_scope:odin.v1.AudioBufferSession)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<1, 2,
+                                   2, 0,
+                                   2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+        const AudioBufferSession& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::odin::v1::AudioData* PROTOBUF_NULLABLE audio_;
+    ::odin::v1::SessionInfo* PROTOBUF_NULLABLE session_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_odin_2fv1_2faudio_2eproto;
+};
+
+extern const ::google::protobuf::internal::ClassDataFull AudioBufferSession_class_data_;
+// -------------------------------------------------------------------
+
+class AudioBufferMic final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:odin.v1.AudioBufferMic) */ {
+ public:
+  inline AudioBufferMic() : AudioBufferMic(nullptr) {}
+  ~AudioBufferMic() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(AudioBufferMic* PROTOBUF_NONNULL msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(AudioBufferMic));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR AudioBufferMic(::google::protobuf::internal::ConstantInitialized);
+
+  inline AudioBufferMic(const AudioBufferMic& from) : AudioBufferMic(nullptr, from) {}
+  inline AudioBufferMic(AudioBufferMic&& from) noexcept
+      : AudioBufferMic(nullptr, ::std::move(from)) {}
+  inline AudioBufferMic& operator=(const AudioBufferMic& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline AudioBufferMic& operator=(AudioBufferMic&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* PROTOBUF_NONNULL mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const AudioBufferMic& default_instance() {
+    return *reinterpret_cast<const AudioBufferMic*>(
+        &_AudioBufferMic_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 0;
+  friend void swap(AudioBufferMic& a, AudioBufferMic& b) { a.Swap(&b); }
+  inline void Swap(AudioBufferMic* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(AudioBufferMic* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  AudioBufferMic* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<AudioBufferMic>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const AudioBufferMic& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const AudioBufferMic& from) { AudioBufferMic::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(::google::protobuf::MessageLite& to_msg,
+                        const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      const ::google::protobuf::MessageLite& msg, ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(AudioBufferMic* PROTOBUF_NONNULL other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "odin.v1.AudioBufferMic"; }
+
+ protected:
+  explicit AudioBufferMic(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  AudioBufferMic(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const AudioBufferMic& from);
+  AudioBufferMic(
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, AudioBufferMic&& from) noexcept
+      : AudioBufferMic(arena) {
     *this = ::std::move(from);
   }
   const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
@@ -688,12 +685,12 @@ class AudioInputChunk final : public ::google::protobuf::Message
   ::odin::v1::AudioData* PROTOBUF_NONNULL _internal_mutable_audio();
 
   public:
-  // @@protoc_insertion_point(class_scope:odin.v1.AudioInputChunk)
+  // @@protoc_insertion_point(class_scope:odin.v1.AudioBufferMic)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<1, 2,
-                                   1, 41,
+                                   1, 40,
                                    2>
       _table_;
 
@@ -711,7 +708,7 @@ class AudioInputChunk final : public ::google::protobuf::Message
     inline explicit Impl_(
         ::google::protobuf::internal::InternalVisibility visibility,
         ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
-        const AudioInputChunk& from_msg);
+        const AudioBufferMic& from_msg);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::internal::ArenaStringPtr client_id_;
@@ -722,7 +719,7 @@ class AudioInputChunk final : public ::google::protobuf::Message
   friend struct ::TableStruct_odin_2fv1_2faudio_2eproto;
 };
 
-extern const ::google::protobuf::internal::ClassDataFull AudioInputChunk_class_data_;
+extern const ::google::protobuf::internal::ClassDataFull AudioBufferMic_class_data_;
 
 // ===================================================================
 
@@ -738,24 +735,24 @@ extern const ::google::protobuf::internal::ClassDataFull AudioInputChunk_class_d
 #endif  // __GNUC__
 // -------------------------------------------------------------------
 
-// AudioInputChunk
+// AudioBufferMic
 
 // .odin.v1.AudioData audio = 1 [json_name = "audio"];
-inline bool AudioInputChunk::has_audio() const {
+inline bool AudioBufferMic::has_audio() const {
   bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.audio_ != nullptr);
   return value;
 }
-inline const ::odin::v1::AudioData& AudioInputChunk::_internal_audio() const {
+inline const ::odin::v1::AudioData& AudioBufferMic::_internal_audio() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   const ::odin::v1::AudioData* p = _impl_.audio_;
   return p != nullptr ? *p : reinterpret_cast<const ::odin::v1::AudioData&>(::odin::v1::_AudioData_default_instance_);
 }
-inline const ::odin::v1::AudioData& AudioInputChunk::audio() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:odin.v1.AudioInputChunk.audio)
+inline const ::odin::v1::AudioData& AudioBufferMic::audio() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:odin.v1.AudioBufferMic.audio)
   return _internal_audio();
 }
-inline void AudioInputChunk::unsafe_arena_set_allocated_audio(
+inline void AudioBufferMic::unsafe_arena_set_allocated_audio(
     ::odin::v1::AudioData* PROTOBUF_NULLABLE value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (GetArena() == nullptr) {
@@ -767,9 +764,9 @@ inline void AudioInputChunk::unsafe_arena_set_allocated_audio(
   } else {
     _impl_._has_bits_[0] &= ~0x00000002u;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:odin.v1.AudioInputChunk.audio)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:odin.v1.AudioBufferMic.audio)
 }
-inline ::odin::v1::AudioData* PROTOBUF_NULLABLE AudioInputChunk::release_audio() {
+inline ::odin::v1::AudioData* PROTOBUF_NULLABLE AudioBufferMic::release_audio() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
 
   _impl_._has_bits_[0] &= ~0x00000002u;
@@ -788,16 +785,16 @@ inline ::odin::v1::AudioData* PROTOBUF_NULLABLE AudioInputChunk::release_audio()
   }
   return released;
 }
-inline ::odin::v1::AudioData* PROTOBUF_NULLABLE AudioInputChunk::unsafe_arena_release_audio() {
+inline ::odin::v1::AudioData* PROTOBUF_NULLABLE AudioBufferMic::unsafe_arena_release_audio() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:odin.v1.AudioInputChunk.audio)
+  // @@protoc_insertion_point(field_release:odin.v1.AudioBufferMic.audio)
 
   _impl_._has_bits_[0] &= ~0x00000002u;
   ::odin::v1::AudioData* temp = _impl_.audio_;
   _impl_.audio_ = nullptr;
   return temp;
 }
-inline ::odin::v1::AudioData* PROTOBUF_NONNULL AudioInputChunk::_internal_mutable_audio() {
+inline ::odin::v1::AudioData* PROTOBUF_NONNULL AudioBufferMic::_internal_mutable_audio() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (_impl_.audio_ == nullptr) {
     auto* p = ::google::protobuf::Message::DefaultConstruct<::odin::v1::AudioData>(GetArena());
@@ -805,14 +802,14 @@ inline ::odin::v1::AudioData* PROTOBUF_NONNULL AudioInputChunk::_internal_mutabl
   }
   return _impl_.audio_;
 }
-inline ::odin::v1::AudioData* PROTOBUF_NONNULL AudioInputChunk::mutable_audio()
+inline ::odin::v1::AudioData* PROTOBUF_NONNULL AudioBufferMic::mutable_audio()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   _impl_._has_bits_[0] |= 0x00000002u;
   ::odin::v1::AudioData* _msg = _internal_mutable_audio();
-  // @@protoc_insertion_point(field_mutable:odin.v1.AudioInputChunk.audio)
+  // @@protoc_insertion_point(field_mutable:odin.v1.AudioBufferMic.audio)
   return _msg;
 }
-inline void AudioInputChunk::set_allocated_audio(::odin::v1::AudioData* PROTOBUF_NULLABLE value) {
+inline void AudioBufferMic::set_allocated_audio(::odin::v1::AudioData* PROTOBUF_NULLABLE value) {
   ::google::protobuf::Arena* message_arena = GetArena();
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (message_arena == nullptr) {
@@ -830,50 +827,50 @@ inline void AudioInputChunk::set_allocated_audio(::odin::v1::AudioData* PROTOBUF
   }
 
   _impl_.audio_ = reinterpret_cast<::odin::v1::AudioData*>(value);
-  // @@protoc_insertion_point(field_set_allocated:odin.v1.AudioInputChunk.audio)
+  // @@protoc_insertion_point(field_set_allocated:odin.v1.AudioBufferMic.audio)
 }
 
 // string client_id = 2 [json_name = "clientId"];
-inline void AudioInputChunk::clear_client_id() {
+inline void AudioBufferMic::clear_client_id() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.client_id_.ClearToEmpty();
   _impl_._has_bits_[0] &= ~0x00000001u;
 }
-inline const ::std::string& AudioInputChunk::client_id() const
+inline const ::std::string& AudioBufferMic::client_id() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:odin.v1.AudioInputChunk.client_id)
+  // @@protoc_insertion_point(field_get:odin.v1.AudioBufferMic.client_id)
   return _internal_client_id();
 }
 template <typename Arg_, typename... Args_>
-PROTOBUF_ALWAYS_INLINE void AudioInputChunk::set_client_id(Arg_&& arg, Args_... args) {
+PROTOBUF_ALWAYS_INLINE void AudioBufferMic::set_client_id(Arg_&& arg, Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000001u;
   _impl_.client_id_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:odin.v1.AudioInputChunk.client_id)
+  // @@protoc_insertion_point(field_set:odin.v1.AudioBufferMic.client_id)
 }
-inline ::std::string* PROTOBUF_NONNULL AudioInputChunk::mutable_client_id()
+inline ::std::string* PROTOBUF_NONNULL AudioBufferMic::mutable_client_id()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   ::std::string* _s = _internal_mutable_client_id();
-  // @@protoc_insertion_point(field_mutable:odin.v1.AudioInputChunk.client_id)
+  // @@protoc_insertion_point(field_mutable:odin.v1.AudioBufferMic.client_id)
   return _s;
 }
-inline const ::std::string& AudioInputChunk::_internal_client_id() const {
+inline const ::std::string& AudioBufferMic::_internal_client_id() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.client_id_.Get();
 }
-inline void AudioInputChunk::_internal_set_client_id(const ::std::string& value) {
+inline void AudioBufferMic::_internal_set_client_id(const ::std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000001u;
   _impl_.client_id_.Set(value, GetArena());
 }
-inline ::std::string* PROTOBUF_NONNULL AudioInputChunk::_internal_mutable_client_id() {
+inline ::std::string* PROTOBUF_NONNULL AudioBufferMic::_internal_mutable_client_id() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000001u;
   return _impl_.client_id_.Mutable( GetArena());
 }
-inline ::std::string* PROTOBUF_NULLABLE AudioInputChunk::release_client_id() {
+inline ::std::string* PROTOBUF_NULLABLE AudioBufferMic::release_client_id() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:odin.v1.AudioInputChunk.client_id)
+  // @@protoc_insertion_point(field_release:odin.v1.AudioBufferMic.client_id)
   if ((_impl_._has_bits_[0] & 0x00000001u) == 0) {
     return nullptr;
   }
@@ -884,7 +881,7 @@ inline ::std::string* PROTOBUF_NULLABLE AudioInputChunk::release_client_id() {
   }
   return released;
 }
-inline void AudioInputChunk::set_allocated_client_id(::std::string* PROTOBUF_NULLABLE value) {
+inline void AudioBufferMic::set_allocated_client_id(::std::string* PROTOBUF_NULLABLE value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000001u;
@@ -895,29 +892,29 @@ inline void AudioInputChunk::set_allocated_client_id(::std::string* PROTOBUF_NUL
   if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.client_id_.IsDefault()) {
     _impl_.client_id_.Set("", GetArena());
   }
-  // @@protoc_insertion_point(field_set_allocated:odin.v1.AudioInputChunk.client_id)
+  // @@protoc_insertion_point(field_set_allocated:odin.v1.AudioBufferMic.client_id)
 }
 
 // -------------------------------------------------------------------
 
-// AudioOutputSpeech
+// AudioBufferSpeaker
 
 // .odin.v1.AudioData audio = 1 [json_name = "audio"];
-inline bool AudioOutputSpeech::has_audio() const {
+inline bool AudioBufferSpeaker::has_audio() const {
   bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.audio_ != nullptr);
   return value;
 }
-inline const ::odin::v1::AudioData& AudioOutputSpeech::_internal_audio() const {
+inline const ::odin::v1::AudioData& AudioBufferSpeaker::_internal_audio() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   const ::odin::v1::AudioData* p = _impl_.audio_;
   return p != nullptr ? *p : reinterpret_cast<const ::odin::v1::AudioData&>(::odin::v1::_AudioData_default_instance_);
 }
-inline const ::odin::v1::AudioData& AudioOutputSpeech::audio() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:odin.v1.AudioOutputSpeech.audio)
+inline const ::odin::v1::AudioData& AudioBufferSpeaker::audio() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:odin.v1.AudioBufferSpeaker.audio)
   return _internal_audio();
 }
-inline void AudioOutputSpeech::unsafe_arena_set_allocated_audio(
+inline void AudioBufferSpeaker::unsafe_arena_set_allocated_audio(
     ::odin::v1::AudioData* PROTOBUF_NULLABLE value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (GetArena() == nullptr) {
@@ -929,9 +926,9 @@ inline void AudioOutputSpeech::unsafe_arena_set_allocated_audio(
   } else {
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:odin.v1.AudioOutputSpeech.audio)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:odin.v1.AudioBufferSpeaker.audio)
 }
-inline ::odin::v1::AudioData* PROTOBUF_NULLABLE AudioOutputSpeech::release_audio() {
+inline ::odin::v1::AudioData* PROTOBUF_NULLABLE AudioBufferSpeaker::release_audio() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
 
   _impl_._has_bits_[0] &= ~0x00000001u;
@@ -950,16 +947,16 @@ inline ::odin::v1::AudioData* PROTOBUF_NULLABLE AudioOutputSpeech::release_audio
   }
   return released;
 }
-inline ::odin::v1::AudioData* PROTOBUF_NULLABLE AudioOutputSpeech::unsafe_arena_release_audio() {
+inline ::odin::v1::AudioData* PROTOBUF_NULLABLE AudioBufferSpeaker::unsafe_arena_release_audio() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:odin.v1.AudioOutputSpeech.audio)
+  // @@protoc_insertion_point(field_release:odin.v1.AudioBufferSpeaker.audio)
 
   _impl_._has_bits_[0] &= ~0x00000001u;
   ::odin::v1::AudioData* temp = _impl_.audio_;
   _impl_.audio_ = nullptr;
   return temp;
 }
-inline ::odin::v1::AudioData* PROTOBUF_NONNULL AudioOutputSpeech::_internal_mutable_audio() {
+inline ::odin::v1::AudioData* PROTOBUF_NONNULL AudioBufferSpeaker::_internal_mutable_audio() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (_impl_.audio_ == nullptr) {
     auto* p = ::google::protobuf::Message::DefaultConstruct<::odin::v1::AudioData>(GetArena());
@@ -967,14 +964,14 @@ inline ::odin::v1::AudioData* PROTOBUF_NONNULL AudioOutputSpeech::_internal_muta
   }
   return _impl_.audio_;
 }
-inline ::odin::v1::AudioData* PROTOBUF_NONNULL AudioOutputSpeech::mutable_audio()
+inline ::odin::v1::AudioData* PROTOBUF_NONNULL AudioBufferSpeaker::mutable_audio()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   _impl_._has_bits_[0] |= 0x00000001u;
   ::odin::v1::AudioData* _msg = _internal_mutable_audio();
-  // @@protoc_insertion_point(field_mutable:odin.v1.AudioOutputSpeech.audio)
+  // @@protoc_insertion_point(field_mutable:odin.v1.AudioBufferSpeaker.audio)
   return _msg;
 }
-inline void AudioOutputSpeech::set_allocated_audio(::odin::v1::AudioData* PROTOBUF_NULLABLE value) {
+inline void AudioBufferSpeaker::set_allocated_audio(::odin::v1::AudioData* PROTOBUF_NULLABLE value) {
   ::google::protobuf::Arena* message_arena = GetArena();
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (message_arena == nullptr) {
@@ -992,25 +989,25 @@ inline void AudioOutputSpeech::set_allocated_audio(::odin::v1::AudioData* PROTOB
   }
 
   _impl_.audio_ = reinterpret_cast<::odin::v1::AudioData*>(value);
-  // @@protoc_insertion_point(field_set_allocated:odin.v1.AudioOutputSpeech.audio)
+  // @@protoc_insertion_point(field_set_allocated:odin.v1.AudioBufferSpeaker.audio)
 }
 
 // .odin.v1.SessionInfo session = 2 [json_name = "session"];
-inline bool AudioOutputSpeech::has_session() const {
+inline bool AudioBufferSpeaker::has_session() const {
   bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.session_ != nullptr);
   return value;
 }
-inline const ::odin::v1::SessionInfo& AudioOutputSpeech::_internal_session() const {
+inline const ::odin::v1::SessionInfo& AudioBufferSpeaker::_internal_session() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   const ::odin::v1::SessionInfo* p = _impl_.session_;
   return p != nullptr ? *p : reinterpret_cast<const ::odin::v1::SessionInfo&>(::odin::v1::_SessionInfo_default_instance_);
 }
-inline const ::odin::v1::SessionInfo& AudioOutputSpeech::session() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:odin.v1.AudioOutputSpeech.session)
+inline const ::odin::v1::SessionInfo& AudioBufferSpeaker::session() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:odin.v1.AudioBufferSpeaker.session)
   return _internal_session();
 }
-inline void AudioOutputSpeech::unsafe_arena_set_allocated_session(
+inline void AudioBufferSpeaker::unsafe_arena_set_allocated_session(
     ::odin::v1::SessionInfo* PROTOBUF_NULLABLE value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (GetArena() == nullptr) {
@@ -1022,9 +1019,9 @@ inline void AudioOutputSpeech::unsafe_arena_set_allocated_session(
   } else {
     _impl_._has_bits_[0] &= ~0x00000002u;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:odin.v1.AudioOutputSpeech.session)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:odin.v1.AudioBufferSpeaker.session)
 }
-inline ::odin::v1::SessionInfo* PROTOBUF_NULLABLE AudioOutputSpeech::release_session() {
+inline ::odin::v1::SessionInfo* PROTOBUF_NULLABLE AudioBufferSpeaker::release_session() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
 
   _impl_._has_bits_[0] &= ~0x00000002u;
@@ -1043,16 +1040,16 @@ inline ::odin::v1::SessionInfo* PROTOBUF_NULLABLE AudioOutputSpeech::release_ses
   }
   return released;
 }
-inline ::odin::v1::SessionInfo* PROTOBUF_NULLABLE AudioOutputSpeech::unsafe_arena_release_session() {
+inline ::odin::v1::SessionInfo* PROTOBUF_NULLABLE AudioBufferSpeaker::unsafe_arena_release_session() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:odin.v1.AudioOutputSpeech.session)
+  // @@protoc_insertion_point(field_release:odin.v1.AudioBufferSpeaker.session)
 
   _impl_._has_bits_[0] &= ~0x00000002u;
   ::odin::v1::SessionInfo* temp = _impl_.session_;
   _impl_.session_ = nullptr;
   return temp;
 }
-inline ::odin::v1::SessionInfo* PROTOBUF_NONNULL AudioOutputSpeech::_internal_mutable_session() {
+inline ::odin::v1::SessionInfo* PROTOBUF_NONNULL AudioBufferSpeaker::_internal_mutable_session() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (_impl_.session_ == nullptr) {
     auto* p = ::google::protobuf::Message::DefaultConstruct<::odin::v1::SessionInfo>(GetArena());
@@ -1060,14 +1057,14 @@ inline ::odin::v1::SessionInfo* PROTOBUF_NONNULL AudioOutputSpeech::_internal_mu
   }
   return _impl_.session_;
 }
-inline ::odin::v1::SessionInfo* PROTOBUF_NONNULL AudioOutputSpeech::mutable_session()
+inline ::odin::v1::SessionInfo* PROTOBUF_NONNULL AudioBufferSpeaker::mutable_session()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   _impl_._has_bits_[0] |= 0x00000002u;
   ::odin::v1::SessionInfo* _msg = _internal_mutable_session();
-  // @@protoc_insertion_point(field_mutable:odin.v1.AudioOutputSpeech.session)
+  // @@protoc_insertion_point(field_mutable:odin.v1.AudioBufferSpeaker.session)
   return _msg;
 }
-inline void AudioOutputSpeech::set_allocated_session(::odin::v1::SessionInfo* PROTOBUF_NULLABLE value) {
+inline void AudioBufferSpeaker::set_allocated_session(::odin::v1::SessionInfo* PROTOBUF_NULLABLE value) {
   ::google::protobuf::Arena* message_arena = GetArena();
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (message_arena == nullptr) {
@@ -1085,75 +1082,122 @@ inline void AudioOutputSpeech::set_allocated_session(::odin::v1::SessionInfo* PR
   }
 
   _impl_.session_ = reinterpret_cast<::odin::v1::SessionInfo*>(value);
-  // @@protoc_insertion_point(field_set_allocated:odin.v1.AudioOutputSpeech.session)
+  // @@protoc_insertion_point(field_set_allocated:odin.v1.AudioBufferSpeaker.session)
 }
 
 // -------------------------------------------------------------------
 
-// AudioOutputVisualization
+// AudioBufferSession
 
-// repeated float audio_levels = 1 [json_name = "audioLevels"];
-inline int AudioOutputVisualization::_internal_audio_levels_size() const {
-  return _internal_audio_levels().size();
+// .odin.v1.AudioData audio = 1 [json_name = "audio"];
+inline bool AudioBufferSession::has_audio() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.audio_ != nullptr);
+  return value;
 }
-inline int AudioOutputVisualization::audio_levels_size() const {
-  return _internal_audio_levels_size();
-}
-inline void AudioOutputVisualization::clear_audio_levels() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.audio_levels_.Clear();
-}
-inline float AudioOutputVisualization::audio_levels(int index) const {
-  // @@protoc_insertion_point(field_get:odin.v1.AudioOutputVisualization.audio_levels)
-  return _internal_audio_levels().Get(index);
-}
-inline void AudioOutputVisualization::set_audio_levels(int index, float value) {
-  _internal_mutable_audio_levels()->Set(index, value);
-  // @@protoc_insertion_point(field_set:odin.v1.AudioOutputVisualization.audio_levels)
-}
-inline void AudioOutputVisualization::add_audio_levels(float value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _internal_mutable_audio_levels()->Add(value);
-  // @@protoc_insertion_point(field_add:odin.v1.AudioOutputVisualization.audio_levels)
-}
-inline const ::google::protobuf::RepeatedField<float>& AudioOutputVisualization::audio_levels() const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_list:odin.v1.AudioOutputVisualization.audio_levels)
-  return _internal_audio_levels();
-}
-inline ::google::protobuf::RepeatedField<float>* PROTOBUF_NONNULL AudioOutputVisualization::mutable_audio_levels()
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable_list:odin.v1.AudioOutputVisualization.audio_levels)
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  return _internal_mutable_audio_levels();
-}
-inline const ::google::protobuf::RepeatedField<float>&
-AudioOutputVisualization::_internal_audio_levels() const {
+inline const ::odin::v1::AudioData& AudioBufferSession::_internal_audio() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.audio_levels_;
+  const ::odin::v1::AudioData* p = _impl_.audio_;
+  return p != nullptr ? *p : reinterpret_cast<const ::odin::v1::AudioData&>(::odin::v1::_AudioData_default_instance_);
 }
-inline ::google::protobuf::RepeatedField<float>* PROTOBUF_NONNULL
-AudioOutputVisualization::_internal_mutable_audio_levels() {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return &_impl_.audio_levels_;
+inline const ::odin::v1::AudioData& AudioBufferSession::audio() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:odin.v1.AudioBufferSession.audio)
+  return _internal_audio();
+}
+inline void AudioBufferSession::unsafe_arena_set_allocated_audio(
+    ::odin::v1::AudioData* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.audio_);
+  }
+  _impl_.audio_ = reinterpret_cast<::odin::v1::AudioData*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:odin.v1.AudioBufferSession.audio)
+}
+inline ::odin::v1::AudioData* PROTOBUF_NULLABLE AudioBufferSession::release_audio() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::odin::v1::AudioData* released = _impl_.audio_;
+  _impl_.audio_ = nullptr;
+  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
+    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    if (GetArena() == nullptr) {
+      delete old;
+    }
+  } else {
+    if (GetArena() != nullptr) {
+      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    }
+  }
+  return released;
+}
+inline ::odin::v1::AudioData* PROTOBUF_NULLABLE AudioBufferSession::unsafe_arena_release_audio() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:odin.v1.AudioBufferSession.audio)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::odin::v1::AudioData* temp = _impl_.audio_;
+  _impl_.audio_ = nullptr;
+  return temp;
+}
+inline ::odin::v1::AudioData* PROTOBUF_NONNULL AudioBufferSession::_internal_mutable_audio() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.audio_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::odin::v1::AudioData>(GetArena());
+    _impl_.audio_ = reinterpret_cast<::odin::v1::AudioData*>(p);
+  }
+  return _impl_.audio_;
+}
+inline ::odin::v1::AudioData* PROTOBUF_NONNULL AudioBufferSession::mutable_audio()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  ::odin::v1::AudioData* _msg = _internal_mutable_audio();
+  // @@protoc_insertion_point(field_mutable:odin.v1.AudioBufferSession.audio)
+  return _msg;
+}
+inline void AudioBufferSession::set_allocated_audio(::odin::v1::AudioData* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.audio_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::google::protobuf::Message*>(value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.audio_ = reinterpret_cast<::odin::v1::AudioData*>(value);
+  // @@protoc_insertion_point(field_set_allocated:odin.v1.AudioBufferSession.audio)
 }
 
 // .odin.v1.SessionInfo session = 2 [json_name = "session"];
-inline bool AudioOutputVisualization::has_session() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+inline bool AudioBufferSession::has_session() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.session_ != nullptr);
   return value;
 }
-inline const ::odin::v1::SessionInfo& AudioOutputVisualization::_internal_session() const {
+inline const ::odin::v1::SessionInfo& AudioBufferSession::_internal_session() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   const ::odin::v1::SessionInfo* p = _impl_.session_;
   return p != nullptr ? *p : reinterpret_cast<const ::odin::v1::SessionInfo&>(::odin::v1::_SessionInfo_default_instance_);
 }
-inline const ::odin::v1::SessionInfo& AudioOutputVisualization::session() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:odin.v1.AudioOutputVisualization.session)
+inline const ::odin::v1::SessionInfo& AudioBufferSession::session() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:odin.v1.AudioBufferSession.session)
   return _internal_session();
 }
-inline void AudioOutputVisualization::unsafe_arena_set_allocated_session(
+inline void AudioBufferSession::unsafe_arena_set_allocated_session(
     ::odin::v1::SessionInfo* PROTOBUF_NULLABLE value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (GetArena() == nullptr) {
@@ -1161,16 +1205,16 @@ inline void AudioOutputVisualization::unsafe_arena_set_allocated_session(
   }
   _impl_.session_ = reinterpret_cast<::odin::v1::SessionInfo*>(value);
   if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000001u;
+    _impl_._has_bits_[0] |= 0x00000002u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000001u;
+    _impl_._has_bits_[0] &= ~0x00000002u;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:odin.v1.AudioOutputVisualization.session)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:odin.v1.AudioBufferSession.session)
 }
-inline ::odin::v1::SessionInfo* PROTOBUF_NULLABLE AudioOutputVisualization::release_session() {
+inline ::odin::v1::SessionInfo* PROTOBUF_NULLABLE AudioBufferSession::release_session() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
 
-  _impl_._has_bits_[0] &= ~0x00000001u;
+  _impl_._has_bits_[0] &= ~0x00000002u;
   ::odin::v1::SessionInfo* released = _impl_.session_;
   _impl_.session_ = nullptr;
   if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
@@ -1186,16 +1230,16 @@ inline ::odin::v1::SessionInfo* PROTOBUF_NULLABLE AudioOutputVisualization::rele
   }
   return released;
 }
-inline ::odin::v1::SessionInfo* PROTOBUF_NULLABLE AudioOutputVisualization::unsafe_arena_release_session() {
+inline ::odin::v1::SessionInfo* PROTOBUF_NULLABLE AudioBufferSession::unsafe_arena_release_session() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:odin.v1.AudioOutputVisualization.session)
+  // @@protoc_insertion_point(field_release:odin.v1.AudioBufferSession.session)
 
-  _impl_._has_bits_[0] &= ~0x00000001u;
+  _impl_._has_bits_[0] &= ~0x00000002u;
   ::odin::v1::SessionInfo* temp = _impl_.session_;
   _impl_.session_ = nullptr;
   return temp;
 }
-inline ::odin::v1::SessionInfo* PROTOBUF_NONNULL AudioOutputVisualization::_internal_mutable_session() {
+inline ::odin::v1::SessionInfo* PROTOBUF_NONNULL AudioBufferSession::_internal_mutable_session() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (_impl_.session_ == nullptr) {
     auto* p = ::google::protobuf::Message::DefaultConstruct<::odin::v1::SessionInfo>(GetArena());
@@ -1203,14 +1247,14 @@ inline ::odin::v1::SessionInfo* PROTOBUF_NONNULL AudioOutputVisualization::_inte
   }
   return _impl_.session_;
 }
-inline ::odin::v1::SessionInfo* PROTOBUF_NONNULL AudioOutputVisualization::mutable_session()
+inline ::odin::v1::SessionInfo* PROTOBUF_NONNULL AudioBufferSession::mutable_session()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_._has_bits_[0] |= 0x00000002u;
   ::odin::v1::SessionInfo* _msg = _internal_mutable_session();
-  // @@protoc_insertion_point(field_mutable:odin.v1.AudioOutputVisualization.session)
+  // @@protoc_insertion_point(field_mutable:odin.v1.AudioBufferSession.session)
   return _msg;
 }
-inline void AudioOutputVisualization::set_allocated_session(::odin::v1::SessionInfo* PROTOBUF_NULLABLE value) {
+inline void AudioBufferSession::set_allocated_session(::odin::v1::SessionInfo* PROTOBUF_NULLABLE value) {
   ::google::protobuf::Arena* message_arena = GetArena();
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (message_arena == nullptr) {
@@ -1222,13 +1266,13 @@ inline void AudioOutputVisualization::set_allocated_session(::odin::v1::SessionI
     if (message_arena != submessage_arena) {
       value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
     }
-    _impl_._has_bits_[0] |= 0x00000001u;
+    _impl_._has_bits_[0] |= 0x00000002u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000001u;
+    _impl_._has_bits_[0] &= ~0x00000002u;
   }
 
   _impl_.session_ = reinterpret_cast<::odin::v1::SessionInfo*>(value);
-  // @@protoc_insertion_point(field_set_allocated:odin.v1.AudioOutputVisualization.session)
+  // @@protoc_insertion_point(field_set_allocated:odin.v1.AudioBufferSession.session)
 }
 
 #ifdef __GNUC__
