@@ -1,0 +1,17 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "odin-protobuf"
+version = "0.1.0"
+description = "Generated Protocol Buffer definitions for Odin"
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = ["protobuf>=4.0.0"]
+
+[project.optional-dependencies]
+dev = ["mypy", "pytest"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["odin"]

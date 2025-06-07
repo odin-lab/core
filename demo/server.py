@@ -1,3 +1,5 @@
+from pathlib import Path
+import pickle
 import asyncio, time, wave
 import os, sys
 
@@ -10,12 +12,21 @@ from odin.v1 import audio_pb2, common_pb2
 SAMPLE_RATE = 16_000
 SUBJECT = "audio.input.chunk"
 
+
+def save_wav(pcm, sr, filename):
+    with wave.open(filename, "wb") as wf:
+        wf.setnchannels(2)
+        wf.setsampwidth(4)  # 16-bit PCM
+        wf.setframerate(sr)
+        wf.writeframes(pcm)
+
+
 async def main():
     nc = NATS()
     await nc.connect("nats://127.0.0.1:4222")
     print("📡  Listening on", SUBJECT)
 
-    #buffer = bytearray()
+    # buffer = bytearray()
     buffer = {}
     sample_rates = {}
 
@@ -30,11 +41,7 @@ async def main():
             sr = sample_rates.pop(sid, SAMPLE_RATE)
 
             filename = f"recording_{sid}_{int(time.time())}.wav"
-            with wave.open(filename, "wb") as wf:
-                wf.setnchannels(1)
-                wf.setsampwidth(2)        # 16-bit PCM
-                wf.setframerate(sr)
-                wf.writeframes(pcm)
+            save_wav(pcm, sr, filename)
             print("💾  Saved", filename)
 
         else:
@@ -42,7 +49,16 @@ async def main():
             chunk = audio_pb2.AudioInputChunk()
             chunk.ParseFromString(msg.data)
 
-            sid = chunk.session.session_id
+            # # store as pickly
+            # path = Path(".recordings")
+            # path.mkdir(parents=True, exist_ok=True)
+            # with open(
+            #     path / f"recording_{chunk.client_id}_{int(time.time())}.pkl", "wb"
+            # ) as f:
+            #     pickle.dump(chunk, f)
+            # return
+
+            sid = chunk.client_id
 
             if sid not in buffer:
                 buffer[sid] = bytearray()
@@ -50,13 +66,24 @@ async def main():
 
             buffer[sid].extend(chunk.audio.audio_data)
 
+            if len(buffer[sid]) > 32 * sample_rates[sid]:
+                save_wav(
+                    buffer[sid],
+                    sample_rates[sid],
+                    f"recording_{sid}_{int(time.time())}.wav",
+                )
+                print("💾  Saved", f"recording_{sid}_{int(time.time())}.wav")
+                buffer[sid] = bytearray()
+                sample_rates[sid] = chunk.audio.sample_rate or SAMPLE_RATE
+
     await nc.subscribe(SUBJECT, cb=on_msg)
 
     try:
         while True:
-            await asyncio.sleep(3600)     # keep the process alive
+            await asyncio.sleep(3600)  # keep the process alive
     finally:
         await nc.drain()
+
 
 if __name__ == "__main__":
     asyncio.run(main())

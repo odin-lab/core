@@ -1,18 +1,16 @@
 import asyncio, sounddevice as sd, numpy as np
-import os, sys, time, uuid
-
-# Make generated protobufs importable (../../proto/gen/python)
-sys.path.append(os.path.join(os.path.dirname(__file__), "..", "proto", "gen", "python"))
+import time, uuid
 
 from nats.aio.client import Client as NATS
 from odin.v1 import audio_pb2, common_pb2
 
-SAMPLE_RATE = 16_000        # Hz
-CHUNK = 1_600               # 100 ms of audio
+SAMPLE_RATE = 16_000  # Hz
+CHUNK = 1_600  # 100 ms of audio
 SUBJECT = "audio.input.chunk"  # Matches the nats_subject option in audio.proto
 
 # A unique session id for this client run
 SESSION_ID = str(uuid.uuid4())
+
 
 async def main():
     nc = NATS()
@@ -27,7 +25,7 @@ async def main():
             dtype="int16",
         ) as stream:
             while True:
-                data, _ = stream.read(CHUNK)          # ndarray[int16]
+                data, _ = stream.read(CHUNK)  # ndarray[int16]
 
                 # Build the protobuf message
                 audio_msg = common_pb2.AudioData(
@@ -51,6 +49,7 @@ async def main():
         await nc.publish(SUBJECT, b"EOS:" + SESSION_ID.encode())
         await nc.drain()
         print("✅  Client closed.")
+
 
 if __name__ == "__main__":
     asyncio.run(main())
