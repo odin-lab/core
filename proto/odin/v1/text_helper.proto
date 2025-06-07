@@ -13,5 +13,5 @@ message TranscriptionResult {
 // Turn information with role and content
 message TurnResult {
   repeated string text = 1;
-  bool is_speaking = 2;
+  bool odins_turn = 2;
 }
