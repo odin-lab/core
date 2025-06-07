@@ -436,7 +436,9 @@ class TranscriptionResult final : public ::google::protobuf::Message
   // accessors -------------------------------------------------------
   enum : int {
     kTextFieldNumber = 1,
-    kConfidenceFieldNumber = 2,
+    kCompletedFieldNumber = 2,
+    kStartFieldNumber = 3,
+    kEndFieldNumber = 4,
   };
   // repeated string text = 1 [json_name = "text"];
   int text_size() const;
@@ -460,21 +462,65 @@ class TranscriptionResult final : public ::google::protobuf::Message
   ::google::protobuf::RepeatedPtrField<::std::string>* PROTOBUF_NONNULL _internal_mutable_text();
 
   public:
-  // float confidence = 2 [json_name = "confidence"];
-  void clear_confidence() ;
-  float confidence() const;
-  void set_confidence(float value);
+  // repeated bool completed = 2 [json_name = "completed"];
+  int completed_size() const;
+  private:
+  int _internal_completed_size() const;
+
+  public:
+  void clear_completed() ;
+  bool completed(int index) const;
+  void set_completed(int index, bool value);
+  void add_completed(bool value);
+  const ::google::protobuf::RepeatedField<bool>& completed() const;
+  ::google::protobuf::RepeatedField<bool>* PROTOBUF_NONNULL mutable_completed();
 
   private:
-  float _internal_confidence() const;
-  void _internal_set_confidence(float value);
+  const ::google::protobuf::RepeatedField<bool>& _internal_completed() const;
+  ::google::protobuf::RepeatedField<bool>* PROTOBUF_NONNULL _internal_mutable_completed();
+
+  public:
+  // repeated float start = 3 [json_name = "start"];
+  int start_size() const;
+  private:
+  int _internal_start_size() const;
+
+  public:
+  void clear_start() ;
+  float start(int index) const;
+  void set_start(int index, float value);
+  void add_start(float value);
+  const ::google::protobuf::RepeatedField<float>& start() const;
+  ::google::protobuf::RepeatedField<float>* PROTOBUF_NONNULL mutable_start();
+
+  private:
+  const ::google::protobuf::RepeatedField<float>& _internal_start() const;
+  ::google::protobuf::RepeatedField<float>* PROTOBUF_NONNULL _internal_mutable_start();
+
+  public:
+  // repeated float end = 4 [json_name = "end"];
+  int end_size() const;
+  private:
+  int _internal_end_size() const;
+
+  public:
+  void clear_end() ;
+  float end(int index) const;
+  void set_end(int index, float value);
+  void add_end(float value);
+  const ::google::protobuf::RepeatedField<float>& end() const;
+  ::google::protobuf::RepeatedField<float>* PROTOBUF_NONNULL mutable_end();
+
+  private:
+  const ::google::protobuf::RepeatedField<float>& _internal_end() const;
+  ::google::protobuf::RepeatedField<float>* PROTOBUF_NONNULL _internal_mutable_end();
 
   public:
   // @@protoc_insertion_point(class_scope:odin.v1.TranscriptionResult)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<1, 2,
+  static const ::google::protobuf::internal::TcParseTable<2, 4,
                                    0, 40,
                                    2>
       _table_;
@@ -494,10 +540,11 @@ class TranscriptionResult final : public ::google::protobuf::Message
         ::google::protobuf::internal::InternalVisibility visibility,
         ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
         const TranscriptionResult& from_msg);
-    ::google::protobuf::internal::HasBits<1> _has_bits_;
-    ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::RepeatedPtrField<::std::string> text_;
-    float confidence_;
+    ::google::protobuf::RepeatedField<bool> completed_;
+    ::google::protobuf::RepeatedField<float> start_;
+    ::google::protobuf::RepeatedField<float> end_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -586,28 +633,142 @@ TranscriptionResult::_internal_mutable_text() {
   return &_impl_.text_;
 }
 
-// float confidence = 2 [json_name = "confidence"];
-inline void TranscriptionResult::clear_confidence() {
+// repeated bool completed = 2 [json_name = "completed"];
+inline int TranscriptionResult::_internal_completed_size() const {
+  return _internal_completed().size();
+}
+inline int TranscriptionResult::completed_size() const {
+  return _internal_completed_size();
+}
+inline void TranscriptionResult::clear_completed() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.confidence_ = 0;
-  _impl_._has_bits_[0] &= ~0x00000001u;
+  _impl_.completed_.Clear();
 }
-inline float TranscriptionResult::confidence() const {
-  // @@protoc_insertion_point(field_get:odin.v1.TranscriptionResult.confidence)
-  return _internal_confidence();
+inline bool TranscriptionResult::completed(int index) const {
+  // @@protoc_insertion_point(field_get:odin.v1.TranscriptionResult.completed)
+  return _internal_completed().Get(index);
 }
-inline void TranscriptionResult::set_confidence(float value) {
-  _internal_set_confidence(value);
-  _impl_._has_bits_[0] |= 0x00000001u;
-  // @@protoc_insertion_point(field_set:odin.v1.TranscriptionResult.confidence)
+inline void TranscriptionResult::set_completed(int index, bool value) {
+  _internal_mutable_completed()->Set(index, value);
+  // @@protoc_insertion_point(field_set:odin.v1.TranscriptionResult.completed)
 }
-inline float TranscriptionResult::_internal_confidence() const {
+inline void TranscriptionResult::add_completed(bool value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _internal_mutable_completed()->Add(value);
+  // @@protoc_insertion_point(field_add:odin.v1.TranscriptionResult.completed)
+}
+inline const ::google::protobuf::RepeatedField<bool>& TranscriptionResult::completed() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:odin.v1.TranscriptionResult.completed)
+  return _internal_completed();
+}
+inline ::google::protobuf::RepeatedField<bool>* PROTOBUF_NONNULL TranscriptionResult::mutable_completed()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_list:odin.v1.TranscriptionResult.completed)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _internal_mutable_completed();
+}
+inline const ::google::protobuf::RepeatedField<bool>&
+TranscriptionResult::_internal_completed() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.confidence_;
+  return _impl_.completed_;
 }
-inline void TranscriptionResult::_internal_set_confidence(float value) {
+inline ::google::protobuf::RepeatedField<bool>* PROTOBUF_NONNULL
+TranscriptionResult::_internal_mutable_completed() {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return &_impl_.completed_;
+}
+
+// repeated float start = 3 [json_name = "start"];
+inline int TranscriptionResult::_internal_start_size() const {
+  return _internal_start().size();
+}
+inline int TranscriptionResult::start_size() const {
+  return _internal_start_size();
+}
+inline void TranscriptionResult::clear_start() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.confidence_ = value;
+  _impl_.start_.Clear();
+}
+inline float TranscriptionResult::start(int index) const {
+  // @@protoc_insertion_point(field_get:odin.v1.TranscriptionResult.start)
+  return _internal_start().Get(index);
+}
+inline void TranscriptionResult::set_start(int index, float value) {
+  _internal_mutable_start()->Set(index, value);
+  // @@protoc_insertion_point(field_set:odin.v1.TranscriptionResult.start)
+}
+inline void TranscriptionResult::add_start(float value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _internal_mutable_start()->Add(value);
+  // @@protoc_insertion_point(field_add:odin.v1.TranscriptionResult.start)
+}
+inline const ::google::protobuf::RepeatedField<float>& TranscriptionResult::start() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:odin.v1.TranscriptionResult.start)
+  return _internal_start();
+}
+inline ::google::protobuf::RepeatedField<float>* PROTOBUF_NONNULL TranscriptionResult::mutable_start()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_list:odin.v1.TranscriptionResult.start)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _internal_mutable_start();
+}
+inline const ::google::protobuf::RepeatedField<float>&
+TranscriptionResult::_internal_start() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.start_;
+}
+inline ::google::protobuf::RepeatedField<float>* PROTOBUF_NONNULL
+TranscriptionResult::_internal_mutable_start() {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return &_impl_.start_;
+}
+
+// repeated float end = 4 [json_name = "end"];
+inline int TranscriptionResult::_internal_end_size() const {
+  return _internal_end().size();
+}
+inline int TranscriptionResult::end_size() const {
+  return _internal_end_size();
+}
+inline void TranscriptionResult::clear_end() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.end_.Clear();
+}
+inline float TranscriptionResult::end(int index) const {
+  // @@protoc_insertion_point(field_get:odin.v1.TranscriptionResult.end)
+  return _internal_end().Get(index);
+}
+inline void TranscriptionResult::set_end(int index, float value) {
+  _internal_mutable_end()->Set(index, value);
+  // @@protoc_insertion_point(field_set:odin.v1.TranscriptionResult.end)
+}
+inline void TranscriptionResult::add_end(float value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _internal_mutable_end()->Add(value);
+  // @@protoc_insertion_point(field_add:odin.v1.TranscriptionResult.end)
+}
+inline const ::google::protobuf::RepeatedField<float>& TranscriptionResult::end() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:odin.v1.TranscriptionResult.end)
+  return _internal_end();
+}
+inline ::google::protobuf::RepeatedField<float>* PROTOBUF_NONNULL TranscriptionResult::mutable_end()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_list:odin.v1.TranscriptionResult.end)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _internal_mutable_end();
+}
+inline const ::google::protobuf::RepeatedField<float>&
+TranscriptionResult::_internal_end() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.end_;
+}
+inline ::google::protobuf::RepeatedField<float>* PROTOBUF_NONNULL
+TranscriptionResult::_internal_mutable_end() {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return &_impl_.end_;
 }
 
 // -------------------------------------------------------------------

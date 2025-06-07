@@ -24,7 +24,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x19odin/v1/text_helper.proto\x12\x07odin.v1\"I\n\x13TranscriptionResult\x12\x12\n\x04text\x18\x01 \x03(\tR\x04text\x12\x1e\n\nconfidence\x18\x02 \x01(\x02R\nconfidence\"A\n\nTurnResult\x12\x12\n\x04text\x18\x01 \x03(\tR\x04text\x12\x1f\n\x0bis_speaking\x18\x02 \x01(\x08R\nisSpeakingB[\n\x0b\x63om.odin.v1B\x0fTextHelperProtoP\x01\xa2\x02\x03OXX\xaa\x02\x07Odin.V1\xca\x02\x07Odin\\V1\xe2\x02\x13Odin\\V1\\GPBMetadata\xea\x02\x08Odin::V1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x19odin/v1/text_helper.proto\x12\x07odin.v1\"o\n\x13TranscriptionResult\x12\x12\n\x04text\x18\x01 \x03(\tR\x04text\x12\x1c\n\tcompleted\x18\x02 \x03(\x08R\tcompleted\x12\x14\n\x05start\x18\x03 \x03(\x02R\x05start\x12\x10\n\x03\x65nd\x18\x04 \x03(\x02R\x03\x65nd\"A\n\nTurnResult\x12\x12\n\x04text\x18\x01 \x03(\tR\x04text\x12\x1f\n\x0bis_speaking\x18\x02 \x01(\x08R\nisSpeakingB[\n\x0b\x63om.odin.v1B\x0fTextHelperProtoP\x01\xa2\x02\x03OXX\xaa\x02\x07Odin.V1\xca\x02\x07Odin\\V1\xe2\x02\x13Odin\\V1\\GPBMetadata\xea\x02\x08Odin::V1b\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -33,7 +33,7 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['DESCRIPTOR']._loaded_options = None
   _globals['DESCRIPTOR']._serialized_options = b'\n\013com.odin.v1B\017TextHelperProtoP\001\242\002\003OXX\252\002\007Odin.V1\312\002\007Odin\\V1\342\002\023Odin\\V1\\GPBMetadata\352\002\010Odin::V1'
   _globals['_TRANSCRIPTIONRESULT']._serialized_start=38
-  _globals['_TRANSCRIPTIONRESULT']._serialized_end=111
-  _globals['_TURNRESULT']._serialized_start=113
-  _globals['_TURNRESULT']._serialized_end=178
+  _globals['_TRANSCRIPTIONRESULT']._serialized_end=149
+  _globals['_TURNRESULT']._serialized_start=151
+  _globals['_TURNRESULT']._serialized_end=216
 # @@protoc_insertion_point(module_scope)

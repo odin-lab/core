@@ -97,7 +97,7 @@ void   odin__v1__turn_result__free_unpacked
   assert(message->base.descriptor == &odin__v1__turn_result__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-static const ProtobufCFieldDescriptor odin__v1__transcription_result__field_descriptors[2] =
+static const ProtobufCFieldDescriptor odin__v1__transcription_result__field_descriptors[4] =
 {
   {
     "text",
@@ -112,26 +112,52 @@ static const ProtobufCFieldDescriptor odin__v1__transcription_result__field_desc
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "confidence",
+    "completed",
     2,
-    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_LABEL_REPEATED,
+    PROTOBUF_C_TYPE_BOOL,
+    offsetof(Odin__V1__TranscriptionResult, n_completed),
+    offsetof(Odin__V1__TranscriptionResult, completed),
+    NULL,
+    NULL,
+    PROTOBUF_C_FIELD_FLAG_PACKED,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "start",
+    3,
+    PROTOBUF_C_LABEL_REPEATED,
     PROTOBUF_C_TYPE_FLOAT,
-    0,   /* quantifier_offset */
-    offsetof(Odin__V1__TranscriptionResult, confidence),
+    offsetof(Odin__V1__TranscriptionResult, n_start),
+    offsetof(Odin__V1__TranscriptionResult, start),
     NULL,
     NULL,
-    0,             /* flags */
+    PROTOBUF_C_FIELD_FLAG_PACKED,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "end",
+    4,
+    PROTOBUF_C_LABEL_REPEATED,
+    PROTOBUF_C_TYPE_FLOAT,
+    offsetof(Odin__V1__TranscriptionResult, n_end),
+    offsetof(Odin__V1__TranscriptionResult, end),
+    NULL,
+    NULL,
+    PROTOBUF_C_FIELD_FLAG_PACKED,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
 };
 static const unsigned odin__v1__transcription_result__field_indices_by_name[] = {
-  1,   /* field[1] = confidence */
+  1,   /* field[1] = completed */
+  3,   /* field[3] = end */
+  2,   /* field[2] = start */
   0,   /* field[0] = text */
 };
 static const ProtobufCIntRange odin__v1__transcription_result__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 2 }
+  { 0, 4 }
 };
 const ProtobufCMessageDescriptor odin__v1__transcription_result__descriptor =
 {
@@ -141,7 +167,7 @@ const ProtobufCMessageDescriptor odin__v1__transcription_result__descriptor =
   "Odin__V1__TranscriptionResult",
   "odin.v1",
   sizeof(Odin__V1__TranscriptionResult),
-  2,
+  4,
   odin__v1__transcription_result__field_descriptors,
   odin__v1__transcription_result__field_indices_by_name,
   1,  odin__v1__transcription_result__number_ranges,

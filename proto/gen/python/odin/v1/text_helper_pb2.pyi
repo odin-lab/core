@@ -7,12 +7,16 @@ from typing import ClassVar as _ClassVar, Optional as _Optional
 DESCRIPTOR: _descriptor.FileDescriptor
 
 class TranscriptionResult(_message.Message):
-    __slots__ = ("text", "confidence")
+    __slots__ = ("text", "completed", "start", "end")
     TEXT_FIELD_NUMBER: _ClassVar[int]
-    CONFIDENCE_FIELD_NUMBER: _ClassVar[int]
+    COMPLETED_FIELD_NUMBER: _ClassVar[int]
+    START_FIELD_NUMBER: _ClassVar[int]
+    END_FIELD_NUMBER: _ClassVar[int]
     text: _containers.RepeatedScalarFieldContainer[str]
-    confidence: float
-    def __init__(self, text: _Optional[_Iterable[str]] = ..., confidence: _Optional[float] = ...) -> None: ...
+    completed: _containers.RepeatedScalarFieldContainer[bool]
+    start: _containers.RepeatedScalarFieldContainer[float]
+    end: _containers.RepeatedScalarFieldContainer[float]
+    def __init__(self, text: _Optional[_Iterable[str]] = ..., completed: _Optional[_Iterable[bool]] = ..., start: _Optional[_Iterable[float]] = ..., end: _Optional[_Iterable[float]] = ...) -> None: ...
 
 class TurnResult(_message.Message):
     __slots__ = ("text", "is_speaking")

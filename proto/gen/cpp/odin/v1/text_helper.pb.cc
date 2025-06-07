@@ -55,9 +55,11 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
 
 inline constexpr TranscriptionResult::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
-      : _cached_size_{0},
-        text_{},
-        confidence_{0} {}
+      : text_{},
+        completed_{},
+        start_{},
+        end_{},
+        _cached_size_{0} {}
 
 template <typename>
 PROTOBUF_CONSTEXPR TranscriptionResult::TranscriptionResult(::_pbi::ConstantInitialized)
@@ -87,13 +89,11 @@ static constexpr const ::_pb::ServiceDescriptor *PROTOBUF_NONNULL *PROTOBUF_NULL
 const ::uint32_t
     TableStruct_odin_2fv1_2ftext_5fhelper_2eproto::offsets[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
         protodesc_cold) = {
-        0x081, // bitmap
-        PROTOBUF_FIELD_OFFSET(::odin::v1::TranscriptionResult, _impl_._has_bits_),
-        5, // hasbit index offset
+        0x000, // bitmap
         PROTOBUF_FIELD_OFFSET(::odin::v1::TranscriptionResult, _impl_.text_),
-        PROTOBUF_FIELD_OFFSET(::odin::v1::TranscriptionResult, _impl_.confidence_),
-        ~0u,
-        0,
+        PROTOBUF_FIELD_OFFSET(::odin::v1::TranscriptionResult, _impl_.completed_),
+        PROTOBUF_FIELD_OFFSET(::odin::v1::TranscriptionResult, _impl_.start_),
+        PROTOBUF_FIELD_OFFSET(::odin::v1::TranscriptionResult, _impl_.end_),
         0x081, // bitmap
         PROTOBUF_FIELD_OFFSET(::odin::v1::TurnResult, _impl_._has_bits_),
         5, // hasbit index offset
@@ -106,7 +106,7 @@ const ::uint32_t
 static const ::_pbi::MigrationSchema
     schemas[] ABSL_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
         {0, sizeof(::odin::v1::TranscriptionResult)},
-        {7, sizeof(::odin::v1::TurnResult)},
+        {5, sizeof(::odin::v1::TurnResult)},
 };
 static const ::_pb::Message* PROTOBUF_NONNULL const file_default_instances[] = {
     &::odin::v1::_TranscriptionResult_default_instance_._instance,
@@ -114,19 +114,20 @@ static const ::_pb::Message* PROTOBUF_NONNULL const file_default_instances[] = {
 };
 const char descriptor_table_protodef_odin_2fv1_2ftext_5fhelper_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
-    "\n\031odin/v1/text_helper.proto\022\007odin.v1\"I\n\023"
+    "\n\031odin/v1/text_helper.proto\022\007odin.v1\"o\n\023"
     "TranscriptionResult\022\022\n\004text\030\001 \003(\tR\004text\022"
-    "\036\n\nconfidence\030\002 \001(\002R\nconfidence\"A\n\nTurnR"
-    "esult\022\022\n\004text\030\001 \003(\tR\004text\022\037\n\013is_speaking"
-    "\030\002 \001(\010R\nisSpeakingB[\n\013com.odin.v1B\017TextH"
-    "elperProtoP\001\242\002\003OXX\252\002\007Odin.V1\312\002\007Odin\\V1\342\002"
-    "\023Odin\\V1\\GPBMetadata\352\002\010Odin::V1b\006proto3"
+    "\034\n\tcompleted\030\002 \003(\010R\tcompleted\022\024\n\005start\030\003"
+    " \003(\002R\005start\022\020\n\003end\030\004 \003(\002R\003end\"A\n\nTurnRes"
+    "ult\022\022\n\004text\030\001 \003(\tR\004text\022\037\n\013is_speaking\030\002"
+    " \001(\010R\nisSpeakingB[\n\013com.odin.v1B\017TextHel"
+    "perProtoP\001\242\002\003OXX\252\002\007Odin.V1\312\002\007Odin\\V1\342\002\023O"
+    "din\\V1\\GPBMetadata\352\002\010Odin::V1b\006proto3"
 };
 static ::absl::once_flag descriptor_table_odin_2fv1_2ftext_5fhelper_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_odin_2fv1_2ftext_5fhelper_2eproto = {
     false,
     false,
-    279,
+    317,
     descriptor_table_protodef_odin_2fv1_2ftext_5fhelper_2eproto,
     "odin/v1/text_helper.proto",
     &descriptor_table_odin_2fv1_2ftext_5fhelper_2eproto_once,
@@ -145,10 +146,6 @@ namespace v1 {
 
 class TranscriptionResult::_Internal {
  public:
-  using HasBits =
-      decltype(::std::declval<TranscriptionResult>()._impl_._has_bits_);
-  static constexpr ::int32_t kHasBitsOffset =
-      8 * PROTOBUF_FIELD_OFFSET(TranscriptionResult, _impl_._has_bits_);
 };
 
 TranscriptionResult::TranscriptionResult(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
@@ -164,9 +161,11 @@ PROTOBUF_NDEBUG_INLINE TranscriptionResult::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
     const ::odin::v1::TranscriptionResult& from_msg)
-      : _has_bits_{from._has_bits_},
-        _cached_size_{0},
-        text_{visibility, arena, from.text_} {}
+      : text_{visibility, arena, from.text_},
+        completed_{visibility, arena, from.completed_},
+        start_{visibility, arena, from.start_},
+        end_{visibility, arena, from.end_},
+        _cached_size_{0} {}
 
 TranscriptionResult::TranscriptionResult(
     ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
@@ -181,19 +180,20 @@ TranscriptionResult::TranscriptionResult(
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
-  _impl_.confidence_ = from._impl_.confidence_;
 
   // @@protoc_insertion_point(copy_constructor:odin.v1.TranscriptionResult)
 }
 PROTOBUF_NDEBUG_INLINE TranscriptionResult::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
-      : _cached_size_{0},
-        text_{visibility, arena} {}
+      : text_{visibility, arena},
+        completed_{visibility, arena},
+        start_{visibility, arena},
+        end_{visibility, arena},
+        _cached_size_{0} {}
 
 inline void TranscriptionResult::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
-  _impl_.confidence_ = {};
 }
 TranscriptionResult::~TranscriptionResult() {
   // @@protoc_insertion_point(destructor:odin.v1.TranscriptionResult)
@@ -215,6 +215,18 @@ constexpr auto TranscriptionResult::InternalNewImpl_() {
   constexpr auto arena_bits = ::google::protobuf::internal::EncodePlacementArenaOffsets({
       PROTOBUF_FIELD_OFFSET(TranscriptionResult, _impl_.text_) +
           decltype(TranscriptionResult::_impl_.text_)::
+              InternalGetArenaOffset(
+                  ::google::protobuf::Message::internal_visibility()),
+      PROTOBUF_FIELD_OFFSET(TranscriptionResult, _impl_.completed_) +
+          decltype(TranscriptionResult::_impl_.completed_)::
+              InternalGetArenaOffset(
+                  ::google::protobuf::Message::internal_visibility()),
+      PROTOBUF_FIELD_OFFSET(TranscriptionResult, _impl_.start_) +
+          decltype(TranscriptionResult::_impl_.start_)::
+              InternalGetArenaOffset(
+                  ::google::protobuf::Message::internal_visibility()),
+      PROTOBUF_FIELD_OFFSET(TranscriptionResult, _impl_.end_) +
+          decltype(TranscriptionResult::_impl_.end_)::
               InternalGetArenaOffset(
                   ::google::protobuf::Message::internal_visibility()),
   });
@@ -261,16 +273,16 @@ TranscriptionResult::GetClassData() const {
   return TranscriptionResult_class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 0, 40, 2>
+const ::_pbi::TcParseTable<2, 4, 0, 40, 2>
 TranscriptionResult::_table_ = {
   {
-    PROTOBUF_FIELD_OFFSET(TranscriptionResult, _impl_._has_bits_),
+    0,  // no _has_bits_
     0, // no _extensions_
-    2, 8,  // max_field_number, fast_idx_mask
+    4, 24,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967292,  // skipmap
+    4294967280,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    2,  // num_field_entries
+    4,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
     TranscriptionResult_class_data_.base(),
@@ -280,21 +292,33 @@ TranscriptionResult::_table_ = {
     ::_pbi::TcParser::GetTable<::odin::v1::TranscriptionResult>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    // float confidence = 2 [json_name = "confidence"];
-    {::_pbi::TcParser::FastF32S1,
-     {21, 0, 0, PROTOBUF_FIELD_OFFSET(TranscriptionResult, _impl_.confidence_)}},
+    // repeated float end = 4 [json_name = "end"];
+    {::_pbi::TcParser::FastF32P1,
+     {34, 63, 0, PROTOBUF_FIELD_OFFSET(TranscriptionResult, _impl_.end_)}},
     // repeated string text = 1 [json_name = "text"];
     {::_pbi::TcParser::FastUR1,
      {10, 63, 0, PROTOBUF_FIELD_OFFSET(TranscriptionResult, _impl_.text_)}},
+    // repeated bool completed = 2 [json_name = "completed"];
+    {::_pbi::TcParser::FastV8P1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(TranscriptionResult, _impl_.completed_)}},
+    // repeated float start = 3 [json_name = "start"];
+    {::_pbi::TcParser::FastF32P1,
+     {26, 63, 0, PROTOBUF_FIELD_OFFSET(TranscriptionResult, _impl_.start_)}},
   }}, {{
     65535, 65535
   }}, {{
     // repeated string text = 1 [json_name = "text"];
-    {PROTOBUF_FIELD_OFFSET(TranscriptionResult, _impl_.text_), -1, 0,
+    {PROTOBUF_FIELD_OFFSET(TranscriptionResult, _impl_.text_), 0, 0,
     (0 | ::_fl::kFcRepeated | ::_fl::kUtf8String | ::_fl::kRepSString)},
-    // float confidence = 2 [json_name = "confidence"];
-    {PROTOBUF_FIELD_OFFSET(TranscriptionResult, _impl_.confidence_), _Internal::kHasBitsOffset + 0, 0,
-    (0 | ::_fl::kFcOptional | ::_fl::kFloat)},
+    // repeated bool completed = 2 [json_name = "completed"];
+    {PROTOBUF_FIELD_OFFSET(TranscriptionResult, _impl_.completed_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedBool)},
+    // repeated float start = 3 [json_name = "start"];
+    {PROTOBUF_FIELD_OFFSET(TranscriptionResult, _impl_.start_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedFloat)},
+    // repeated float end = 4 [json_name = "end"];
+    {PROTOBUF_FIELD_OFFSET(TranscriptionResult, _impl_.end_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedFloat)},
   }},
   // no aux_entries
   {{
@@ -311,8 +335,9 @@ PROTOBUF_NOINLINE void TranscriptionResult::Clear() {
   (void) cached_has_bits;
 
   _impl_.text_.Clear();
-  _impl_.confidence_ = 0;
-  _impl_._has_bits_.Clear();
+  _impl_.completed_.Clear();
+  _impl_.start_.Clear();
+  _impl_.end_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -339,13 +364,19 @@ PROTOBUF_NOINLINE void TranscriptionResult::Clear() {
     target = stream->WriteString(1, s, target);
   }
 
-  // float confidence = 2 [json_name = "confidence"];
-  if ((this_._impl_._has_bits_[0] & 0x00000001u) != 0) {
-    if (::absl::bit_cast<::uint32_t>(this_._internal_confidence()) != 0) {
-      target = stream->EnsureSpace(target);
-      target = ::_pbi::WireFormatLite::WriteFloatToArray(
-          2, this_._internal_confidence(), target);
-    }
+  // repeated bool completed = 2 [json_name = "completed"];
+  if (this_._internal_completed_size() > 0) {
+    target = stream->WriteFixedPacked(2, this_._internal_completed(), target);
+  }
+
+  // repeated float start = 3 [json_name = "start"];
+  if (this_._internal_start_size() > 0) {
+    target = stream->WriteFixedPacked(3, this_._internal_start(), target);
+  }
+
+  // repeated float end = 4 [json_name = "end"];
+  if (this_._internal_end_size() > 0) {
+    target = stream->WriteFixedPacked(4, this_._internal_end(), target);
   }
 
   if (ABSL_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
@@ -382,14 +413,35 @@ PROTOBUF_NOINLINE void TranscriptionResult::Clear() {
             this_._internal_text().Get(i));
       }
     }
-  }
-   {
-    // float confidence = 2 [json_name = "confidence"];
-    cached_has_bits = this_._impl_._has_bits_[0];
-    if ((cached_has_bits & 0x00000001u) != 0) {
-      if (::absl::bit_cast<::uint32_t>(this_._internal_confidence()) != 0) {
-        total_size += 5;
-      }
+    // repeated bool completed = 2 [json_name = "completed"];
+    {
+      ::size_t data_size = ::size_t{1} *
+          ::_pbi::FromIntSize(this_._internal_completed_size());
+      ::size_t tag_size = data_size == 0
+          ? 0
+          : 1 + ::_pbi::WireFormatLite::Int32Size(
+                              static_cast<::int32_t>(data_size));
+      total_size += tag_size + data_size;
+    }
+    // repeated float start = 3 [json_name = "start"];
+    {
+      ::size_t data_size = ::size_t{4} *
+          ::_pbi::FromIntSize(this_._internal_start_size());
+      ::size_t tag_size = data_size == 0
+          ? 0
+          : 1 + ::_pbi::WireFormatLite::Int32Size(
+                              static_cast<::int32_t>(data_size));
+      total_size += tag_size + data_size;
+    }
+    // repeated float end = 4 [json_name = "end"];
+    {
+      ::size_t data_size = ::size_t{4} *
+          ::_pbi::FromIntSize(this_._internal_end_size());
+      ::size_t tag_size = data_size == 0
+          ? 0
+          : 1 + ::_pbi::WireFormatLite::Int32Size(
+                              static_cast<::int32_t>(data_size));
+      total_size += tag_size + data_size;
     }
   }
   return this_.MaybeComputeUnknownFieldsSize(total_size,
@@ -405,13 +457,9 @@ void TranscriptionResult::MergeImpl(::google::protobuf::MessageLite& to_msg, con
   (void) cached_has_bits;
 
   _this->_internal_mutable_text()->MergeFrom(from._internal_text());
-  cached_has_bits = from._impl_._has_bits_[0];
-  if ((cached_has_bits & 0x00000001u) != 0) {
-    if (::absl::bit_cast<::uint32_t>(from._internal_confidence()) != 0) {
-      _this->_impl_.confidence_ = from._impl_.confidence_;
-    }
-  }
-  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_mutable_completed()->MergeFrom(from._internal_completed());
+  _this->_internal_mutable_start()->MergeFrom(from._internal_start());
+  _this->_internal_mutable_end()->MergeFrom(from._internal_end());
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -426,9 +474,10 @@ void TranscriptionResult::CopyFrom(const TranscriptionResult& from) {
 void TranscriptionResult::InternalSwap(TranscriptionResult* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
   using ::std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
   _impl_.text_.InternalSwap(&other->_impl_.text_);
-  swap(_impl_.confidence_, other->_impl_.confidence_);
+  _impl_.completed_.InternalSwap(&other->_impl_.completed_);
+  _impl_.start_.InternalSwap(&other->_impl_.start_);
+  _impl_.end_.InternalSwap(&other->_impl_.end_);
 }
 
 ::google::protobuf::Metadata TranscriptionResult::GetMetadata() const {

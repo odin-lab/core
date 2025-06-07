@@ -32,11 +32,16 @@ struct  Odin__V1__TranscriptionResult
   ProtobufCMessage base;
   size_t n_text;
   char **text;
-  float confidence;
+  size_t n_completed;
+  protobuf_c_boolean *completed;
+  size_t n_start;
+  float *start;
+  size_t n_end;
+  float *end;
 };
 #define ODIN__V1__TRANSCRIPTION_RESULT__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&odin__v1__transcription_result__descriptor) \
-    , 0,NULL, 0 }
+    , 0,NULL, 0,NULL, 0,NULL, 0,NULL }
 
 
 /*
