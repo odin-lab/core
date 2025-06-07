@@ -24,7 +24,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x14odin/v1/common.proto\x12\x07odin.v1\"b\n\x0bSessionInfo\x12\x1d\n\nsession_id\x18\x01 \x01(\tR\tsessionId\x12\x16\n\x06status\x18\x02 \x01(\tR\x06status\x12\x1c\n\ttimestamp\x18\x03 \x01(\x03R\ttimestamp\"K\n\tAudioData\x12\x1d\n\naudio_data\x18\x01 \x01(\x0cR\taudioData\x12\x1f\n\x0bsample_rate\x18\x02 \x01(\x05R\nsampleRateBW\n\x0b\x63om.odin.v1B\x0b\x43ommonProtoP\x01\xa2\x02\x03OXX\xaa\x02\x07Odin.V1\xca\x02\x07Odin\\V1\xe2\x02\x13Odin\\V1\\GPBMetadata\xea\x02\x08Odin::V1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x14odin/v1/common.proto\x12\x07odin.v1\"o\n\x0bSessionInfo\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\x12\x16\n\x06status\x18\x02 \x01(\tR\x06status\x12\x1a\n\x08language\x18\x03 \x01(\tR\x08language\x12\x1c\n\ttimestamp\x18\x04 \x01(\x03R\ttimestamp\"K\n\tAudioData\x12\x1d\n\naudio_data\x18\x01 \x01(\x0cR\taudioData\x12\x1f\n\x0bsample_rate\x18\x02 \x01(\x05R\nsampleRateBW\n\x0b\x63om.odin.v1B\x0b\x43ommonProtoP\x01\xa2\x02\x03OXX\xaa\x02\x07Odin.V1\xca\x02\x07Odin\\V1\xe2\x02\x13Odin\\V1\\GPBMetadata\xea\x02\x08Odin::V1b\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -33,7 +33,7 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['DESCRIPTOR']._loaded_options = None
   _globals['DESCRIPTOR']._serialized_options = b'\n\013com.odin.v1B\013CommonProtoP\001\242\002\003OXX\252\002\007Odin.V1\312\002\007Odin\\V1\342\002\023Odin\\V1\\GPBMetadata\352\002\010Odin::V1'
   _globals['_SESSIONINFO']._serialized_start=33
-  _globals['_SESSIONINFO']._serialized_end=131
-  _globals['_AUDIODATA']._serialized_start=133
-  _globals['_AUDIODATA']._serialized_end=208
+  _globals['_SESSIONINFO']._serialized_end=144
+  _globals['_AUDIODATA']._serialized_start=146
+  _globals['_AUDIODATA']._serialized_end=221
 # @@protoc_insertion_point(module_scope)

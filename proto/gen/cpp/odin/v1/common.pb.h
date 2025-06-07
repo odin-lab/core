@@ -220,23 +220,24 @@ class SessionInfo final : public ::google::protobuf::Message
 
   // accessors -------------------------------------------------------
   enum : int {
-    kSessionIdFieldNumber = 1,
+    kIdFieldNumber = 1,
     kStatusFieldNumber = 2,
-    kTimestampFieldNumber = 3,
+    kLanguageFieldNumber = 3,
+    kTimestampFieldNumber = 4,
   };
-  // string session_id = 1 [json_name = "sessionId"];
-  void clear_session_id() ;
-  const ::std::string& session_id() const;
+  // string id = 1 [json_name = "id"];
+  void clear_id() ;
+  const ::std::string& id() const;
   template <typename Arg_ = const ::std::string&, typename... Args_>
-  void set_session_id(Arg_&& arg, Args_... args);
-  ::std::string* PROTOBUF_NONNULL mutable_session_id();
-  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_session_id();
-  void set_allocated_session_id(::std::string* PROTOBUF_NULLABLE value);
+  void set_id(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_id();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_id();
+  void set_allocated_id(::std::string* PROTOBUF_NULLABLE value);
 
   private:
-  const ::std::string& _internal_session_id() const;
-  PROTOBUF_ALWAYS_INLINE void _internal_set_session_id(const ::std::string& value);
-  ::std::string* PROTOBUF_NONNULL _internal_mutable_session_id();
+  const ::std::string& _internal_id() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_id(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_id();
 
   public:
   // string status = 2 [json_name = "status"];
@@ -254,7 +255,22 @@ class SessionInfo final : public ::google::protobuf::Message
   ::std::string* PROTOBUF_NONNULL _internal_mutable_status();
 
   public:
-  // int64 timestamp = 3 [json_name = "timestamp"];
+  // string language = 3 [json_name = "language"];
+  void clear_language() ;
+  const ::std::string& language() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_language(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_language();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_language();
+  void set_allocated_language(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_language() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_language(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_language();
+
+  public:
+  // int64 timestamp = 4 [json_name = "timestamp"];
   void clear_timestamp() ;
   ::int64_t timestamp() const;
   void set_timestamp(::int64_t value);
@@ -268,7 +284,7 @@ class SessionInfo final : public ::google::protobuf::Message
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<2, 3,
+  static const ::google::protobuf::internal::TcParseTable<2, 4,
                                    0, 44,
                                    2>
       _table_;
@@ -290,8 +306,9 @@ class SessionInfo final : public ::google::protobuf::Message
         const SessionInfo& from_msg);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
-    ::google::protobuf::internal::ArenaStringPtr session_id_;
+    ::google::protobuf::internal::ArenaStringPtr id_;
     ::google::protobuf::internal::ArenaStringPtr status_;
+    ::google::protobuf::internal::ArenaStringPtr language_;
     ::int64_t timestamp_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -525,69 +542,69 @@ extern const ::google::protobuf::internal::ClassDataFull AudioData_class_data_;
 
 // SessionInfo
 
-// string session_id = 1 [json_name = "sessionId"];
-inline void SessionInfo::clear_session_id() {
+// string id = 1 [json_name = "id"];
+inline void SessionInfo::clear_id() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.session_id_.ClearToEmpty();
+  _impl_.id_.ClearToEmpty();
   _impl_._has_bits_[0] &= ~0x00000001u;
 }
-inline const ::std::string& SessionInfo::session_id() const
+inline const ::std::string& SessionInfo::id() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:odin.v1.SessionInfo.session_id)
-  return _internal_session_id();
+  // @@protoc_insertion_point(field_get:odin.v1.SessionInfo.id)
+  return _internal_id();
 }
 template <typename Arg_, typename... Args_>
-PROTOBUF_ALWAYS_INLINE void SessionInfo::set_session_id(Arg_&& arg, Args_... args) {
+PROTOBUF_ALWAYS_INLINE void SessionInfo::set_id(Arg_&& arg, Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000001u;
-  _impl_.session_id_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:odin.v1.SessionInfo.session_id)
+  _impl_.id_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:odin.v1.SessionInfo.id)
 }
-inline ::std::string* PROTOBUF_NONNULL SessionInfo::mutable_session_id()
+inline ::std::string* PROTOBUF_NONNULL SessionInfo::mutable_id()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::std::string* _s = _internal_mutable_session_id();
-  // @@protoc_insertion_point(field_mutable:odin.v1.SessionInfo.session_id)
+  ::std::string* _s = _internal_mutable_id();
+  // @@protoc_insertion_point(field_mutable:odin.v1.SessionInfo.id)
   return _s;
 }
-inline const ::std::string& SessionInfo::_internal_session_id() const {
+inline const ::std::string& SessionInfo::_internal_id() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.session_id_.Get();
+  return _impl_.id_.Get();
 }
-inline void SessionInfo::_internal_set_session_id(const ::std::string& value) {
+inline void SessionInfo::_internal_set_id(const ::std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000001u;
-  _impl_.session_id_.Set(value, GetArena());
+  _impl_.id_.Set(value, GetArena());
 }
-inline ::std::string* PROTOBUF_NONNULL SessionInfo::_internal_mutable_session_id() {
+inline ::std::string* PROTOBUF_NONNULL SessionInfo::_internal_mutable_id() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000001u;
-  return _impl_.session_id_.Mutable( GetArena());
+  return _impl_.id_.Mutable( GetArena());
 }
-inline ::std::string* PROTOBUF_NULLABLE SessionInfo::release_session_id() {
+inline ::std::string* PROTOBUF_NULLABLE SessionInfo::release_id() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:odin.v1.SessionInfo.session_id)
+  // @@protoc_insertion_point(field_release:odin.v1.SessionInfo.id)
   if ((_impl_._has_bits_[0] & 0x00000001u) == 0) {
     return nullptr;
   }
   _impl_._has_bits_[0] &= ~0x00000001u;
-  auto* released = _impl_.session_id_.Release();
+  auto* released = _impl_.id_.Release();
   if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
-    _impl_.session_id_.Set("", GetArena());
+    _impl_.id_.Set("", GetArena());
   }
   return released;
 }
-inline void SessionInfo::set_allocated_session_id(::std::string* PROTOBUF_NULLABLE value) {
+inline void SessionInfo::set_allocated_id(::std::string* PROTOBUF_NULLABLE value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000001u;
   } else {
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
-  _impl_.session_id_.SetAllocated(value, GetArena());
-  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.session_id_.IsDefault()) {
-    _impl_.session_id_.Set("", GetArena());
+  _impl_.id_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.id_.IsDefault()) {
+    _impl_.id_.Set("", GetArena());
   }
-  // @@protoc_insertion_point(field_set_allocated:odin.v1.SessionInfo.session_id)
+  // @@protoc_insertion_point(field_set_allocated:odin.v1.SessionInfo.id)
 }
 
 // string status = 2 [json_name = "status"];
@@ -655,11 +672,76 @@ inline void SessionInfo::set_allocated_status(::std::string* PROTOBUF_NULLABLE v
   // @@protoc_insertion_point(field_set_allocated:odin.v1.SessionInfo.status)
 }
 
-// int64 timestamp = 3 [json_name = "timestamp"];
+// string language = 3 [json_name = "language"];
+inline void SessionInfo::clear_language() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.language_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000004u;
+}
+inline const ::std::string& SessionInfo::language() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:odin.v1.SessionInfo.language)
+  return _internal_language();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void SessionInfo::set_language(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000004u;
+  _impl_.language_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:odin.v1.SessionInfo.language)
+}
+inline ::std::string* PROTOBUF_NONNULL SessionInfo::mutable_language()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::std::string* _s = _internal_mutable_language();
+  // @@protoc_insertion_point(field_mutable:odin.v1.SessionInfo.language)
+  return _s;
+}
+inline const ::std::string& SessionInfo::_internal_language() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.language_.Get();
+}
+inline void SessionInfo::_internal_set_language(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000004u;
+  _impl_.language_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL SessionInfo::_internal_mutable_language() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000004u;
+  return _impl_.language_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE SessionInfo::release_language() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:odin.v1.SessionInfo.language)
+  if ((_impl_._has_bits_[0] & 0x00000004u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000004u;
+  auto* released = _impl_.language_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.language_.Set("", GetArena());
+  }
+  return released;
+}
+inline void SessionInfo::set_allocated_language(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000004u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000004u;
+  }
+  _impl_.language_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.language_.IsDefault()) {
+    _impl_.language_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:odin.v1.SessionInfo.language)
+}
+
+// int64 timestamp = 4 [json_name = "timestamp"];
 inline void SessionInfo::clear_timestamp() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.timestamp_ = ::int64_t{0};
-  _impl_._has_bits_[0] &= ~0x00000004u;
+  _impl_._has_bits_[0] &= ~0x00000008u;
 }
 inline ::int64_t SessionInfo::timestamp() const {
   // @@protoc_insertion_point(field_get:odin.v1.SessionInfo.timestamp)
@@ -667,7 +749,7 @@ inline ::int64_t SessionInfo::timestamp() const {
 }
 inline void SessionInfo::set_timestamp(::int64_t value) {
   _internal_set_timestamp(value);
-  _impl_._has_bits_[0] |= 0x00000004u;
+  _impl_._has_bits_[0] |= 0x00000008u;
   // @@protoc_insertion_point(field_set:odin.v1.SessionInfo.timestamp)
 }
 inline ::int64_t SessionInfo::_internal_timestamp() const {

@@ -30,13 +30,14 @@ typedef struct Odin__V1__AudioData Odin__V1__AudioData;
 struct  Odin__V1__SessionInfo
 {
   ProtobufCMessage base;
-  char *session_id;
+  char *id;
   char *status;
+  char *language;
   int64_t timestamp;
 };
 #define ODIN__V1__SESSION_INFO__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&odin__v1__session_info__descriptor) \
-    , (char *)protobuf_c_empty_string, (char *)protobuf_c_empty_string, 0 }
+    , (char *)protobuf_c_empty_string, (char *)protobuf_c_empty_string, (char *)protobuf_c_empty_string, 0 }
 
 
 /*

@@ -5,14 +5,16 @@ from typing import ClassVar as _ClassVar, Optional as _Optional
 DESCRIPTOR: _descriptor.FileDescriptor
 
 class SessionInfo(_message.Message):
-    __slots__ = ("session_id", "status", "timestamp")
-    SESSION_ID_FIELD_NUMBER: _ClassVar[int]
+    __slots__ = ("id", "status", "language", "timestamp")
+    ID_FIELD_NUMBER: _ClassVar[int]
     STATUS_FIELD_NUMBER: _ClassVar[int]
+    LANGUAGE_FIELD_NUMBER: _ClassVar[int]
     TIMESTAMP_FIELD_NUMBER: _ClassVar[int]
-    session_id: str
+    id: str
     status: str
+    language: str
     timestamp: int
-    def __init__(self, session_id: _Optional[str] = ..., status: _Optional[str] = ..., timestamp: _Optional[int] = ...) -> None: ...
+    def __init__(self, id: _Optional[str] = ..., status: _Optional[str] = ..., language: _Optional[str] = ..., timestamp: _Optional[int] = ...) -> None: ...
 
 class AudioData(_message.Message):
     __slots__ = ("audio_data", "sample_rate")

@@ -21,15 +21,6 @@ async def main():
 
     # JetStream context (provides persistence & at-least-once semantics)
     js = nc.jetstream()
-
-    # Create (or verify) a stream that will hold our audio chunks.
-    # This is idempotent: an error is raised if the stream exists, so we ignore it.
-    try:
-        await js.add_stream(name="AUDIO", subjects=[SUBJECT])
-    except Exception:
-        # Stream probably already exists – that is fine for our purposes.
-        pass
-
     print("🎤  Streaming mic → NATS …  (Ctrl-C to stop)")
 
     try:

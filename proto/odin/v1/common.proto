@@ -4,7 +4,7 @@ package odin.v1;
 
 // Common session information used across all messages
 message SessionInfo {
-  string session_id = 1;
+  string id = 1;
   string status = 2;
   string language = 3;
   int64 timestamp = 4;

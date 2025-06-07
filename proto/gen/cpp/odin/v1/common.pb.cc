@@ -30,10 +30,13 @@ namespace v1 {
 inline constexpr SessionInfo::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
-        session_id_(
+        id_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
         status_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        language_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
         timestamp_{::int64_t{0}} {}
@@ -96,13 +99,15 @@ const ::uint32_t
         protodesc_cold) = {
         0x081, // bitmap
         PROTOBUF_FIELD_OFFSET(::odin::v1::SessionInfo, _impl_._has_bits_),
-        6, // hasbit index offset
-        PROTOBUF_FIELD_OFFSET(::odin::v1::SessionInfo, _impl_.session_id_),
+        7, // hasbit index offset
+        PROTOBUF_FIELD_OFFSET(::odin::v1::SessionInfo, _impl_.id_),
         PROTOBUF_FIELD_OFFSET(::odin::v1::SessionInfo, _impl_.status_),
+        PROTOBUF_FIELD_OFFSET(::odin::v1::SessionInfo, _impl_.language_),
         PROTOBUF_FIELD_OFFSET(::odin::v1::SessionInfo, _impl_.timestamp_),
         0,
         1,
         2,
+        3,
         0x081, // bitmap
         PROTOBUF_FIELD_OFFSET(::odin::v1::AudioData, _impl_._has_bits_),
         5, // hasbit index offset
@@ -115,7 +120,7 @@ const ::uint32_t
 static const ::_pbi::MigrationSchema
     schemas[] ABSL_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
         {0, sizeof(::odin::v1::SessionInfo)},
-        {9, sizeof(::odin::v1::AudioData)},
+        {11, sizeof(::odin::v1::AudioData)},
 };
 static const ::_pb::Message* PROTOBUF_NONNULL const file_default_instances[] = {
     &::odin::v1::_SessionInfo_default_instance_._instance,
@@ -123,20 +128,20 @@ static const ::_pb::Message* PROTOBUF_NONNULL const file_default_instances[] = {
 };
 const char descriptor_table_protodef_odin_2fv1_2fcommon_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
-    "\n\024odin/v1/common.proto\022\007odin.v1\"b\n\013Sessi"
-    "onInfo\022\035\n\nsession_id\030\001 \001(\tR\tsessionId\022\026\n"
-    "\006status\030\002 \001(\tR\006status\022\034\n\ttimestamp\030\003 \001(\003"
-    "R\ttimestamp\"K\n\tAudioData\022\035\n\naudio_data\030\001"
-    " \001(\014R\taudioData\022\037\n\013sample_rate\030\002 \001(\005R\nsa"
-    "mpleRateBW\n\013com.odin.v1B\013CommonProtoP\001\242\002"
-    "\003OXX\252\002\007Odin.V1\312\002\007Odin\\V1\342\002\023Odin\\V1\\GPBMe"
-    "tadata\352\002\010Odin::V1b\006proto3"
+    "\n\024odin/v1/common.proto\022\007odin.v1\"o\n\013Sessi"
+    "onInfo\022\016\n\002id\030\001 \001(\tR\002id\022\026\n\006status\030\002 \001(\tR\006"
+    "status\022\032\n\010language\030\003 \001(\tR\010language\022\034\n\tti"
+    "mestamp\030\004 \001(\003R\ttimestamp\"K\n\tAudioData\022\035\n"
+    "\naudio_data\030\001 \001(\014R\taudioData\022\037\n\013sample_r"
+    "ate\030\002 \001(\005R\nsampleRateBW\n\013com.odin.v1B\013Co"
+    "mmonProtoP\001\242\002\003OXX\252\002\007Odin.V1\312\002\007Odin\\V1\342\002\023"
+    "Odin\\V1\\GPBMetadata\352\002\010Odin::V1b\006proto3"
 };
 static ::absl::once_flag descriptor_table_odin_2fv1_2fcommon_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_odin_2fv1_2fcommon_2eproto = {
     false,
     false,
-    305,
+    318,
     descriptor_table_protodef_odin_2fv1_2fcommon_2eproto,
     "odin/v1/common.proto",
     &descriptor_table_odin_2fv1_2fcommon_2eproto_once,
@@ -176,8 +181,9 @@ PROTOBUF_NDEBUG_INLINE SessionInfo::Impl_::Impl_(
     const ::odin::v1::SessionInfo& from_msg)
       : _has_bits_{from._has_bits_},
         _cached_size_{0},
-        session_id_(arena, from.session_id_),
-        status_(arena, from.status_) {}
+        id_(arena, from.id_),
+        status_(arena, from.status_),
+        language_(arena, from.language_) {}
 
 SessionInfo::SessionInfo(
     ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
@@ -200,8 +206,9 @@ PROTOBUF_NDEBUG_INLINE SessionInfo::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
       : _cached_size_{0},
-        session_id_(arena),
-        status_(arena) {}
+        id_(arena),
+        status_(arena),
+        language_(arena) {}
 
 inline void SessionInfo::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
@@ -215,8 +222,9 @@ inline void SessionInfo::SharedDtor(MessageLite& self) {
   SessionInfo& this_ = static_cast<SessionInfo&>(self);
   this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   ABSL_DCHECK(this_.GetArena() == nullptr);
-  this_._impl_.session_id_.Destroy();
+  this_._impl_.id_.Destroy();
   this_._impl_.status_.Destroy();
+  this_._impl_.language_.Destroy();
   this_._impl_.~Impl_();
 }
 
@@ -263,16 +271,16 @@ SessionInfo::GetClassData() const {
   return SessionInfo_class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 3, 0, 44, 2>
+const ::_pbi::TcParseTable<2, 4, 0, 44, 2>
 SessionInfo::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(SessionInfo, _impl_._has_bits_),
     0, // no _extensions_
-    3, 24,  // max_field_number, fast_idx_mask
+    4, 24,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967288,  // skipmap
+    4294967280,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    3,  // num_field_entries
+    4,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
     SessionInfo_class_data_.base(),
@@ -282,35 +290,41 @@ SessionInfo::_table_ = {
     ::_pbi::TcParser::GetTable<::odin::v1::SessionInfo>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    {::_pbi::TcParser::MiniParse, {}},
-    // string session_id = 1 [json_name = "sessionId"];
+    // int64 timestamp = 4 [json_name = "timestamp"];
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(SessionInfo, _impl_.timestamp_), 3>(),
+     {32, 3, 0, PROTOBUF_FIELD_OFFSET(SessionInfo, _impl_.timestamp_)}},
+    // string id = 1 [json_name = "id"];
     {::_pbi::TcParser::FastUS1,
-     {10, 0, 0, PROTOBUF_FIELD_OFFSET(SessionInfo, _impl_.session_id_)}},
+     {10, 0, 0, PROTOBUF_FIELD_OFFSET(SessionInfo, _impl_.id_)}},
     // string status = 2 [json_name = "status"];
     {::_pbi::TcParser::FastUS1,
      {18, 1, 0, PROTOBUF_FIELD_OFFSET(SessionInfo, _impl_.status_)}},
-    // int64 timestamp = 3 [json_name = "timestamp"];
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(SessionInfo, _impl_.timestamp_), 2>(),
-     {24, 2, 0, PROTOBUF_FIELD_OFFSET(SessionInfo, _impl_.timestamp_)}},
+    // string language = 3 [json_name = "language"];
+    {::_pbi::TcParser::FastUS1,
+     {26, 2, 0, PROTOBUF_FIELD_OFFSET(SessionInfo, _impl_.language_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // string session_id = 1 [json_name = "sessionId"];
-    {PROTOBUF_FIELD_OFFSET(SessionInfo, _impl_.session_id_), _Internal::kHasBitsOffset + 0, 0,
+    // string id = 1 [json_name = "id"];
+    {PROTOBUF_FIELD_OFFSET(SessionInfo, _impl_.id_), _Internal::kHasBitsOffset + 0, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
     // string status = 2 [json_name = "status"];
     {PROTOBUF_FIELD_OFFSET(SessionInfo, _impl_.status_), _Internal::kHasBitsOffset + 1, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // int64 timestamp = 3 [json_name = "timestamp"];
-    {PROTOBUF_FIELD_OFFSET(SessionInfo, _impl_.timestamp_), _Internal::kHasBitsOffset + 2, 0,
+    // string language = 3 [json_name = "language"];
+    {PROTOBUF_FIELD_OFFSET(SessionInfo, _impl_.language_), _Internal::kHasBitsOffset + 2, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // int64 timestamp = 4 [json_name = "timestamp"];
+    {PROTOBUF_FIELD_OFFSET(SessionInfo, _impl_.timestamp_), _Internal::kHasBitsOffset + 3, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kInt64)},
   }},
   // no aux_entries
   {{
-    "\23\12\6\0\0\0\0\0"
+    "\23\2\6\10\0\0\0\0"
     "odin.v1.SessionInfo"
-    "session_id"
+    "id"
     "status"
+    "language"
   }},
 };
 PROTOBUF_NOINLINE void SessionInfo::Clear() {
@@ -321,12 +335,15 @@ PROTOBUF_NOINLINE void SessionInfo::Clear() {
   (void) cached_has_bits;
 
   cached_has_bits = _impl_._has_bits_[0];
-  if ((cached_has_bits & 0x00000003u) != 0) {
+  if ((cached_has_bits & 0x00000007u) != 0) {
     if ((cached_has_bits & 0x00000001u) != 0) {
-      _impl_.session_id_.ClearNonDefaultToEmpty();
+      _impl_.id_.ClearNonDefaultToEmpty();
     }
     if ((cached_has_bits & 0x00000002u) != 0) {
       _impl_.status_.ClearNonDefaultToEmpty();
+    }
+    if ((cached_has_bits & 0x00000004u) != 0) {
+      _impl_.language_.ClearNonDefaultToEmpty();
     }
   }
   _impl_.timestamp_ = ::int64_t{0};
@@ -349,12 +366,12 @@ PROTOBUF_NOINLINE void SessionInfo::Clear() {
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
-  // string session_id = 1 [json_name = "sessionId"];
+  // string id = 1 [json_name = "id"];
   if ((this_._impl_._has_bits_[0] & 0x00000001u) != 0) {
-    if (!this_._internal_session_id().empty()) {
-      const ::std::string& _s = this_._internal_session_id();
+    if (!this_._internal_id().empty()) {
+      const ::std::string& _s = this_._internal_id();
       ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "odin.v1.SessionInfo.session_id");
+          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "odin.v1.SessionInfo.id");
       target = stream->WriteStringMaybeAliased(1, _s, target);
     }
   }
@@ -369,11 +386,21 @@ PROTOBUF_NOINLINE void SessionInfo::Clear() {
     }
   }
 
-  // int64 timestamp = 3 [json_name = "timestamp"];
+  // string language = 3 [json_name = "language"];
   if ((this_._impl_._has_bits_[0] & 0x00000004u) != 0) {
+    if (!this_._internal_language().empty()) {
+      const ::std::string& _s = this_._internal_language();
+      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "odin.v1.SessionInfo.language");
+      target = stream->WriteStringMaybeAliased(3, _s, target);
+    }
+  }
+
+  // int64 timestamp = 4 [json_name = "timestamp"];
+  if ((this_._impl_._has_bits_[0] & 0x00000008u) != 0) {
     if (this_._internal_timestamp() != 0) {
       target =
-          ::google::protobuf::internal::WireFormatLite::WriteInt64ToArrayWithField<3>(
+          ::google::protobuf::internal::WireFormatLite::WriteInt64ToArrayWithField<4>(
               stream, this_._internal_timestamp(), target);
     }
   }
@@ -403,12 +430,12 @@ PROTOBUF_NOINLINE void SessionInfo::Clear() {
 
   ::_pbi::Prefetch5LinesFrom7Lines(&this_);
   cached_has_bits = this_._impl_._has_bits_[0];
-  if ((cached_has_bits & 0x00000007u) != 0) {
-    // string session_id = 1 [json_name = "sessionId"];
+  if ((cached_has_bits & 0x0000000fu) != 0) {
+    // string id = 1 [json_name = "id"];
     if ((cached_has_bits & 0x00000001u) != 0) {
-      if (!this_._internal_session_id().empty()) {
+      if (!this_._internal_id().empty()) {
         total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                        this_._internal_session_id());
+                                        this_._internal_id());
       }
     }
     // string status = 2 [json_name = "status"];
@@ -418,8 +445,15 @@ PROTOBUF_NOINLINE void SessionInfo::Clear() {
                                         this_._internal_status());
       }
     }
-    // int64 timestamp = 3 [json_name = "timestamp"];
+    // string language = 3 [json_name = "language"];
     if ((cached_has_bits & 0x00000004u) != 0) {
+      if (!this_._internal_language().empty()) {
+        total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                        this_._internal_language());
+      }
+    }
+    // int64 timestamp = 4 [json_name = "timestamp"];
+    if ((cached_has_bits & 0x00000008u) != 0) {
       if (this_._internal_timestamp() != 0) {
         total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(
             this_._internal_timestamp());
@@ -439,13 +473,13 @@ void SessionInfo::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::goo
   (void) cached_has_bits;
 
   cached_has_bits = from._impl_._has_bits_[0];
-  if ((cached_has_bits & 0x00000007u) != 0) {
+  if ((cached_has_bits & 0x0000000fu) != 0) {
     if ((cached_has_bits & 0x00000001u) != 0) {
-      if (!from._internal_session_id().empty()) {
-        _this->_internal_set_session_id(from._internal_session_id());
+      if (!from._internal_id().empty()) {
+        _this->_internal_set_id(from._internal_id());
       } else {
-        if (_this->_impl_.session_id_.IsDefault()) {
-          _this->_internal_set_session_id("");
+        if (_this->_impl_.id_.IsDefault()) {
+          _this->_internal_set_id("");
         }
       }
     }
@@ -459,6 +493,15 @@ void SessionInfo::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::goo
       }
     }
     if ((cached_has_bits & 0x00000004u) != 0) {
+      if (!from._internal_language().empty()) {
+        _this->_internal_set_language(from._internal_language());
+      } else {
+        if (_this->_impl_.language_.IsDefault()) {
+          _this->_internal_set_language("");
+        }
+      }
+    }
+    if ((cached_has_bits & 0x00000008u) != 0) {
       if (from._internal_timestamp() != 0) {
         _this->_impl_.timestamp_ = from._impl_.timestamp_;
       }
@@ -482,8 +525,9 @@ void SessionInfo::InternalSwap(SessionInfo* PROTOBUF_RESTRICT PROTOBUF_NONNULL o
   ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.session_id_, &other->_impl_.session_id_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.id_, &other->_impl_.id_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.status_, &other->_impl_.status_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.language_, &other->_impl_.language_, arena);
   swap(_impl_.timestamp_, other->_impl_.timestamp_);
 }
 

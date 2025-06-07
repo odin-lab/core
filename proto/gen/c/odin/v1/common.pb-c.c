@@ -97,15 +97,15 @@ void   odin__v1__audio_data__free_unpacked
   assert(message->base.descriptor == &odin__v1__audio_data__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-static const ProtobufCFieldDescriptor odin__v1__session_info__field_descriptors[3] =
+static const ProtobufCFieldDescriptor odin__v1__session_info__field_descriptors[4] =
 {
   {
-    "session_id",
+    "id",
     1,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_STRING,
     0,   /* quantifier_offset */
-    offsetof(Odin__V1__SessionInfo, session_id),
+    offsetof(Odin__V1__SessionInfo, id),
     NULL,
     &protobuf_c_empty_string,
     0,             /* flags */
@@ -124,8 +124,20 @@ static const ProtobufCFieldDescriptor odin__v1__session_info__field_descriptors[
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "timestamp",
+    "language",
     3,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_STRING,
+    0,   /* quantifier_offset */
+    offsetof(Odin__V1__SessionInfo, language),
+    NULL,
+    &protobuf_c_empty_string,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "timestamp",
+    4,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_INT64,
     0,   /* quantifier_offset */
@@ -137,14 +149,15 @@ static const ProtobufCFieldDescriptor odin__v1__session_info__field_descriptors[
   },
 };
 static const unsigned odin__v1__session_info__field_indices_by_name[] = {
-  0,   /* field[0] = session_id */
+  0,   /* field[0] = id */
+  2,   /* field[2] = language */
   1,   /* field[1] = status */
-  2,   /* field[2] = timestamp */
+  3,   /* field[3] = timestamp */
 };
 static const ProtobufCIntRange odin__v1__session_info__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 3 }
+  { 0, 4 }
 };
 const ProtobufCMessageDescriptor odin__v1__session_info__descriptor =
 {
@@ -154,7 +167,7 @@ const ProtobufCMessageDescriptor odin__v1__session_info__descriptor =
   "Odin__V1__SessionInfo",
   "odin.v1",
   sizeof(Odin__V1__SessionInfo),
-  3,
+  4,
   odin__v1__session_info__field_descriptors,
   odin__v1__session_info__field_indices_by_name,
   1,  odin__v1__session_info__number_ranges,

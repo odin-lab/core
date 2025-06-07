@@ -16,13 +16,6 @@ async def main():
     await nc.connect("nats://127.0.0.1:9090")
 
     js = nc.jetstream()
-
-    # Create (or verify) the audio stream – idempotent
-    try:
-        await js.add_stream(name="AUDIO", subjects=[SUBJECT])
-    except Exception:
-        pass
-
     print("📡  Listening on", SUBJECT, "via JetStream")
 
     #buffer = bytearray()
@@ -42,7 +35,7 @@ async def main():
             filename = f"recording_{sid}_{int(time.time())}.wav"
             with wave.open(filename, "wb") as wf:
                 wf.setnchannels(1)
-                wf.setsampwidth(2)        # 16-bit PCM
+                wf.setsampwidth(4)        # 32-bit PCM
                 wf.setframerate(sr)
                 wf.writeframes(pcm)
             print("💾  Saved", filename)
@@ -52,7 +45,7 @@ async def main():
             chunk = audio_pb2.AudioBufferSession()
             chunk.ParseFromString(msg.data)
 
-            sid = chunk.session.session_id
+            sid = chunk.session.id
 
             if sid not in buffer:
                 buffer[sid] = bytearray()
