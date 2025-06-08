@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "odin-proto"
-version = "0.1.0"
+version = "0.1.1"
 description = "Generated protobuf Python classes for Odin"
 requires-python = ">=3.8"
 
