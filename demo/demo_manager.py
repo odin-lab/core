@@ -18,14 +18,25 @@ log = logging.getLogger(__name__)
 # Module names must match what the modules register as
 MODULES = ["microphone", "recorder"]
 
+# Module configurations
+MODULE_CONFIGS = {
+    "microphone": {
+        "sample_rate": 16000,
+        "chunk_size": 1600
+    },
+    "recorder": {
+        "output_dir": "recordings",
+        "source_module": "microphone"  # Specify which module to record from
+    }
+}
 
-class DemoApp:
+
+class DemoApp(SessionManager):
     """Interactive demo application for managing audio recording sessions."""
     
     def __init__(self, nats_url: str = "nats://127.0.0.1:9090"):
         self.nats_url = nats_url
         self.nc = None
-        self.session_manager = None
         self.active_sessions: Dict[str, Dict] = {}
         
     async def connect(self):
@@ -33,8 +44,8 @@ class DemoApp:
         self.nc = NATS()
         await self.nc.connect(self.nats_url)
         
-        # Initialize session manager with our modules
-        self.session_manager = SessionManager(self.nc, MODULES)
+        # Now initialize the parent SessionManager with our modules
+        super().__init__(self.nc, MODULES)
         
         log.info(f"Connected to NATS at {self.nats_url}")
         
@@ -49,20 +60,19 @@ class DemoApp:
         
         log.info(f"Starting {display_name}...")
         
-        # Prepare module configurations
-        configs = {
-            "microphone": json.dumps({
-                "sample_rate": 16000,
-                "chunk_size": 1600
-            }).encode(),
-            "recorder": json.dumps({
-                "output_dir": "recordings"
-            }).encode()
-        }
+        # Prepare module configurations based on active modules
+        configs = {}
+        for module in MODULES:
+            if module in MODULE_CONFIGS:
+                configs[module] = json.dumps(MODULE_CONFIGS[module]).encode()
+            else:
+                # Use empty config if not defined
+                configs[module] = b'{}'
+                log.warning(f"No configuration defined for module '{module}', using empty config")
         
         try:
-            # Start the session (this initializes both modules)
-            await self.session_manager.start_session(session_id, configs, timeout=5.0)
+            # Start the session using parent's method
+            await super().start_session(session_id, configs, timeout=10.0)
             
             # Track active session
             self.active_sessions[session_id] = {
@@ -87,8 +97,8 @@ class DemoApp:
         log.info(f"Stopping {session_info['name']}...")
         
         try:
-            # Stop the session (this cleans up both modules)
-            await self.session_manager.stop_session(session_id, timeout=5.0)
+            # Stop the session using parent's method
+            await super().stop_session(session_id, timeout=5.0)
             
             # Remove from active sessions
             del self.active_sessions[session_id]
@@ -187,7 +197,7 @@ class DemoApp:
 async def main():
     """Run the demo application."""
     logging.basicConfig(
-        level=logging.INFO,
+        level=logging.DEBUG,
         format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
     )
     
@@ -201,10 +211,13 @@ async def main():
     try:
         await app.connect()
         
-        print(f"\n⚠️  Make sure microphone and recorder modules are running!")
-        print(f"Run these in separate terminals:")
-        print(f"  python microphone_module.py")
-        print(f"  python recorder_module.py")
+        if MODULES:
+            print(f"\n⚠️  Make sure the following module(s) are running!")
+            print(f"Run these in separate terminals:")
+            for module in MODULES:
+                print(f"  python {module}_module.py")
+        else:
+            print(f"\n⚠️  No modules configured in MODULES list!")
         
         await app.run_interactive()
         

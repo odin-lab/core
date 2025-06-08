@@ -17,8 +17,8 @@ from odin.v1 import audio_pb2, common_pb2
 
 log = logging.getLogger(__name__)
 
-AUDIO_SUBJECT = "audio.input.chunk"
 DEFAULT_OUTPUT_DIR = "recordings"
+DEFAULT_SOURCE_MODULE = "microphone"
 
 
 class RecorderSession(BaseSession):
@@ -29,17 +29,25 @@ class RecorderSession(BaseSession):
         self.buffer = bytearray()
         self.sample_rate = 16_000
         self.recording_task = None
-        self.subscription = None
+        self.audio_subscription = None
+        self.eos_subscription = None
         
         # Parse config if provided
         if config:
             try:
                 self.config_dict = json.loads(config.decode())
                 self.output_dir = Path(self.config_dict.get("output_dir", DEFAULT_OUTPUT_DIR))
+                self.source_module = self.config_dict.get("source_module", DEFAULT_SOURCE_MODULE)
             except Exception:
                 self.output_dir = Path(DEFAULT_OUTPUT_DIR)
+                self.source_module = DEFAULT_SOURCE_MODULE
         else:
             self.output_dir = Path(DEFAULT_OUTPUT_DIR)
+            self.source_module = DEFAULT_SOURCE_MODULE
+            
+        # Build subjects for this session - listen to configured source module
+        self.audio_subject = f"audio.{session_id}.{self.source_module}.input"
+        self.eos_subject = f"audio.{session_id}.{self.source_module}.eos"
             
         # Ensure output directory exists
         self.output_dir.mkdir(parents=True, exist_ok=True)
@@ -50,27 +58,32 @@ class RecorderSession(BaseSession):
             # Subscribe to audio chunks via JetStream
             js = self.nc.jetstream()
             
-            # Create a deliver subject specific to this session
-            deliver_subject = f"_recorder.{self.session_id}"
-            
-            # Subscribe with a filter for this specific session
-            self.subscription = await js.subscribe(
-                AUDIO_SUBJECT,
-                durable=f"recorder_{self.session_id}",
-                deliver_subject=deliver_subject,
+            # Subscribe to audio input from configured source module for this session
+            self.audio_subscription = await js.subscribe(
+                self.audio_subject,
+                durable=f"recorder_{self.session_id}_audio",
                 cb=self._on_audio_chunk
             )
             
-            log.info(f"Recorder session {self.session_id} initialized and listening")
+            # Subscribe to EOS markers from configured source module for this session
+            self.eos_subscription = await js.subscribe(
+                self.eos_subject,
+                durable=f"recorder_{self.session_id}_eos",
+                cb=self._on_eos
+            )
+            
+            log.info(f"Recorder session {self.session_id} initialized, listening to '{self.source_module}' module on {self.audio_subject}")
         except Exception as e:
             log.error(f"Failed to initialize recorder session: {e}")
             raise
 
     async def cleanup(self) -> None:
         """Clean up resources and save any remaining audio."""
-        # Unsubscribe from audio stream
-        if self.subscription:
-            await self.subscription.unsubscribe()
+        # Unsubscribe from audio streams
+        if self.audio_subscription:
+            await self.audio_subscription.unsubscribe()
+        if self.eos_subscription:
+            await self.eos_subscription.unsubscribe()
         
         # Save any remaining audio
         if len(self.buffer) > 0:
@@ -79,43 +92,38 @@ class RecorderSession(BaseSession):
         log.info(f"Recorder session {self.session_id} cleaned up")
 
     async def _on_audio_chunk(self, msg):
-        """Handle incoming audio chunks or EOS markers."""
+        """Handle incoming audio chunks."""
         try:
-            # Check for EOS marker
-            if msg.data.startswith(b"EOS:"):
-                _, sid = msg.data.split(b":", 1)
-                sid = sid.decode()
-                
-                if sid == self.session_id:
-                    # This is our EOS marker - save the recording
-                    await self._save_recording()
-                    log.info(f"Received EOS for session {self.session_id}, saving recording")
-                
-                # Acknowledge the message
-                await msg.ack()
-                return
-            
             # Deserialize protobuf message
             chunk = audio_pb2.AudioBufferSession()
             chunk.ParseFromString(msg.data)
             
-            # Check if this chunk is for our session
-            if chunk.session and chunk.session.id == self.session_id:
-                # Update sample rate if provided
-                if chunk.audio.sample_rate:
-                    self.sample_rate = chunk.audio.sample_rate
-                
-                # Append audio data to buffer
-                self.buffer.extend(chunk.audio.audio_data)
-                
-                # Acknowledge the message
-                await msg.ack()
-            else:
-                # Not our session - don't acknowledge so another recorder can process it
-                pass
+            # Update sample rate if provided
+            if chunk.audio.sample_rate:
+                self.sample_rate = chunk.audio.sample_rate
+            
+            # Append audio data to buffer
+            self.buffer.extend(chunk.audio.audio_data)
+            
+            # Acknowledge the message
+            await msg.ack()
                 
         except Exception as e:
             log.error(f"Error processing audio chunk: {e}")
+            await self.publish_status(ModuleStatus.FAILED, str(e))
+
+    async def _on_eos(self, msg):
+        """Handle end-of-stream markers."""
+        try:
+            # Save the recording
+            await self._save_recording()
+            log.info(f"Saved recording for session {self.session_id} after EOS from {self.source_module}")
+            
+            # Acknowledge the message
+            await msg.ack()
+            
+        except Exception as e:
+            log.error(f"Error processing EOS: {e}")
             await self.publish_status(ModuleStatus.FAILED, str(e))
 
     async def _save_recording(self) -> None:
