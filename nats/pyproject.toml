@@ -1,0 +1,27 @@
+[build-system]
+requires = ["hatchling>=1.18"]
+build-backend = "hatchling.build"
+
+[project]
+name = "odin-nats"
+version = "0.1.0"
+description = "NATS-based orchestration layer for Odin speech pipeline"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+
+dependencies = [
+    "nats-py>=2.0.0",
+    "odin-proto",
+]
+
+# Note: odin-proto must be installed separately as an editable dependency
+# See README.md for installation instructions
+
+[tool.hatch.build.targets.wheel]
+packages = ["odin"]
+
+[tool.hatch.build.targets.sdist]
+include = ["odin/**"] 
+
+[tool.uv.sources]
+odin-proto = { path = "../proto/gen/python", editable = true }
