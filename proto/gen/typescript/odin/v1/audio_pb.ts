@@ -13,10 +13,11 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file odin/v1/audio.proto.
  */
 export const file_odin_v1_audio: GenFile = /*@__PURE__*/
-  fileDesc("ChNvZGluL3YxL2F1ZGlvLnByb3RvEgdvZGluLnYxImAKDkF1ZGlvQnVmZmVyTWljEiEKBWF1ZGlvGAEgASgLMhIub2Rpbi52MS5BdWRpb0RhdGESEQoJY2xpZW50X2lkGAIgASgJOhiKtRgQYXVkaW8uYnVmZmVyLm1pY5C1GAEifAoSQXVkaW9CdWZmZXJTcGVha2VyEiEKBWF1ZGlvGAEgASgLMhIub2Rpbi52MS5BdWRpb0RhdGESJQoHc2Vzc2lvbhgCIAEoCzIULm9kaW4udjEuU2Vzc2lvbkluZm86HIq1GBRhdWRpby5idWZmZXIuc3BlYWtlcpC1GAEieAoSQXVkaW9CdWZmZXJTZXNzaW9uEiEKBWF1ZGlvGAEgASgLMhIub2Rpbi52MS5BdWRpb0RhdGESJQoHc2Vzc2lvbhgCIAEoCzIULm9kaW4udjEuU2Vzc2lvbkluZm86GIq1GBRhdWRpby5idWZmZXIuc2Vzc2lvbkJWCgtjb20ub2Rpbi52MUIKQXVkaW9Qcm90b1ABogIDT1hYqgIHT2Rpbi5WMcoCB09kaW5cVjHiAhNPZGluXFYxXEdQQk1ldGFkYXRh6gIIT2Rpbjo6VjFiBnByb3RvMw", [file_odin_v1_common, file_odin_v1_options]);
+  fileDesc("ChNvZGluL3YxL2F1ZGlvLnByb3RvEgdvZGluLnYxInIKDkF1ZGlvQnVmZmVyTWljEiEKBWF1ZGlvGAEgASgLMhIub2Rpbi52MS5BdWRpb0RhdGESEQoJY2xpZW50X2lkGAIgASgJOiqitRgmYXVkaW8ue3Nlc3Npb25faWR9Lnttb2R1bGVfbmFtZX0uaW5wdXQiiwEKEkF1ZGlvQnVmZmVyU3BlYWtlchIhCgVhdWRpbxgBIAEoCzISLm9kaW4udjEuQXVkaW9EYXRhEiUKB3Nlc3Npb24YAiABKAsyFC5vZGluLnYxLlNlc3Npb25JbmZvOiuitRgnYXVkaW8ue3Nlc3Npb25faWR9Lnttb2R1bGVfbmFtZX0ub3V0cHV0Io4BChJBdWRpb0J1ZmZlclNlc3Npb24SIQoFYXVkaW8YASABKAsyEi5vZGluLnYxLkF1ZGlvRGF0YRIlCgdzZXNzaW9uGAIgASgLMhQub2Rpbi52MS5TZXNzaW9uSW5mbzouorUYKmF1ZGlvLntzZXNzaW9uX2lkfS57bW9kdWxlX25hbWV9LntjaGFubmVsfUJWCgtjb20ub2Rpbi52MUIKQXVkaW9Qcm90b1ABogIDT1hYqgIHT2Rpbi5WMcoCB09kaW5cVjHiAhNPZGluXFYxXEdQQk1ldGFkYXRh6gIIT2Rpbjo6VjFiBnByb3RvMw", [file_odin_v1_common, file_odin_v1_options]);
 
 /**
  * Raw audio data chunks from microphone input
+ * Subject pattern: audio.<session_id>.<module_name>.input
  *
  * @generated from message odin.v1.AudioBufferMic
  */
@@ -41,6 +42,7 @@ export const AudioBufferMicSchema: GenMessage<AudioBufferMic> = /*@__PURE__*/
 
 /**
  * Generated speech audio from TTS
+ * Subject pattern: audio.<session_id>.<module_name>.output
  *
  * @generated from message odin.v1.AudioBufferSpeaker
  */
@@ -64,7 +66,8 @@ export const AudioBufferSpeakerSchema: GenMessage<AudioBufferSpeaker> = /*@__PUR
   messageDesc(file_odin_v1_audio, 1);
 
 /**
- * Audio visualization data for frontend
+ * Audio data with session information
+ * Subject pattern: audio.<session_id>.<module_name>.<channel>
  *
  * @generated from message odin.v1.AudioBufferSession
  */

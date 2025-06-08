@@ -152,20 +152,21 @@ static const ::_pb::Message* PROTOBUF_NONNULL const file_default_instances[] = {
 const char descriptor_table_protodef_odin_2fv1_2faudio_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
     "\n\023odin/v1/audio.proto\022\007odin.v1\032\024odin/v1/"
-    "common.proto\032\025odin/v1/options.proto\"q\n\016A"
-    "udioBufferMic\022(\n\005audio\030\001 \001(\0132\022.odin.v1.A"
-    "udioDataR\005audio\022\033\n\tclient_id\030\002 \001(\tR\010clie"
-    "ntId:\030\212\265\030\020audio.buffer.mic\220\265\030\001\"\214\001\n\022Audio"
-    "BufferSpeaker\022(\n\005audio\030\001 \001(\0132\022.odin.v1.A"
-    "udioDataR\005audio\022.\n\007session\030\002 \001(\0132\024.odin."
-    "v1.SessionInfoR\007session:\034\212\265\030\024audio.buffe"
-    "r.speaker\220\265\030\001\"\210\001\n\022AudioBufferSession\022(\n\005"
-    "audio\030\001 \001(\0132\022.odin.v1.AudioDataR\005audio\022."
-    "\n\007session\030\002 \001(\0132\024.odin.v1.SessionInfoR\007s"
-    "ession:\030\212\265\030\024audio.buffer.sessionBV\n\013com."
-    "odin.v1B\nAudioProtoP\001\242\002\003OXX\252\002\007Odin.V1\312\002\007"
-    "Odin\\V1\342\002\023Odin\\V1\\GPBMetadata\352\002\010Odin::V1"
-    "b\006proto3"
+    "common.proto\032\025odin/v1/options.proto\"\203\001\n\016"
+    "AudioBufferMic\022(\n\005audio\030\001 \001(\0132\022.odin.v1."
+    "AudioDataR\005audio\022\033\n\tclient_id\030\002 \001(\tR\010cli"
+    "entId:*\242\265\030&audio.{session_id}.{module_na"
+    "me}.input\"\233\001\n\022AudioBufferSpeaker\022(\n\005audi"
+    "o\030\001 \001(\0132\022.odin.v1.AudioDataR\005audio\022.\n\007se"
+    "ssion\030\002 \001(\0132\024.odin.v1.SessionInfoR\007sessi"
+    "on:+\242\265\030\'audio.{session_id}.{module_name}"
+    ".output\"\236\001\n\022AudioBufferSession\022(\n\005audio\030"
+    "\001 \001(\0132\022.odin.v1.AudioDataR\005audio\022.\n\007sess"
+    "ion\030\002 \001(\0132\024.odin.v1.SessionInfoR\007session"
+    ":.\242\265\030*audio.{session_id}.{module_name}.{"
+    "channel}BV\n\013com.odin.v1B\nAudioProtoP\001\242\002\003"
+    "OXX\252\002\007Odin.V1\312\002\007Odin\\V1\342\002\023Odin\\V1\\GPBMet"
+    "adata\352\002\010Odin::V1b\006proto3"
 };
 static const ::_pbi::DescriptorTable* PROTOBUF_NONNULL const
     descriptor_table_odin_2fv1_2faudio_2eproto_deps[2] = {
@@ -176,7 +177,7 @@ static ::absl::once_flag descriptor_table_odin_2fv1_2faudio_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_odin_2fv1_2faudio_2eproto = {
     false,
     false,
-    568,
+    624,
     descriptor_table_protodef_odin_2fv1_2faudio_2eproto,
     "odin/v1/audio.proto",
     &descriptor_table_odin_2fv1_2faudio_2eproto_once,

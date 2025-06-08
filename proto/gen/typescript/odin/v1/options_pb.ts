@@ -11,7 +11,7 @@ import { file_google_protobuf_descriptor } from "@bufbuild/protobuf/wkt";
  * Describes the file odin/v1/options.proto.
  */
 export const file_odin_v1_options: GenFile = /*@__PURE__*/
-  fileDesc("ChVvZGluL3YxL29wdGlvbnMucHJvdG8SB29kaW4udjE6RAoMbmF0c19zdWJqZWN0Eh8uZ29vZ2xlLnByb3RvYnVmLk1lc3NhZ2VPcHRpb25zGNGGAyABKAlSC25hdHNTdWJqZWN0OkgKDm5hdHNfamV0c3RyZWFtEh8uZ29vZ2xlLnByb3RvYnVmLk1lc3NhZ2VPcHRpb25zGNKGAyABKAhSDW5hdHNKZXRzdHJlYW06QgoLbmF0c19zdHJlYW0SHy5nb29nbGUucHJvdG9idWYuTWVzc2FnZU9wdGlvbnMY04YDIAEoCVIKbmF0c1N0cmVhbUJYCgtjb20ub2Rpbi52MUIMT3B0aW9uc1Byb3RvUAGiAgNPWFiqAgdPZGluLlYxygIHT2RpblxWMeICE09kaW5cVjFcR1BCTWV0YWRhdGHqAghPZGluOjpWMWIGcHJvdG8z", [file_google_protobuf_descriptor]);
+  fileDesc("ChVvZGluL3YxL29wdGlvbnMucHJvdG8SB29kaW4udjE6RAoMbmF0c19zdWJqZWN0Eh8uZ29vZ2xlLnByb3RvYnVmLk1lc3NhZ2VPcHRpb25zGNGGAyABKAlSC25hdHNTdWJqZWN0OlMKFG5hdHNfc3ViamVjdF9wYXR0ZXJuEh8uZ29vZ2xlLnByb3RvYnVmLk1lc3NhZ2VPcHRpb25zGNSGAyABKAlSEm5hdHNTdWJqZWN0UGF0dGVybjpICg5uYXRzX2pldHN0cmVhbRIfLmdvb2dsZS5wcm90b2J1Zi5NZXNzYWdlT3B0aW9ucxjShgMgASgIUg1uYXRzSmV0c3RyZWFtOkIKC25hdHNfc3RyZWFtEh8uZ29vZ2xlLnByb3RvYnVmLk1lc3NhZ2VPcHRpb25zGNOGAyABKAlSCm5hdHNTdHJlYW1CWAoLY29tLm9kaW4udjFCDE9wdGlvbnNQcm90b1ABogIDT1hYqgIHT2Rpbi5WMcoCB09kaW5cVjHiAhNPZGluXFYxXEdQQk1ldGFkYXRh6gIIT2Rpbjo6VjFiBnByb3RvMw", [file_google_protobuf_descriptor]);
 
 /**
  * @generated from extension: string nats_subject = 50001;
@@ -20,14 +20,20 @@ export const nats_subject: GenExtension<MessageOptions, string> = /*@__PURE__*/
   extDesc(file_odin_v1_options, 0);
 
 /**
+ * @generated from extension: string nats_subject_pattern = 50004;
+ */
+export const nats_subject_pattern: GenExtension<MessageOptions, string> = /*@__PURE__*/
+  extDesc(file_odin_v1_options, 1);
+
+/**
  * @generated from extension: bool nats_jetstream = 50002;
  */
 export const nats_jetstream: GenExtension<MessageOptions, boolean> = /*@__PURE__*/
-  extDesc(file_odin_v1_options, 1);
+  extDesc(file_odin_v1_options, 2);
 
 /**
  * @generated from extension: string nats_stream = 50003;
  */
 export const nats_stream: GenExtension<MessageOptions, string> = /*@__PURE__*/
-  extDesc(file_odin_v1_options, 2);
+  extDesc(file_odin_v1_options, 3);
 

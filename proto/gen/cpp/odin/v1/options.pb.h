@@ -70,6 +70,10 @@ inline constexpr int kNatsSubjectFieldNumber = 50001;
 extern ::google::protobuf::internal::ExtensionIdentifier<
     ::google::protobuf::MessageOptions, ::google::protobuf::internal::StringTypeTraits, 9, false>
     nats_subject;
+inline constexpr int kNatsSubjectPatternFieldNumber = 50004;
+extern ::google::protobuf::internal::ExtensionIdentifier<
+    ::google::protobuf::MessageOptions, ::google::protobuf::internal::StringTypeTraits, 9, false>
+    nats_subject_pattern;
 inline constexpr int kNatsJetstreamFieldNumber = 50002;
 extern ::google::protobuf::internal::ExtensionIdentifier<
     ::google::protobuf::MessageOptions, ::google::protobuf::internal::PrimitiveTypeTraits< bool >, 8, false>

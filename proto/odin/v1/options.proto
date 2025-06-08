@@ -7,6 +7,10 @@ import "google/protobuf/descriptor.proto";
 // Custom option to define NATS subject for messages
 extend google.protobuf.MessageOptions { string nats_subject = 50001; }
 
+// Custom option to define NATS subject pattern/template for messages
+// Use placeholders like {session_id}, {module_name}, {channel} in the pattern
+extend google.protobuf.MessageOptions { string nats_subject_pattern = 50004; }
+
 // Optional: Custom option for message routing patterns
 extend google.protobuf.MessageOptions {
   bool nats_jetstream = 50002;

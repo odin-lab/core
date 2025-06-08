@@ -29,6 +29,7 @@ typedef struct Odin__V1__AudioBufferSession Odin__V1__AudioBufferSession;
 
 /*
  * Raw audio data chunks from microphone input
+ * Subject pattern: audio.<session_id>.<module_name>.input
  */
 struct  Odin__V1__AudioBufferMic
 {
@@ -43,6 +44,7 @@ struct  Odin__V1__AudioBufferMic
 
 /*
  * Generated speech audio from TTS
+ * Subject pattern: audio.<session_id>.<module_name>.output
  */
 struct  Odin__V1__AudioBufferSpeaker
 {
@@ -56,7 +58,8 @@ struct  Odin__V1__AudioBufferSpeaker
 
 
 /*
- * Audio visualization data for frontend
+ * Audio data with session information
+ * Subject pattern: audio.<session_id>.<module_name>.<channel>
  */
 struct  Odin__V1__AudioBufferSession
 {
