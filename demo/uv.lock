@@ -95,6 +95,7 @@ dependencies = [
     { name = "google" },
     { name = "nats-py" },
     { name = "numpy" },
+    { name = "odin-nats" },
     { name = "odin-proto" },
     { name = "protobuf" },
     { name = "sounddevice" },
@@ -110,6 +111,7 @@ requires-dist = [
     { name = "google", specifier = ">=3.0.0" },
     { name = "nats-py", specifier = ">=2" },
     { name = "numpy", specifier = ">=2.2.6" },
+    { name = "odin-nats", editable = "../nats" },
     { name = "odin-proto", editable = "../proto/gen/python" },
     { name = "protobuf", specifier = ">=6.31.1" },
     { name = "sounddevice", specifier = ">=0.5.2" },
@@ -330,8 +332,23 @@ wheels = [
 ]
 
 [[package]]
-name = "odin-proto"
+name = "odin-nats"
 version = "0.1.0"
+source = { editable = "../nats" }
+dependencies = [
+    { name = "nats-py" },
+    { name = "odin-proto" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "nats-py", specifier = ">=2.0.0" },
+    { name = "odin-proto", editable = "../proto/gen/python" },
+]
+
+[[package]]
+name = "odin-proto"
+version = "0.1.1"
 source = { editable = "../proto/gen/python" }
 dependencies = [
     { name = "google" },

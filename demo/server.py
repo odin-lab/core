@@ -61,7 +61,10 @@ async def main():
             #     pickle.dump(chunk, f)
             # return
 
-            sid = chunk.client_id
+            sid = chunk.session.id if chunk.session else None
+            if not sid:
+                print("Warning: Received chunk without session ID")
+                return
 
             if sid not in buffer:
                 buffer[sid] = bytearray()

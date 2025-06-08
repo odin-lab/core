@@ -8,6 +8,7 @@ dependencies = [
     "google>=3.0.0",
     "nats-py>=2",
     "numpy>=2.2.6",
+    "odin-nats",
     "odin-proto",
     "protobuf>=6.31.1",
     "sounddevice>=0.5.2",
@@ -15,6 +16,7 @@ dependencies = [
 
 [tool.uv.sources]
 odin-proto = { path = "../proto/gen/python", editable = true }
+odin-nats = { path = "../nats", editable = true }
 
 [dependency-groups]
 dev = [
