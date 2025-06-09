@@ -95,7 +95,7 @@ class RecorderSession(BaseSession):
         """Handle incoming audio chunks."""
         try:
             # Deserialize protobuf message
-            chunk = audio_pb2.AudioBufferSession()
+            chunk = audio_pb2.AudioBufferMic()
             chunk.ParseFromString(msg.data)
             
             # Update sample rate if provided

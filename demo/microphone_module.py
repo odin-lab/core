@@ -80,7 +80,7 @@ class MicrophoneSession(BaseSession):
                 samplerate=self.sample_rate,
                 channels=1,
                 blocksize=self.chunk_size,
-                dtype="int32",
+                dtype="float32",
             )
             self.stream.start()
             log.info(f"Audio stream started successfully")
@@ -146,14 +146,9 @@ class MicrophoneSession(BaseSession):
                     sample_rate=self.sample_rate,
                 )
                 
-                session_msg = common_pb2.SessionInfo(
-                    id=self.session_id,
-                    timestamp=int(time.time() * 1000),  # epoch milliseconds
-                )
-                
-                chunk_msg = audio_pb2.AudioBufferSession(
+                chunk_msg = audio_pb2.AudioBufferMic(
                     audio=audio_msg,
-                    session=session_msg,
+                    client_id=self.session_id,
                 )
                 
                 # Publish to JetStream with session-specific subject
