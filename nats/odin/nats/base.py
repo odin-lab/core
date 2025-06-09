@@ -138,7 +138,6 @@ class BaseModule(ABC):
             log.debug(f"Completed initialization for {self.name}")
             
             # This one uses regular NATS for status updates
-            await asyncio.sleep(1)
             await session.publish_status(ModuleStatus.RUNNING)
             log.info("%s – session %s RUNNING", self.name, sess_id)
 
@@ -193,50 +192,82 @@ class SessionManager:
     def __init__(self, nc: NATS, modules: List[str]):
         self.nc = nc
         self.modules = modules
+        # Store status updates by session_id -> module -> status
+        self.session_statuses: Dict[str, Dict[str, ModuleStatus]] = {}
+
+    async def _on_status(self, msg):
+        """Callback for status updates - stores them for later checking."""
+        try:
+            st = pb.Status()
+            st.ParseFromString(msg.data)
+            
+            # Extract session_id from subject: session.<id>.<module>.status
+            parts = msg.subject.split('.')
+            if len(parts) >= 4:
+                sess_id = parts[1]
+                
+                # Initialize nested dict if needed
+                if sess_id not in self.session_statuses:
+                    self.session_statuses[sess_id] = {}
+                
+                self.session_statuses[sess_id][st.module] = st.status
+                log.debug(f"Stored status for session {sess_id}, module {st.module}: {st.status}")
+        except Exception as e:
+            log.error(f"Failed to parse status message: {e}")
 
     # ---- public API ------------------------------------------------------
     async def start_session(self, sess_id: str, configs: Dict[str, bytes], *, timeout: float = 3.0) -> None:
         """Spin‑up *all* modules; raise if any fails."""
+        
+        # Subscribe to status updates BEFORE sending any commands
+        status_subj = f"session.{sess_id}.*.status"
+        status_sub = await self.nc.subscribe(status_subj, cb=self._on_status)  # type: ignore[arg-type]
+        log.debug(f"Subscribed to {status_subj}")
+        
+        try:
+            # 1) Send Init commands in parallel and wait for INITIALIZING / FAILED replies.
+            init_tasks: Dict[str, "asyncio.Task[bytes]"] = {}
+            for m in self.modules:
+                cmd_subj = f"session.{sess_id}.{m}.cmd"
+                cmd = pb.Command(init=pb.Init(session_id=sess_id, config=configs[m]))
+                log.debug(f"Sending init command to {cmd_subj}")
+                init_tasks[m] = asyncio.create_task(
+                    self.nc.request(cmd_subj, cmd.SerializeToString(), timeout=timeout))
 
-        # 1) Send Init commands in parallel and wait for INITIALIZING / FAILED replies.
-        init_tasks: Dict[str, "asyncio.Task[bytes]"] = {}
-        for m in self.modules:
-            subj = f"session.{sess_id}.{m}.cmd"
-            cmd = pb.Command(init=pb.Init(session_id=sess_id, config=configs[m]))
-            log.debug(f"Sending init command to {subj}")
-            init_tasks[m] = asyncio.create_task(
-                self.nc.request(subj, cmd.SerializeToString(), timeout=timeout))
+            # Gather first replies – they unblock the request‑reply wait.
+            for m, t in init_tasks.items():
+                try:
+                    log.debug(f"Waiting for reply from {m}")
+                    msg = await t
+                except asyncio.TimeoutError as te:  # noqa: PERF203 – keep explicit
+                    raise RuntimeError(f"{m} did not ACK in {timeout}s") from te
 
-        # Gather first replies – they unblock the request‑reply wait.
-        for m, t in init_tasks.items():
-            try:
-                log.debug(f"Waiting for reply from {m}")
-                msg = await t
-            except asyncio.TimeoutError as te:  # noqa: PERF203 – keep explicit
-                raise RuntimeError(f"{m} did not ACK in {timeout}s") from te
-
-            log.debug(f"Received reply from {m}, type: {type(msg)}")
-            
-            # Check if msg is bytes or a Message object
-            if hasattr(msg, 'data'):
-                data = msg.data
-            else:
-                data = msg
+                log.debug(f"Received reply from {m}, type: {type(msg)}")
                 
-            log.debug(f"Reply data from {m}: {len(data)} bytes")
-            try:
-                st = pb.Status()
-                st.ParseFromString(data)
-                if st.status == ModuleStatus.FAILED:
-                    raise RuntimeError(f"{m} failed during init: {st.detail}")
-            except Exception as e:
-                log.error(f"Failed to parse reply from {m}: {e}")
-                log.error(f"Reply data (first 100 bytes): {data[:100]}")
-                raise
+                # Check if msg is bytes or a Message object
+                if hasattr(msg, 'data'):
+                    data = msg.data
+                else:
+                    data = msg
+                    
+                log.debug(f"Reply data from {m}: {len(data)} bytes")
+                try:
+                    st = pb.Status()
+                    st.ParseFromString(data)
+                    if st.status == ModuleStatus.FAILED:
+                        raise RuntimeError(f"{m} failed during init: {st.detail}")
+                except Exception as e:
+                    log.error(f"Failed to parse reply from {m}: {e}")
+                    log.error(f"Reply data (first 100 bytes): {data[:100]}")
+                    raise
 
-        # 2) Wait until every module reports RUNNING via the durable status stream.
-        await self._wait_for_running(sess_id)
-        log.info("✅ Session %s READY", sess_id)
+            # 2) Wait until every module reports RUNNING via the status updates
+            await self._wait_for_running(sess_id)
+            log.info("✅ Session %s READY", sess_id)
+            
+        finally:
+            # Clean up subscription
+            await status_sub.unsubscribe()
 
     async def stop_session(self, sess_id: str, *, timeout: float = 0.1) -> None:
         """Gracefully tear‑down all modules."""
@@ -253,47 +284,48 @@ class SessionManager:
             except asyncio.TimeoutError as te:  # noqa: PERF203
                 raise RuntimeError(f"{m} did not ACK shutdown in {timeout}s") from te
 
+            if hasattr(msg, 'data'):
+                data = msg.data
+            else:
+                data = msg
+                
             st = pb.Status()
-            st.ParseFromString(msg.data)
+            st.ParseFromString(data)
             if st.status != ModuleStatus.DISCONNECTED:
                 raise RuntimeError(f"{m} returned unexpected state {st.status}")
 
+        # Clean up status tracking
+        self.session_statuses.pop(sess_id, None)
         log.info("🛑 Session %s fully disconnected", sess_id)
 
     # ---- internals -------------------------------------------------------
     async def _wait_for_running(self, sess_id: str) -> None:
-        """Subscribe to `session.<id>.*.status` and resolve when all RUNNING."""
-        subj = f"session.{sess_id}.*.status"
-        sub = await self.nc.subscribe(subj)  # type: ignore[arg-type]
-        states: Dict[str, ModuleStatus] = {m: ModuleStatus.INITIALIZING for m in self.modules}
-
-        log.debug(f"Subscribed to {subj}... Waiting for RUNNING status")
-        while True:
-            try:
-                # Wait for status messages with a longer timeout
-                msg = await sub.next_msg(timeout=2.0)  # noqa: SLF001 – ok here
+        """Wait for all modules to report RUNNING status."""
+        max_wait = 10.0  # Maximum time to wait
+        check_interval = 0.1  # How often to check
+        elapsed = 0.0
+        
+        while elapsed < max_wait:
+            statuses = self.session_statuses.get(sess_id, {})
+            
+            # Check if all modules are RUNNING
+            if len(statuses) == len(self.modules) and all(statuses.get(m) == ModuleStatus.RUNNING for m in self.modules):
+                return
                 
-                # Debug logging
-                log.debug(f"Received message on subject: {msg.subject}")
-                log.debug(f"Message data length: {len(msg.data)} bytes")
-                
-                st = pb.Status()
-                st.ParseFromString(msg.data)
-                states[st.module] = st.status  # type: ignore[index]
-                
-                log.debug(f"Module {st.module} status: {st.status}")
-
-                if all(s == ModuleStatus.RUNNING for s in states.values()):
-                    await sub.unsubscribe()
-                    return
-            except asyncio.TimeoutError:
-                # Check if we already have all modules in RUNNING state
-                if all(s == ModuleStatus.RUNNING for s in states.values()):
-                    await sub.unsubscribe()
-                    return
-                # Otherwise continue waiting
-                continue
-            except Exception as e:
-                log.error(f"Failed to parse status message: {e}")
-                await sub.unsubscribe()
-                raise 
+            # Check for any failures
+            for m in self.modules:
+                status = statuses.get(m)
+                if status == ModuleStatus.FAILED:
+                    raise RuntimeError(f"Module {m} failed during initialization")
+            
+            await asyncio.sleep(check_interval)
+            elapsed += check_interval
+            
+        # Timeout - report which modules aren't ready
+        statuses = self.session_statuses.get(sess_id, {})
+        not_running = []
+        for m in self.modules:
+            status = statuses.get(m)
+            if status != ModuleStatus.RUNNING:
+                not_running.append(f"{m}={status if status is not None else 'no-status'}")
+        raise RuntimeError(f"Timeout waiting for modules to be RUNNING: {not_running}") 
