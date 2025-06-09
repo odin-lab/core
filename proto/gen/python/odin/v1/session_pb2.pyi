@@ -32,14 +32,12 @@ class Shutdown(_message.Message):
     def __init__(self, session_id: _Optional[str] = ...) -> None: ...
 
 class Command(_message.Message):
-    __slots__ = ("init", "shutdown", "module")
+    __slots__ = ("init", "shutdown")
     INIT_FIELD_NUMBER: _ClassVar[int]
     SHUTDOWN_FIELD_NUMBER: _ClassVar[int]
-    MODULE_FIELD_NUMBER: _ClassVar[int]
     init: Init
     shutdown: Shutdown
-    module: str
-    def __init__(self, init: _Optional[_Union[Init, _Mapping]] = ..., shutdown: _Optional[_Union[Shutdown, _Mapping]] = ..., module: _Optional[str] = ...) -> None: ...
+    def __init__(self, init: _Optional[_Union[Init, _Mapping]] = ..., shutdown: _Optional[_Union[Shutdown, _Mapping]] = ...) -> None: ...
 
 class Status(_message.Message):
     __slots__ = ("session_id", "module", "status", "detail")

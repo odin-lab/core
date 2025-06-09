@@ -24,7 +24,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x15odin/v1/session.proto\x12\x07odin.v1\"=\n\x04Init\x12\x1d\n\nsession_id\x18\x01 \x01(\tR\tsessionId\x12\x16\n\x06\x63onfig\x18\x02 \x01(\x0cR\x06\x63onfig\")\n\x08Shutdown\x12\x1d\n\nsession_id\x18\x01 \x01(\tR\tsessionId\"~\n\x07\x43ommand\x12#\n\x04init\x18\x01 \x01(\x0b\x32\r.odin.v1.InitH\x00R\x04init\x12/\n\x08shutdown\x18\x02 \x01(\x0b\x32\x11.odin.v1.ShutdownH\x00R\x08shutdown\x12\x16\n\x06module\x18\n \x01(\tR\x06moduleB\x05\n\x03\x63md\"\x86\x01\n\x06Status\x12\x1d\n\nsession_id\x18\x01 \x01(\tR\tsessionId\x12\x16\n\x06module\x18\x02 \x01(\tR\x06module\x12-\n\x06status\x18\x03 \x01(\x0e\x32\x15.odin.v1.ModuleStatusR\x06status\x12\x16\n\x06\x64\x65tail\x18\x04 \x01(\tR\x06\x64\x65tail*K\n\x0cModuleStatus\x12\x10\n\x0cINITIALIZING\x10\x00\x12\x0b\n\x07RUNNING\x10\x01\x12\n\n\x06\x46\x41ILED\x10\x02\x12\x10\n\x0c\x44ISCONNECTED\x10\x03\x42X\n\x0b\x63om.odin.v1B\x0cSessionProtoP\x01\xa2\x02\x03OXX\xaa\x02\x07Odin.V1\xca\x02\x07Odin\\V1\xe2\x02\x13Odin\\V1\\GPBMetadata\xea\x02\x08Odin::V1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x15odin/v1/session.proto\x12\x07odin.v1\"=\n\x04Init\x12\x1d\n\nsession_id\x18\x01 \x01(\tR\tsessionId\x12\x16\n\x06\x63onfig\x18\x02 \x01(\x0cR\x06\x63onfig\")\n\x08Shutdown\x12\x1d\n\nsession_id\x18\x01 \x01(\tR\tsessionId\"f\n\x07\x43ommand\x12#\n\x04init\x18\x01 \x01(\x0b\x32\r.odin.v1.InitH\x00R\x04init\x12/\n\x08shutdown\x18\x02 \x01(\x0b\x32\x11.odin.v1.ShutdownH\x00R\x08shutdownB\x05\n\x03\x63md\"\x86\x01\n\x06Status\x12\x1d\n\nsession_id\x18\x01 \x01(\tR\tsessionId\x12\x16\n\x06module\x18\x02 \x01(\tR\x06module\x12-\n\x06status\x18\x03 \x01(\x0e\x32\x15.odin.v1.ModuleStatusR\x06status\x12\x16\n\x06\x64\x65tail\x18\x04 \x01(\tR\x06\x64\x65tail*K\n\x0cModuleStatus\x12\x10\n\x0cINITIALIZING\x10\x00\x12\x0b\n\x07RUNNING\x10\x01\x12\n\n\x06\x46\x41ILED\x10\x02\x12\x10\n\x0c\x44ISCONNECTED\x10\x03\x42X\n\x0b\x63om.odin.v1B\x0cSessionProtoP\x01\xa2\x02\x03OXX\xaa\x02\x07Odin.V1\xca\x02\x07Odin\\V1\xe2\x02\x13Odin\\V1\\GPBMetadata\xea\x02\x08Odin::V1b\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -32,14 +32,14 @@ _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'odin.v1.session_pb2', _glob
 if not _descriptor._USE_C_DESCRIPTORS:
   _globals['DESCRIPTOR']._loaded_options = None
   _globals['DESCRIPTOR']._serialized_options = b'\n\013com.odin.v1B\014SessionProtoP\001\242\002\003OXX\252\002\007Odin.V1\312\002\007Odin\\V1\342\002\023Odin\\V1\\GPBMetadata\352\002\010Odin::V1'
-  _globals['_MODULESTATUS']._serialized_start=405
-  _globals['_MODULESTATUS']._serialized_end=480
+  _globals['_MODULESTATUS']._serialized_start=381
+  _globals['_MODULESTATUS']._serialized_end=456
   _globals['_INIT']._serialized_start=34
   _globals['_INIT']._serialized_end=95
   _globals['_SHUTDOWN']._serialized_start=97
   _globals['_SHUTDOWN']._serialized_end=138
   _globals['_COMMAND']._serialized_start=140
-  _globals['_COMMAND']._serialized_end=266
-  _globals['_STATUS']._serialized_start=269
-  _globals['_STATUS']._serialized_end=403
+  _globals['_COMMAND']._serialized_end=242
+  _globals['_STATUS']._serialized_start=245
+  _globals['_STATUS']._serialized_end=379
 # @@protoc_insertion_point(module_scope)

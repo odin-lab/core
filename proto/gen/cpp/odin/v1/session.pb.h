@@ -928,25 +928,9 @@ class Command final : public ::google::protobuf::Message
 
   // accessors -------------------------------------------------------
   enum : int {
-    kModuleFieldNumber = 10,
     kInitFieldNumber = 1,
     kShutdownFieldNumber = 2,
   };
-  // string module = 10 [json_name = "module"];
-  void clear_module() ;
-  const ::std::string& module() const;
-  template <typename Arg_ = const ::std::string&, typename... Args_>
-  void set_module(Arg_&& arg, Args_... args);
-  ::std::string* PROTOBUF_NONNULL mutable_module();
-  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_module();
-  void set_allocated_module(::std::string* PROTOBUF_NULLABLE value);
-
-  private:
-  const ::std::string& _internal_module() const;
-  PROTOBUF_ALWAYS_INLINE void _internal_set_module(const ::std::string& value);
-  ::std::string* PROTOBUF_NONNULL _internal_mutable_module();
-
-  public:
   // .odin.v1.Init init = 1 [json_name = "init"];
   bool has_init() const;
   private:
@@ -995,8 +979,8 @@ class Command final : public ::google::protobuf::Message
   inline bool has_cmd() const;
   inline void clear_has_cmd();
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<0, 3,
-                                   2, 30,
+  static const ::google::protobuf::internal::TcParseTable<0, 2,
+                                   2, 0,
                                    2>
       _table_;
 
@@ -1015,15 +999,13 @@ class Command final : public ::google::protobuf::Message
         ::google::protobuf::internal::InternalVisibility visibility,
         ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
         const Command& from_msg);
-    ::google::protobuf::internal::HasBits<1> _has_bits_;
-    ::google::protobuf::internal::CachedSize _cached_size_;
-    ::google::protobuf::internal::ArenaStringPtr module_;
     union CmdUnion {
       constexpr CmdUnion() : _constinit_{} {}
       ::google::protobuf::internal::ConstantInitialized _constinit_;
       ::odin::v1::Init* PROTOBUF_NULLABLE init_;
       ::odin::v1::Shutdown* PROTOBUF_NULLABLE shutdown_;
     } cmd_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
     ::uint32_t _oneof_case_[1];
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -1412,71 +1394,6 @@ inline ::odin::v1::Shutdown* PROTOBUF_NONNULL Command::mutable_shutdown()
   ::odin::v1::Shutdown* _msg = _internal_mutable_shutdown();
   // @@protoc_insertion_point(field_mutable:odin.v1.Command.shutdown)
   return _msg;
-}
-
-// string module = 10 [json_name = "module"];
-inline void Command::clear_module() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.module_.ClearToEmpty();
-  _impl_._has_bits_[0] &= ~0x00000001u;
-}
-inline const ::std::string& Command::module() const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:odin.v1.Command.module)
-  return _internal_module();
-}
-template <typename Arg_, typename... Args_>
-PROTOBUF_ALWAYS_INLINE void Command::set_module(Arg_&& arg, Args_... args) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_._has_bits_[0] |= 0x00000001u;
-  _impl_.module_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:odin.v1.Command.module)
-}
-inline ::std::string* PROTOBUF_NONNULL Command::mutable_module()
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::std::string* _s = _internal_mutable_module();
-  // @@protoc_insertion_point(field_mutable:odin.v1.Command.module)
-  return _s;
-}
-inline const ::std::string& Command::_internal_module() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.module_.Get();
-}
-inline void Command::_internal_set_module(const ::std::string& value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_._has_bits_[0] |= 0x00000001u;
-  _impl_.module_.Set(value, GetArena());
-}
-inline ::std::string* PROTOBUF_NONNULL Command::_internal_mutable_module() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_._has_bits_[0] |= 0x00000001u;
-  return _impl_.module_.Mutable( GetArena());
-}
-inline ::std::string* PROTOBUF_NULLABLE Command::release_module() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:odin.v1.Command.module)
-  if ((_impl_._has_bits_[0] & 0x00000001u) == 0) {
-    return nullptr;
-  }
-  _impl_._has_bits_[0] &= ~0x00000001u;
-  auto* released = _impl_.module_.Release();
-  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
-    _impl_.module_.Set("", GetArena());
-  }
-  return released;
-}
-inline void Command::set_allocated_module(::std::string* PROTOBUF_NULLABLE value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000001u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000001u;
-  }
-  _impl_.module_.SetAllocated(value, GetArena());
-  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.module_.IsDefault()) {
-    _impl_.module_.Set("", GetArena());
-  }
-  // @@protoc_insertion_point(field_set_allocated:odin.v1.Command.module)
 }
 
 inline bool Command::has_cmd() const {

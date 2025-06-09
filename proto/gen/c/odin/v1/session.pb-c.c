@@ -276,7 +276,7 @@ const ProtobufCMessageDescriptor odin__v1__shutdown__descriptor =
   (ProtobufCMessageInit) odin__v1__shutdown__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor odin__v1__command__field_descriptors[3] =
+static const ProtobufCFieldDescriptor odin__v1__command__field_descriptors[2] =
 {
   {
     "init",
@@ -302,29 +302,15 @@ static const ProtobufCFieldDescriptor odin__v1__command__field_descriptors[3] =
     PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
-  {
-    "module",
-    10,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_STRING,
-    0,   /* quantifier_offset */
-    offsetof(Odin__V1__Command, module),
-    NULL,
-    &protobuf_c_empty_string,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
 };
 static const unsigned odin__v1__command__field_indices_by_name[] = {
   0,   /* field[0] = init */
-  2,   /* field[2] = module */
   1,   /* field[1] = shutdown */
 };
-static const ProtobufCIntRange odin__v1__command__number_ranges[2 + 1] =
+static const ProtobufCIntRange odin__v1__command__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 10, 2 },
-  { 0, 3 }
+  { 0, 2 }
 };
 const ProtobufCMessageDescriptor odin__v1__command__descriptor =
 {
@@ -334,10 +320,10 @@ const ProtobufCMessageDescriptor odin__v1__command__descriptor =
   "Odin__V1__Command",
   "odin.v1",
   sizeof(Odin__V1__Command),
-  3,
+  2,
   odin__v1__command__field_descriptors,
   odin__v1__command__field_indices_by_name,
-  2,  odin__v1__command__number_ranges,
+  1,  odin__v1__command__number_ranges,
   (ProtobufCMessageInit) odin__v1__command__init,
   NULL,NULL,NULL    /* reserved[123] */
 };

@@ -120,11 +120,8 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
 
 inline constexpr Command::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
-      : _cached_size_{0},
-        module_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        cmd_{},
+      : cmd_{},
+        _cached_size_{0},
         _oneof_case_{} {}
 
 template <typename>
@@ -167,17 +164,11 @@ const ::uint32_t
         4, // hasbit index offset
         PROTOBUF_FIELD_OFFSET(::odin::v1::Shutdown, _impl_.session_id_),
         0,
-        0x085, // bitmap
-        PROTOBUF_FIELD_OFFSET(::odin::v1::Command, _impl_._has_bits_),
+        0x004, // bitmap
         PROTOBUF_FIELD_OFFSET(::odin::v1::Command, _impl_._oneof_case_[0]),
-        8, // hasbit index offset
         ::_pbi::kInvalidFieldOffsetTag,
         ::_pbi::kInvalidFieldOffsetTag,
-        PROTOBUF_FIELD_OFFSET(::odin::v1::Command, _impl_.module_),
         PROTOBUF_FIELD_OFFSET(::odin::v1::Command, _impl_.cmd_),
-        ~0u,
-        ~0u,
-        0,
         0x081, // bitmap
         PROTOBUF_FIELD_OFFSET(::odin::v1::Status, _impl_._has_bits_),
         7, // hasbit index offset
@@ -196,7 +187,7 @@ static const ::_pbi::MigrationSchema
         {0, sizeof(::odin::v1::Init)},
         {7, sizeof(::odin::v1::Shutdown)},
         {12, sizeof(::odin::v1::Command)},
-        {23, sizeof(::odin::v1::Status)},
+        {17, sizeof(::odin::v1::Status)},
 };
 static const ::_pb::Message* PROTOBUF_NONNULL const file_default_instances[] = {
     &::odin::v1::_Init_default_instance_._instance,
@@ -209,24 +200,23 @@ const char descriptor_table_protodef_odin_2fv1_2fsession_2eproto[] ABSL_ATTRIBUT
     "\n\025odin/v1/session.proto\022\007odin.v1\"=\n\004Init"
     "\022\035\n\nsession_id\030\001 \001(\tR\tsessionId\022\026\n\006confi"
     "g\030\002 \001(\014R\006config\")\n\010Shutdown\022\035\n\nsession_i"
-    "d\030\001 \001(\tR\tsessionId\"~\n\007Command\022#\n\004init\030\001 "
+    "d\030\001 \001(\tR\tsessionId\"f\n\007Command\022#\n\004init\030\001 "
     "\001(\0132\r.odin.v1.InitH\000R\004init\022/\n\010shutdown\030\002"
-    " \001(\0132\021.odin.v1.ShutdownH\000R\010shutdown\022\026\n\006m"
-    "odule\030\n \001(\tR\006moduleB\005\n\003cmd\"\206\001\n\006Status\022\035\n"
-    "\nsession_id\030\001 \001(\tR\tsessionId\022\026\n\006module\030\002"
-    " \001(\tR\006module\022-\n\006status\030\003 \001(\0162\025.odin.v1.M"
-    "oduleStatusR\006status\022\026\n\006detail\030\004 \001(\tR\006det"
-    "ail*K\n\014ModuleStatus\022\020\n\014INITIALIZING\020\000\022\013\n"
-    "\007RUNNING\020\001\022\n\n\006FAILED\020\002\022\020\n\014DISCONNECTED\020\003"
-    "BX\n\013com.odin.v1B\014SessionProtoP\001\242\002\003OXX\252\002\007"
-    "Odin.V1\312\002\007Odin\\V1\342\002\023Odin\\V1\\GPBMetadata\352"
-    "\002\010Odin::V1b\006proto3"
+    " \001(\0132\021.odin.v1.ShutdownH\000R\010shutdownB\005\n\003c"
+    "md\"\206\001\n\006Status\022\035\n\nsession_id\030\001 \001(\tR\tsessi"
+    "onId\022\026\n\006module\030\002 \001(\tR\006module\022-\n\006status\030\003"
+    " \001(\0162\025.odin.v1.ModuleStatusR\006status\022\026\n\006d"
+    "etail\030\004 \001(\tR\006detail*K\n\014ModuleStatus\022\020\n\014I"
+    "NITIALIZING\020\000\022\013\n\007RUNNING\020\001\022\n\n\006FAILED\020\002\022\020"
+    "\n\014DISCONNECTED\020\003BX\n\013com.odin.v1B\014Session"
+    "ProtoP\001\242\002\003OXX\252\002\007Odin.V1\312\002\007Odin\\V1\342\002\023Odin"
+    "\\V1\\GPBMetadata\352\002\010Odin::V1b\006proto3"
 };
 static ::absl::once_flag descriptor_table_odin_2fv1_2fsession_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_odin_2fv1_2fsession_2eproto = {
     false,
     false,
-    578,
+    554,
     descriptor_table_protodef_odin_2fv1_2fsession_2eproto,
     "odin/v1/session.proto",
     &descriptor_table_odin_2fv1_2fsession_2eproto_once,
@@ -817,10 +807,6 @@ void Shutdown::InternalSwap(Shutdown* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) 
 
 class Command::_Internal {
  public:
-  using HasBits =
-      decltype(::std::declval<Command>()._impl_._has_bits_);
-  static constexpr ::int32_t kHasBitsOffset =
-      8 * PROTOBUF_FIELD_OFFSET(Command, _impl_._has_bits_);
   static constexpr ::int32_t kOneofCaseOffset =
       PROTOBUF_FIELD_OFFSET(::odin::v1::Command, _impl_._oneof_case_);
 };
@@ -864,10 +850,8 @@ PROTOBUF_NDEBUG_INLINE Command::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
     const ::odin::v1::Command& from_msg)
-      : _has_bits_{from._has_bits_},
+      : cmd_{},
         _cached_size_{0},
-        module_(arena, from.module_),
-        cmd_{},
         _oneof_case_{from._oneof_case_[0]} {}
 
 Command::Command(
@@ -899,9 +883,8 @@ Command::Command(
 PROTOBUF_NDEBUG_INLINE Command::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
-      : _cached_size_{0},
-        module_(arena),
-        cmd_{},
+      : cmd_{},
+        _cached_size_{0},
         _oneof_case_{} {}
 
 inline void Command::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
@@ -915,7 +898,6 @@ inline void Command::SharedDtor(MessageLite& self) {
   Command& this_ = static_cast<Command&>(self);
   this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   ABSL_DCHECK(this_.GetArena() == nullptr);
-  this_._impl_.module_.Destroy();
   if (this_.has_cmd()) {
     this_.clear_cmd();
   }
@@ -956,7 +938,7 @@ inline void* PROTOBUF_NONNULL Command::PlacementNew_(
   return ::new (mem) Command(arena);
 }
 constexpr auto Command::InternalNewImpl_() {
-  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(Command),
+  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(Command),
                                             alignof(Command));
 }
 constexpr auto Command::InternalGenerateClassData_() {
@@ -993,16 +975,16 @@ Command::GetClassData() const {
   return Command_class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 3, 2, 30, 2>
+const ::_pbi::TcParseTable<0, 2, 2, 0, 2>
 Command::_table_ = {
   {
-    PROTOBUF_FIELD_OFFSET(Command, _impl_._has_bits_),
+    0,  // no _has_bits_
     0, // no _extensions_
-    10, 0,  // max_field_number, fast_idx_mask
+    2, 0,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294966780,  // skipmap
+    4294967292,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    3,  // num_field_entries
+    2,  // num_field_entries
     2,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     Command_class_data_.base(),
@@ -1012,9 +994,7 @@ Command::_table_ = {
     ::_pbi::TcParser::GetTable<::odin::v1::Command>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    // string module = 10 [json_name = "module"];
-    {::_pbi::TcParser::FastUS1,
-     {82, 0, 0, PROTOBUF_FIELD_OFFSET(Command, _impl_.module_)}},
+    {::_pbi::TcParser::MiniParse, {}},
   }}, {{
     65535, 65535
   }}, {{
@@ -1024,18 +1004,12 @@ Command::_table_ = {
     // .odin.v1.Shutdown shutdown = 2 [json_name = "shutdown"];
     {PROTOBUF_FIELD_OFFSET(Command, _impl_.cmd_.shutdown_), _Internal::kOneofCaseOffset + 0, 1,
     (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
-    // string module = 10 [json_name = "module"];
-    {PROTOBUF_FIELD_OFFSET(Command, _impl_.module_), _Internal::kHasBitsOffset + 0, 0,
-    (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
   }},
   {{
       {::_pbi::TcParser::GetTable<::odin::v1::Init>()},
       {::_pbi::TcParser::GetTable<::odin::v1::Shutdown>()},
   }},
   {{
-    "\17\0\0\6\0\0\0\0"
-    "odin.v1.Command"
-    "module"
   }},
 };
 PROTOBUF_NOINLINE void Command::Clear() {
@@ -1045,12 +1019,7 @@ PROTOBUF_NOINLINE void Command::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  cached_has_bits = _impl_._has_bits_[0];
-  if ((cached_has_bits & 0x00000001u) != 0) {
-    _impl_.module_.ClearNonDefaultToEmpty();
-  }
   clear_cmd();
-  _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -1085,16 +1054,6 @@ PROTOBUF_NOINLINE void Command::Clear() {
     default:
       break;
   }
-  // string module = 10 [json_name = "module"];
-  if ((this_._impl_._has_bits_[0] & 0x00000001u) != 0) {
-    if (!this_._internal_module().empty()) {
-      const ::std::string& _s = this_._internal_module();
-      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "odin.v1.Command.module");
-      target = stream->WriteStringMaybeAliased(10, _s, target);
-    }
-  }
-
   if (ABSL_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
     target =
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
@@ -1118,16 +1077,6 @@ PROTOBUF_NOINLINE void Command::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void)cached_has_bits;
 
-   {
-    // string module = 10 [json_name = "module"];
-    cached_has_bits = this_._impl_._has_bits_[0];
-    if ((cached_has_bits & 0x00000001u) != 0) {
-      if (!this_._internal_module().empty()) {
-        total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                        this_._internal_module());
-      }
-    }
-  }
   switch (this_.cmd_case()) {
     // .odin.v1.Init init = 1 [json_name = "init"];
     case kInit: {
@@ -1158,17 +1107,6 @@ void Command::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google:
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  cached_has_bits = from._impl_._has_bits_[0];
-  if ((cached_has_bits & 0x00000001u) != 0) {
-    if (!from._internal_module().empty()) {
-      _this->_internal_set_module(from._internal_module());
-    } else {
-      if (_this->_impl_.module_.IsDefault()) {
-        _this->_internal_set_module("");
-      }
-    }
-  }
-  _this->_impl_._has_bits_[0] |= cached_has_bits;
   if (const uint32_t oneof_from_case = from._impl_._oneof_case_[0]) {
     const uint32_t oneof_to_case = _this->_impl_._oneof_case_[0];
     const bool oneof_needs_init = oneof_to_case != oneof_from_case;
@@ -1213,11 +1151,7 @@ void Command::CopyFrom(const Command& from) {
 
 void Command::InternalSwap(Command* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
   using ::std::swap;
-  auto* arena = GetArena();
-  ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.module_, &other->_impl_.module_, arena);
   swap(_impl_.cmd_, other->_impl_.cmd_);
   swap(_impl_._oneof_case_[0], other->_impl_._oneof_case_[0]);
 }

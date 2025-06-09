@@ -10,7 +10,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file odin/v1/session.proto.
  */
 export const file_odin_v1_session: GenFile = /*@__PURE__*/
-  fileDesc("ChVvZGluL3YxL3Nlc3Npb24ucHJvdG8SB29kaW4udjEiKgoESW5pdBISCgpzZXNzaW9uX2lkGAEgASgJEg4KBmNvbmZpZxgCIAEoDCIeCghTaHV0ZG93bhISCgpzZXNzaW9uX2lkGAEgASgJImYKB0NvbW1hbmQSHQoEaW5pdBgBIAEoCzINLm9kaW4udjEuSW5pdEgAEiUKCHNodXRkb3duGAIgASgLMhEub2Rpbi52MS5TaHV0ZG93bkgAEg4KBm1vZHVsZRgKIAEoCUIFCgNjbWQiYwoGU3RhdHVzEhIKCnNlc3Npb25faWQYASABKAkSDgoGbW9kdWxlGAIgASgJEiUKBnN0YXR1cxgDIAEoDjIVLm9kaW4udjEuTW9kdWxlU3RhdHVzEg4KBmRldGFpbBgEIAEoCSpLCgxNb2R1bGVTdGF0dXMSEAoMSU5JVElBTElaSU5HEAASCwoHUlVOTklORxABEgoKBkZBSUxFRBACEhAKDERJU0NPTk5FQ1RFRBADQlgKC2NvbS5vZGluLnYxQgxTZXNzaW9uUHJvdG9QAaICA09YWKoCB09kaW4uVjHKAgdPZGluXFYx4gITT2RpblxWMVxHUEJNZXRhZGF0YeoCCE9kaW46OlYxYgZwcm90bzM");
+  fileDesc("ChVvZGluL3YxL3Nlc3Npb24ucHJvdG8SB29kaW4udjEiKgoESW5pdBISCgpzZXNzaW9uX2lkGAEgASgJEg4KBmNvbmZpZxgCIAEoDCIeCghTaHV0ZG93bhISCgpzZXNzaW9uX2lkGAEgASgJIlYKB0NvbW1hbmQSHQoEaW5pdBgBIAEoCzINLm9kaW4udjEuSW5pdEgAEiUKCHNodXRkb3duGAIgASgLMhEub2Rpbi52MS5TaHV0ZG93bkgAQgUKA2NtZCJjCgZTdGF0dXMSEgoKc2Vzc2lvbl9pZBgBIAEoCRIOCgZtb2R1bGUYAiABKAkSJQoGc3RhdHVzGAMgASgOMhUub2Rpbi52MS5Nb2R1bGVTdGF0dXMSDgoGZGV0YWlsGAQgASgJKksKDE1vZHVsZVN0YXR1cxIQCgxJTklUSUFMSVpJTkcQABILCgdSVU5OSU5HEAESCgoGRkFJTEVEEAISEAoMRElTQ09OTkVDVEVEEANCWAoLY29tLm9kaW4udjFCDFNlc3Npb25Qcm90b1ABogIDT1hYqgIHT2Rpbi5WMcoCB09kaW5cVjHiAhNPZGluXFYxXEdQQk1ldGFkYXRh6gIIT2Rpbjo6VjFiBnByb3RvMw");
 
 /**
  * @generated from message odin.v1.Init
@@ -22,8 +22,6 @@ export type Init = Message<"odin.v1.Init"> & {
   sessionId: string;
 
   /**
-   * serialized JSON/YAML/etc.
-   *
    * @generated from field: bytes config = 2;
    */
   config: Uint8Array;
@@ -73,11 +71,6 @@ export type Command = Message<"odin.v1.Command"> & {
     value: Shutdown;
     case: "shutdown";
   } | { case: undefined; value?: undefined };
-
-  /**
-   * @generated from field: string module = 10;
-   */
-  module: string;
 };
 
 /**

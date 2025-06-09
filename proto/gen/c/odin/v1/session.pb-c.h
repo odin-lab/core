@@ -37,9 +37,6 @@ struct  Odin__V1__Init
 {
   ProtobufCMessage base;
   char *session_id;
-  /*
-   * serialized JSON/YAML/etc.
-   */
   ProtobufCBinaryData config;
 };
 #define ODIN__V1__INIT__INIT \
@@ -67,7 +64,6 @@ typedef enum {
 struct  Odin__V1__Command
 {
   ProtobufCMessage base;
-  char *module;
   Odin__V1__Command__CmdCase cmd_case;
   union {
     Odin__V1__Init *init;
@@ -76,7 +72,7 @@ struct  Odin__V1__Command
 };
 #define ODIN__V1__COMMAND__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&odin__v1__command__descriptor) \
-    , (char *)protobuf_c_empty_string, ODIN__V1__COMMAND__CMD__NOT_SET, {0} }
+    , ODIN__V1__COMMAND__CMD__NOT_SET, {0} }
 
 
 struct  Odin__V1__Status
