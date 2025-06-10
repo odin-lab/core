@@ -10,40 +10,40 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file odin/v1/text_helper.proto.
  */
 export const file_odin_v1_text_helper: GenFile = /*@__PURE__*/
-  fileDesc("ChlvZGluL3YxL3RleHRfaGVscGVyLnByb3RvEgdvZGluLnYxIlIKE1RyYW5zY3JpcHRpb25SZXN1bHQSDAoEdGV4dBgBIAMoCRIRCgljb21wbGV0ZWQYAiADKAgSDQoFc3RhcnQYAyADKAISCwoDZW5kGAQgAygCIi4KClR1cm5SZXN1bHQSDAoEdGV4dBgBIAMoCRISCgpvZGluc190dXJuGAIgASgIQlsKC2NvbS5vZGluLnYxQg9UZXh0SGVscGVyUHJvdG9QAaICA09YWKoCB09kaW4uVjHKAgdPZGluXFYx4gITT2RpblxWMVxHUEJNZXRhZGF0YeoCCE9kaW46OlYxYgZwcm90bzM");
+  fileDesc("ChlvZGluL3YxL3RleHRfaGVscGVyLnByb3RvEgdvZGluLnYxIkYKB1NlZ21lbnQSDAoEdGV4dBgBIAEoCRIRCgljb21wbGV0ZWQYAiABKAgSDQoFc3RhcnQYAyABKAISCwoDZW5kGAQgASgCIi4KClR1cm5SZXN1bHQSDAoEdGV4dBgBIAMoCRISCgpvZGluc190dXJuGAIgASgIQlsKC2NvbS5vZGluLnYxQg9UZXh0SGVscGVyUHJvdG9QAaICA09YWKoCB09kaW4uVjHKAgdPZGluXFYx4gITT2RpblxWMVxHUEJNZXRhZGF0YeoCCE9kaW46OlYxYgZwcm90bzM");
 
 /**
  * Speech transcription result with confidence
  *
- * @generated from message odin.v1.TranscriptionResult
+ * @generated from message odin.v1.Segment
  */
-export type TranscriptionResult = Message<"odin.v1.TranscriptionResult"> & {
+export type Segment = Message<"odin.v1.Segment"> & {
   /**
-   * @generated from field: repeated string text = 1;
+   * @generated from field: string text = 1;
    */
-  text: string[];
+  text: string;
 
   /**
-   * @generated from field: repeated bool completed = 2;
+   * @generated from field: bool completed = 2;
    */
-  completed: boolean[];
+  completed: boolean;
 
   /**
-   * @generated from field: repeated float start = 3;
+   * @generated from field: float start = 3;
    */
-  start: number[];
+  start: number;
 
   /**
-   * @generated from field: repeated float end = 4;
+   * @generated from field: float end = 4;
    */
-  end: number[];
+  end: number;
 };
 
 /**
- * Describes the message odin.v1.TranscriptionResult.
- * Use `create(TranscriptionResultSchema)` to create a new message.
+ * Describes the message odin.v1.Segment.
+ * Use `create(SegmentSchema)` to create a new message.
  */
-export const TranscriptionResultSchema: GenMessage<TranscriptionResult> = /*@__PURE__*/
+export const SegmentSchema: GenMessage<Segment> = /*@__PURE__*/
   messageDesc(file_odin_v1_text_helper, 0);
 
 /**

@@ -54,10 +54,10 @@ extern const ::google::protobuf::internal::DescriptorTable descriptor_table_odin
 }  // extern "C"
 namespace odin {
 namespace v1 {
-class TranscriptionResult;
-struct TranscriptionResultDefaultTypeInternal;
-extern TranscriptionResultDefaultTypeInternal _TranscriptionResult_default_instance_;
-extern const ::google::protobuf::internal::ClassDataFull TranscriptionResult_class_data_;
+class Segment;
+struct SegmentDefaultTypeInternal;
+extern SegmentDefaultTypeInternal _Segment_default_instance_;
+extern const ::google::protobuf::internal::ClassDataFull Segment_class_data_;
 class TurnResult;
 struct TurnResultDefaultTypeInternal;
 extern TurnResultDefaultTypeInternal _TurnResult_default_instance_;
@@ -292,30 +292,30 @@ class TurnResult final : public ::google::protobuf::Message
 extern const ::google::protobuf::internal::ClassDataFull TurnResult_class_data_;
 // -------------------------------------------------------------------
 
-class TranscriptionResult final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:odin.v1.TranscriptionResult) */ {
+class Segment final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:odin.v1.Segment) */ {
  public:
-  inline TranscriptionResult() : TranscriptionResult(nullptr) {}
-  ~TranscriptionResult() PROTOBUF_FINAL;
+  inline Segment() : Segment(nullptr) {}
+  ~Segment() PROTOBUF_FINAL;
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(TranscriptionResult* PROTOBUF_NONNULL msg, std::destroying_delete_t) {
+  void operator delete(Segment* PROTOBUF_NONNULL msg, std::destroying_delete_t) {
     SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(TranscriptionResult));
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(Segment));
   }
 #endif
 
   template <typename = void>
-  explicit PROTOBUF_CONSTEXPR TranscriptionResult(::google::protobuf::internal::ConstantInitialized);
+  explicit PROTOBUF_CONSTEXPR Segment(::google::protobuf::internal::ConstantInitialized);
 
-  inline TranscriptionResult(const TranscriptionResult& from) : TranscriptionResult(nullptr, from) {}
-  inline TranscriptionResult(TranscriptionResult&& from) noexcept
-      : TranscriptionResult(nullptr, ::std::move(from)) {}
-  inline TranscriptionResult& operator=(const TranscriptionResult& from) {
+  inline Segment(const Segment& from) : Segment(nullptr, from) {}
+  inline Segment(Segment&& from) noexcept
+      : Segment(nullptr, ::std::move(from)) {}
+  inline Segment& operator=(const Segment& from) {
     CopyFrom(from);
     return *this;
   }
-  inline TranscriptionResult& operator=(TranscriptionResult&& from) noexcept {
+  inline Segment& operator=(Segment&& from) noexcept {
     if (this == &from) return *this;
     if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
       InternalSwap(&from);
@@ -343,13 +343,13 @@ class TranscriptionResult final : public ::google::protobuf::Message
   static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const TranscriptionResult& default_instance() {
-    return *reinterpret_cast<const TranscriptionResult*>(
-        &_TranscriptionResult_default_instance_);
+  static const Segment& default_instance() {
+    return *reinterpret_cast<const Segment*>(
+        &_Segment_default_instance_);
   }
   static constexpr int kIndexInFileMessages = 0;
-  friend void swap(TranscriptionResult& a, TranscriptionResult& b) { a.Swap(&b); }
-  inline void Swap(TranscriptionResult* PROTOBUF_NONNULL other) {
+  friend void swap(Segment& a, Segment& b) { a.Swap(&b); }
+  inline void Swap(Segment* PROTOBUF_NONNULL other) {
     if (other == this) return;
     if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
       InternalSwap(other);
@@ -357,7 +357,7 @@ class TranscriptionResult final : public ::google::protobuf::Message
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(TranscriptionResult* PROTOBUF_NONNULL other) {
+  void UnsafeArenaSwap(Segment* PROTOBUF_NONNULL other) {
     if (other == this) return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -365,13 +365,13 @@ class TranscriptionResult final : public ::google::protobuf::Message
 
   // implements Message ----------------------------------------------
 
-  TranscriptionResult* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<TranscriptionResult>(arena);
+  Segment* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<Segment>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const TranscriptionResult& from);
+  void CopyFrom(const Segment& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const TranscriptionResult& from) { TranscriptionResult::MergeImpl(*this, from); }
+  void MergeFrom(const Segment& from) { Segment::MergeImpl(*this, from); }
 
   private:
   static void MergeImpl(::google::protobuf::MessageLite& to_msg,
@@ -407,18 +407,18 @@ class TranscriptionResult final : public ::google::protobuf::Message
   private:
   void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
   static void SharedDtor(MessageLite& self);
-  void InternalSwap(TranscriptionResult* PROTOBUF_NONNULL other);
+  void InternalSwap(Segment* PROTOBUF_NONNULL other);
  private:
   template <typename T>
   friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "odin.v1.TranscriptionResult"; }
+  static ::absl::string_view FullMessageName() { return "odin.v1.Segment"; }
 
  protected:
-  explicit TranscriptionResult(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-  TranscriptionResult(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const TranscriptionResult& from);
-  TranscriptionResult(
-      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, TranscriptionResult&& from) noexcept
-      : TranscriptionResult(arena) {
+  explicit Segment(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  Segment(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Segment& from);
+  Segment(
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, Segment&& from) noexcept
+      : Segment(arena) {
     *this = ::std::move(from);
   }
   const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
@@ -440,88 +440,57 @@ class TranscriptionResult final : public ::google::protobuf::Message
     kStartFieldNumber = 3,
     kEndFieldNumber = 4,
   };
-  // repeated string text = 1 [json_name = "text"];
-  int text_size() const;
-  private:
-  int _internal_text_size() const;
-
-  public:
+  // string text = 1 [json_name = "text"];
   void clear_text() ;
-  const ::std::string& text(int index) const;
-  ::std::string* PROTOBUF_NONNULL mutable_text(int index);
+  const ::std::string& text() const;
   template <typename Arg_ = const ::std::string&, typename... Args_>
-  void set_text(int index, Arg_&& value, Args_... args);
-  ::std::string* PROTOBUF_NONNULL add_text();
-  template <typename Arg_ = const ::std::string&, typename... Args_>
-  void add_text(Arg_&& value, Args_... args);
-  const ::google::protobuf::RepeatedPtrField<::std::string>& text() const;
-  ::google::protobuf::RepeatedPtrField<::std::string>* PROTOBUF_NONNULL mutable_text();
+  void set_text(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_text();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_text();
+  void set_allocated_text(::std::string* PROTOBUF_NULLABLE value);
 
   private:
-  const ::google::protobuf::RepeatedPtrField<::std::string>& _internal_text() const;
-  ::google::protobuf::RepeatedPtrField<::std::string>* PROTOBUF_NONNULL _internal_mutable_text();
+  const ::std::string& _internal_text() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_text(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_text();
 
   public:
-  // repeated bool completed = 2 [json_name = "completed"];
-  int completed_size() const;
-  private:
-  int _internal_completed_size() const;
-
-  public:
+  // bool completed = 2 [json_name = "completed"];
   void clear_completed() ;
-  bool completed(int index) const;
-  void set_completed(int index, bool value);
-  void add_completed(bool value);
-  const ::google::protobuf::RepeatedField<bool>& completed() const;
-  ::google::protobuf::RepeatedField<bool>* PROTOBUF_NONNULL mutable_completed();
+  bool completed() const;
+  void set_completed(bool value);
 
   private:
-  const ::google::protobuf::RepeatedField<bool>& _internal_completed() const;
-  ::google::protobuf::RepeatedField<bool>* PROTOBUF_NONNULL _internal_mutable_completed();
+  bool _internal_completed() const;
+  void _internal_set_completed(bool value);
 
   public:
-  // repeated float start = 3 [json_name = "start"];
-  int start_size() const;
-  private:
-  int _internal_start_size() const;
-
-  public:
+  // float start = 3 [json_name = "start"];
   void clear_start() ;
-  float start(int index) const;
-  void set_start(int index, float value);
-  void add_start(float value);
-  const ::google::protobuf::RepeatedField<float>& start() const;
-  ::google::protobuf::RepeatedField<float>* PROTOBUF_NONNULL mutable_start();
+  float start() const;
+  void set_start(float value);
 
   private:
-  const ::google::protobuf::RepeatedField<float>& _internal_start() const;
-  ::google::protobuf::RepeatedField<float>* PROTOBUF_NONNULL _internal_mutable_start();
+  float _internal_start() const;
+  void _internal_set_start(float value);
 
   public:
-  // repeated float end = 4 [json_name = "end"];
-  int end_size() const;
-  private:
-  int _internal_end_size() const;
-
-  public:
+  // float end = 4 [json_name = "end"];
   void clear_end() ;
-  float end(int index) const;
-  void set_end(int index, float value);
-  void add_end(float value);
-  const ::google::protobuf::RepeatedField<float>& end() const;
-  ::google::protobuf::RepeatedField<float>* PROTOBUF_NONNULL mutable_end();
+  float end() const;
+  void set_end(float value);
 
   private:
-  const ::google::protobuf::RepeatedField<float>& _internal_end() const;
-  ::google::protobuf::RepeatedField<float>* PROTOBUF_NONNULL _internal_mutable_end();
+  float _internal_end() const;
+  void _internal_set_end(float value);
 
   public:
-  // @@protoc_insertion_point(class_scope:odin.v1.TranscriptionResult)
+  // @@protoc_insertion_point(class_scope:odin.v1.Segment)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<2, 4,
-                                   0, 40,
+                                   0, 28,
                                    2>
       _table_;
 
@@ -539,19 +508,20 @@ class TranscriptionResult final : public ::google::protobuf::Message
     inline explicit Impl_(
         ::google::protobuf::internal::InternalVisibility visibility,
         ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
-        const TranscriptionResult& from_msg);
-    ::google::protobuf::RepeatedPtrField<::std::string> text_;
-    ::google::protobuf::RepeatedField<bool> completed_;
-    ::google::protobuf::RepeatedField<float> start_;
-    ::google::protobuf::RepeatedField<float> end_;
+        const Segment& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr text_;
+    bool completed_;
+    float start_;
+    float end_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
   friend struct ::TableStruct_odin_2fv1_2ftext_5fhelper_2eproto;
 };
 
-extern const ::google::protobuf::internal::ClassDataFull TranscriptionResult_class_data_;
+extern const ::google::protobuf::internal::ClassDataFull Segment_class_data_;
 
 // ===================================================================
 
@@ -567,208 +537,143 @@ extern const ::google::protobuf::internal::ClassDataFull TranscriptionResult_cla
 #endif  // __GNUC__
 // -------------------------------------------------------------------
 
-// TranscriptionResult
+// Segment
 
-// repeated string text = 1 [json_name = "text"];
-inline int TranscriptionResult::_internal_text_size() const {
-  return _internal_text().size();
-}
-inline int TranscriptionResult::text_size() const {
-  return _internal_text_size();
-}
-inline void TranscriptionResult::clear_text() {
+// string text = 1 [json_name = "text"];
+inline void Segment::clear_text() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.text_.Clear();
+  _impl_.text_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000001u;
 }
-inline ::std::string* PROTOBUF_NONNULL TranscriptionResult::add_text()
+inline const ::std::string& Segment::text() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  ::std::string* _s = _internal_mutable_text()->Add();
-  // @@protoc_insertion_point(field_add_mutable:odin.v1.TranscriptionResult.text)
-  return _s;
-}
-inline const ::std::string& TranscriptionResult::text(int index) const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:odin.v1.TranscriptionResult.text)
-  return _internal_text().Get(index);
-}
-inline ::std::string* PROTOBUF_NONNULL TranscriptionResult::mutable_text(int index)
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable:odin.v1.TranscriptionResult.text)
-  return _internal_mutable_text()->Mutable(index);
-}
-template <typename Arg_, typename... Args_>
-inline void TranscriptionResult::set_text(int index, Arg_&& value, Args_... args) {
-  ::google::protobuf::internal::AssignToString(*_internal_mutable_text()->Mutable(index), ::std::forward<Arg_>(value),
-                        args... );
-  // @@protoc_insertion_point(field_set:odin.v1.TranscriptionResult.text)
-}
-template <typename Arg_, typename... Args_>
-inline void TranscriptionResult::add_text(Arg_&& value, Args_... args) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  ::google::protobuf::internal::AddToRepeatedPtrField(*_internal_mutable_text(),
-                               ::std::forward<Arg_>(value),
-                               args... );
-  // @@protoc_insertion_point(field_add:odin.v1.TranscriptionResult.text)
-}
-inline const ::google::protobuf::RepeatedPtrField<::std::string>& TranscriptionResult::text()
-    const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_list:odin.v1.TranscriptionResult.text)
+  // @@protoc_insertion_point(field_get:odin.v1.Segment.text)
   return _internal_text();
 }
-inline ::google::protobuf::RepeatedPtrField<::std::string>* PROTOBUF_NONNULL
-TranscriptionResult::mutable_text() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable_list:odin.v1.TranscriptionResult.text)
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void Segment::set_text(Arg_&& arg, Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  return _internal_mutable_text();
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.text_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:odin.v1.Segment.text)
 }
-inline const ::google::protobuf::RepeatedPtrField<::std::string>&
-TranscriptionResult::_internal_text() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.text_;
+inline ::std::string* PROTOBUF_NONNULL Segment::mutable_text()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::std::string* _s = _internal_mutable_text();
+  // @@protoc_insertion_point(field_mutable:odin.v1.Segment.text)
+  return _s;
 }
-inline ::google::protobuf::RepeatedPtrField<::std::string>* PROTOBUF_NONNULL
-TranscriptionResult::_internal_mutable_text() {
+inline const ::std::string& Segment::_internal_text() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return &_impl_.text_;
+  return _impl_.text_.Get();
+}
+inline void Segment::_internal_set_text(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.text_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL Segment::_internal_mutable_text() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  return _impl_.text_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE Segment::release_text() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:odin.v1.Segment.text)
+  if ((_impl_._has_bits_[0] & 0x00000001u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  auto* released = _impl_.text_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.text_.Set("", GetArena());
+  }
+  return released;
+}
+inline void Segment::set_allocated_text(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  _impl_.text_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.text_.IsDefault()) {
+    _impl_.text_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:odin.v1.Segment.text)
 }
 
-// repeated bool completed = 2 [json_name = "completed"];
-inline int TranscriptionResult::_internal_completed_size() const {
-  return _internal_completed().size();
-}
-inline int TranscriptionResult::completed_size() const {
-  return _internal_completed_size();
-}
-inline void TranscriptionResult::clear_completed() {
+// bool completed = 2 [json_name = "completed"];
+inline void Segment::clear_completed() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.completed_.Clear();
+  _impl_.completed_ = false;
+  _impl_._has_bits_[0] &= ~0x00000002u;
 }
-inline bool TranscriptionResult::completed(int index) const {
-  // @@protoc_insertion_point(field_get:odin.v1.TranscriptionResult.completed)
-  return _internal_completed().Get(index);
-}
-inline void TranscriptionResult::set_completed(int index, bool value) {
-  _internal_mutable_completed()->Set(index, value);
-  // @@protoc_insertion_point(field_set:odin.v1.TranscriptionResult.completed)
-}
-inline void TranscriptionResult::add_completed(bool value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _internal_mutable_completed()->Add(value);
-  // @@protoc_insertion_point(field_add:odin.v1.TranscriptionResult.completed)
-}
-inline const ::google::protobuf::RepeatedField<bool>& TranscriptionResult::completed() const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_list:odin.v1.TranscriptionResult.completed)
+inline bool Segment::completed() const {
+  // @@protoc_insertion_point(field_get:odin.v1.Segment.completed)
   return _internal_completed();
 }
-inline ::google::protobuf::RepeatedField<bool>* PROTOBUF_NONNULL TranscriptionResult::mutable_completed()
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable_list:odin.v1.TranscriptionResult.completed)
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  return _internal_mutable_completed();
+inline void Segment::set_completed(bool value) {
+  _internal_set_completed(value);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  // @@protoc_insertion_point(field_set:odin.v1.Segment.completed)
 }
-inline const ::google::protobuf::RepeatedField<bool>&
-TranscriptionResult::_internal_completed() const {
+inline bool Segment::_internal_completed() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.completed_;
 }
-inline ::google::protobuf::RepeatedField<bool>* PROTOBUF_NONNULL
-TranscriptionResult::_internal_mutable_completed() {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return &_impl_.completed_;
+inline void Segment::_internal_set_completed(bool value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.completed_ = value;
 }
 
-// repeated float start = 3 [json_name = "start"];
-inline int TranscriptionResult::_internal_start_size() const {
-  return _internal_start().size();
-}
-inline int TranscriptionResult::start_size() const {
-  return _internal_start_size();
-}
-inline void TranscriptionResult::clear_start() {
+// float start = 3 [json_name = "start"];
+inline void Segment::clear_start() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.start_.Clear();
+  _impl_.start_ = 0;
+  _impl_._has_bits_[0] &= ~0x00000004u;
 }
-inline float TranscriptionResult::start(int index) const {
-  // @@protoc_insertion_point(field_get:odin.v1.TranscriptionResult.start)
-  return _internal_start().Get(index);
-}
-inline void TranscriptionResult::set_start(int index, float value) {
-  _internal_mutable_start()->Set(index, value);
-  // @@protoc_insertion_point(field_set:odin.v1.TranscriptionResult.start)
-}
-inline void TranscriptionResult::add_start(float value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _internal_mutable_start()->Add(value);
-  // @@protoc_insertion_point(field_add:odin.v1.TranscriptionResult.start)
-}
-inline const ::google::protobuf::RepeatedField<float>& TranscriptionResult::start() const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_list:odin.v1.TranscriptionResult.start)
+inline float Segment::start() const {
+  // @@protoc_insertion_point(field_get:odin.v1.Segment.start)
   return _internal_start();
 }
-inline ::google::protobuf::RepeatedField<float>* PROTOBUF_NONNULL TranscriptionResult::mutable_start()
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable_list:odin.v1.TranscriptionResult.start)
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  return _internal_mutable_start();
+inline void Segment::set_start(float value) {
+  _internal_set_start(value);
+  _impl_._has_bits_[0] |= 0x00000004u;
+  // @@protoc_insertion_point(field_set:odin.v1.Segment.start)
 }
-inline const ::google::protobuf::RepeatedField<float>&
-TranscriptionResult::_internal_start() const {
+inline float Segment::_internal_start() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.start_;
 }
-inline ::google::protobuf::RepeatedField<float>* PROTOBUF_NONNULL
-TranscriptionResult::_internal_mutable_start() {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return &_impl_.start_;
+inline void Segment::_internal_set_start(float value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.start_ = value;
 }
 
-// repeated float end = 4 [json_name = "end"];
-inline int TranscriptionResult::_internal_end_size() const {
-  return _internal_end().size();
-}
-inline int TranscriptionResult::end_size() const {
-  return _internal_end_size();
-}
-inline void TranscriptionResult::clear_end() {
+// float end = 4 [json_name = "end"];
+inline void Segment::clear_end() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.end_.Clear();
+  _impl_.end_ = 0;
+  _impl_._has_bits_[0] &= ~0x00000008u;
 }
-inline float TranscriptionResult::end(int index) const {
-  // @@protoc_insertion_point(field_get:odin.v1.TranscriptionResult.end)
-  return _internal_end().Get(index);
-}
-inline void TranscriptionResult::set_end(int index, float value) {
-  _internal_mutable_end()->Set(index, value);
-  // @@protoc_insertion_point(field_set:odin.v1.TranscriptionResult.end)
-}
-inline void TranscriptionResult::add_end(float value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _internal_mutable_end()->Add(value);
-  // @@protoc_insertion_point(field_add:odin.v1.TranscriptionResult.end)
-}
-inline const ::google::protobuf::RepeatedField<float>& TranscriptionResult::end() const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_list:odin.v1.TranscriptionResult.end)
+inline float Segment::end() const {
+  // @@protoc_insertion_point(field_get:odin.v1.Segment.end)
   return _internal_end();
 }
-inline ::google::protobuf::RepeatedField<float>* PROTOBUF_NONNULL TranscriptionResult::mutable_end()
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable_list:odin.v1.TranscriptionResult.end)
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  return _internal_mutable_end();
+inline void Segment::set_end(float value) {
+  _internal_set_end(value);
+  _impl_._has_bits_[0] |= 0x00000008u;
+  // @@protoc_insertion_point(field_set:odin.v1.Segment.end)
 }
-inline const ::google::protobuf::RepeatedField<float>&
-TranscriptionResult::_internal_end() const {
+inline float Segment::_internal_end() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.end_;
 }
-inline ::google::protobuf::RepeatedField<float>* PROTOBUF_NONNULL
-TranscriptionResult::_internal_mutable_end() {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return &_impl_.end_;
+inline void Segment::_internal_set_end(float value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.end_ = value;
 }
 
 // -------------------------------------------------------------------

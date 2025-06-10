@@ -57,10 +57,6 @@ extern const ::google::protobuf::internal::DescriptorTable descriptor_table_odin
 }  // extern "C"
 namespace odin {
 namespace v1 {
-class STTranscript;
-struct STTranscriptDefaultTypeInternal;
-extern STTranscriptDefaultTypeInternal _STTranscript_default_instance_;
-extern const ::google::protobuf::internal::ClassDataFull STTranscript_class_data_;
 class TextComplete;
 struct TextCompleteDefaultTypeInternal;
 extern TextCompleteDefaultTypeInternal _TextComplete_default_instance_;
@@ -73,6 +69,10 @@ class TextSpeech;
 struct TextSpeechDefaultTypeInternal;
 extern TextSpeechDefaultTypeInternal _TextSpeech_default_instance_;
 extern const ::google::protobuf::internal::ClassDataFull TextSpeech_class_data_;
+class Transcription;
+struct TranscriptionDefaultTypeInternal;
+extern TranscriptionDefaultTypeInternal _Transcription_default_instance_;
+extern const ::google::protobuf::internal::ClassDataFull Transcription_class_data_;
 }  // namespace v1
 }  // namespace odin
 namespace google {
@@ -86,6 +86,221 @@ namespace v1 {
 // ===================================================================
 
 
+// -------------------------------------------------------------------
+
+class Transcription final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:odin.v1.Transcription) */ {
+ public:
+  inline Transcription() : Transcription(nullptr) {}
+  ~Transcription() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(Transcription* PROTOBUF_NONNULL msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(Transcription));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR Transcription(::google::protobuf::internal::ConstantInitialized);
+
+  inline Transcription(const Transcription& from) : Transcription(nullptr, from) {}
+  inline Transcription(Transcription&& from) noexcept
+      : Transcription(nullptr, ::std::move(from)) {}
+  inline Transcription& operator=(const Transcription& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Transcription& operator=(Transcription&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* PROTOBUF_NONNULL mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Transcription& default_instance() {
+    return *reinterpret_cast<const Transcription*>(
+        &_Transcription_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 0;
+  friend void swap(Transcription& a, Transcription& b) { a.Swap(&b); }
+  inline void Swap(Transcription* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Transcription* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Transcription* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<Transcription>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const Transcription& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const Transcription& from) { Transcription::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(::google::protobuf::MessageLite& to_msg,
+                        const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      const ::google::protobuf::MessageLite& msg, ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(Transcription* PROTOBUF_NONNULL other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "odin.v1.Transcription"; }
+
+ protected:
+  explicit Transcription(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  Transcription(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Transcription& from);
+  Transcription(
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, Transcription&& from) noexcept
+      : Transcription(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
+  static void* PROTOBUF_NONNULL PlacementNew_(
+      const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static constexpr auto InternalNewImpl_();
+
+ public:
+  static constexpr auto InternalGenerateClassData_();
+
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kSegmentsFieldNumber = 1,
+    kSessionFieldNumber = 2,
+  };
+  // repeated .odin.v1.Segment segments = 1 [json_name = "segments"];
+  int segments_size() const;
+  private:
+  int _internal_segments_size() const;
+
+  public:
+  void clear_segments() ;
+  ::odin::v1::Segment* PROTOBUF_NONNULL mutable_segments(int index);
+  ::google::protobuf::RepeatedPtrField<::odin::v1::Segment>* PROTOBUF_NONNULL mutable_segments();
+
+  private:
+  const ::google::protobuf::RepeatedPtrField<::odin::v1::Segment>& _internal_segments() const;
+  ::google::protobuf::RepeatedPtrField<::odin::v1::Segment>* PROTOBUF_NONNULL _internal_mutable_segments();
+  public:
+  const ::odin::v1::Segment& segments(int index) const;
+  ::odin::v1::Segment* PROTOBUF_NONNULL add_segments();
+  const ::google::protobuf::RepeatedPtrField<::odin::v1::Segment>& segments() const;
+  // .odin.v1.SessionInfo session = 2 [json_name = "session"];
+  bool has_session() const;
+  void clear_session() ;
+  const ::odin::v1::SessionInfo& session() const;
+  [[nodiscard]] ::odin::v1::SessionInfo* PROTOBUF_NULLABLE release_session();
+  ::odin::v1::SessionInfo* PROTOBUF_NONNULL mutable_session();
+  void set_allocated_session(::odin::v1::SessionInfo* PROTOBUF_NULLABLE value);
+  void unsafe_arena_set_allocated_session(::odin::v1::SessionInfo* PROTOBUF_NULLABLE value);
+  ::odin::v1::SessionInfo* PROTOBUF_NULLABLE unsafe_arena_release_session();
+
+  private:
+  const ::odin::v1::SessionInfo& _internal_session() const;
+  ::odin::v1::SessionInfo* PROTOBUF_NONNULL _internal_mutable_session();
+
+  public:
+  // @@protoc_insertion_point(class_scope:odin.v1.Transcription)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<1, 2,
+                                   2, 0,
+                                   2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+        const Transcription& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::RepeatedPtrField< ::odin::v1::Segment > segments_;
+    ::odin::v1::SessionInfo* PROTOBUF_NULLABLE session_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_odin_2fv1_2ftext_2eproto;
+};
+
+extern const ::google::protobuf::internal::ClassDataFull Transcription_class_data_;
 // -------------------------------------------------------------------
 
 class TextSpeech final : public ::google::protobuf::Message
@@ -725,219 +940,6 @@ class TextComplete final : public ::google::protobuf::Message
 };
 
 extern const ::google::protobuf::internal::ClassDataFull TextComplete_class_data_;
-// -------------------------------------------------------------------
-
-class STTranscript final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:odin.v1.STTranscript) */ {
- public:
-  inline STTranscript() : STTranscript(nullptr) {}
-  ~STTranscript() PROTOBUF_FINAL;
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(STTranscript* PROTOBUF_NONNULL msg, std::destroying_delete_t) {
-    SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(STTranscript));
-  }
-#endif
-
-  template <typename = void>
-  explicit PROTOBUF_CONSTEXPR STTranscript(::google::protobuf::internal::ConstantInitialized);
-
-  inline STTranscript(const STTranscript& from) : STTranscript(nullptr, from) {}
-  inline STTranscript(STTranscript&& from) noexcept
-      : STTranscript(nullptr, ::std::move(from)) {}
-  inline STTranscript& operator=(const STTranscript& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline STTranscript& operator=(STTranscript&& from) noexcept {
-    if (this == &from) return *this;
-    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* PROTOBUF_NONNULL mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const STTranscript& default_instance() {
-    return *reinterpret_cast<const STTranscript*>(
-        &_STTranscript_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages = 0;
-  friend void swap(STTranscript& a, STTranscript& b) { a.Swap(&b); }
-  inline void Swap(STTranscript* PROTOBUF_NONNULL other) {
-    if (other == this) return;
-    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(STTranscript* PROTOBUF_NONNULL other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  STTranscript* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<STTranscript>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const STTranscript& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const STTranscript& from) { STTranscript::MergeImpl(*this, from); }
-
-  private:
-  static void MergeImpl(::google::protobuf::MessageLite& to_msg,
-                        const ::google::protobuf::MessageLite& from_msg);
-
-  public:
-  bool IsInitialized() const {
-    return true;
-  }
-  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
-  #if defined(PROTOBUF_CUSTOM_VTABLE)
-  private:
-  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
-  static ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
-      const ::google::protobuf::MessageLite& msg, ::uint8_t* PROTOBUF_NONNULL target,
-      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream);
-
-  public:
-  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
-  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
-      ::uint8_t* PROTOBUF_NONNULL target,
-      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
-    return _InternalSerialize(*this, target, stream);
-  }
-  #else   // PROTOBUF_CUSTOM_VTABLE
-  ::size_t ByteSizeLong() const final;
-  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
-      ::uint8_t* PROTOBUF_NONNULL target,
-      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const final;
-  #endif  // PROTOBUF_CUSTOM_VTABLE
-  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-  static void SharedDtor(MessageLite& self);
-  void InternalSwap(STTranscript* PROTOBUF_NONNULL other);
- private:
-  template <typename T>
-  friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "odin.v1.STTranscript"; }
-
- protected:
-  explicit STTranscript(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-  STTranscript(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const STTranscript& from);
-  STTranscript(
-      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, STTranscript&& from) noexcept
-      : STTranscript(arena) {
-    *this = ::std::move(from);
-  }
-  const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
-  static void* PROTOBUF_NONNULL PlacementNew_(
-      const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
-      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-  static constexpr auto InternalNewImpl_();
-
- public:
-  static constexpr auto InternalGenerateClassData_();
-
-  ::google::protobuf::Metadata GetMetadata() const;
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-  enum : int {
-    kTranscriptionFieldNumber = 1,
-    kSessionFieldNumber = 2,
-  };
-  // .odin.v1.TranscriptionResult transcription = 1 [json_name = "transcription"];
-  bool has_transcription() const;
-  void clear_transcription() ;
-  const ::odin::v1::TranscriptionResult& transcription() const;
-  [[nodiscard]] ::odin::v1::TranscriptionResult* PROTOBUF_NULLABLE release_transcription();
-  ::odin::v1::TranscriptionResult* PROTOBUF_NONNULL mutable_transcription();
-  void set_allocated_transcription(::odin::v1::TranscriptionResult* PROTOBUF_NULLABLE value);
-  void unsafe_arena_set_allocated_transcription(::odin::v1::TranscriptionResult* PROTOBUF_NULLABLE value);
-  ::odin::v1::TranscriptionResult* PROTOBUF_NULLABLE unsafe_arena_release_transcription();
-
-  private:
-  const ::odin::v1::TranscriptionResult& _internal_transcription() const;
-  ::odin::v1::TranscriptionResult* PROTOBUF_NONNULL _internal_mutable_transcription();
-
-  public:
-  // .odin.v1.SessionInfo session = 2 [json_name = "session"];
-  bool has_session() const;
-  void clear_session() ;
-  const ::odin::v1::SessionInfo& session() const;
-  [[nodiscard]] ::odin::v1::SessionInfo* PROTOBUF_NULLABLE release_session();
-  ::odin::v1::SessionInfo* PROTOBUF_NONNULL mutable_session();
-  void set_allocated_session(::odin::v1::SessionInfo* PROTOBUF_NULLABLE value);
-  void unsafe_arena_set_allocated_session(::odin::v1::SessionInfo* PROTOBUF_NULLABLE value);
-  ::odin::v1::SessionInfo* PROTOBUF_NULLABLE unsafe_arena_release_session();
-
-  private:
-  const ::odin::v1::SessionInfo& _internal_session() const;
-  ::odin::v1::SessionInfo* PROTOBUF_NONNULL _internal_mutable_session();
-
-  public:
-  // @@protoc_insertion_point(class_scope:odin.v1.STTranscript)
- private:
-  class _Internal;
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<1, 2,
-                                   2, 0,
-                                   2>
-      _table_;
-
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-    inline explicit constexpr Impl_(::google::protobuf::internal::ConstantInitialized) noexcept;
-    inline explicit Impl_(
-        ::google::protobuf::internal::InternalVisibility visibility,
-        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-    inline explicit Impl_(
-        ::google::protobuf::internal::InternalVisibility visibility,
-        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
-        const STTranscript& from_msg);
-    ::google::protobuf::internal::HasBits<1> _has_bits_;
-    ::google::protobuf::internal::CachedSize _cached_size_;
-    ::odin::v1::TranscriptionResult* PROTOBUF_NULLABLE transcription_;
-    ::odin::v1::SessionInfo* PROTOBUF_NULLABLE session_;
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_odin_2fv1_2ftext_2eproto;
-};
-
-extern const ::google::protobuf::internal::ClassDataFull STTranscript_class_data_;
 
 // ===================================================================
 
@@ -953,117 +955,70 @@ extern const ::google::protobuf::internal::ClassDataFull STTranscript_class_data
 #endif  // __GNUC__
 // -------------------------------------------------------------------
 
-// STTranscript
+// Transcription
 
-// .odin.v1.TranscriptionResult transcription = 1 [json_name = "transcription"];
-inline bool STTranscript::has_transcription() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
-  PROTOBUF_ASSUME(!value || _impl_.transcription_ != nullptr);
-  return value;
+// repeated .odin.v1.Segment segments = 1 [json_name = "segments"];
+inline int Transcription::_internal_segments_size() const {
+  return _internal_segments().size();
 }
-inline const ::odin::v1::TranscriptionResult& STTranscript::_internal_transcription() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  const ::odin::v1::TranscriptionResult* p = _impl_.transcription_;
-  return p != nullptr ? *p : reinterpret_cast<const ::odin::v1::TranscriptionResult&>(::odin::v1::_TranscriptionResult_default_instance_);
+inline int Transcription::segments_size() const {
+  return _internal_segments_size();
 }
-inline const ::odin::v1::TranscriptionResult& STTranscript::transcription() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:odin.v1.STTranscript.transcription)
-  return _internal_transcription();
-}
-inline void STTranscript::unsafe_arena_set_allocated_transcription(
-    ::odin::v1::TranscriptionResult* PROTOBUF_NULLABLE value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (GetArena() == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.transcription_);
-  }
-  _impl_.transcription_ = reinterpret_cast<::odin::v1::TranscriptionResult*>(value);
-  if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000001u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000001u;
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:odin.v1.STTranscript.transcription)
-}
-inline ::odin::v1::TranscriptionResult* PROTOBUF_NULLABLE STTranscript::release_transcription() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-
-  _impl_._has_bits_[0] &= ~0x00000001u;
-  ::odin::v1::TranscriptionResult* released = _impl_.transcription_;
-  _impl_.transcription_ = nullptr;
-  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
-    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
-    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-    if (GetArena() == nullptr) {
-      delete old;
-    }
-  } else {
-    if (GetArena() != nullptr) {
-      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-    }
-  }
-  return released;
-}
-inline ::odin::v1::TranscriptionResult* PROTOBUF_NULLABLE STTranscript::unsafe_arena_release_transcription() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:odin.v1.STTranscript.transcription)
-
-  _impl_._has_bits_[0] &= ~0x00000001u;
-  ::odin::v1::TranscriptionResult* temp = _impl_.transcription_;
-  _impl_.transcription_ = nullptr;
-  return temp;
-}
-inline ::odin::v1::TranscriptionResult* PROTOBUF_NONNULL STTranscript::_internal_mutable_transcription() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.transcription_ == nullptr) {
-    auto* p = ::google::protobuf::Message::DefaultConstruct<::odin::v1::TranscriptionResult>(GetArena());
-    _impl_.transcription_ = reinterpret_cast<::odin::v1::TranscriptionResult*>(p);
-  }
-  return _impl_.transcription_;
-}
-inline ::odin::v1::TranscriptionResult* PROTOBUF_NONNULL STTranscript::mutable_transcription()
+inline ::odin::v1::Segment* PROTOBUF_NONNULL Transcription::mutable_segments(int index)
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  _impl_._has_bits_[0] |= 0x00000001u;
-  ::odin::v1::TranscriptionResult* _msg = _internal_mutable_transcription();
-  // @@protoc_insertion_point(field_mutable:odin.v1.STTranscript.transcription)
-  return _msg;
+  // @@protoc_insertion_point(field_mutable:odin.v1.Transcription.segments)
+  return _internal_mutable_segments()->Mutable(index);
 }
-inline void STTranscript::set_allocated_transcription(::odin::v1::TranscriptionResult* PROTOBUF_NULLABLE value) {
-  ::google::protobuf::Arena* message_arena = GetArena();
+inline ::google::protobuf::RepeatedPtrField<::odin::v1::Segment>* PROTOBUF_NONNULL Transcription::mutable_segments()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_list:odin.v1.Transcription.segments)
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (message_arena == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.transcription_);
-  }
-
-  if (value != nullptr) {
-    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::google::protobuf::Message*>(value)->GetArena();
-    if (message_arena != submessage_arena) {
-      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
-    }
-    _impl_._has_bits_[0] |= 0x00000001u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000001u;
-  }
-
-  _impl_.transcription_ = reinterpret_cast<::odin::v1::TranscriptionResult*>(value);
-  // @@protoc_insertion_point(field_set_allocated:odin.v1.STTranscript.transcription)
+  return _internal_mutable_segments();
+}
+inline const ::odin::v1::Segment& Transcription::segments(int index) const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:odin.v1.Transcription.segments)
+  return _internal_segments().Get(index);
+}
+inline ::odin::v1::Segment* PROTOBUF_NONNULL Transcription::add_segments()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::odin::v1::Segment* _add = _internal_mutable_segments()->Add();
+  // @@protoc_insertion_point(field_add:odin.v1.Transcription.segments)
+  return _add;
+}
+inline const ::google::protobuf::RepeatedPtrField<::odin::v1::Segment>& Transcription::segments() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:odin.v1.Transcription.segments)
+  return _internal_segments();
+}
+inline const ::google::protobuf::RepeatedPtrField<::odin::v1::Segment>&
+Transcription::_internal_segments() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.segments_;
+}
+inline ::google::protobuf::RepeatedPtrField<::odin::v1::Segment>* PROTOBUF_NONNULL
+Transcription::_internal_mutable_segments() {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return &_impl_.segments_;
 }
 
 // .odin.v1.SessionInfo session = 2 [json_name = "session"];
-inline bool STTranscript::has_session() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
+inline bool Transcription::has_session() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.session_ != nullptr);
   return value;
 }
-inline const ::odin::v1::SessionInfo& STTranscript::_internal_session() const {
+inline const ::odin::v1::SessionInfo& Transcription::_internal_session() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   const ::odin::v1::SessionInfo* p = _impl_.session_;
   return p != nullptr ? *p : reinterpret_cast<const ::odin::v1::SessionInfo&>(::odin::v1::_SessionInfo_default_instance_);
 }
-inline const ::odin::v1::SessionInfo& STTranscript::session() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:odin.v1.STTranscript.session)
+inline const ::odin::v1::SessionInfo& Transcription::session() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:odin.v1.Transcription.session)
   return _internal_session();
 }
-inline void STTranscript::unsafe_arena_set_allocated_session(
+inline void Transcription::unsafe_arena_set_allocated_session(
     ::odin::v1::SessionInfo* PROTOBUF_NULLABLE value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (GetArena() == nullptr) {
@@ -1071,16 +1026,16 @@ inline void STTranscript::unsafe_arena_set_allocated_session(
   }
   _impl_.session_ = reinterpret_cast<::odin::v1::SessionInfo*>(value);
   if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000002u;
+    _impl_._has_bits_[0] |= 0x00000001u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000002u;
+    _impl_._has_bits_[0] &= ~0x00000001u;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:odin.v1.STTranscript.session)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:odin.v1.Transcription.session)
 }
-inline ::odin::v1::SessionInfo* PROTOBUF_NULLABLE STTranscript::release_session() {
+inline ::odin::v1::SessionInfo* PROTOBUF_NULLABLE Transcription::release_session() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
 
-  _impl_._has_bits_[0] &= ~0x00000002u;
+  _impl_._has_bits_[0] &= ~0x00000001u;
   ::odin::v1::SessionInfo* released = _impl_.session_;
   _impl_.session_ = nullptr;
   if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
@@ -1096,16 +1051,16 @@ inline ::odin::v1::SessionInfo* PROTOBUF_NULLABLE STTranscript::release_session(
   }
   return released;
 }
-inline ::odin::v1::SessionInfo* PROTOBUF_NULLABLE STTranscript::unsafe_arena_release_session() {
+inline ::odin::v1::SessionInfo* PROTOBUF_NULLABLE Transcription::unsafe_arena_release_session() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:odin.v1.STTranscript.session)
+  // @@protoc_insertion_point(field_release:odin.v1.Transcription.session)
 
-  _impl_._has_bits_[0] &= ~0x00000002u;
+  _impl_._has_bits_[0] &= ~0x00000001u;
   ::odin::v1::SessionInfo* temp = _impl_.session_;
   _impl_.session_ = nullptr;
   return temp;
 }
-inline ::odin::v1::SessionInfo* PROTOBUF_NONNULL STTranscript::_internal_mutable_session() {
+inline ::odin::v1::SessionInfo* PROTOBUF_NONNULL Transcription::_internal_mutable_session() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (_impl_.session_ == nullptr) {
     auto* p = ::google::protobuf::Message::DefaultConstruct<::odin::v1::SessionInfo>(GetArena());
@@ -1113,14 +1068,14 @@ inline ::odin::v1::SessionInfo* PROTOBUF_NONNULL STTranscript::_internal_mutable
   }
   return _impl_.session_;
 }
-inline ::odin::v1::SessionInfo* PROTOBUF_NONNULL STTranscript::mutable_session()
+inline ::odin::v1::SessionInfo* PROTOBUF_NONNULL Transcription::mutable_session()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  _impl_._has_bits_[0] |= 0x00000002u;
+  _impl_._has_bits_[0] |= 0x00000001u;
   ::odin::v1::SessionInfo* _msg = _internal_mutable_session();
-  // @@protoc_insertion_point(field_mutable:odin.v1.STTranscript.session)
+  // @@protoc_insertion_point(field_mutable:odin.v1.Transcription.session)
   return _msg;
 }
-inline void STTranscript::set_allocated_session(::odin::v1::SessionInfo* PROTOBUF_NULLABLE value) {
+inline void Transcription::set_allocated_session(::odin::v1::SessionInfo* PROTOBUF_NULLABLE value) {
   ::google::protobuf::Arena* message_arena = GetArena();
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (message_arena == nullptr) {
@@ -1132,13 +1087,13 @@ inline void STTranscript::set_allocated_session(::odin::v1::SessionInfo* PROTOBU
     if (message_arena != submessage_arena) {
       value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
     }
-    _impl_._has_bits_[0] |= 0x00000002u;
+    _impl_._has_bits_[0] |= 0x00000001u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000002u;
+    _impl_._has_bits_[0] &= ~0x00000001u;
   }
 
   _impl_.session_ = reinterpret_cast<::odin::v1::SessionInfo*>(value);
-  // @@protoc_insertion_point(field_set_allocated:odin.v1.STTranscript.session)
+  // @@protoc_insertion_point(field_set_allocated:odin.v1.Transcription.session)
 }
 
 // -------------------------------------------------------------------

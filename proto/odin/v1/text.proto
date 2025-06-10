@@ -7,11 +7,11 @@ import "odin/v1/options.proto";
 import "odin/v1/text_helper.proto";
 
 // output STT
-message STTranscript {
-  option (odin.v1.nats_subject) = "text.segments";
+message Transcription {
+  option (odin.v1.nats_subject) = "text.{session_id}.{module_name}.transcription";
   option (odin.v1.nats_jetstream) = true;
 
-  TranscriptionResult transcription = 1;
+  repeated Segment segments = 1;
   SessionInfo session = 2;
 }
 

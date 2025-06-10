@@ -7,7 +7,7 @@ managed:
 
 plugins:
   # Python generation for backend modules
-  - plugin: buf.build/protocolbuffers/python
+  - plugin: buf.build/protocolbuffers/python:v29.3
     out: gen/python
     opt:
       - pyi_out=gen/python  # Generate .pyi stub files for type hints

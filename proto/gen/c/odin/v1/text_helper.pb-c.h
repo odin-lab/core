@@ -15,7 +15,7 @@ PROTOBUF_C__BEGIN_DECLS
 #endif
 
 
-typedef struct Odin__V1__TranscriptionResult Odin__V1__TranscriptionResult;
+typedef struct Odin__V1__Segment Odin__V1__Segment;
 typedef struct Odin__V1__TurnResult Odin__V1__TurnResult;
 
 
@@ -27,21 +27,17 @@ typedef struct Odin__V1__TurnResult Odin__V1__TurnResult;
 /*
  * Speech transcription result with confidence
  */
-struct  Odin__V1__TranscriptionResult
+struct  Odin__V1__Segment
 {
   ProtobufCMessage base;
-  size_t n_text;
-  char **text;
-  size_t n_completed;
-  protobuf_c_boolean *completed;
-  size_t n_start;
-  float *start;
-  size_t n_end;
-  float *end;
+  char *text;
+  protobuf_c_boolean completed;
+  float start;
+  float end;
 };
-#define ODIN__V1__TRANSCRIPTION_RESULT__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&odin__v1__transcription_result__descriptor) \
-    , 0,NULL, 0,NULL, 0,NULL, 0,NULL }
+#define ODIN__V1__SEGMENT__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&odin__v1__segment__descriptor) \
+    , (char *)protobuf_c_empty_string, 0, 0, 0 }
 
 
 /*
@@ -59,24 +55,24 @@ struct  Odin__V1__TurnResult
     , 0,NULL, 0 }
 
 
-/* Odin__V1__TranscriptionResult methods */
-void   odin__v1__transcription_result__init
-                     (Odin__V1__TranscriptionResult         *message);
-size_t odin__v1__transcription_result__get_packed_size
-                     (const Odin__V1__TranscriptionResult   *message);
-size_t odin__v1__transcription_result__pack
-                     (const Odin__V1__TranscriptionResult   *message,
+/* Odin__V1__Segment methods */
+void   odin__v1__segment__init
+                     (Odin__V1__Segment         *message);
+size_t odin__v1__segment__get_packed_size
+                     (const Odin__V1__Segment   *message);
+size_t odin__v1__segment__pack
+                     (const Odin__V1__Segment   *message,
                       uint8_t             *out);
-size_t odin__v1__transcription_result__pack_to_buffer
-                     (const Odin__V1__TranscriptionResult   *message,
+size_t odin__v1__segment__pack_to_buffer
+                     (const Odin__V1__Segment   *message,
                       ProtobufCBuffer     *buffer);
-Odin__V1__TranscriptionResult *
-       odin__v1__transcription_result__unpack
+Odin__V1__Segment *
+       odin__v1__segment__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data);
-void   odin__v1__transcription_result__free_unpacked
-                     (Odin__V1__TranscriptionResult *message,
+void   odin__v1__segment__free_unpacked
+                     (Odin__V1__Segment *message,
                       ProtobufCAllocator *allocator);
 /* Odin__V1__TurnResult methods */
 void   odin__v1__turn_result__init
@@ -99,8 +95,8 @@ void   odin__v1__turn_result__free_unpacked
                       ProtobufCAllocator *allocator);
 /* --- per-message closures --- */
 
-typedef void (*Odin__V1__TranscriptionResult_Closure)
-                 (const Odin__V1__TranscriptionResult *message,
+typedef void (*Odin__V1__Segment_Closure)
+                 (const Odin__V1__Segment *message,
                   void *closure_data);
 typedef void (*Odin__V1__TurnResult_Closure)
                  (const Odin__V1__TurnResult *message,
@@ -111,7 +107,7 @@ typedef void (*Odin__V1__TurnResult_Closure)
 
 /* --- descriptors --- */
 
-extern const ProtobufCMessageDescriptor odin__v1__transcription_result__descriptor;
+extern const ProtobufCMessageDescriptor odin__v1__segment__descriptor;
 extern const ProtobufCMessageDescriptor odin__v1__turn_result__descriptor;
 
 PROTOBUF_C__END_DECLS

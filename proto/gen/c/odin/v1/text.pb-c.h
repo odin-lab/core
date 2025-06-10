@@ -18,7 +18,7 @@ PROTOBUF_C__BEGIN_DECLS
 #include "odin/v1/options.pb-c.h"
 #include "odin/v1/text_helper.pb-c.h"
 
-typedef struct Odin__V1__STTranscript Odin__V1__STTranscript;
+typedef struct Odin__V1__Transcription Odin__V1__Transcription;
 typedef struct Odin__V1__TextComplete Odin__V1__TextComplete;
 typedef struct Odin__V1__TextOut Odin__V1__TextOut;
 typedef struct Odin__V1__TextSpeech Odin__V1__TextSpeech;
@@ -32,15 +32,16 @@ typedef struct Odin__V1__TextSpeech Odin__V1__TextSpeech;
 /*
  * output STT
  */
-struct  Odin__V1__STTranscript
+struct  Odin__V1__Transcription
 {
   ProtobufCMessage base;
-  Odin__V1__TranscriptionResult *transcription;
+  size_t n_segments;
+  Odin__V1__Segment **segments;
   Odin__V1__SessionInfo *session;
 };
-#define ODIN__V1__STTRANSCRIPT__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&odin__v1__sttranscript__descriptor) \
-    , NULL, NULL }
+#define ODIN__V1__TRANSCRIPTION__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&odin__v1__transcription__descriptor) \
+    , 0,NULL, NULL }
 
 
 /*
@@ -85,24 +86,24 @@ struct  Odin__V1__TextSpeech
     , (char *)protobuf_c_empty_string, NULL }
 
 
-/* Odin__V1__STTranscript methods */
-void   odin__v1__sttranscript__init
-                     (Odin__V1__STTranscript         *message);
-size_t odin__v1__sttranscript__get_packed_size
-                     (const Odin__V1__STTranscript   *message);
-size_t odin__v1__sttranscript__pack
-                     (const Odin__V1__STTranscript   *message,
+/* Odin__V1__Transcription methods */
+void   odin__v1__transcription__init
+                     (Odin__V1__Transcription         *message);
+size_t odin__v1__transcription__get_packed_size
+                     (const Odin__V1__Transcription   *message);
+size_t odin__v1__transcription__pack
+                     (const Odin__V1__Transcription   *message,
                       uint8_t             *out);
-size_t odin__v1__sttranscript__pack_to_buffer
-                     (const Odin__V1__STTranscript   *message,
+size_t odin__v1__transcription__pack_to_buffer
+                     (const Odin__V1__Transcription   *message,
                       ProtobufCBuffer     *buffer);
-Odin__V1__STTranscript *
-       odin__v1__sttranscript__unpack
+Odin__V1__Transcription *
+       odin__v1__transcription__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data);
-void   odin__v1__sttranscript__free_unpacked
-                     (Odin__V1__STTranscript *message,
+void   odin__v1__transcription__free_unpacked
+                     (Odin__V1__Transcription *message,
                       ProtobufCAllocator *allocator);
 /* Odin__V1__TextComplete methods */
 void   odin__v1__text_complete__init
@@ -163,8 +164,8 @@ void   odin__v1__text_speech__free_unpacked
                       ProtobufCAllocator *allocator);
 /* --- per-message closures --- */
 
-typedef void (*Odin__V1__STTranscript_Closure)
-                 (const Odin__V1__STTranscript *message,
+typedef void (*Odin__V1__Transcription_Closure)
+                 (const Odin__V1__Transcription *message,
                   void *closure_data);
 typedef void (*Odin__V1__TextComplete_Closure)
                  (const Odin__V1__TextComplete *message,
@@ -181,7 +182,7 @@ typedef void (*Odin__V1__TextSpeech_Closure)
 
 /* --- descriptors --- */
 
-extern const ProtobufCMessageDescriptor odin__v1__sttranscript__descriptor;
+extern const ProtobufCMessageDescriptor odin__v1__transcription__descriptor;
 extern const ProtobufCMessageDescriptor odin__v1__text_complete__descriptor;
 extern const ProtobufCMessageDescriptor odin__v1__text_out__descriptor;
 extern const ProtobufCMessageDescriptor odin__v1__text_speech__descriptor;

@@ -7,49 +7,49 @@
 #endif
 
 #include "odin/v1/text.pb-c.h"
-void   odin__v1__sttranscript__init
-                     (Odin__V1__STTranscript         *message)
+void   odin__v1__transcription__init
+                     (Odin__V1__Transcription         *message)
 {
-  static const Odin__V1__STTranscript init_value = ODIN__V1__STTRANSCRIPT__INIT;
+  static const Odin__V1__Transcription init_value = ODIN__V1__TRANSCRIPTION__INIT;
   *message = init_value;
 }
-size_t odin__v1__sttranscript__get_packed_size
-                     (const Odin__V1__STTranscript *message)
+size_t odin__v1__transcription__get_packed_size
+                     (const Odin__V1__Transcription *message)
 {
-  assert(message->base.descriptor == &odin__v1__sttranscript__descriptor);
+  assert(message->base.descriptor == &odin__v1__transcription__descriptor);
   return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
 }
-size_t odin__v1__sttranscript__pack
-                     (const Odin__V1__STTranscript *message,
+size_t odin__v1__transcription__pack
+                     (const Odin__V1__Transcription *message,
                       uint8_t       *out)
 {
-  assert(message->base.descriptor == &odin__v1__sttranscript__descriptor);
+  assert(message->base.descriptor == &odin__v1__transcription__descriptor);
   return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
 }
-size_t odin__v1__sttranscript__pack_to_buffer
-                     (const Odin__V1__STTranscript *message,
+size_t odin__v1__transcription__pack_to_buffer
+                     (const Odin__V1__Transcription *message,
                       ProtobufCBuffer *buffer)
 {
-  assert(message->base.descriptor == &odin__v1__sttranscript__descriptor);
+  assert(message->base.descriptor == &odin__v1__transcription__descriptor);
   return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
 }
-Odin__V1__STTranscript *
-       odin__v1__sttranscript__unpack
+Odin__V1__Transcription *
+       odin__v1__transcription__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data)
 {
-  return (Odin__V1__STTranscript *)
-     protobuf_c_message_unpack (&odin__v1__sttranscript__descriptor,
+  return (Odin__V1__Transcription *)
+     protobuf_c_message_unpack (&odin__v1__transcription__descriptor,
                                 allocator, len, data);
 }
-void   odin__v1__sttranscript__free_unpacked
-                     (Odin__V1__STTranscript *message,
+void   odin__v1__transcription__free_unpacked
+                     (Odin__V1__Transcription *message,
                       ProtobufCAllocator *allocator)
 {
   if(!message)
     return;
-  assert(message->base.descriptor == &odin__v1__sttranscript__descriptor);
+  assert(message->base.descriptor == &odin__v1__transcription__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
 void   odin__v1__text_complete__init
@@ -187,16 +187,16 @@ void   odin__v1__text_speech__free_unpacked
   assert(message->base.descriptor == &odin__v1__text_speech__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-static const ProtobufCFieldDescriptor odin__v1__sttranscript__field_descriptors[2] =
+static const ProtobufCFieldDescriptor odin__v1__transcription__field_descriptors[2] =
 {
   {
-    "transcription",
+    "segments",
     1,
-    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_LABEL_REPEATED,
     PROTOBUF_C_TYPE_MESSAGE,
-    0,   /* quantifier_offset */
-    offsetof(Odin__V1__STTranscript, transcription),
-    &odin__v1__transcription_result__descriptor,
+    offsetof(Odin__V1__Transcription, n_segments),
+    offsetof(Odin__V1__Transcription, segments),
+    &odin__v1__segment__descriptor,
     NULL,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
@@ -207,35 +207,35 @@ static const ProtobufCFieldDescriptor odin__v1__sttranscript__field_descriptors[
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_MESSAGE,
     0,   /* quantifier_offset */
-    offsetof(Odin__V1__STTranscript, session),
+    offsetof(Odin__V1__Transcription, session),
     &odin__v1__session_info__descriptor,
     NULL,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
 };
-static const unsigned odin__v1__sttranscript__field_indices_by_name[] = {
+static const unsigned odin__v1__transcription__field_indices_by_name[] = {
+  0,   /* field[0] = segments */
   1,   /* field[1] = session */
-  0,   /* field[0] = transcription */
 };
-static const ProtobufCIntRange odin__v1__sttranscript__number_ranges[1 + 1] =
+static const ProtobufCIntRange odin__v1__transcription__number_ranges[1 + 1] =
 {
   { 1, 0 },
   { 0, 2 }
 };
-const ProtobufCMessageDescriptor odin__v1__sttranscript__descriptor =
+const ProtobufCMessageDescriptor odin__v1__transcription__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "odin.v1.STTranscript",
-  "STTranscript",
-  "Odin__V1__STTranscript",
+  "odin.v1.Transcription",
+  "Transcription",
+  "Odin__V1__Transcription",
   "odin.v1",
-  sizeof(Odin__V1__STTranscript),
+  sizeof(Odin__V1__Transcription),
   2,
-  odin__v1__sttranscript__field_descriptors,
-  odin__v1__sttranscript__field_indices_by_name,
-  1,  odin__v1__sttranscript__number_ranges,
-  (ProtobufCMessageInit) odin__v1__sttranscript__init,
+  odin__v1__transcription__field_descriptors,
+  odin__v1__transcription__field_indices_by_name,
+  1,  odin__v1__transcription__number_ranges,
+  (ProtobufCMessageInit) odin__v1__transcription__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
 static const ProtobufCFieldDescriptor odin__v1__text_complete__field_descriptors[2] =

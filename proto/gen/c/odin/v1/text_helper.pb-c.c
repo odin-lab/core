@@ -7,49 +7,49 @@
 #endif
 
 #include "odin/v1/text_helper.pb-c.h"
-void   odin__v1__transcription_result__init
-                     (Odin__V1__TranscriptionResult         *message)
+void   odin__v1__segment__init
+                     (Odin__V1__Segment         *message)
 {
-  static const Odin__V1__TranscriptionResult init_value = ODIN__V1__TRANSCRIPTION_RESULT__INIT;
+  static const Odin__V1__Segment init_value = ODIN__V1__SEGMENT__INIT;
   *message = init_value;
 }
-size_t odin__v1__transcription_result__get_packed_size
-                     (const Odin__V1__TranscriptionResult *message)
+size_t odin__v1__segment__get_packed_size
+                     (const Odin__V1__Segment *message)
 {
-  assert(message->base.descriptor == &odin__v1__transcription_result__descriptor);
+  assert(message->base.descriptor == &odin__v1__segment__descriptor);
   return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
 }
-size_t odin__v1__transcription_result__pack
-                     (const Odin__V1__TranscriptionResult *message,
+size_t odin__v1__segment__pack
+                     (const Odin__V1__Segment *message,
                       uint8_t       *out)
 {
-  assert(message->base.descriptor == &odin__v1__transcription_result__descriptor);
+  assert(message->base.descriptor == &odin__v1__segment__descriptor);
   return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
 }
-size_t odin__v1__transcription_result__pack_to_buffer
-                     (const Odin__V1__TranscriptionResult *message,
+size_t odin__v1__segment__pack_to_buffer
+                     (const Odin__V1__Segment *message,
                       ProtobufCBuffer *buffer)
 {
-  assert(message->base.descriptor == &odin__v1__transcription_result__descriptor);
+  assert(message->base.descriptor == &odin__v1__segment__descriptor);
   return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
 }
-Odin__V1__TranscriptionResult *
-       odin__v1__transcription_result__unpack
+Odin__V1__Segment *
+       odin__v1__segment__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data)
 {
-  return (Odin__V1__TranscriptionResult *)
-     protobuf_c_message_unpack (&odin__v1__transcription_result__descriptor,
+  return (Odin__V1__Segment *)
+     protobuf_c_message_unpack (&odin__v1__segment__descriptor,
                                 allocator, len, data);
 }
-void   odin__v1__transcription_result__free_unpacked
-                     (Odin__V1__TranscriptionResult *message,
+void   odin__v1__segment__free_unpacked
+                     (Odin__V1__Segment *message,
                       ProtobufCAllocator *allocator)
 {
   if(!message)
     return;
-  assert(message->base.descriptor == &odin__v1__transcription_result__descriptor);
+  assert(message->base.descriptor == &odin__v1__segment__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
 void   odin__v1__turn_result__init
@@ -97,15 +97,15 @@ void   odin__v1__turn_result__free_unpacked
   assert(message->base.descriptor == &odin__v1__turn_result__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-static const ProtobufCFieldDescriptor odin__v1__transcription_result__field_descriptors[4] =
+static const ProtobufCFieldDescriptor odin__v1__segment__field_descriptors[4] =
 {
   {
     "text",
     1,
-    PROTOBUF_C_LABEL_REPEATED,
+    PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_STRING,
-    offsetof(Odin__V1__TranscriptionResult, n_text),
-    offsetof(Odin__V1__TranscriptionResult, text),
+    0,   /* quantifier_offset */
+    offsetof(Odin__V1__Segment, text),
     NULL,
     &protobuf_c_empty_string,
     0,             /* flags */
@@ -114,64 +114,64 @@ static const ProtobufCFieldDescriptor odin__v1__transcription_result__field_desc
   {
     "completed",
     2,
-    PROTOBUF_C_LABEL_REPEATED,
+    PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_BOOL,
-    offsetof(Odin__V1__TranscriptionResult, n_completed),
-    offsetof(Odin__V1__TranscriptionResult, completed),
+    0,   /* quantifier_offset */
+    offsetof(Odin__V1__Segment, completed),
     NULL,
     NULL,
-    PROTOBUF_C_FIELD_FLAG_PACKED,             /* flags */
+    0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
     "start",
     3,
-    PROTOBUF_C_LABEL_REPEATED,
+    PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_FLOAT,
-    offsetof(Odin__V1__TranscriptionResult, n_start),
-    offsetof(Odin__V1__TranscriptionResult, start),
+    0,   /* quantifier_offset */
+    offsetof(Odin__V1__Segment, start),
     NULL,
     NULL,
-    PROTOBUF_C_FIELD_FLAG_PACKED,             /* flags */
+    0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
     "end",
     4,
-    PROTOBUF_C_LABEL_REPEATED,
+    PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_FLOAT,
-    offsetof(Odin__V1__TranscriptionResult, n_end),
-    offsetof(Odin__V1__TranscriptionResult, end),
+    0,   /* quantifier_offset */
+    offsetof(Odin__V1__Segment, end),
     NULL,
     NULL,
-    PROTOBUF_C_FIELD_FLAG_PACKED,             /* flags */
+    0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
 };
-static const unsigned odin__v1__transcription_result__field_indices_by_name[] = {
+static const unsigned odin__v1__segment__field_indices_by_name[] = {
   1,   /* field[1] = completed */
   3,   /* field[3] = end */
   2,   /* field[2] = start */
   0,   /* field[0] = text */
 };
-static const ProtobufCIntRange odin__v1__transcription_result__number_ranges[1 + 1] =
+static const ProtobufCIntRange odin__v1__segment__number_ranges[1 + 1] =
 {
   { 1, 0 },
   { 0, 4 }
 };
-const ProtobufCMessageDescriptor odin__v1__transcription_result__descriptor =
+const ProtobufCMessageDescriptor odin__v1__segment__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "odin.v1.TranscriptionResult",
-  "TranscriptionResult",
-  "Odin__V1__TranscriptionResult",
+  "odin.v1.Segment",
+  "Segment",
+  "Odin__V1__Segment",
   "odin.v1",
-  sizeof(Odin__V1__TranscriptionResult),
+  sizeof(Odin__V1__Segment),
   4,
-  odin__v1__transcription_result__field_descriptors,
-  odin__v1__transcription_result__field_indices_by_name,
-  1,  odin__v1__transcription_result__number_ranges,
-  (ProtobufCMessageInit) odin__v1__transcription_result__init,
+  odin__v1__segment__field_descriptors,
+  odin__v1__segment__field_indices_by_name,
+  1,  odin__v1__segment__number_ranges,
+  (ProtobufCMessageInit) odin__v1__segment__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
 static const ProtobufCFieldDescriptor odin__v1__turn_result__field_descriptors[2] =
