@@ -21,11 +21,3 @@ class AudioBufferSpeaker(_message.Message):
     audio: _common_pb2.AudioData
     session: _common_pb2.SessionInfo
     def __init__(self, audio: _Optional[_Union[_common_pb2.AudioData, _Mapping]] = ..., session: _Optional[_Union[_common_pb2.SessionInfo, _Mapping]] = ...) -> None: ...
-
-class AudioBufferSession(_message.Message):
-    __slots__ = ("audio", "session")
-    AUDIO_FIELD_NUMBER: _ClassVar[int]
-    SESSION_FIELD_NUMBER: _ClassVar[int]
-    audio: _common_pb2.AudioData
-    session: _common_pb2.SessionInfo
-    def __init__(self, audio: _Optional[_Union[_common_pb2.AudioData, _Mapping]] = ..., session: _Optional[_Union[_common_pb2.SessionInfo, _Mapping]] = ...) -> None: ...

@@ -10,7 +10,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file odin/v1/text_helper.proto.
  */
 export const file_odin_v1_text_helper: GenFile = /*@__PURE__*/
-  fileDesc("ChlvZGluL3YxL3RleHRfaGVscGVyLnByb3RvEgdvZGluLnYxIkYKB1NlZ21lbnQSDAoEdGV4dBgBIAEoCRIRCgljb21wbGV0ZWQYAiABKAgSDQoFc3RhcnQYAyABKAISCwoDZW5kGAQgASgCIi4KClR1cm5SZXN1bHQSDAoEdGV4dBgBIAMoCRISCgpvZGluc190dXJuGAIgASgIQlsKC2NvbS5vZGluLnYxQg9UZXh0SGVscGVyUHJvdG9QAaICA09YWKoCB09kaW4uVjHKAgdPZGluXFYx4gITT2RpblxWMVxHUEJNZXRhZGF0YeoCCE9kaW46OlYxYgZwcm90bzM");
+  fileDesc("ChlvZGluL3YxL3RleHRfaGVscGVyLnByb3RvEgdvZGluLnYxIkYKB1NlZ21lbnQSDAoEdGV4dBgBIAEoCRIRCgljb21wbGV0ZWQYAiABKAgSDQoFc3RhcnQYAyABKAISCwoDZW5kGAQgASgCQlsKC2NvbS5vZGluLnYxQg9UZXh0SGVscGVyUHJvdG9QAaICA09YWKoCB09kaW4uVjHKAgdPZGluXFYx4gITT2RpblxWMVxHUEJNZXRhZGF0YeoCCE9kaW46OlYxYgZwcm90bzM");
 
 /**
  * Speech transcription result with confidence
@@ -45,28 +45,4 @@ export type Segment = Message<"odin.v1.Segment"> & {
  */
 export const SegmentSchema: GenMessage<Segment> = /*@__PURE__*/
   messageDesc(file_odin_v1_text_helper, 0);
-
-/**
- * Turn information with role and content
- *
- * @generated from message odin.v1.TurnResult
- */
-export type TurnResult = Message<"odin.v1.TurnResult"> & {
-  /**
-   * @generated from field: repeated string text = 1;
-   */
-  text: string[];
-
-  /**
-   * @generated from field: bool odins_turn = 2;
-   */
-  odinsTurn: boolean;
-};
-
-/**
- * Describes the message odin.v1.TurnResult.
- * Use `create(TurnResultSchema)` to create a new message.
- */
-export const TurnResultSchema: GenMessage<TurnResult> = /*@__PURE__*/
-  messageDesc(file_odin_v1_text_helper, 1);
 

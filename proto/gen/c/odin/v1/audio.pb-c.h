@@ -19,7 +19,6 @@ PROTOBUF_C__BEGIN_DECLS
 
 typedef struct Odin__V1__AudioBufferMic Odin__V1__AudioBufferMic;
 typedef struct Odin__V1__AudioBufferSpeaker Odin__V1__AudioBufferSpeaker;
-typedef struct Odin__V1__AudioBufferSession Odin__V1__AudioBufferSession;
 
 
 /* --- enums --- */
@@ -54,21 +53,6 @@ struct  Odin__V1__AudioBufferSpeaker
 };
 #define ODIN__V1__AUDIO_BUFFER_SPEAKER__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&odin__v1__audio_buffer_speaker__descriptor) \
-    , NULL, NULL }
-
-
-/*
- * Audio data with session information
- * Subject pattern: audio.<session_id>.<module_name>.<channel>
- */
-struct  Odin__V1__AudioBufferSession
-{
-  ProtobufCMessage base;
-  Odin__V1__AudioData *audio;
-  Odin__V1__SessionInfo *session;
-};
-#define ODIN__V1__AUDIO_BUFFER_SESSION__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&odin__v1__audio_buffer_session__descriptor) \
     , NULL, NULL }
 
 
@@ -110,25 +94,6 @@ Odin__V1__AudioBufferSpeaker *
 void   odin__v1__audio_buffer_speaker__free_unpacked
                      (Odin__V1__AudioBufferSpeaker *message,
                       ProtobufCAllocator *allocator);
-/* Odin__V1__AudioBufferSession methods */
-void   odin__v1__audio_buffer_session__init
-                     (Odin__V1__AudioBufferSession         *message);
-size_t odin__v1__audio_buffer_session__get_packed_size
-                     (const Odin__V1__AudioBufferSession   *message);
-size_t odin__v1__audio_buffer_session__pack
-                     (const Odin__V1__AudioBufferSession   *message,
-                      uint8_t             *out);
-size_t odin__v1__audio_buffer_session__pack_to_buffer
-                     (const Odin__V1__AudioBufferSession   *message,
-                      ProtobufCBuffer     *buffer);
-Odin__V1__AudioBufferSession *
-       odin__v1__audio_buffer_session__unpack
-                     (ProtobufCAllocator  *allocator,
-                      size_t               len,
-                      const uint8_t       *data);
-void   odin__v1__audio_buffer_session__free_unpacked
-                     (Odin__V1__AudioBufferSession *message,
-                      ProtobufCAllocator *allocator);
 /* --- per-message closures --- */
 
 typedef void (*Odin__V1__AudioBufferMic_Closure)
@@ -136,9 +101,6 @@ typedef void (*Odin__V1__AudioBufferMic_Closure)
                   void *closure_data);
 typedef void (*Odin__V1__AudioBufferSpeaker_Closure)
                  (const Odin__V1__AudioBufferSpeaker *message,
-                  void *closure_data);
-typedef void (*Odin__V1__AudioBufferSession_Closure)
-                 (const Odin__V1__AudioBufferSession *message,
                   void *closure_data);
 
 /* --- services --- */
@@ -148,7 +110,6 @@ typedef void (*Odin__V1__AudioBufferSession_Closure)
 
 extern const ProtobufCMessageDescriptor odin__v1__audio_buffer_mic__descriptor;
 extern const ProtobufCMessageDescriptor odin__v1__audio_buffer_speaker__descriptor;
-extern const ProtobufCMessageDescriptor odin__v1__audio_buffer_session__descriptor;
 
 PROTOBUF_C__END_DECLS
 

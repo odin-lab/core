@@ -10,7 +10,7 @@ dependencies = [
     "numpy>=2.2.6",
     "odin-nats",
     "odin-proto",
-    "protobuf>=6.31.1",
+    "protobuf>=5.29.3",
     "sounddevice>=0.5.2",
 ]
 
@@ -19,6 +19,4 @@ odin-proto = { path = "../proto/gen/python", editable = true }
 odin-nats = { path = "../nats", editable = true }
 
 [dependency-groups]
-dev = [
-    "ipykernel>=6.29.5",
-]
+dev = ["ipykernel>=6.29.5"]

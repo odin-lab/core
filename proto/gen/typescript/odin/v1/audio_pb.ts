@@ -13,7 +13,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file odin/v1/audio.proto.
  */
 export const file_odin_v1_audio: GenFile = /*@__PURE__*/
-  fileDesc("ChNvZGluL3YxL2F1ZGlvLnByb3RvEgdvZGluLnYxInIKDkF1ZGlvQnVmZmVyTWljEiEKBWF1ZGlvGAEgASgLMhIub2Rpbi52MS5BdWRpb0RhdGESEQoJY2xpZW50X2lkGAIgASgJOiqitRgmYXVkaW8ue3Nlc3Npb25faWR9Lnttb2R1bGVfbmFtZX0uaW5wdXQiiwEKEkF1ZGlvQnVmZmVyU3BlYWtlchIhCgVhdWRpbxgBIAEoCzISLm9kaW4udjEuQXVkaW9EYXRhEiUKB3Nlc3Npb24YAiABKAsyFC5vZGluLnYxLlNlc3Npb25JbmZvOiuitRgnYXVkaW8ue3Nlc3Npb25faWR9Lnttb2R1bGVfbmFtZX0ub3V0cHV0Io4BChJBdWRpb0J1ZmZlclNlc3Npb24SIQoFYXVkaW8YASABKAsyEi5vZGluLnYxLkF1ZGlvRGF0YRIlCgdzZXNzaW9uGAIgASgLMhQub2Rpbi52MS5TZXNzaW9uSW5mbzouorUYKmF1ZGlvLntzZXNzaW9uX2lkfS57bW9kdWxlX25hbWV9LntjaGFubmVsfUJWCgtjb20ub2Rpbi52MUIKQXVkaW9Qcm90b1ABogIDT1hYqgIHT2Rpbi5WMcoCB09kaW5cVjHiAhNPZGluXFYxXEdQQk1ldGFkYXRh6gIIT2Rpbjo6VjFiBnByb3RvMw", [file_odin_v1_common, file_odin_v1_options]);
+  fileDesc("ChNvZGluL3YxL2F1ZGlvLnByb3RvEgdvZGluLnYxInIKDkF1ZGlvQnVmZmVyTWljEiEKBWF1ZGlvGAEgASgLMhIub2Rpbi52MS5BdWRpb0RhdGESEQoJY2xpZW50X2lkGAIgASgJOiqitRgmYXVkaW8ue3Nlc3Npb25faWR9Lnttb2R1bGVfbmFtZX0uaW5wdXQiiwEKEkF1ZGlvQnVmZmVyU3BlYWtlchIhCgVhdWRpbxgBIAEoCzISLm9kaW4udjEuQXVkaW9EYXRhEiUKB3Nlc3Npb24YAiABKAsyFC5vZGluLnYxLlNlc3Npb25JbmZvOiuitRgnYXVkaW8ue3Nlc3Npb25faWR9Lnttb2R1bGVfbmFtZX0ub3V0cHV0QlYKC2NvbS5vZGluLnYxQgpBdWRpb1Byb3RvUAGiAgNPWFiqAgdPZGluLlYxygIHT2RpblxWMeICE09kaW5cVjFcR1BCTWV0YWRhdGHqAghPZGluOjpWMWIGcHJvdG8z", [file_odin_v1_common, file_odin_v1_options]);
 
 /**
  * Raw audio data chunks from microphone input
@@ -64,29 +64,4 @@ export type AudioBufferSpeaker = Message<"odin.v1.AudioBufferSpeaker"> & {
  */
 export const AudioBufferSpeakerSchema: GenMessage<AudioBufferSpeaker> = /*@__PURE__*/
   messageDesc(file_odin_v1_audio, 1);
-
-/**
- * Audio data with session information
- * Subject pattern: audio.<session_id>.<module_name>.<channel>
- *
- * @generated from message odin.v1.AudioBufferSession
- */
-export type AudioBufferSession = Message<"odin.v1.AudioBufferSession"> & {
-  /**
-   * @generated from field: odin.v1.AudioData audio = 1;
-   */
-  audio?: AudioData;
-
-  /**
-   * @generated from field: odin.v1.SessionInfo session = 2;
-   */
-  session?: SessionInfo;
-};
-
-/**
- * Describes the message odin.v1.AudioBufferSession.
- * Use `create(AudioBufferSessionSchema)` to create a new message.
- */
-export const AudioBufferSessionSchema: GenMessage<AudioBufferSession> = /*@__PURE__*/
-  messageDesc(file_odin_v1_audio, 2);
 

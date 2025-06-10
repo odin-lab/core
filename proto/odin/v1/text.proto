@@ -16,28 +16,28 @@ message Transcription {
 }
 
 // Text input for LLM processing
-message TextComplete {
-  option (odin.v1.nats_subject) = "text.complete";
-  option (odin.v1.nats_jetstream) = true;
+// message TextComplete {
+//   option (odin.v1.nats_subject) = "text.complete";
+//   option (odin.v1.nats_jetstream) = true;
 
-  TurnResult turn_result = 1;
-  SessionInfo session = 2;
-}
+//   TurnResult turn_result = 1;
+//   SessionInfo session = 2;
+// }
 
-// Generated text response from LLM
-message TextOut {
-  option (odin.v1.nats_subject) = "text.out";
-  option (odin.v1.nats_jetstream) = true;
+// // Generated text response from LLM
+// message TextOut {
+//   option (odin.v1.nats_subject) = "text.out";
+//   option (odin.v1.nats_jetstream) = true;
 
-  string output_text = 1;
-  SessionInfo session = 3;
-}
+//   string output_text = 1;
+//   SessionInfo session = 3;
+// }
 
-// Checked output for TTS
-message TextSpeech {
-  option (odin.v1.nats_subject) = "text.speech";
-  option (odin.v1.nats_jetstream) = true;
+// // Checked output for TTS
+// message TextSpeech {
+//   option (odin.v1.nats_subject) = "text.speech";
+//   option (odin.v1.nats_jetstream) = true;
 
-  string output_text = 1;
-  SessionInfo session = 2;
-}
+//   string output_text = 1;
+//   SessionInfo session = 2;
+// }

@@ -19,6 +19,7 @@ from enum import IntEnum
 from typing import Dict, Any, List, Optional
 
 from nats.aio.client import Client as NATS
+
 # Import from the odin-proto package
 from odin.v1 import session_pb2 as pb
 
@@ -43,7 +44,7 @@ class BaseSession(ABC):
 
     def __init__(self, session_id: str, config: bytes, nc: NATS, module_name: str):
         self.session_id = session_id
-        self.config = config            # opaque – pass to your engine as you wish
+        self.config = config  # opaque – pass to your engine as you wish
         self.nc = nc
         self.module_name = module_name
 
@@ -59,7 +60,9 @@ class BaseSession(ABC):
     # ---- helper to send **durable** status updates -----------------------
     async def publish_status(self, status: ModuleStatus, detail: str = "") -> None:
         """Emit a Status message to `session.<id>.<module>.status` (regular NATS)."""
-        log.debug(f"Publishing status {status} for {self.module_name} in session {self.session_id}")
+        log.debug(
+            f"Publishing status {status} for {self.module_name} in session {self.session_id}"
+        )
         subj = f"session.{self.session_id}.{self.module_name}.status"
         msg = pb.Status(
             session_id=self.session_id,
@@ -79,6 +82,11 @@ class BaseModule(ABC):
     Init / Shutdown commands via Core‑NATS request‑reply.
     """
 
+    nc: NATS
+    name: str
+    queue_group: str
+    sessions: Dict[str, BaseSession]
+
     def __init__(self, nc: NATS, name: str, queue_group: Optional[str] = None):
         self.nc = nc
         self.name = name
@@ -96,7 +104,7 @@ class BaseModule(ABC):
     async def _on_command(self, msg):  # noqa: ANN001 – nats.Msg
         """Handle Init / Shutdown commands coming from the SessionManager."""
         log.debug(f"{self.name} received command on subject: {msg.subject}")
-        
+
         try:
             cmd = pb.Command.FromString(msg.data)
             log.debug(f"{self.name} parsed command successfully")
@@ -120,13 +128,16 @@ class BaseModule(ABC):
     async def _handle_init(self, sess_id: str, cfg: bytes, reply: str) -> None:
         try:
             log.debug(f"Handling init for session {sess_id}, reply subject: {reply}")
-            
+
             # Quick ACK so requester can unblock - use regular NATS, not JetStream
-            await self.nc.publish(reply, pb.Status(
-                session_id=sess_id,
-                module=self.name,
-                status=ModuleStatus.INITIALIZING,
-            ).SerializeToString())
+            await self.nc.publish(
+                reply,
+                pb.Status(
+                    session_id=sess_id,
+                    module=self.name,
+                    status=ModuleStatus.INITIALIZING,
+                ).SerializeToString(),
+            )
             log.debug(f"Sent INITIALIZING status for {self.name}")
 
             session = await self.create_session(sess_id, cfg)
@@ -136,7 +147,7 @@ class BaseModule(ABC):
             log.debug(f"Starting initialization for {self.name}")
             await session.initialize()
             log.debug(f"Completed initialization for {self.name}")
-            
+
             # This one uses regular NATS for status updates
             await session.publish_status(ModuleStatus.RUNNING)
             log.info("%s – session %s RUNNING", self.name, sess_id)
@@ -146,12 +157,15 @@ class BaseModule(ABC):
             log.error(f"Exception during init for {self.name}: {err}", exc_info=True)
             # Error reply via regular NATS (only if we haven't already replied)
             try:
-                await self.nc.publish(reply, pb.Status(
-                    session_id=sess_id,
-                    module=self.name,
-                    status=ModuleStatus.FAILED,
-                    detail=err,
-                ).SerializeToString())
+                await self.nc.publish(
+                    reply,
+                    pb.Status(
+                        session_id=sess_id,
+                        module=self.name,
+                        status=ModuleStatus.FAILED,
+                        detail=err,
+                    ).SerializeToString(),
+                )
             except:
                 pass  # Already replied
             log.exception("%s – session %s FAILED: %s", self.name, sess_id, err)
@@ -160,21 +174,27 @@ class BaseModule(ABC):
         session = self.sessions.pop(sess_id, None)
         if session is None:
             # Nothing to clean, but still respond so SessionManager unblocks.
-            await self.nc.publish(reply, pb.Status(
-                session_id=sess_id,
-                module=self.name,
-                status=ModuleStatus.DISCONNECTED,
-                detail="unknown session",
-            ).SerializeToString())
+            await self.nc.publish(
+                reply,
+                pb.Status(
+                    session_id=sess_id,
+                    module=self.name,
+                    status=ModuleStatus.DISCONNECTED,
+                    detail="unknown session",
+                ).SerializeToString(),
+            )
             return
 
         await session.cleanup()
         await session.publish_status(ModuleStatus.DISCONNECTED)
-        await self.nc.publish(reply, pb.Status(
-            session_id=sess_id,
-            module=self.name,
-            status=ModuleStatus.DISCONNECTED,
-        ).SerializeToString())
+        await self.nc.publish(
+            reply,
+            pb.Status(
+                session_id=sess_id,
+                module=self.name,
+                status=ModuleStatus.DISCONNECTED,
+            ).SerializeToString(),
+        )
         log.info("%s – session %s disconnected", self.name, sess_id)
 
     # ---- factory for concrete Session objects ---------------------------
@@ -200,30 +220,34 @@ class SessionManager:
         try:
             st = pb.Status()
             st.ParseFromString(msg.data)
-            
+
             # Extract session_id from subject: session.<id>.<module>.status
-            parts = msg.subject.split('.')
+            parts = msg.subject.split(".")
             if len(parts) >= 4:
                 sess_id = parts[1]
-                
+
                 # Initialize nested dict if needed
                 if sess_id not in self.session_statuses:
                     self.session_statuses[sess_id] = {}
-                
+
                 self.session_statuses[sess_id][st.module] = st.status
-                log.debug(f"Stored status for session {sess_id}, module {st.module}: {st.status}")
+                log.debug(
+                    f"Stored status for session {sess_id}, module {st.module}: {st.status}"
+                )
         except Exception as e:
             log.error(f"Failed to parse status message: {e}")
 
     # ---- public API ------------------------------------------------------
-    async def start_session(self, sess_id: str, configs: Dict[str, bytes], *, timeout: float = 3.0) -> None:
+    async def start_session(
+        self, sess_id: str, configs: Dict[str, bytes], *, timeout: float = 3.0
+    ) -> None:
         """Spin‑up *all* modules; raise if any fails."""
-        
+
         # Subscribe to status updates BEFORE sending any commands
         status_subj = f"session.{sess_id}.*.status"
         status_sub = await self.nc.subscribe(status_subj, cb=self._on_status)  # type: ignore[arg-type]
         log.debug(f"Subscribed to {status_subj}")
-        
+
         try:
             # 1) Send Init commands in parallel and wait for INITIALIZING / FAILED replies.
             init_tasks: Dict[str, "asyncio.Task[bytes]"] = {}
@@ -232,7 +256,8 @@ class SessionManager:
                 cmd = pb.Command(init=pb.Init(session_id=sess_id, config=configs[m]))
                 log.debug(f"Sending init command to {cmd_subj}")
                 init_tasks[m] = asyncio.create_task(
-                    self.nc.request(cmd_subj, cmd.SerializeToString(), timeout=timeout))
+                    self.nc.request(cmd_subj, cmd.SerializeToString(), timeout=timeout)
+                )
 
             # Gather first replies – they unblock the request‑reply wait.
             for m, t in init_tasks.items():
@@ -243,13 +268,13 @@ class SessionManager:
                     raise RuntimeError(f"{m} did not ACK in {timeout}s") from te
 
                 log.debug(f"Received reply from {m}, type: {type(msg)}")
-                
+
                 # Check if msg is bytes or a Message object
-                if hasattr(msg, 'data'):
+                if hasattr(msg, "data"):
                     data = msg.data
                 else:
                     data = msg
-                    
+
                 log.debug(f"Reply data from {m}: {len(data)} bytes")
                 try:
                     st = pb.Status()
@@ -264,7 +289,7 @@ class SessionManager:
             # 2) Wait until every module reports RUNNING via the status updates
             await self._wait_for_running(sess_id)
             log.info("✅ Session %s READY", sess_id)
-            
+
         finally:
             # Clean up subscription
             await status_sub.unsubscribe()
@@ -276,7 +301,8 @@ class SessionManager:
             subj = f"session.{sess_id}.{m}.cmd"
             cmd = pb.Command(shutdown=pb.Shutdown(session_id=sess_id))
             shutdown_tasks[m] = asyncio.create_task(
-                self.nc.request(subj, cmd.SerializeToString(), timeout=timeout))
+                self.nc.request(subj, cmd.SerializeToString(), timeout=timeout)
+            )
 
         for m, t in shutdown_tasks.items():
             try:
@@ -284,11 +310,11 @@ class SessionManager:
             except asyncio.TimeoutError as te:  # noqa: PERF203
                 raise RuntimeError(f"{m} did not ACK shutdown in {timeout}s") from te
 
-            if hasattr(msg, 'data'):
+            if hasattr(msg, "data"):
                 data = msg.data
             else:
                 data = msg
-                
+
             st = pb.Status()
             st.ParseFromString(data)
             if st.status != ModuleStatus.DISCONNECTED:
@@ -304,28 +330,32 @@ class SessionManager:
         max_wait = 10.0  # Maximum time to wait
         check_interval = 0.1  # How often to check
         elapsed = 0.0
-        
+
         while elapsed < max_wait:
             statuses = self.session_statuses.get(sess_id, {})
-            
+
             # Check if all modules are RUNNING
-            if len(statuses) == len(self.modules) and all(statuses.get(m) == ModuleStatus.RUNNING for m in self.modules):
+            if len(statuses) == len(self.modules) and all(
+                statuses.get(m) == ModuleStatus.RUNNING for m in self.modules
+            ):
                 return
-                
+
             # Check for any failures
             for m in self.modules:
                 status = statuses.get(m)
                 if status == ModuleStatus.FAILED:
                     raise RuntimeError(f"Module {m} failed during initialization")
-            
+
             await asyncio.sleep(check_interval)
             elapsed += check_interval
-            
+
         # Timeout - report which modules aren't ready
         statuses = self.session_statuses.get(sess_id, {})
         not_running = []
         for m in self.modules:
             status = statuses.get(m)
             if status != ModuleStatus.RUNNING:
-                not_running.append(f"{m}={status if status is not None else 'no-status'}")
-        raise RuntimeError(f"Timeout waiting for modules to be RUNNING: {not_running}") 
+                not_running.append(
+                    f"{m}={status if status is not None else 'no-status'}"
+                )
+        raise RuntimeError(f"Timeout waiting for modules to be RUNNING: {not_running}")

@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package odin.v1;
+
+import "odin/v1/common.proto";
+import "odin/v1/options.proto";
+import "odin/v1/session.proto";
+
+// Flow information with role and content
+message TurnDetected {
+  option (odin.v1.nats_subject) = "flow.{session_id}.{module_name}.turn_detected";
+  option (odin.v1.nats_jetstream) = true;
+
+  SessionInfo session = 1;
+}

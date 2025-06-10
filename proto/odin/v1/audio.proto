@@ -25,9 +25,9 @@ message AudioBufferSpeaker {
 
 // Audio data with session information
 // Subject pattern: audio.<session_id>.<module_name>.<channel>
-message AudioBufferSession {
-  option (odin.v1.nats_subject_pattern) = "audio.{session_id}.{module_name}.{channel}";
-
-  AudioData audio = 1;
-  SessionInfo session = 2;
-}
+// message AudioBufferSession {
+//   option (odin.v1.nats_subject_pattern) = "audio.{session_id}.{module_name}.{channel}";
+//
+//   AudioData audio = 1;
+//   SessionInfo session = 2;
+// }

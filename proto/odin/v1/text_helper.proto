@@ -9,9 +9,3 @@ message Segment {
   float start = 3;
   float end = 4;
 }
-
-// Turn information with role and content
-message TurnResult {
-  repeated string text = 1;
-  bool odins_turn = 2;
-}
