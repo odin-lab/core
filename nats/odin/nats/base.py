@@ -16,7 +16,6 @@ import asyncio
 import logging
 import time
 import socket
-import uuid
 from abc import ABC, abstractmethod
 from enum import IntEnum
 from typing import Dict, Any, List, Optional
@@ -92,7 +91,6 @@ class BaseModule(ABC):
     name: str
     queue_group: str
     sessions: Dict[str, BaseSession]
-    instance_id: str
     kv: Optional[KeyValue]
     heartbeat_task: Optional[asyncio.Task]
     version: str
@@ -103,15 +101,16 @@ class BaseModule(ABC):
         name: str,
         queue_group: Optional[str] = None,
         version: str = "1.0.0",
+        config_schema: str = "",
     ):
         self.nc = nc
         self.name = name
         self.queue_group = queue_group or f"{name}_workers"
         self.sessions: Dict[str, BaseSession] = {}
-        self.instance_id = str(uuid.uuid4())
         self.version = version
         self.kv = None
         self.heartbeat_task = None
+        self.config_schema = config_schema
 
     # ---- public bootstrap -----------------------------------------------
     async def start(self) -> None:
@@ -150,24 +149,24 @@ class BaseModule(ABC):
 
         # Remove from KV store
         if self.kv:
-            key = f"{self.name}.{self.instance_id}"
+            key = f"{self.name}"
             await self.kv.delete(key)
-            log.info(f"Removed {self.name} instance {self.instance_id} from registry")
+            log.info(f"Removed {self.name} from registry")
 
     # ---- KV store operations --------------------------------------------
     async def _publish_bootup(self) -> None:
         """Publish module bootup information to KV store"""
         bootup = pb.ModuleBootup(
             module_name=self.name,
-            instance_id=self.instance_id,
             started_at=int(time.time()),
             version=self.version,
             host=socket.gethostname(),
+            config_schema=self.config_schema,
         )
 
-        key = f"{self.name}.{self.instance_id}"
+        key = f"{self.name}"
         await self.kv.put(key, bootup.SerializeToString())
-        log.info(f"Published bootup for {self.name} instance {self.instance_id}")
+        log.info(f"Published bootup for {self.name}")
 
     async def _heartbeat_loop(self) -> None:
         """Periodically update heartbeat in KV store"""
@@ -177,13 +176,12 @@ class BaseModule(ABC):
 
                 heartbeat = pb.ModuleHeartbeat(
                     module_name=self.name,
-                    instance_id=self.instance_id,
                     timestamp=int(time.time()),
                     status=ModuleStatus.RUNNING,
                     active_sessions=len(self.sessions),
                 )
 
-                key = f"{self.name}.{self.instance_id}.heartbeat"
+                key = f"{self.name}.heartbeat"
                 await self.kv.put(key, heartbeat.SerializeToString())
 
             except asyncio.CancelledError:

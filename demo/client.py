@@ -26,7 +26,7 @@ async def main():
             samplerate=SAMPLE_RATE,
             channels=1,
             blocksize=CHUNK,
-            dtype="float32",
+            dtype="int32",
         ) as stream:
             while True:
                 data, _ = stream.read(CHUNK)  # ndarray[int32]

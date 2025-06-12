@@ -94,9 +94,6 @@ inline constexpr ModuleHeartbeat::Impl_::Impl_(
         module_name_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
-        instance_id_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
         timestamp_{::int64_t{0}},
         status_{static_cast< ::odin::v1::ModuleStatus >(0)},
         active_sessions_{0} {}
@@ -127,13 +124,13 @@ inline constexpr ModuleBootup::Impl_::Impl_(
         module_name_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
-        instance_id_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
         version_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
         host_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        config_schema_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
         started_at_{::int64_t{0}} {}
@@ -280,20 +277,19 @@ const ::uint32_t
         PROTOBUF_FIELD_OFFSET(::odin::v1::ModuleBootup, _impl_._has_bits_),
         8, // hasbit index offset
         PROTOBUF_FIELD_OFFSET(::odin::v1::ModuleBootup, _impl_.module_name_),
-        PROTOBUF_FIELD_OFFSET(::odin::v1::ModuleBootup, _impl_.instance_id_),
         PROTOBUF_FIELD_OFFSET(::odin::v1::ModuleBootup, _impl_.started_at_),
         PROTOBUF_FIELD_OFFSET(::odin::v1::ModuleBootup, _impl_.version_),
         PROTOBUF_FIELD_OFFSET(::odin::v1::ModuleBootup, _impl_.host_),
+        PROTOBUF_FIELD_OFFSET(::odin::v1::ModuleBootup, _impl_.config_schema_),
         0,
-        1,
         4,
+        1,
         2,
         3,
         0x081, // bitmap
         PROTOBUF_FIELD_OFFSET(::odin::v1::ModuleHeartbeat, _impl_._has_bits_),
-        8, // hasbit index offset
+        7, // hasbit index offset
         PROTOBUF_FIELD_OFFSET(::odin::v1::ModuleHeartbeat, _impl_.module_name_),
-        PROTOBUF_FIELD_OFFSET(::odin::v1::ModuleHeartbeat, _impl_.instance_id_),
         PROTOBUF_FIELD_OFFSET(::odin::v1::ModuleHeartbeat, _impl_.timestamp_),
         PROTOBUF_FIELD_OFFSET(::odin::v1::ModuleHeartbeat, _impl_.status_),
         PROTOBUF_FIELD_OFFSET(::odin::v1::ModuleHeartbeat, _impl_.active_sessions_),
@@ -301,7 +297,6 @@ const ::uint32_t
         1,
         2,
         3,
-        4,
         0x081, // bitmap
         PROTOBUF_FIELD_OFFSET(::odin::v1::ModuleRegistry, _impl_._has_bits_),
         5, // hasbit index offset
@@ -319,7 +314,7 @@ static const ::_pbi::MigrationSchema
         {17, sizeof(::odin::v1::Status)},
         {28, sizeof(::odin::v1::ModuleBootup)},
         {41, sizeof(::odin::v1::ModuleHeartbeat)},
-        {54, sizeof(::odin::v1::ModuleRegistry)},
+        {52, sizeof(::odin::v1::ModuleRegistry)},
 };
 static const ::_pb::Message* PROTOBUF_NONNULL const file_default_instances[] = {
     &::odin::v1::_Init_default_instance_._instance,
@@ -341,29 +336,28 @@ const char descriptor_table_protodef_odin_2fv1_2fsession_2eproto[] ABSL_ATTRIBUT
     "md\"\206\001\n\006Status\022\035\n\nsession_id\030\001 \001(\tR\tsessi"
     "onId\022\026\n\006module\030\002 \001(\tR\006module\022-\n\006status\030\003"
     " \001(\0162\025.odin.v1.ModuleStatusR\006status\022\026\n\006d"
-    "etail\030\004 \001(\tR\006detail\"\235\001\n\014ModuleBootup\022\037\n\013"
-    "module_name\030\001 \001(\tR\nmoduleName\022\037\n\013instanc"
-    "e_id\030\002 \001(\tR\ninstanceId\022\035\n\nstarted_at\030\003 \001"
-    "(\003R\tstartedAt\022\030\n\007version\030\004 \001(\tR\007version\022"
-    "\022\n\004host\030\005 \001(\tR\004host\"\311\001\n\017ModuleHeartbeat\022"
-    "\037\n\013module_name\030\001 \001(\tR\nmoduleName\022\037\n\013inst"
-    "ance_id\030\002 \001(\tR\ninstanceId\022\034\n\ttimestamp\030\003"
-    " \001(\003R\ttimestamp\022-\n\006status\030\004 \001(\0162\025.odin.v"
-    "1.ModuleStatusR\006status\022\'\n\017active_session"
-    "s\030\005 \001(\005R\016activeSessions\"d\n\016ModuleRegistr"
-    "y\022/\n\007modules\030\001 \003(\0132\025.odin.v1.ModuleBootu"
-    "pR\007modules\022!\n\014last_updated\030\002 \001(\003R\013lastUp"
-    "dated*K\n\014ModuleStatus\022\020\n\014INITIALIZING\020\000\022"
-    "\013\n\007RUNNING\020\001\022\n\n\006FAILED\020\002\022\020\n\014DISCONNECTED"
-    "\020\003BX\n\013com.odin.v1B\014SessionProtoP\001\242\002\003OXX\252"
-    "\002\007Odin.V1\312\002\007Odin\\V1\342\002\023Odin\\V1\\GPBMetadat"
-    "a\352\002\010Odin::V1b\006proto3"
+    "etail\030\004 \001(\tR\006detail\"\241\001\n\014ModuleBootup\022\037\n\013"
+    "module_name\030\001 \001(\tR\nmoduleName\022\035\n\nstarted"
+    "_at\030\003 \001(\003R\tstartedAt\022\030\n\007version\030\004 \001(\tR\007v"
+    "ersion\022\022\n\004host\030\005 \001(\tR\004host\022#\n\rconfig_sch"
+    "ema\030\006 \001(\tR\014configSchema\"\250\001\n\017ModuleHeartb"
+    "eat\022\037\n\013module_name\030\001 \001(\tR\nmoduleName\022\034\n\t"
+    "timestamp\030\003 \001(\003R\ttimestamp\022-\n\006status\030\004 \001"
+    "(\0162\025.odin.v1.ModuleStatusR\006status\022\'\n\017act"
+    "ive_sessions\030\005 \001(\005R\016activeSessions\"d\n\016Mo"
+    "duleRegistry\022/\n\007modules\030\001 \003(\0132\025.odin.v1."
+    "ModuleBootupR\007modules\022!\n\014last_updated\030\002 "
+    "\001(\003R\013lastUpdated*K\n\014ModuleStatus\022\020\n\014INIT"
+    "IALIZING\020\000\022\013\n\007RUNNING\020\001\022\n\n\006FAILED\020\002\022\020\n\014D"
+    "ISCONNECTED\020\003BX\n\013com.odin.v1B\014SessionPro"
+    "toP\001\242\002\003OXX\252\002\007Odin.V1\312\002\007Odin\\V1\342\002\023Odin\\V1"
+    "\\GPBMetadata\352\002\010Odin::V1b\006proto3"
 };
 static ::absl::once_flag descriptor_table_odin_2fv1_2fsession_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_odin_2fv1_2fsession_2eproto = {
     false,
     false,
-    1020,
+    991,
     descriptor_table_protodef_odin_2fv1_2fsession_2eproto,
     "odin/v1/session.proto",
     &descriptor_table_odin_2fv1_2fsession_2eproto_once,
@@ -1710,9 +1704,9 @@ PROTOBUF_NDEBUG_INLINE ModuleBootup::Impl_::Impl_(
       : _has_bits_{from._has_bits_},
         _cached_size_{0},
         module_name_(arena, from.module_name_),
-        instance_id_(arena, from.instance_id_),
         version_(arena, from.version_),
-        host_(arena, from.host_) {}
+        host_(arena, from.host_),
+        config_schema_(arena, from.config_schema_) {}
 
 ModuleBootup::ModuleBootup(
     ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
@@ -1736,9 +1730,9 @@ PROTOBUF_NDEBUG_INLINE ModuleBootup::Impl_::Impl_(
     ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
       : _cached_size_{0},
         module_name_(arena),
-        instance_id_(arena),
         version_(arena),
-        host_(arena) {}
+        host_(arena),
+        config_schema_(arena) {}
 
 inline void ModuleBootup::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
@@ -1753,9 +1747,9 @@ inline void ModuleBootup::SharedDtor(MessageLite& self) {
   this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   ABSL_DCHECK(this_.GetArena() == nullptr);
   this_._impl_.module_name_.Destroy();
-  this_._impl_.instance_id_.Destroy();
   this_._impl_.version_.Destroy();
   this_._impl_.host_.Destroy();
+  this_._impl_.config_schema_.Destroy();
   this_._impl_.~Impl_();
 }
 
@@ -1802,14 +1796,14 @@ ModuleBootup::GetClassData() const {
   return ModuleBootup_class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<3, 5, 0, 62, 2>
+const ::_pbi::TcParseTable<3, 5, 0, 64, 2>
 ModuleBootup::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(ModuleBootup, _impl_._has_bits_),
     0, // no _extensions_
-    5, 56,  // max_field_number, fast_idx_mask
+    6, 56,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967264,  // skipmap
+    4294967234,  // skipmap
     offsetof(decltype(_table_), field_entries),
     5,  // num_field_entries
     0,  // num_aux_entries
@@ -1825,19 +1819,19 @@ ModuleBootup::_table_ = {
     // string module_name = 1 [json_name = "moduleName"];
     {::_pbi::TcParser::FastUS1,
      {10, 0, 0, PROTOBUF_FIELD_OFFSET(ModuleBootup, _impl_.module_name_)}},
-    // string instance_id = 2 [json_name = "instanceId"];
-    {::_pbi::TcParser::FastUS1,
-     {18, 1, 0, PROTOBUF_FIELD_OFFSET(ModuleBootup, _impl_.instance_id_)}},
+    {::_pbi::TcParser::MiniParse, {}},
     // int64 started_at = 3 [json_name = "startedAt"];
     {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(ModuleBootup, _impl_.started_at_), 4>(),
      {24, 4, 0, PROTOBUF_FIELD_OFFSET(ModuleBootup, _impl_.started_at_)}},
     // string version = 4 [json_name = "version"];
     {::_pbi::TcParser::FastUS1,
-     {34, 2, 0, PROTOBUF_FIELD_OFFSET(ModuleBootup, _impl_.version_)}},
+     {34, 1, 0, PROTOBUF_FIELD_OFFSET(ModuleBootup, _impl_.version_)}},
     // string host = 5 [json_name = "host"];
     {::_pbi::TcParser::FastUS1,
-     {42, 3, 0, PROTOBUF_FIELD_OFFSET(ModuleBootup, _impl_.host_)}},
-    {::_pbi::TcParser::MiniParse, {}},
+     {42, 2, 0, PROTOBUF_FIELD_OFFSET(ModuleBootup, _impl_.host_)}},
+    // string config_schema = 6 [json_name = "configSchema"];
+    {::_pbi::TcParser::FastUS1,
+     {50, 3, 0, PROTOBUF_FIELD_OFFSET(ModuleBootup, _impl_.config_schema_)}},
     {::_pbi::TcParser::MiniParse, {}},
   }}, {{
     65535, 65535
@@ -1845,27 +1839,27 @@ ModuleBootup::_table_ = {
     // string module_name = 1 [json_name = "moduleName"];
     {PROTOBUF_FIELD_OFFSET(ModuleBootup, _impl_.module_name_), _Internal::kHasBitsOffset + 0, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // string instance_id = 2 [json_name = "instanceId"];
-    {PROTOBUF_FIELD_OFFSET(ModuleBootup, _impl_.instance_id_), _Internal::kHasBitsOffset + 1, 0,
-    (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
     // int64 started_at = 3 [json_name = "startedAt"];
     {PROTOBUF_FIELD_OFFSET(ModuleBootup, _impl_.started_at_), _Internal::kHasBitsOffset + 4, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kInt64)},
     // string version = 4 [json_name = "version"];
-    {PROTOBUF_FIELD_OFFSET(ModuleBootup, _impl_.version_), _Internal::kHasBitsOffset + 2, 0,
+    {PROTOBUF_FIELD_OFFSET(ModuleBootup, _impl_.version_), _Internal::kHasBitsOffset + 1, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
     // string host = 5 [json_name = "host"];
-    {PROTOBUF_FIELD_OFFSET(ModuleBootup, _impl_.host_), _Internal::kHasBitsOffset + 3, 0,
+    {PROTOBUF_FIELD_OFFSET(ModuleBootup, _impl_.host_), _Internal::kHasBitsOffset + 2, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string config_schema = 6 [json_name = "configSchema"];
+    {PROTOBUF_FIELD_OFFSET(ModuleBootup, _impl_.config_schema_), _Internal::kHasBitsOffset + 3, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
-    "\24\13\13\0\7\4\0\0"
+    "\24\13\0\7\4\15\0\0"
     "odin.v1.ModuleBootup"
     "module_name"
-    "instance_id"
     "version"
     "host"
+    "config_schema"
   }},
 };
 PROTOBUF_NOINLINE void ModuleBootup::Clear() {
@@ -1881,13 +1875,13 @@ PROTOBUF_NOINLINE void ModuleBootup::Clear() {
       _impl_.module_name_.ClearNonDefaultToEmpty();
     }
     if ((cached_has_bits & 0x00000002u) != 0) {
-      _impl_.instance_id_.ClearNonDefaultToEmpty();
-    }
-    if ((cached_has_bits & 0x00000004u) != 0) {
       _impl_.version_.ClearNonDefaultToEmpty();
     }
-    if ((cached_has_bits & 0x00000008u) != 0) {
+    if ((cached_has_bits & 0x00000004u) != 0) {
       _impl_.host_.ClearNonDefaultToEmpty();
+    }
+    if ((cached_has_bits & 0x00000008u) != 0) {
+      _impl_.config_schema_.ClearNonDefaultToEmpty();
     }
   }
   _impl_.started_at_ = ::int64_t{0};
@@ -1920,16 +1914,6 @@ PROTOBUF_NOINLINE void ModuleBootup::Clear() {
     }
   }
 
-  // string instance_id = 2 [json_name = "instanceId"];
-  if ((this_._impl_._has_bits_[0] & 0x00000002u) != 0) {
-    if (!this_._internal_instance_id().empty()) {
-      const ::std::string& _s = this_._internal_instance_id();
-      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "odin.v1.ModuleBootup.instance_id");
-      target = stream->WriteStringMaybeAliased(2, _s, target);
-    }
-  }
-
   // int64 started_at = 3 [json_name = "startedAt"];
   if ((this_._impl_._has_bits_[0] & 0x00000010u) != 0) {
     if (this_._internal_started_at() != 0) {
@@ -1940,7 +1924,7 @@ PROTOBUF_NOINLINE void ModuleBootup::Clear() {
   }
 
   // string version = 4 [json_name = "version"];
-  if ((this_._impl_._has_bits_[0] & 0x00000004u) != 0) {
+  if ((this_._impl_._has_bits_[0] & 0x00000002u) != 0) {
     if (!this_._internal_version().empty()) {
       const ::std::string& _s = this_._internal_version();
       ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -1950,12 +1934,22 @@ PROTOBUF_NOINLINE void ModuleBootup::Clear() {
   }
 
   // string host = 5 [json_name = "host"];
-  if ((this_._impl_._has_bits_[0] & 0x00000008u) != 0) {
+  if ((this_._impl_._has_bits_[0] & 0x00000004u) != 0) {
     if (!this_._internal_host().empty()) {
       const ::std::string& _s = this_._internal_host();
       ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
           _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "odin.v1.ModuleBootup.host");
       target = stream->WriteStringMaybeAliased(5, _s, target);
+    }
+  }
+
+  // string config_schema = 6 [json_name = "configSchema"];
+  if ((this_._impl_._has_bits_[0] & 0x00000008u) != 0) {
+    if (!this_._internal_config_schema().empty()) {
+      const ::std::string& _s = this_._internal_config_schema();
+      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "odin.v1.ModuleBootup.config_schema");
+      target = stream->WriteStringMaybeAliased(6, _s, target);
     }
   }
 
@@ -1992,25 +1986,25 @@ PROTOBUF_NOINLINE void ModuleBootup::Clear() {
                                         this_._internal_module_name());
       }
     }
-    // string instance_id = 2 [json_name = "instanceId"];
-    if ((cached_has_bits & 0x00000002u) != 0) {
-      if (!this_._internal_instance_id().empty()) {
-        total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                        this_._internal_instance_id());
-      }
-    }
     // string version = 4 [json_name = "version"];
-    if ((cached_has_bits & 0x00000004u) != 0) {
+    if ((cached_has_bits & 0x00000002u) != 0) {
       if (!this_._internal_version().empty()) {
         total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
                                         this_._internal_version());
       }
     }
     // string host = 5 [json_name = "host"];
-    if ((cached_has_bits & 0x00000008u) != 0) {
+    if ((cached_has_bits & 0x00000004u) != 0) {
       if (!this_._internal_host().empty()) {
         total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
                                         this_._internal_host());
+      }
+    }
+    // string config_schema = 6 [json_name = "configSchema"];
+    if ((cached_has_bits & 0x00000008u) != 0) {
+      if (!this_._internal_config_schema().empty()) {
+        total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                        this_._internal_config_schema());
       }
     }
     // int64 started_at = 3 [json_name = "startedAt"];
@@ -2045,15 +2039,6 @@ void ModuleBootup::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::go
       }
     }
     if ((cached_has_bits & 0x00000002u) != 0) {
-      if (!from._internal_instance_id().empty()) {
-        _this->_internal_set_instance_id(from._internal_instance_id());
-      } else {
-        if (_this->_impl_.instance_id_.IsDefault()) {
-          _this->_internal_set_instance_id("");
-        }
-      }
-    }
-    if ((cached_has_bits & 0x00000004u) != 0) {
       if (!from._internal_version().empty()) {
         _this->_internal_set_version(from._internal_version());
       } else {
@@ -2062,12 +2047,21 @@ void ModuleBootup::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::go
         }
       }
     }
-    if ((cached_has_bits & 0x00000008u) != 0) {
+    if ((cached_has_bits & 0x00000004u) != 0) {
       if (!from._internal_host().empty()) {
         _this->_internal_set_host(from._internal_host());
       } else {
         if (_this->_impl_.host_.IsDefault()) {
           _this->_internal_set_host("");
+        }
+      }
+    }
+    if ((cached_has_bits & 0x00000008u) != 0) {
+      if (!from._internal_config_schema().empty()) {
+        _this->_internal_set_config_schema(from._internal_config_schema());
+      } else {
+        if (_this->_impl_.config_schema_.IsDefault()) {
+          _this->_internal_set_config_schema("");
         }
       }
     }
@@ -2096,9 +2090,9 @@ void ModuleBootup::InternalSwap(ModuleBootup* PROTOBUF_RESTRICT PROTOBUF_NONNULL
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.module_name_, &other->_impl_.module_name_, arena);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.instance_id_, &other->_impl_.instance_id_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.version_, &other->_impl_.version_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.host_, &other->_impl_.host_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.config_schema_, &other->_impl_.config_schema_, arena);
   swap(_impl_.started_at_, other->_impl_.started_at_);
 }
 
@@ -2130,8 +2124,7 @@ PROTOBUF_NDEBUG_INLINE ModuleHeartbeat::Impl_::Impl_(
     const ::odin::v1::ModuleHeartbeat& from_msg)
       : _has_bits_{from._has_bits_},
         _cached_size_{0},
-        module_name_(arena, from.module_name_),
-        instance_id_(arena, from.instance_id_) {}
+        module_name_(arena, from.module_name_) {}
 
 ModuleHeartbeat::ModuleHeartbeat(
     ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
@@ -2160,8 +2153,7 @@ PROTOBUF_NDEBUG_INLINE ModuleHeartbeat::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
       : _cached_size_{0},
-        module_name_(arena),
-        instance_id_(arena) {}
+        module_name_(arena) {}
 
 inline void ModuleHeartbeat::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
@@ -2181,7 +2173,6 @@ inline void ModuleHeartbeat::SharedDtor(MessageLite& self) {
   this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   ABSL_DCHECK(this_.GetArena() == nullptr);
   this_._impl_.module_name_.Destroy();
-  this_._impl_.instance_id_.Destroy();
   this_._impl_.~Impl_();
 }
 
@@ -2228,16 +2219,16 @@ ModuleHeartbeat::GetClassData() const {
   return ModuleHeartbeat_class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<3, 5, 0, 54, 2>
+const ::_pbi::TcParseTable<3, 4, 0, 43, 2>
 ModuleHeartbeat::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(ModuleHeartbeat, _impl_._has_bits_),
     0, // no _extensions_
     5, 56,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967264,  // skipmap
+    4294967266,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    5,  // num_field_entries
+    4,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
     ModuleHeartbeat_class_data_.base(),
@@ -2251,18 +2242,16 @@ ModuleHeartbeat::_table_ = {
     // string module_name = 1 [json_name = "moduleName"];
     {::_pbi::TcParser::FastUS1,
      {10, 0, 0, PROTOBUF_FIELD_OFFSET(ModuleHeartbeat, _impl_.module_name_)}},
-    // string instance_id = 2 [json_name = "instanceId"];
-    {::_pbi::TcParser::FastUS1,
-     {18, 1, 0, PROTOBUF_FIELD_OFFSET(ModuleHeartbeat, _impl_.instance_id_)}},
+    {::_pbi::TcParser::MiniParse, {}},
     // int64 timestamp = 3 [json_name = "timestamp"];
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(ModuleHeartbeat, _impl_.timestamp_), 2>(),
-     {24, 2, 0, PROTOBUF_FIELD_OFFSET(ModuleHeartbeat, _impl_.timestamp_)}},
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(ModuleHeartbeat, _impl_.timestamp_), 1>(),
+     {24, 1, 0, PROTOBUF_FIELD_OFFSET(ModuleHeartbeat, _impl_.timestamp_)}},
     // .odin.v1.ModuleStatus status = 4 [json_name = "status"];
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(ModuleHeartbeat, _impl_.status_), 3>(),
-     {32, 3, 0, PROTOBUF_FIELD_OFFSET(ModuleHeartbeat, _impl_.status_)}},
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(ModuleHeartbeat, _impl_.status_), 2>(),
+     {32, 2, 0, PROTOBUF_FIELD_OFFSET(ModuleHeartbeat, _impl_.status_)}},
     // int32 active_sessions = 5 [json_name = "activeSessions"];
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(ModuleHeartbeat, _impl_.active_sessions_), 4>(),
-     {40, 4, 0, PROTOBUF_FIELD_OFFSET(ModuleHeartbeat, _impl_.active_sessions_)}},
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(ModuleHeartbeat, _impl_.active_sessions_), 3>(),
+     {40, 3, 0, PROTOBUF_FIELD_OFFSET(ModuleHeartbeat, _impl_.active_sessions_)}},
     {::_pbi::TcParser::MiniParse, {}},
     {::_pbi::TcParser::MiniParse, {}},
   }}, {{
@@ -2271,25 +2260,21 @@ ModuleHeartbeat::_table_ = {
     // string module_name = 1 [json_name = "moduleName"];
     {PROTOBUF_FIELD_OFFSET(ModuleHeartbeat, _impl_.module_name_), _Internal::kHasBitsOffset + 0, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // string instance_id = 2 [json_name = "instanceId"];
-    {PROTOBUF_FIELD_OFFSET(ModuleHeartbeat, _impl_.instance_id_), _Internal::kHasBitsOffset + 1, 0,
-    (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
     // int64 timestamp = 3 [json_name = "timestamp"];
-    {PROTOBUF_FIELD_OFFSET(ModuleHeartbeat, _impl_.timestamp_), _Internal::kHasBitsOffset + 2, 0,
+    {PROTOBUF_FIELD_OFFSET(ModuleHeartbeat, _impl_.timestamp_), _Internal::kHasBitsOffset + 1, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kInt64)},
     // .odin.v1.ModuleStatus status = 4 [json_name = "status"];
-    {PROTOBUF_FIELD_OFFSET(ModuleHeartbeat, _impl_.status_), _Internal::kHasBitsOffset + 3, 0,
+    {PROTOBUF_FIELD_OFFSET(ModuleHeartbeat, _impl_.status_), _Internal::kHasBitsOffset + 2, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kOpenEnum)},
     // int32 active_sessions = 5 [json_name = "activeSessions"];
-    {PROTOBUF_FIELD_OFFSET(ModuleHeartbeat, _impl_.active_sessions_), _Internal::kHasBitsOffset + 4, 0,
+    {PROTOBUF_FIELD_OFFSET(ModuleHeartbeat, _impl_.active_sessions_), _Internal::kHasBitsOffset + 3, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kInt32)},
   }},
   // no aux_entries
   {{
-    "\27\13\13\0\0\0\0\0"
+    "\27\13\0\0\0\0\0\0"
     "odin.v1.ModuleHeartbeat"
     "module_name"
-    "instance_id"
   }},
 };
 PROTOBUF_NOINLINE void ModuleHeartbeat::Clear() {
@@ -2300,15 +2285,10 @@ PROTOBUF_NOINLINE void ModuleHeartbeat::Clear() {
   (void) cached_has_bits;
 
   cached_has_bits = _impl_._has_bits_[0];
-  if ((cached_has_bits & 0x00000003u) != 0) {
-    if ((cached_has_bits & 0x00000001u) != 0) {
-      _impl_.module_name_.ClearNonDefaultToEmpty();
-    }
-    if ((cached_has_bits & 0x00000002u) != 0) {
-      _impl_.instance_id_.ClearNonDefaultToEmpty();
-    }
+  if ((cached_has_bits & 0x00000001u) != 0) {
+    _impl_.module_name_.ClearNonDefaultToEmpty();
   }
-  if ((cached_has_bits & 0x0000001cu) != 0) {
+  if ((cached_has_bits & 0x0000000eu) != 0) {
     ::memset(&_impl_.timestamp_, 0, static_cast<::size_t>(
         reinterpret_cast<char*>(&_impl_.active_sessions_) -
         reinterpret_cast<char*>(&_impl_.timestamp_)) + sizeof(_impl_.active_sessions_));
@@ -2342,18 +2322,8 @@ PROTOBUF_NOINLINE void ModuleHeartbeat::Clear() {
     }
   }
 
-  // string instance_id = 2 [json_name = "instanceId"];
-  if ((this_._impl_._has_bits_[0] & 0x00000002u) != 0) {
-    if (!this_._internal_instance_id().empty()) {
-      const ::std::string& _s = this_._internal_instance_id();
-      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "odin.v1.ModuleHeartbeat.instance_id");
-      target = stream->WriteStringMaybeAliased(2, _s, target);
-    }
-  }
-
   // int64 timestamp = 3 [json_name = "timestamp"];
-  if ((this_._impl_._has_bits_[0] & 0x00000004u) != 0) {
+  if ((this_._impl_._has_bits_[0] & 0x00000002u) != 0) {
     if (this_._internal_timestamp() != 0) {
       target =
           ::google::protobuf::internal::WireFormatLite::WriteInt64ToArrayWithField<3>(
@@ -2362,7 +2332,7 @@ PROTOBUF_NOINLINE void ModuleHeartbeat::Clear() {
   }
 
   // .odin.v1.ModuleStatus status = 4 [json_name = "status"];
-  if ((this_._impl_._has_bits_[0] & 0x00000008u) != 0) {
+  if ((this_._impl_._has_bits_[0] & 0x00000004u) != 0) {
     if (this_._internal_status() != 0) {
       target = stream->EnsureSpace(target);
       target = ::_pbi::WireFormatLite::WriteEnumToArray(
@@ -2371,7 +2341,7 @@ PROTOBUF_NOINLINE void ModuleHeartbeat::Clear() {
   }
 
   // int32 active_sessions = 5 [json_name = "activeSessions"];
-  if ((this_._impl_._has_bits_[0] & 0x00000010u) != 0) {
+  if ((this_._impl_._has_bits_[0] & 0x00000008u) != 0) {
     if (this_._internal_active_sessions() != 0) {
       target =
           ::google::protobuf::internal::WireFormatLite::WriteInt32ToArrayWithField<5>(
@@ -2404,7 +2374,7 @@ PROTOBUF_NOINLINE void ModuleHeartbeat::Clear() {
 
   ::_pbi::Prefetch5LinesFrom7Lines(&this_);
   cached_has_bits = this_._impl_._has_bits_[0];
-  if ((cached_has_bits & 0x0000001fu) != 0) {
+  if ((cached_has_bits & 0x0000000fu) != 0) {
     // string module_name = 1 [json_name = "moduleName"];
     if ((cached_has_bits & 0x00000001u) != 0) {
       if (!this_._internal_module_name().empty()) {
@@ -2412,29 +2382,22 @@ PROTOBUF_NOINLINE void ModuleHeartbeat::Clear() {
                                         this_._internal_module_name());
       }
     }
-    // string instance_id = 2 [json_name = "instanceId"];
-    if ((cached_has_bits & 0x00000002u) != 0) {
-      if (!this_._internal_instance_id().empty()) {
-        total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                        this_._internal_instance_id());
-      }
-    }
     // int64 timestamp = 3 [json_name = "timestamp"];
-    if ((cached_has_bits & 0x00000004u) != 0) {
+    if ((cached_has_bits & 0x00000002u) != 0) {
       if (this_._internal_timestamp() != 0) {
         total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(
             this_._internal_timestamp());
       }
     }
     // .odin.v1.ModuleStatus status = 4 [json_name = "status"];
-    if ((cached_has_bits & 0x00000008u) != 0) {
+    if ((cached_has_bits & 0x00000004u) != 0) {
       if (this_._internal_status() != 0) {
         total_size += 1 +
                       ::_pbi::WireFormatLite::EnumSize(this_._internal_status());
       }
     }
     // int32 active_sessions = 5 [json_name = "activeSessions"];
-    if ((cached_has_bits & 0x00000010u) != 0) {
+    if ((cached_has_bits & 0x00000008u) != 0) {
       if (this_._internal_active_sessions() != 0) {
         total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
             this_._internal_active_sessions());
@@ -2454,7 +2417,7 @@ void ModuleHeartbeat::MergeImpl(::google::protobuf::MessageLite& to_msg, const :
   (void) cached_has_bits;
 
   cached_has_bits = from._impl_._has_bits_[0];
-  if ((cached_has_bits & 0x0000001fu) != 0) {
+  if ((cached_has_bits & 0x0000000fu) != 0) {
     if ((cached_has_bits & 0x00000001u) != 0) {
       if (!from._internal_module_name().empty()) {
         _this->_internal_set_module_name(from._internal_module_name());
@@ -2465,25 +2428,16 @@ void ModuleHeartbeat::MergeImpl(::google::protobuf::MessageLite& to_msg, const :
       }
     }
     if ((cached_has_bits & 0x00000002u) != 0) {
-      if (!from._internal_instance_id().empty()) {
-        _this->_internal_set_instance_id(from._internal_instance_id());
-      } else {
-        if (_this->_impl_.instance_id_.IsDefault()) {
-          _this->_internal_set_instance_id("");
-        }
-      }
-    }
-    if ((cached_has_bits & 0x00000004u) != 0) {
       if (from._internal_timestamp() != 0) {
         _this->_impl_.timestamp_ = from._impl_.timestamp_;
       }
     }
-    if ((cached_has_bits & 0x00000008u) != 0) {
+    if ((cached_has_bits & 0x00000004u) != 0) {
       if (from._internal_status() != 0) {
         _this->_impl_.status_ = from._impl_.status_;
       }
     }
-    if ((cached_has_bits & 0x00000010u) != 0) {
+    if ((cached_has_bits & 0x00000008u) != 0) {
       if (from._internal_active_sessions() != 0) {
         _this->_impl_.active_sessions_ = from._impl_.active_sessions_;
       }
@@ -2508,7 +2462,6 @@ void ModuleHeartbeat::InternalSwap(ModuleHeartbeat* PROTOBUF_RESTRICT PROTOBUF_N
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.module_name_, &other->_impl_.module_name_, arena);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.instance_id_, &other->_impl_.instance_id_, arena);
   ::google::protobuf::internal::memswap<
       PROTOBUF_FIELD_OFFSET(ModuleHeartbeat, _impl_.active_sessions_)
       + sizeof(ModuleHeartbeat::_impl_.active_sessions_)

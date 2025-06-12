@@ -554,18 +554,6 @@ static const ProtobufCFieldDescriptor odin__v1__module_bootup__field_descriptors
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "instance_id",
-    2,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_STRING,
-    0,   /* quantifier_offset */
-    offsetof(Odin__V1__ModuleBootup, instance_id),
-    NULL,
-    &protobuf_c_empty_string,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
     "started_at",
     3,
     PROTOBUF_C_LABEL_NONE,
@@ -601,17 +589,30 @@ static const ProtobufCFieldDescriptor odin__v1__module_bootup__field_descriptors
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "config_schema",
+    6,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_STRING,
+    0,   /* quantifier_offset */
+    offsetof(Odin__V1__ModuleBootup, config_schema),
+    NULL,
+    &protobuf_c_empty_string,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned odin__v1__module_bootup__field_indices_by_name[] = {
-  4,   /* field[4] = host */
-  1,   /* field[1] = instance_id */
+  4,   /* field[4] = config_schema */
+  3,   /* field[3] = host */
   0,   /* field[0] = module_name */
-  2,   /* field[2] = started_at */
-  3,   /* field[3] = version */
+  1,   /* field[1] = started_at */
+  2,   /* field[2] = version */
 };
-static const ProtobufCIntRange odin__v1__module_bootup__number_ranges[1 + 1] =
+static const ProtobufCIntRange odin__v1__module_bootup__number_ranges[2 + 1] =
 {
   { 1, 0 },
+  { 3, 1 },
   { 0, 5 }
 };
 const ProtobufCMessageDescriptor odin__v1__module_bootup__descriptor =
@@ -625,11 +626,11 @@ const ProtobufCMessageDescriptor odin__v1__module_bootup__descriptor =
   5,
   odin__v1__module_bootup__field_descriptors,
   odin__v1__module_bootup__field_indices_by_name,
-  1,  odin__v1__module_bootup__number_ranges,
+  2,  odin__v1__module_bootup__number_ranges,
   (ProtobufCMessageInit) odin__v1__module_bootup__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor odin__v1__module_heartbeat__field_descriptors[5] =
+static const ProtobufCFieldDescriptor odin__v1__module_heartbeat__field_descriptors[4] =
 {
   {
     "module_name",
@@ -638,18 +639,6 @@ static const ProtobufCFieldDescriptor odin__v1__module_heartbeat__field_descript
     PROTOBUF_C_TYPE_STRING,
     0,   /* quantifier_offset */
     offsetof(Odin__V1__ModuleHeartbeat, module_name),
-    NULL,
-    &protobuf_c_empty_string,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "instance_id",
-    2,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_STRING,
-    0,   /* quantifier_offset */
-    offsetof(Odin__V1__ModuleHeartbeat, instance_id),
     NULL,
     &protobuf_c_empty_string,
     0,             /* flags */
@@ -693,16 +682,16 @@ static const ProtobufCFieldDescriptor odin__v1__module_heartbeat__field_descript
   },
 };
 static const unsigned odin__v1__module_heartbeat__field_indices_by_name[] = {
-  4,   /* field[4] = active_sessions */
-  1,   /* field[1] = instance_id */
+  3,   /* field[3] = active_sessions */
   0,   /* field[0] = module_name */
-  3,   /* field[3] = status */
-  2,   /* field[2] = timestamp */
+  2,   /* field[2] = status */
+  1,   /* field[1] = timestamp */
 };
-static const ProtobufCIntRange odin__v1__module_heartbeat__number_ranges[1 + 1] =
+static const ProtobufCIntRange odin__v1__module_heartbeat__number_ranges[2 + 1] =
 {
   { 1, 0 },
-  { 0, 5 }
+  { 3, 1 },
+  { 0, 4 }
 };
 const ProtobufCMessageDescriptor odin__v1__module_heartbeat__descriptor =
 {
@@ -712,10 +701,10 @@ const ProtobufCMessageDescriptor odin__v1__module_heartbeat__descriptor =
   "Odin__V1__ModuleHeartbeat",
   "odin.v1",
   sizeof(Odin__V1__ModuleHeartbeat),
-  5,
+  4,
   odin__v1__module_heartbeat__field_descriptors,
   odin__v1__module_heartbeat__field_indices_by_name,
-  1,  odin__v1__module_heartbeat__number_ranges,
+  2,  odin__v1__module_heartbeat__number_ranges,
   (ProtobufCMessageInit) odin__v1__module_heartbeat__init,
   NULL,NULL,NULL    /* reserved[123] */
 };

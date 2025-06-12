@@ -10,7 +10,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file odin/v1/session.proto.
  */
 export const file_odin_v1_session: GenFile = /*@__PURE__*/
-  fileDesc("ChVvZGluL3YxL3Nlc3Npb24ucHJvdG8SB29kaW4udjEiKgoESW5pdBISCgpzZXNzaW9uX2lkGAEgASgJEg4KBmNvbmZpZxgCIAEoDCIeCghTaHV0ZG93bhISCgpzZXNzaW9uX2lkGAEgASgJIlYKB0NvbW1hbmQSHQoEaW5pdBgBIAEoCzINLm9kaW4udjEuSW5pdEgAEiUKCHNodXRkb3duGAIgASgLMhEub2Rpbi52MS5TaHV0ZG93bkgAQgUKA2NtZCJjCgZTdGF0dXMSEgoKc2Vzc2lvbl9pZBgBIAEoCRIOCgZtb2R1bGUYAiABKAkSJQoGc3RhdHVzGAMgASgOMhUub2Rpbi52MS5Nb2R1bGVTdGF0dXMSDgoGZGV0YWlsGAQgASgJImsKDE1vZHVsZUJvb3R1cBITCgttb2R1bGVfbmFtZRgBIAEoCRITCgtpbnN0YW5jZV9pZBgCIAEoCRISCgpzdGFydGVkX2F0GAMgASgDEg8KB3ZlcnNpb24YBCABKAkSDAoEaG9zdBgFIAEoCSKOAQoPTW9kdWxlSGVhcnRiZWF0EhMKC21vZHVsZV9uYW1lGAEgASgJEhMKC2luc3RhbmNlX2lkGAIgASgJEhEKCXRpbWVzdGFtcBgDIAEoAxIlCgZzdGF0dXMYBCABKA4yFS5vZGluLnYxLk1vZHVsZVN0YXR1cxIXCg9hY3RpdmVfc2Vzc2lvbnMYBSABKAUiTgoOTW9kdWxlUmVnaXN0cnkSJgoHbW9kdWxlcxgBIAMoCzIVLm9kaW4udjEuTW9kdWxlQm9vdHVwEhQKDGxhc3RfdXBkYXRlZBgCIAEoAypLCgxNb2R1bGVTdGF0dXMSEAoMSU5JVElBTElaSU5HEAASCwoHUlVOTklORxABEgoKBkZBSUxFRBACEhAKDERJU0NPTk5FQ1RFRBADQlgKC2NvbS5vZGluLnYxQgxTZXNzaW9uUHJvdG9QAaICA09YWKoCB09kaW4uVjHKAgdPZGluXFYx4gITT2RpblxWMVxHUEJNZXRhZGF0YeoCCE9kaW46OlYxYgZwcm90bzM");
+  fileDesc("ChVvZGluL3YxL3Nlc3Npb24ucHJvdG8SB29kaW4udjEiKgoESW5pdBISCgpzZXNzaW9uX2lkGAEgASgJEg4KBmNvbmZpZxgCIAEoDCIeCghTaHV0ZG93bhISCgpzZXNzaW9uX2lkGAEgASgJIlYKB0NvbW1hbmQSHQoEaW5pdBgBIAEoCzINLm9kaW4udjEuSW5pdEgAEiUKCHNodXRkb3duGAIgASgLMhEub2Rpbi52MS5TaHV0ZG93bkgAQgUKA2NtZCJjCgZTdGF0dXMSEgoKc2Vzc2lvbl9pZBgBIAEoCRIOCgZtb2R1bGUYAiABKAkSJQoGc3RhdHVzGAMgASgOMhUub2Rpbi52MS5Nb2R1bGVTdGF0dXMSDgoGZGV0YWlsGAQgASgJIm0KDE1vZHVsZUJvb3R1cBITCgttb2R1bGVfbmFtZRgBIAEoCRISCgpzdGFydGVkX2F0GAMgASgDEg8KB3ZlcnNpb24YBCABKAkSDAoEaG9zdBgFIAEoCRIVCg1jb25maWdfc2NoZW1hGAYgASgJInkKD01vZHVsZUhlYXJ0YmVhdBITCgttb2R1bGVfbmFtZRgBIAEoCRIRCgl0aW1lc3RhbXAYAyABKAMSJQoGc3RhdHVzGAQgASgOMhUub2Rpbi52MS5Nb2R1bGVTdGF0dXMSFwoPYWN0aXZlX3Nlc3Npb25zGAUgASgFIk4KDk1vZHVsZVJlZ2lzdHJ5EiYKB21vZHVsZXMYASADKAsyFS5vZGluLnYxLk1vZHVsZUJvb3R1cBIUCgxsYXN0X3VwZGF0ZWQYAiABKAMqSwoMTW9kdWxlU3RhdHVzEhAKDElOSVRJQUxJWklORxAAEgsKB1JVTk5JTkcQARIKCgZGQUlMRUQQAhIQCgxESVNDT05ORUNURUQQA0JYCgtjb20ub2Rpbi52MUIMU2Vzc2lvblByb3RvUAGiAgNPWFiqAgdPZGluLlYxygIHT2RpblxWMeICE09kaW5cVjFcR1BCTWV0YWRhdGHqAghPZGluOjpWMWIGcHJvdG8z");
 
 /**
  * @generated from message odin.v1.Init
@@ -126,13 +126,6 @@ export type ModuleBootup = Message<"odin.v1.ModuleBootup"> & {
   moduleName: string;
 
   /**
-   * unique identifier for this module instance
-   *
-   * @generated from field: string instance_id = 2;
-   */
-  instanceId: string;
-
-  /**
    * Unix timestamp
    *
    * @generated from field: int64 started_at = 3;
@@ -152,6 +145,13 @@ export type ModuleBootup = Message<"odin.v1.ModuleBootup"> & {
    * @generated from field: string host = 5;
    */
   host: string;
+
+  /**
+   * JSON schema for module config
+   *
+   * @generated from field: string config_schema = 6;
+   */
+  configSchema: string;
 };
 
 /**
@@ -169,11 +169,6 @@ export type ModuleHeartbeat = Message<"odin.v1.ModuleHeartbeat"> & {
    * @generated from field: string module_name = 1;
    */
   moduleName: string;
-
-  /**
-   * @generated from field: string instance_id = 2;
-   */
-  instanceId: string;
 
   /**
    * Unix timestamp of heartbeat

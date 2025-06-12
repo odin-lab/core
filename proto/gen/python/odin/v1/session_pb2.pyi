@@ -52,32 +52,30 @@ class Status(_message.Message):
     def __init__(self, session_id: _Optional[str] = ..., module: _Optional[str] = ..., status: _Optional[_Union[ModuleStatus, str]] = ..., detail: _Optional[str] = ...) -> None: ...
 
 class ModuleBootup(_message.Message):
-    __slots__ = ("module_name", "instance_id", "started_at", "version", "host")
+    __slots__ = ("module_name", "started_at", "version", "host", "config_schema")
     MODULE_NAME_FIELD_NUMBER: _ClassVar[int]
-    INSTANCE_ID_FIELD_NUMBER: _ClassVar[int]
     STARTED_AT_FIELD_NUMBER: _ClassVar[int]
     VERSION_FIELD_NUMBER: _ClassVar[int]
     HOST_FIELD_NUMBER: _ClassVar[int]
+    CONFIG_SCHEMA_FIELD_NUMBER: _ClassVar[int]
     module_name: str
-    instance_id: str
     started_at: int
     version: str
     host: str
-    def __init__(self, module_name: _Optional[str] = ..., instance_id: _Optional[str] = ..., started_at: _Optional[int] = ..., version: _Optional[str] = ..., host: _Optional[str] = ...) -> None: ...
+    config_schema: str
+    def __init__(self, module_name: _Optional[str] = ..., started_at: _Optional[int] = ..., version: _Optional[str] = ..., host: _Optional[str] = ..., config_schema: _Optional[str] = ...) -> None: ...
 
 class ModuleHeartbeat(_message.Message):
-    __slots__ = ("module_name", "instance_id", "timestamp", "status", "active_sessions")
+    __slots__ = ("module_name", "timestamp", "status", "active_sessions")
     MODULE_NAME_FIELD_NUMBER: _ClassVar[int]
-    INSTANCE_ID_FIELD_NUMBER: _ClassVar[int]
     TIMESTAMP_FIELD_NUMBER: _ClassVar[int]
     STATUS_FIELD_NUMBER: _ClassVar[int]
     ACTIVE_SESSIONS_FIELD_NUMBER: _ClassVar[int]
     module_name: str
-    instance_id: str
     timestamp: int
     status: ModuleStatus
     active_sessions: int
-    def __init__(self, module_name: _Optional[str] = ..., instance_id: _Optional[str] = ..., timestamp: _Optional[int] = ..., status: _Optional[_Union[ModuleStatus, str]] = ..., active_sessions: _Optional[int] = ...) -> None: ...
+    def __init__(self, module_name: _Optional[str] = ..., timestamp: _Optional[int] = ..., status: _Optional[_Union[ModuleStatus, str]] = ..., active_sessions: _Optional[int] = ...) -> None: ...
 
 class ModuleRegistry(_message.Message):
     __slots__ = ("modules", "last_updated")

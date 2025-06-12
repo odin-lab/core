@@ -102,10 +102,6 @@ struct  Odin__V1__ModuleBootup
   ProtobufCMessage base;
   char *module_name;
   /*
-   * unique identifier for this module instance
-   */
-  char *instance_id;
-  /*
    * Unix timestamp
    */
   int64_t started_at;
@@ -117,17 +113,20 @@ struct  Odin__V1__ModuleBootup
    * hostname/IP where module is running
    */
   char *host;
+  /*
+   * JSON schema for module config
+   */
+  char *config_schema;
 };
 #define ODIN__V1__MODULE_BOOTUP__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&odin__v1__module_bootup__descriptor) \
-    , (char *)protobuf_c_empty_string, (char *)protobuf_c_empty_string, 0, (char *)protobuf_c_empty_string, (char *)protobuf_c_empty_string }
+    , (char *)protobuf_c_empty_string, 0, (char *)protobuf_c_empty_string, (char *)protobuf_c_empty_string, (char *)protobuf_c_empty_string }
 
 
 struct  Odin__V1__ModuleHeartbeat
 {
   ProtobufCMessage base;
   char *module_name;
-  char *instance_id;
   /*
    * Unix timestamp of heartbeat
    */
@@ -140,7 +139,7 @@ struct  Odin__V1__ModuleHeartbeat
 };
 #define ODIN__V1__MODULE_HEARTBEAT__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&odin__v1__module_heartbeat__descriptor) \
-    , (char *)protobuf_c_empty_string, (char *)protobuf_c_empty_string, 0, ODIN__V1__MODULE_STATUS__INITIALIZING, 0 }
+    , (char *)protobuf_c_empty_string, 0, ODIN__V1__MODULE_STATUS__INITIALIZING, 0 }
 
 
 struct  Odin__V1__ModuleRegistry
