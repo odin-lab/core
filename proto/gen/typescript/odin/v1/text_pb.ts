@@ -15,7 +15,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file odin/v1/text.proto.
  */
 export const file_odin_v1_text: GenFile = /*@__PURE__*/
-  fileDesc("ChJvZGluL3YxL3RleHQucHJvdG8SB29kaW4udjEikQEKDVRyYW5zY3JpcHRpb24SIgoIc2VnbWVudHMYASADKAsyEC5vZGluLnYxLlNlZ21lbnQSJQoHc2Vzc2lvbhgCIAEoCzIULm9kaW4udjEuU2Vzc2lvbkluZm86NYq1GC10ZXh0LntzZXNzaW9uX2lkfS57bW9kdWxlX25hbWV9LnRyYW5zY3JpcHRpb26QtRgBQlUKC2NvbS5vZGluLnYxQglUZXh0UHJvdG9QAaICA09YWKoCB09kaW4uVjHKAgdPZGluXFYx4gITT2RpblxWMVxHUEJNZXRhZGF0YeoCCE9kaW46OlYxYgZwcm90bzM", [file_odin_v1_common, file_odin_v1_options, file_odin_v1_text_helper]);
+  fileDesc("ChJvZGluL3YxL3RleHQucHJvdG8SB29kaW4udjEikQEKDVRyYW5zY3JpcHRpb24SIgoIc2VnbWVudHMYASADKAsyEC5vZGluLnYxLlNlZ21lbnQSJQoHc2Vzc2lvbhgCIAEoCzIULm9kaW4udjEuU2Vzc2lvbkluZm86NYq1GC10ZXh0LntzZXNzaW9uX2lkfS57bW9kdWxlX25hbWV9LnRyYW5zY3JpcHRpb26QtRgBIn4KDkNvbXBsZXRpb25Xb3JkEgwKBHdvcmQYASABKAkSJQoHc2Vzc2lvbhgCIAEoCzIULm9kaW4udjEuU2Vzc2lvbkluZm86N4q1GC90ZXh0LntzZXNzaW9uX2lkfS57bW9kdWxlX25hbWV9LmNvbXBsZXRpb24ud29yZJC1GAEiigEKEkNvbXBsZXRpb25TZW50ZW5jZRIQCghzZW50ZW5jZRgBIAEoCRIlCgdzZXNzaW9uGAIgASgLMhQub2Rpbi52MS5TZXNzaW9uSW5mbzo7irUYM3RleHQue3Nlc3Npb25faWR9Lnttb2R1bGVfbmFtZX0uY29tcGxldGlvbi5zZW50ZW5jZZC1GAFCVQoLY29tLm9kaW4udjFCCVRleHRQcm90b1ABogIDT1hYqgIHT2Rpbi5WMcoCB09kaW5cVjHiAhNPZGluXFYxXEdQQk1ldGFkYXRh6gIIT2Rpbjo6VjFiBnByb3RvMw", [file_odin_v1_common, file_odin_v1_options, file_odin_v1_text_helper]);
 
 /**
  * output STT
@@ -40,4 +40,48 @@ export type Transcription = Message<"odin.v1.Transcription"> & {
  */
 export const TranscriptionSchema: GenMessage<Transcription> = /*@__PURE__*/
   messageDesc(file_odin_v1_text, 0);
+
+/**
+ * @generated from message odin.v1.CompletionWord
+ */
+export type CompletionWord = Message<"odin.v1.CompletionWord"> & {
+  /**
+   * @generated from field: string word = 1;
+   */
+  word: string;
+
+  /**
+   * @generated from field: odin.v1.SessionInfo session = 2;
+   */
+  session?: SessionInfo;
+};
+
+/**
+ * Describes the message odin.v1.CompletionWord.
+ * Use `create(CompletionWordSchema)` to create a new message.
+ */
+export const CompletionWordSchema: GenMessage<CompletionWord> = /*@__PURE__*/
+  messageDesc(file_odin_v1_text, 1);
+
+/**
+ * @generated from message odin.v1.CompletionSentence
+ */
+export type CompletionSentence = Message<"odin.v1.CompletionSentence"> & {
+  /**
+   * @generated from field: string sentence = 1;
+   */
+  sentence: string;
+
+  /**
+   * @generated from field: odin.v1.SessionInfo session = 2;
+   */
+  session?: SessionInfo;
+};
+
+/**
+ * Describes the message odin.v1.CompletionSentence.
+ * Use `create(CompletionSentenceSchema)` to create a new message.
+ */
+export const CompletionSentenceSchema: GenMessage<CompletionSentence> = /*@__PURE__*/
+  messageDesc(file_odin_v1_text, 2);
 

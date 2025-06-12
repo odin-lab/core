@@ -31,3 +31,25 @@ message Status {
   ModuleStatus status     = 3;
   string       detail     = 4;   // error text if FAILED
 }
+
+// New messages for module bootup tracking
+message ModuleBootup {
+  string module_name = 1;
+  string instance_id = 2;  // unique identifier for this module instance
+  int64  started_at  = 3;  // Unix timestamp
+  string version     = 4;  // module version
+  string host        = 5;  // hostname/IP where module is running
+}
+
+message ModuleHeartbeat {
+  string module_name = 1;
+  string instance_id = 2;
+  int64  timestamp   = 3;  // Unix timestamp of heartbeat
+  ModuleStatus status = 4;
+  int32  active_sessions = 5;  // number of active sessions
+}
+
+message ModuleRegistry {
+  repeated ModuleBootup modules = 1;
+  int64 last_updated = 2;
+}

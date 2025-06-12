@@ -10,7 +10,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file odin/v1/session.proto.
  */
 export const file_odin_v1_session: GenFile = /*@__PURE__*/
-  fileDesc("ChVvZGluL3YxL3Nlc3Npb24ucHJvdG8SB29kaW4udjEiKgoESW5pdBISCgpzZXNzaW9uX2lkGAEgASgJEg4KBmNvbmZpZxgCIAEoDCIeCghTaHV0ZG93bhISCgpzZXNzaW9uX2lkGAEgASgJIlYKB0NvbW1hbmQSHQoEaW5pdBgBIAEoCzINLm9kaW4udjEuSW5pdEgAEiUKCHNodXRkb3duGAIgASgLMhEub2Rpbi52MS5TaHV0ZG93bkgAQgUKA2NtZCJjCgZTdGF0dXMSEgoKc2Vzc2lvbl9pZBgBIAEoCRIOCgZtb2R1bGUYAiABKAkSJQoGc3RhdHVzGAMgASgOMhUub2Rpbi52MS5Nb2R1bGVTdGF0dXMSDgoGZGV0YWlsGAQgASgJKksKDE1vZHVsZVN0YXR1cxIQCgxJTklUSUFMSVpJTkcQABILCgdSVU5OSU5HEAESCgoGRkFJTEVEEAISEAoMRElTQ09OTkVDVEVEEANCWAoLY29tLm9kaW4udjFCDFNlc3Npb25Qcm90b1ABogIDT1hYqgIHT2Rpbi5WMcoCB09kaW5cVjHiAhNPZGluXFYxXEdQQk1ldGFkYXRh6gIIT2Rpbjo6VjFiBnByb3RvMw");
+  fileDesc("ChVvZGluL3YxL3Nlc3Npb24ucHJvdG8SB29kaW4udjEiKgoESW5pdBISCgpzZXNzaW9uX2lkGAEgASgJEg4KBmNvbmZpZxgCIAEoDCIeCghTaHV0ZG93bhISCgpzZXNzaW9uX2lkGAEgASgJIlYKB0NvbW1hbmQSHQoEaW5pdBgBIAEoCzINLm9kaW4udjEuSW5pdEgAEiUKCHNodXRkb3duGAIgASgLMhEub2Rpbi52MS5TaHV0ZG93bkgAQgUKA2NtZCJjCgZTdGF0dXMSEgoKc2Vzc2lvbl9pZBgBIAEoCRIOCgZtb2R1bGUYAiABKAkSJQoGc3RhdHVzGAMgASgOMhUub2Rpbi52MS5Nb2R1bGVTdGF0dXMSDgoGZGV0YWlsGAQgASgJImsKDE1vZHVsZUJvb3R1cBITCgttb2R1bGVfbmFtZRgBIAEoCRITCgtpbnN0YW5jZV9pZBgCIAEoCRISCgpzdGFydGVkX2F0GAMgASgDEg8KB3ZlcnNpb24YBCABKAkSDAoEaG9zdBgFIAEoCSKOAQoPTW9kdWxlSGVhcnRiZWF0EhMKC21vZHVsZV9uYW1lGAEgASgJEhMKC2luc3RhbmNlX2lkGAIgASgJEhEKCXRpbWVzdGFtcBgDIAEoAxIlCgZzdGF0dXMYBCABKA4yFS5vZGluLnYxLk1vZHVsZVN0YXR1cxIXCg9hY3RpdmVfc2Vzc2lvbnMYBSABKAUiTgoOTW9kdWxlUmVnaXN0cnkSJgoHbW9kdWxlcxgBIAMoCzIVLm9kaW4udjEuTW9kdWxlQm9vdHVwEhQKDGxhc3RfdXBkYXRlZBgCIAEoAypLCgxNb2R1bGVTdGF0dXMSEAoMSU5JVElBTElaSU5HEAASCwoHUlVOTklORxABEgoKBkZBSUxFRBACEhAKDERJU0NPTk5FQ1RFRBADQlgKC2NvbS5vZGluLnYxQgxTZXNzaW9uUHJvdG9QAaICA09YWKoCB09kaW4uVjHKAgdPZGluXFYx4gITT2RpblxWMVxHUEJNZXRhZGF0YeoCCE9kaW46OlYxYgZwcm90bzM");
 
 /**
  * @generated from message odin.v1.Init
@@ -113,6 +113,116 @@ export type Status = Message<"odin.v1.Status"> & {
  */
 export const StatusSchema: GenMessage<Status> = /*@__PURE__*/
   messageDesc(file_odin_v1_session, 3);
+
+/**
+ * New messages for module bootup tracking
+ *
+ * @generated from message odin.v1.ModuleBootup
+ */
+export type ModuleBootup = Message<"odin.v1.ModuleBootup"> & {
+  /**
+   * @generated from field: string module_name = 1;
+   */
+  moduleName: string;
+
+  /**
+   * unique identifier for this module instance
+   *
+   * @generated from field: string instance_id = 2;
+   */
+  instanceId: string;
+
+  /**
+   * Unix timestamp
+   *
+   * @generated from field: int64 started_at = 3;
+   */
+  startedAt: bigint;
+
+  /**
+   * module version
+   *
+   * @generated from field: string version = 4;
+   */
+  version: string;
+
+  /**
+   * hostname/IP where module is running
+   *
+   * @generated from field: string host = 5;
+   */
+  host: string;
+};
+
+/**
+ * Describes the message odin.v1.ModuleBootup.
+ * Use `create(ModuleBootupSchema)` to create a new message.
+ */
+export const ModuleBootupSchema: GenMessage<ModuleBootup> = /*@__PURE__*/
+  messageDesc(file_odin_v1_session, 4);
+
+/**
+ * @generated from message odin.v1.ModuleHeartbeat
+ */
+export type ModuleHeartbeat = Message<"odin.v1.ModuleHeartbeat"> & {
+  /**
+   * @generated from field: string module_name = 1;
+   */
+  moduleName: string;
+
+  /**
+   * @generated from field: string instance_id = 2;
+   */
+  instanceId: string;
+
+  /**
+   * Unix timestamp of heartbeat
+   *
+   * @generated from field: int64 timestamp = 3;
+   */
+  timestamp: bigint;
+
+  /**
+   * @generated from field: odin.v1.ModuleStatus status = 4;
+   */
+  status: ModuleStatus;
+
+  /**
+   * number of active sessions
+   *
+   * @generated from field: int32 active_sessions = 5;
+   */
+  activeSessions: number;
+};
+
+/**
+ * Describes the message odin.v1.ModuleHeartbeat.
+ * Use `create(ModuleHeartbeatSchema)` to create a new message.
+ */
+export const ModuleHeartbeatSchema: GenMessage<ModuleHeartbeat> = /*@__PURE__*/
+  messageDesc(file_odin_v1_session, 5);
+
+/**
+ * @generated from message odin.v1.ModuleRegistry
+ */
+export type ModuleRegistry = Message<"odin.v1.ModuleRegistry"> & {
+  /**
+   * @generated from field: repeated odin.v1.ModuleBootup modules = 1;
+   */
+  modules: ModuleBootup[];
+
+  /**
+   * @generated from field: int64 last_updated = 2;
+   */
+  lastUpdated: bigint;
+};
+
+/**
+ * Describes the message odin.v1.ModuleRegistry.
+ * Use `create(ModuleRegistrySchema)` to create a new message.
+ */
+export const ModuleRegistrySchema: GenMessage<ModuleRegistry> = /*@__PURE__*/
+  messageDesc(file_odin_v1_session, 6);
 
 /**
  * @generated from enum odin.v1.ModuleStatus

@@ -19,6 +19,9 @@ typedef struct Odin__V1__Init Odin__V1__Init;
 typedef struct Odin__V1__Shutdown Odin__V1__Shutdown;
 typedef struct Odin__V1__Command Odin__V1__Command;
 typedef struct Odin__V1__Status Odin__V1__Status;
+typedef struct Odin__V1__ModuleBootup Odin__V1__ModuleBootup;
+typedef struct Odin__V1__ModuleHeartbeat Odin__V1__ModuleHeartbeat;
+typedef struct Odin__V1__ModuleRegistry Odin__V1__ModuleRegistry;
 
 
 /* --- enums --- */
@@ -89,6 +92,67 @@ struct  Odin__V1__Status
 #define ODIN__V1__STATUS__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&odin__v1__status__descriptor) \
     , (char *)protobuf_c_empty_string, (char *)protobuf_c_empty_string, ODIN__V1__MODULE_STATUS__INITIALIZING, (char *)protobuf_c_empty_string }
+
+
+/*
+ * New messages for module bootup tracking
+ */
+struct  Odin__V1__ModuleBootup
+{
+  ProtobufCMessage base;
+  char *module_name;
+  /*
+   * unique identifier for this module instance
+   */
+  char *instance_id;
+  /*
+   * Unix timestamp
+   */
+  int64_t started_at;
+  /*
+   * module version
+   */
+  char *version;
+  /*
+   * hostname/IP where module is running
+   */
+  char *host;
+};
+#define ODIN__V1__MODULE_BOOTUP__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&odin__v1__module_bootup__descriptor) \
+    , (char *)protobuf_c_empty_string, (char *)protobuf_c_empty_string, 0, (char *)protobuf_c_empty_string, (char *)protobuf_c_empty_string }
+
+
+struct  Odin__V1__ModuleHeartbeat
+{
+  ProtobufCMessage base;
+  char *module_name;
+  char *instance_id;
+  /*
+   * Unix timestamp of heartbeat
+   */
+  int64_t timestamp;
+  Odin__V1__ModuleStatus status;
+  /*
+   * number of active sessions
+   */
+  int32_t active_sessions;
+};
+#define ODIN__V1__MODULE_HEARTBEAT__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&odin__v1__module_heartbeat__descriptor) \
+    , (char *)protobuf_c_empty_string, (char *)protobuf_c_empty_string, 0, ODIN__V1__MODULE_STATUS__INITIALIZING, 0 }
+
+
+struct  Odin__V1__ModuleRegistry
+{
+  ProtobufCMessage base;
+  size_t n_modules;
+  Odin__V1__ModuleBootup **modules;
+  int64_t last_updated;
+};
+#define ODIN__V1__MODULE_REGISTRY__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&odin__v1__module_registry__descriptor) \
+    , 0,NULL, 0 }
 
 
 /* Odin__V1__Init methods */
@@ -167,6 +231,63 @@ Odin__V1__Status *
 void   odin__v1__status__free_unpacked
                      (Odin__V1__Status *message,
                       ProtobufCAllocator *allocator);
+/* Odin__V1__ModuleBootup methods */
+void   odin__v1__module_bootup__init
+                     (Odin__V1__ModuleBootup         *message);
+size_t odin__v1__module_bootup__get_packed_size
+                     (const Odin__V1__ModuleBootup   *message);
+size_t odin__v1__module_bootup__pack
+                     (const Odin__V1__ModuleBootup   *message,
+                      uint8_t             *out);
+size_t odin__v1__module_bootup__pack_to_buffer
+                     (const Odin__V1__ModuleBootup   *message,
+                      ProtobufCBuffer     *buffer);
+Odin__V1__ModuleBootup *
+       odin__v1__module_bootup__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data);
+void   odin__v1__module_bootup__free_unpacked
+                     (Odin__V1__ModuleBootup *message,
+                      ProtobufCAllocator *allocator);
+/* Odin__V1__ModuleHeartbeat methods */
+void   odin__v1__module_heartbeat__init
+                     (Odin__V1__ModuleHeartbeat         *message);
+size_t odin__v1__module_heartbeat__get_packed_size
+                     (const Odin__V1__ModuleHeartbeat   *message);
+size_t odin__v1__module_heartbeat__pack
+                     (const Odin__V1__ModuleHeartbeat   *message,
+                      uint8_t             *out);
+size_t odin__v1__module_heartbeat__pack_to_buffer
+                     (const Odin__V1__ModuleHeartbeat   *message,
+                      ProtobufCBuffer     *buffer);
+Odin__V1__ModuleHeartbeat *
+       odin__v1__module_heartbeat__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data);
+void   odin__v1__module_heartbeat__free_unpacked
+                     (Odin__V1__ModuleHeartbeat *message,
+                      ProtobufCAllocator *allocator);
+/* Odin__V1__ModuleRegistry methods */
+void   odin__v1__module_registry__init
+                     (Odin__V1__ModuleRegistry         *message);
+size_t odin__v1__module_registry__get_packed_size
+                     (const Odin__V1__ModuleRegistry   *message);
+size_t odin__v1__module_registry__pack
+                     (const Odin__V1__ModuleRegistry   *message,
+                      uint8_t             *out);
+size_t odin__v1__module_registry__pack_to_buffer
+                     (const Odin__V1__ModuleRegistry   *message,
+                      ProtobufCBuffer     *buffer);
+Odin__V1__ModuleRegistry *
+       odin__v1__module_registry__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data);
+void   odin__v1__module_registry__free_unpacked
+                     (Odin__V1__ModuleRegistry *message,
+                      ProtobufCAllocator *allocator);
 /* --- per-message closures --- */
 
 typedef void (*Odin__V1__Init_Closure)
@@ -181,6 +302,15 @@ typedef void (*Odin__V1__Command_Closure)
 typedef void (*Odin__V1__Status_Closure)
                  (const Odin__V1__Status *message,
                   void *closure_data);
+typedef void (*Odin__V1__ModuleBootup_Closure)
+                 (const Odin__V1__ModuleBootup *message,
+                  void *closure_data);
+typedef void (*Odin__V1__ModuleHeartbeat_Closure)
+                 (const Odin__V1__ModuleHeartbeat *message,
+                  void *closure_data);
+typedef void (*Odin__V1__ModuleRegistry_Closure)
+                 (const Odin__V1__ModuleRegistry *message,
+                  void *closure_data);
 
 /* --- services --- */
 
@@ -192,6 +322,9 @@ extern const ProtobufCMessageDescriptor odin__v1__init__descriptor;
 extern const ProtobufCMessageDescriptor odin__v1__shutdown__descriptor;
 extern const ProtobufCMessageDescriptor odin__v1__command__descriptor;
 extern const ProtobufCMessageDescriptor odin__v1__status__descriptor;
+extern const ProtobufCMessageDescriptor odin__v1__module_bootup__descriptor;
+extern const ProtobufCMessageDescriptor odin__v1__module_heartbeat__descriptor;
+extern const ProtobufCMessageDescriptor odin__v1__module_registry__descriptor;
 
 PROTOBUF_C__END_DECLS
 

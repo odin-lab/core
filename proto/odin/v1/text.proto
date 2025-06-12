@@ -15,6 +15,22 @@ message Transcription {
   SessionInfo session = 2;
 }
 
+message CompletionWord {
+  option (odin.v1.nats_subject) = "text.{session_id}.{module_name}.completion.word";
+  option (odin.v1.nats_jetstream) = true;
+
+  string word = 1;
+  SessionInfo session = 2;
+}
+
+message CompletionSentence {
+  option (odin.v1.nats_subject) = "text.{session_id}.{module_name}.completion.sentence";
+  option (odin.v1.nats_jetstream) = true;
+
+  string sentence = 1;
+  SessionInfo session = 2;
+}
+
 // Text input for LLM processing
 // message TextComplete {
 //   option (odin.v1.nats_subject) = "text.complete";

@@ -52,6 +52,62 @@ struct TranscriptionDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 TranscriptionDefaultTypeInternal _Transcription_default_instance_;
+
+inline constexpr CompletionWord::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        word_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        session_{nullptr} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR CompletionWord::CompletionWord(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(CompletionWord_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct CompletionWordDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR CompletionWordDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~CompletionWordDefaultTypeInternal() {}
+  union {
+    CompletionWord _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 CompletionWordDefaultTypeInternal _CompletionWord_default_instance_;
+
+inline constexpr CompletionSentence::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        sentence_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        session_{nullptr} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR CompletionSentence::CompletionSentence(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(CompletionSentence_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct CompletionSentenceDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR CompletionSentenceDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~CompletionSentenceDefaultTypeInternal() {}
+  union {
+    CompletionSentence _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 CompletionSentenceDefaultTypeInternal _CompletionSentence_default_instance_;
 }  // namespace v1
 }  // namespace odin
 static constexpr const ::_pb::EnumDescriptor *PROTOBUF_NONNULL *PROTOBUF_NULLABLE
@@ -68,14 +124,32 @@ const ::uint32_t
         PROTOBUF_FIELD_OFFSET(::odin::v1::Transcription, _impl_.session_),
         ~0u,
         0,
+        0x081, // bitmap
+        PROTOBUF_FIELD_OFFSET(::odin::v1::CompletionWord, _impl_._has_bits_),
+        5, // hasbit index offset
+        PROTOBUF_FIELD_OFFSET(::odin::v1::CompletionWord, _impl_.word_),
+        PROTOBUF_FIELD_OFFSET(::odin::v1::CompletionWord, _impl_.session_),
+        0,
+        1,
+        0x081, // bitmap
+        PROTOBUF_FIELD_OFFSET(::odin::v1::CompletionSentence, _impl_._has_bits_),
+        5, // hasbit index offset
+        PROTOBUF_FIELD_OFFSET(::odin::v1::CompletionSentence, _impl_.sentence_),
+        PROTOBUF_FIELD_OFFSET(::odin::v1::CompletionSentence, _impl_.session_),
+        0,
+        1,
 };
 
 static const ::_pbi::MigrationSchema
     schemas[] ABSL_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
         {0, sizeof(::odin::v1::Transcription)},
+        {7, sizeof(::odin::v1::CompletionWord)},
+        {14, sizeof(::odin::v1::CompletionSentence)},
 };
 static const ::_pb::Message* PROTOBUF_NONNULL const file_default_instances[] = {
     &::odin::v1::_Transcription_default_instance_._instance,
+    &::odin::v1::_CompletionWord_default_instance_._instance,
+    &::odin::v1::_CompletionSentence_default_instance_._instance,
 };
 const char descriptor_table_protodef_odin_2fv1_2ftext_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
@@ -85,10 +159,17 @@ const char descriptor_table_protodef_odin_2fv1_2ftext_2eproto[] ABSL_ATTRIBUTE_S
     ",\n\010segments\030\001 \003(\0132\020.odin.v1.SegmentR\010seg"
     "ments\022.\n\007session\030\002 \001(\0132\024.odin.v1.Session"
     "InfoR\007session:5\212\265\030-text.{session_id}.{mo"
-    "dule_name}.transcription\220\265\030\001BU\n\013com.odin"
-    ".v1B\tTextProtoP\001\242\002\003OXX\252\002\007Odin.V1\312\002\007Odin\\"
-    "V1\342\002\023Odin\\V1\\GPBMetadata\352\002\010Odin::V1b\006pro"
-    "to3"
+    "dule_name}.transcription\220\265\030\001\"\215\001\n\016Complet"
+    "ionWord\022\022\n\004word\030\001 \001(\tR\004word\022.\n\007session\030\002"
+    " \001(\0132\024.odin.v1.SessionInfoR\007session:7\212\265\030"
+    "/text.{session_id}.{module_name}.complet"
+    "ion.word\220\265\030\001\"\235\001\n\022CompletionSentence\022\032\n\010s"
+    "entence\030\001 \001(\tR\010sentence\022.\n\007session\030\002 \001(\013"
+    "2\024.odin.v1.SessionInfoR\007session:;\212\265\0303tex"
+    "t.{session_id}.{module_name}.completion."
+    "sentence\220\265\030\001BU\n\013com.odin.v1B\tTextProtoP\001"
+    "\242\002\003OXX\252\002\007Odin.V1\312\002\007Odin\\V1\342\002\023Odin\\V1\\GPB"
+    "Metadata\352\002\010Odin::V1b\006proto3"
 };
 static const ::_pbi::DescriptorTable* PROTOBUF_NONNULL const
     descriptor_table_odin_2fv1_2ftext_2eproto_deps[3] = {
@@ -100,13 +181,13 @@ static ::absl::once_flag descriptor_table_odin_2fv1_2ftext_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_odin_2fv1_2ftext_2eproto = {
     false,
     false,
-    363,
+    667,
     descriptor_table_protodef_odin_2fv1_2ftext_2eproto,
     "odin/v1/text.proto",
     &descriptor_table_odin_2fv1_2ftext_2eproto_once,
     descriptor_table_odin_2fv1_2ftext_2eproto_deps,
     3,
-    1,
+    3,
     schemas,
     file_default_instances,
     TableStruct_odin_2fv1_2ftext_2eproto::offsets,
@@ -427,6 +508,632 @@ void Transcription::InternalSwap(Transcription* PROTOBUF_RESTRICT PROTOBUF_NONNU
 }
 
 ::google::protobuf::Metadata Transcription::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class CompletionWord::_Internal {
+ public:
+  using HasBits =
+      decltype(::std::declval<CompletionWord>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(CompletionWord, _impl_._has_bits_);
+};
+
+void CompletionWord::clear_session() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.session_ != nullptr) _impl_.session_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000002u;
+}
+CompletionWord::CompletionWord(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, CompletionWord_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:odin.v1.CompletionWord)
+}
+PROTOBUF_NDEBUG_INLINE CompletionWord::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+    const ::odin::v1::CompletionWord& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        word_(arena, from.word_) {}
+
+CompletionWord::CompletionWord(
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
+    const CompletionWord& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, CompletionWord_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  CompletionWord* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.session_ = ((cached_has_bits & 0x00000002u) != 0)
+                ? ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.session_)
+                : nullptr;
+
+  // @@protoc_insertion_point(copy_constructor:odin.v1.CompletionWord)
+}
+PROTOBUF_NDEBUG_INLINE CompletionWord::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+      : _cached_size_{0},
+        word_(arena) {}
+
+inline void CompletionWord::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.session_ = {};
+}
+CompletionWord::~CompletionWord() {
+  // @@protoc_insertion_point(destructor:odin.v1.CompletionWord)
+  SharedDtor(*this);
+}
+inline void CompletionWord::SharedDtor(MessageLite& self) {
+  CompletionWord& this_ = static_cast<CompletionWord&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.word_.Destroy();
+  delete this_._impl_.session_;
+  this_._impl_.~Impl_();
+}
+
+inline void* PROTOBUF_NONNULL CompletionWord::PlacementNew_(
+    const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena) {
+  return ::new (mem) CompletionWord(arena);
+}
+constexpr auto CompletionWord::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(CompletionWord),
+                                            alignof(CompletionWord));
+}
+constexpr auto CompletionWord::InternalGenerateClassData_() {
+  return ::google::protobuf::internal::ClassDataFull{
+      ::google::protobuf::internal::ClassData{
+          &_CompletionWord_default_instance_._instance,
+          &_table_.header,
+          nullptr,  // OnDemandRegisterArenaDtor
+          nullptr,  // IsInitialized
+          &CompletionWord::MergeImpl,
+          ::google::protobuf::Message::GetNewImpl<CompletionWord>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+          &CompletionWord::SharedDtor,
+          ::google::protobuf::Message::GetClearImpl<CompletionWord>(), &CompletionWord::ByteSizeLong,
+              &CompletionWord::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          PROTOBUF_FIELD_OFFSET(CompletionWord, _impl_._cached_size_),
+          false,
+      },
+      &CompletionWord::kDescriptorMethods,
+      &descriptor_table_odin_2fv1_2ftext_2eproto,
+      nullptr,  // tracker
+  };
+}
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const
+    ::google::protobuf::internal::ClassDataFull CompletionWord_class_data_ =
+        CompletionWord::InternalGenerateClassData_();
+
+PROTOBUF_ATTRIBUTE_WEAK const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
+CompletionWord::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&CompletionWord_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(CompletionWord_class_data_.tc_table);
+  return CompletionWord_class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 1, 35, 2>
+CompletionWord::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(CompletionWord, _impl_._has_bits_),
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    CompletionWord_class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::odin::v1::CompletionWord>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // .odin.v1.SessionInfo session = 2 [json_name = "session"];
+    {::_pbi::TcParser::FastMtS1,
+     {18, 1, 0, PROTOBUF_FIELD_OFFSET(CompletionWord, _impl_.session_)}},
+    // string word = 1 [json_name = "word"];
+    {::_pbi::TcParser::FastUS1,
+     {10, 0, 0, PROTOBUF_FIELD_OFFSET(CompletionWord, _impl_.word_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string word = 1 [json_name = "word"];
+    {PROTOBUF_FIELD_OFFSET(CompletionWord, _impl_.word_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // .odin.v1.SessionInfo session = 2 [json_name = "session"];
+    {PROTOBUF_FIELD_OFFSET(CompletionWord, _impl_.session_), _Internal::kHasBitsOffset + 1, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }},
+  {{
+      {::_pbi::TcParser::GetTable<::odin::v1::SessionInfo>()},
+  }},
+  {{
+    "\26\4\0\0\0\0\0\0"
+    "odin.v1.CompletionWord"
+    "word"
+  }},
+};
+PROTOBUF_NOINLINE void CompletionWord::Clear() {
+// @@protoc_insertion_point(message_clear_start:odin.v1.CompletionWord)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if ((cached_has_bits & 0x00000003u) != 0) {
+    if ((cached_has_bits & 0x00000001u) != 0) {
+      _impl_.word_.ClearNonDefaultToEmpty();
+    }
+    if ((cached_has_bits & 0x00000002u) != 0) {
+      ABSL_DCHECK(_impl_.session_ != nullptr);
+      _impl_.session_->Clear();
+    }
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::uint8_t* PROTOBUF_NONNULL CompletionWord::_InternalSerialize(
+    const ::google::protobuf::MessageLite& base, ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) {
+  const CompletionWord& this_ = static_cast<const CompletionWord&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::uint8_t* PROTOBUF_NONNULL CompletionWord::_InternalSerialize(
+    ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+  const CompletionWord& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(serialize_to_array_start:odin.v1.CompletionWord)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // string word = 1 [json_name = "word"];
+  if ((this_._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    if (!this_._internal_word().empty()) {
+      const ::std::string& _s = this_._internal_word();
+      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "odin.v1.CompletionWord.word");
+      target = stream->WriteStringMaybeAliased(1, _s, target);
+    }
+  }
+
+  cached_has_bits = this_._impl_._has_bits_[0];
+  // .odin.v1.SessionInfo session = 2 [json_name = "session"];
+  if ((cached_has_bits & 0x00000002u) != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        2, *this_._impl_.session_, this_._impl_.session_->GetCachedSize(), target,
+        stream);
+  }
+
+  if (ABSL_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:odin.v1.CompletionWord)
+  return target;
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::size_t CompletionWord::ByteSizeLong(const MessageLite& base) {
+  const CompletionWord& this_ = static_cast<const CompletionWord&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::size_t CompletionWord::ByteSizeLong() const {
+  const CompletionWord& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(message_byte_size_start:odin.v1.CompletionWord)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void)cached_has_bits;
+
+  ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+  cached_has_bits = this_._impl_._has_bits_[0];
+  if ((cached_has_bits & 0x00000003u) != 0) {
+    // string word = 1 [json_name = "word"];
+    if ((cached_has_bits & 0x00000001u) != 0) {
+      if (!this_._internal_word().empty()) {
+        total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                        this_._internal_word());
+      }
+    }
+    // .odin.v1.SessionInfo session = 2 [json_name = "session"];
+    if ((cached_has_bits & 0x00000002u) != 0) {
+      total_size += 1 +
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.session_);
+    }
+  }
+  return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                             &this_._impl_._cached_size_);
+}
+
+void CompletionWord::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<CompletionWord*>(&to_msg);
+  auto& from = static_cast<const CompletionWord&>(from_msg);
+  ::google::protobuf::Arena* arena = _this->GetArena();
+  // @@protoc_insertion_point(class_specific_merge_from_start:odin.v1.CompletionWord)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  cached_has_bits = from._impl_._has_bits_[0];
+  if ((cached_has_bits & 0x00000003u) != 0) {
+    if ((cached_has_bits & 0x00000001u) != 0) {
+      if (!from._internal_word().empty()) {
+        _this->_internal_set_word(from._internal_word());
+      } else {
+        if (_this->_impl_.word_.IsDefault()) {
+          _this->_internal_set_word("");
+        }
+      }
+    }
+    if ((cached_has_bits & 0x00000002u) != 0) {
+      ABSL_DCHECK(from._impl_.session_ != nullptr);
+      if (_this->_impl_.session_ == nullptr) {
+        _this->_impl_.session_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.session_);
+      } else {
+        _this->_impl_.session_->MergeFrom(*from._impl_.session_);
+      }
+    }
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void CompletionWord::CopyFrom(const CompletionWord& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:odin.v1.CompletionWord)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void CompletionWord::InternalSwap(CompletionWord* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
+  using ::std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.word_, &other->_impl_.word_, arena);
+  swap(_impl_.session_, other->_impl_.session_);
+}
+
+::google::protobuf::Metadata CompletionWord::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class CompletionSentence::_Internal {
+ public:
+  using HasBits =
+      decltype(::std::declval<CompletionSentence>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(CompletionSentence, _impl_._has_bits_);
+};
+
+void CompletionSentence::clear_session() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.session_ != nullptr) _impl_.session_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000002u;
+}
+CompletionSentence::CompletionSentence(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, CompletionSentence_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:odin.v1.CompletionSentence)
+}
+PROTOBUF_NDEBUG_INLINE CompletionSentence::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+    const ::odin::v1::CompletionSentence& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        sentence_(arena, from.sentence_) {}
+
+CompletionSentence::CompletionSentence(
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
+    const CompletionSentence& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, CompletionSentence_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  CompletionSentence* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.session_ = ((cached_has_bits & 0x00000002u) != 0)
+                ? ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.session_)
+                : nullptr;
+
+  // @@protoc_insertion_point(copy_constructor:odin.v1.CompletionSentence)
+}
+PROTOBUF_NDEBUG_INLINE CompletionSentence::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+      : _cached_size_{0},
+        sentence_(arena) {}
+
+inline void CompletionSentence::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.session_ = {};
+}
+CompletionSentence::~CompletionSentence() {
+  // @@protoc_insertion_point(destructor:odin.v1.CompletionSentence)
+  SharedDtor(*this);
+}
+inline void CompletionSentence::SharedDtor(MessageLite& self) {
+  CompletionSentence& this_ = static_cast<CompletionSentence&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.sentence_.Destroy();
+  delete this_._impl_.session_;
+  this_._impl_.~Impl_();
+}
+
+inline void* PROTOBUF_NONNULL CompletionSentence::PlacementNew_(
+    const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena) {
+  return ::new (mem) CompletionSentence(arena);
+}
+constexpr auto CompletionSentence::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(CompletionSentence),
+                                            alignof(CompletionSentence));
+}
+constexpr auto CompletionSentence::InternalGenerateClassData_() {
+  return ::google::protobuf::internal::ClassDataFull{
+      ::google::protobuf::internal::ClassData{
+          &_CompletionSentence_default_instance_._instance,
+          &_table_.header,
+          nullptr,  // OnDemandRegisterArenaDtor
+          nullptr,  // IsInitialized
+          &CompletionSentence::MergeImpl,
+          ::google::protobuf::Message::GetNewImpl<CompletionSentence>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+          &CompletionSentence::SharedDtor,
+          ::google::protobuf::Message::GetClearImpl<CompletionSentence>(), &CompletionSentence::ByteSizeLong,
+              &CompletionSentence::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          PROTOBUF_FIELD_OFFSET(CompletionSentence, _impl_._cached_size_),
+          false,
+      },
+      &CompletionSentence::kDescriptorMethods,
+      &descriptor_table_odin_2fv1_2ftext_2eproto,
+      nullptr,  // tracker
+  };
+}
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const
+    ::google::protobuf::internal::ClassDataFull CompletionSentence_class_data_ =
+        CompletionSentence::InternalGenerateClassData_();
+
+PROTOBUF_ATTRIBUTE_WEAK const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
+CompletionSentence::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&CompletionSentence_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(CompletionSentence_class_data_.tc_table);
+  return CompletionSentence_class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 1, 43, 2>
+CompletionSentence::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(CompletionSentence, _impl_._has_bits_),
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    CompletionSentence_class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::odin::v1::CompletionSentence>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // .odin.v1.SessionInfo session = 2 [json_name = "session"];
+    {::_pbi::TcParser::FastMtS1,
+     {18, 1, 0, PROTOBUF_FIELD_OFFSET(CompletionSentence, _impl_.session_)}},
+    // string sentence = 1 [json_name = "sentence"];
+    {::_pbi::TcParser::FastUS1,
+     {10, 0, 0, PROTOBUF_FIELD_OFFSET(CompletionSentence, _impl_.sentence_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string sentence = 1 [json_name = "sentence"];
+    {PROTOBUF_FIELD_OFFSET(CompletionSentence, _impl_.sentence_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // .odin.v1.SessionInfo session = 2 [json_name = "session"];
+    {PROTOBUF_FIELD_OFFSET(CompletionSentence, _impl_.session_), _Internal::kHasBitsOffset + 1, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }},
+  {{
+      {::_pbi::TcParser::GetTable<::odin::v1::SessionInfo>()},
+  }},
+  {{
+    "\32\10\0\0\0\0\0\0"
+    "odin.v1.CompletionSentence"
+    "sentence"
+  }},
+};
+PROTOBUF_NOINLINE void CompletionSentence::Clear() {
+// @@protoc_insertion_point(message_clear_start:odin.v1.CompletionSentence)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if ((cached_has_bits & 0x00000003u) != 0) {
+    if ((cached_has_bits & 0x00000001u) != 0) {
+      _impl_.sentence_.ClearNonDefaultToEmpty();
+    }
+    if ((cached_has_bits & 0x00000002u) != 0) {
+      ABSL_DCHECK(_impl_.session_ != nullptr);
+      _impl_.session_->Clear();
+    }
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::uint8_t* PROTOBUF_NONNULL CompletionSentence::_InternalSerialize(
+    const ::google::protobuf::MessageLite& base, ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) {
+  const CompletionSentence& this_ = static_cast<const CompletionSentence&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::uint8_t* PROTOBUF_NONNULL CompletionSentence::_InternalSerialize(
+    ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+  const CompletionSentence& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(serialize_to_array_start:odin.v1.CompletionSentence)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // string sentence = 1 [json_name = "sentence"];
+  if ((this_._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    if (!this_._internal_sentence().empty()) {
+      const ::std::string& _s = this_._internal_sentence();
+      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "odin.v1.CompletionSentence.sentence");
+      target = stream->WriteStringMaybeAliased(1, _s, target);
+    }
+  }
+
+  cached_has_bits = this_._impl_._has_bits_[0];
+  // .odin.v1.SessionInfo session = 2 [json_name = "session"];
+  if ((cached_has_bits & 0x00000002u) != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        2, *this_._impl_.session_, this_._impl_.session_->GetCachedSize(), target,
+        stream);
+  }
+
+  if (ABSL_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:odin.v1.CompletionSentence)
+  return target;
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::size_t CompletionSentence::ByteSizeLong(const MessageLite& base) {
+  const CompletionSentence& this_ = static_cast<const CompletionSentence&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::size_t CompletionSentence::ByteSizeLong() const {
+  const CompletionSentence& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(message_byte_size_start:odin.v1.CompletionSentence)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void)cached_has_bits;
+
+  ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+  cached_has_bits = this_._impl_._has_bits_[0];
+  if ((cached_has_bits & 0x00000003u) != 0) {
+    // string sentence = 1 [json_name = "sentence"];
+    if ((cached_has_bits & 0x00000001u) != 0) {
+      if (!this_._internal_sentence().empty()) {
+        total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                        this_._internal_sentence());
+      }
+    }
+    // .odin.v1.SessionInfo session = 2 [json_name = "session"];
+    if ((cached_has_bits & 0x00000002u) != 0) {
+      total_size += 1 +
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.session_);
+    }
+  }
+  return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                             &this_._impl_._cached_size_);
+}
+
+void CompletionSentence::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<CompletionSentence*>(&to_msg);
+  auto& from = static_cast<const CompletionSentence&>(from_msg);
+  ::google::protobuf::Arena* arena = _this->GetArena();
+  // @@protoc_insertion_point(class_specific_merge_from_start:odin.v1.CompletionSentence)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  cached_has_bits = from._impl_._has_bits_[0];
+  if ((cached_has_bits & 0x00000003u) != 0) {
+    if ((cached_has_bits & 0x00000001u) != 0) {
+      if (!from._internal_sentence().empty()) {
+        _this->_internal_set_sentence(from._internal_sentence());
+      } else {
+        if (_this->_impl_.sentence_.IsDefault()) {
+          _this->_internal_set_sentence("");
+        }
+      }
+    }
+    if ((cached_has_bits & 0x00000002u) != 0) {
+      ABSL_DCHECK(from._impl_.session_ != nullptr);
+      if (_this->_impl_.session_ == nullptr) {
+        _this->_impl_.session_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.session_);
+      } else {
+        _this->_impl_.session_->MergeFrom(*from._impl_.session_);
+      }
+    }
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void CompletionSentence::CopyFrom(const CompletionSentence& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:odin.v1.CompletionSentence)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void CompletionSentence::InternalSwap(CompletionSentence* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
+  using ::std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.sentence_, &other->_impl_.sentence_, arena);
+  swap(_impl_.session_, other->_impl_.session_);
+}
+
+::google::protobuf::Metadata CompletionSentence::GetMetadata() const {
   return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
 }
 // @@protoc_insertion_point(namespace_scope)

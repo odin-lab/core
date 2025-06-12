@@ -15,3 +15,19 @@ class Transcription(_message.Message):
     segments: _containers.RepeatedCompositeFieldContainer[_text_helper_pb2.Segment]
     session: _common_pb2.SessionInfo
     def __init__(self, segments: _Optional[_Iterable[_Union[_text_helper_pb2.Segment, _Mapping]]] = ..., session: _Optional[_Union[_common_pb2.SessionInfo, _Mapping]] = ...) -> None: ...
+
+class CompletionWord(_message.Message):
+    __slots__ = ("word", "session")
+    WORD_FIELD_NUMBER: _ClassVar[int]
+    SESSION_FIELD_NUMBER: _ClassVar[int]
+    word: str
+    session: _common_pb2.SessionInfo
+    def __init__(self, word: _Optional[str] = ..., session: _Optional[_Union[_common_pb2.SessionInfo, _Mapping]] = ...) -> None: ...
+
+class CompletionSentence(_message.Message):
+    __slots__ = ("sentence", "session")
+    SENTENCE_FIELD_NUMBER: _ClassVar[int]
+    SESSION_FIELD_NUMBER: _ClassVar[int]
+    sentence: str
+    session: _common_pb2.SessionInfo
+    def __init__(self, sentence: _Optional[str] = ..., session: _Optional[_Union[_common_pb2.SessionInfo, _Mapping]] = ...) -> None: ...

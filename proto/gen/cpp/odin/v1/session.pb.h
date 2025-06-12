@@ -65,6 +65,18 @@ class Init;
 struct InitDefaultTypeInternal;
 extern InitDefaultTypeInternal _Init_default_instance_;
 extern const ::google::protobuf::internal::ClassDataFull Init_class_data_;
+class ModuleBootup;
+struct ModuleBootupDefaultTypeInternal;
+extern ModuleBootupDefaultTypeInternal _ModuleBootup_default_instance_;
+extern const ::google::protobuf::internal::ClassDataFull ModuleBootup_class_data_;
+class ModuleHeartbeat;
+struct ModuleHeartbeatDefaultTypeInternal;
+extern ModuleHeartbeatDefaultTypeInternal _ModuleHeartbeat_default_instance_;
+extern const ::google::protobuf::internal::ClassDataFull ModuleHeartbeat_class_data_;
+class ModuleRegistry;
+struct ModuleRegistryDefaultTypeInternal;
+extern ModuleRegistryDefaultTypeInternal _ModuleRegistry_default_instance_;
+extern const ::google::protobuf::internal::ClassDataFull ModuleRegistry_class_data_;
 class Shutdown;
 struct ShutdownDefaultTypeInternal;
 extern ShutdownDefaultTypeInternal _Shutdown_default_instance_;
@@ -567,6 +579,514 @@ class Shutdown final : public ::google::protobuf::Message
 extern const ::google::protobuf::internal::ClassDataFull Shutdown_class_data_;
 // -------------------------------------------------------------------
 
+class ModuleHeartbeat final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:odin.v1.ModuleHeartbeat) */ {
+ public:
+  inline ModuleHeartbeat() : ModuleHeartbeat(nullptr) {}
+  ~ModuleHeartbeat() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(ModuleHeartbeat* PROTOBUF_NONNULL msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(ModuleHeartbeat));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR ModuleHeartbeat(::google::protobuf::internal::ConstantInitialized);
+
+  inline ModuleHeartbeat(const ModuleHeartbeat& from) : ModuleHeartbeat(nullptr, from) {}
+  inline ModuleHeartbeat(ModuleHeartbeat&& from) noexcept
+      : ModuleHeartbeat(nullptr, ::std::move(from)) {}
+  inline ModuleHeartbeat& operator=(const ModuleHeartbeat& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ModuleHeartbeat& operator=(ModuleHeartbeat&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* PROTOBUF_NONNULL mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ModuleHeartbeat& default_instance() {
+    return *reinterpret_cast<const ModuleHeartbeat*>(
+        &_ModuleHeartbeat_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 5;
+  friend void swap(ModuleHeartbeat& a, ModuleHeartbeat& b) { a.Swap(&b); }
+  inline void Swap(ModuleHeartbeat* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ModuleHeartbeat* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ModuleHeartbeat* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<ModuleHeartbeat>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const ModuleHeartbeat& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const ModuleHeartbeat& from) { ModuleHeartbeat::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(::google::protobuf::MessageLite& to_msg,
+                        const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      const ::google::protobuf::MessageLite& msg, ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(ModuleHeartbeat* PROTOBUF_NONNULL other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "odin.v1.ModuleHeartbeat"; }
+
+ protected:
+  explicit ModuleHeartbeat(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  ModuleHeartbeat(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const ModuleHeartbeat& from);
+  ModuleHeartbeat(
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, ModuleHeartbeat&& from) noexcept
+      : ModuleHeartbeat(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
+  static void* PROTOBUF_NONNULL PlacementNew_(
+      const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static constexpr auto InternalNewImpl_();
+
+ public:
+  static constexpr auto InternalGenerateClassData_();
+
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kModuleNameFieldNumber = 1,
+    kInstanceIdFieldNumber = 2,
+    kTimestampFieldNumber = 3,
+    kStatusFieldNumber = 4,
+    kActiveSessionsFieldNumber = 5,
+  };
+  // string module_name = 1 [json_name = "moduleName"];
+  void clear_module_name() ;
+  const ::std::string& module_name() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_module_name(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_module_name();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_module_name();
+  void set_allocated_module_name(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_module_name() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_module_name(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_module_name();
+
+  public:
+  // string instance_id = 2 [json_name = "instanceId"];
+  void clear_instance_id() ;
+  const ::std::string& instance_id() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_instance_id(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_instance_id();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_instance_id();
+  void set_allocated_instance_id(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_instance_id() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_instance_id(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_instance_id();
+
+  public:
+  // int64 timestamp = 3 [json_name = "timestamp"];
+  void clear_timestamp() ;
+  ::int64_t timestamp() const;
+  void set_timestamp(::int64_t value);
+
+  private:
+  ::int64_t _internal_timestamp() const;
+  void _internal_set_timestamp(::int64_t value);
+
+  public:
+  // .odin.v1.ModuleStatus status = 4 [json_name = "status"];
+  void clear_status() ;
+  ::odin::v1::ModuleStatus status() const;
+  void set_status(::odin::v1::ModuleStatus value);
+
+  private:
+  ::odin::v1::ModuleStatus _internal_status() const;
+  void _internal_set_status(::odin::v1::ModuleStatus value);
+
+  public:
+  // int32 active_sessions = 5 [json_name = "activeSessions"];
+  void clear_active_sessions() ;
+  ::int32_t active_sessions() const;
+  void set_active_sessions(::int32_t value);
+
+  private:
+  ::int32_t _internal_active_sessions() const;
+  void _internal_set_active_sessions(::int32_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:odin.v1.ModuleHeartbeat)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<3, 5,
+                                   0, 54,
+                                   2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+        const ModuleHeartbeat& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr module_name_;
+    ::google::protobuf::internal::ArenaStringPtr instance_id_;
+    ::int64_t timestamp_;
+    int status_;
+    ::int32_t active_sessions_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_odin_2fv1_2fsession_2eproto;
+};
+
+extern const ::google::protobuf::internal::ClassDataFull ModuleHeartbeat_class_data_;
+// -------------------------------------------------------------------
+
+class ModuleBootup final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:odin.v1.ModuleBootup) */ {
+ public:
+  inline ModuleBootup() : ModuleBootup(nullptr) {}
+  ~ModuleBootup() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(ModuleBootup* PROTOBUF_NONNULL msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(ModuleBootup));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR ModuleBootup(::google::protobuf::internal::ConstantInitialized);
+
+  inline ModuleBootup(const ModuleBootup& from) : ModuleBootup(nullptr, from) {}
+  inline ModuleBootup(ModuleBootup&& from) noexcept
+      : ModuleBootup(nullptr, ::std::move(from)) {}
+  inline ModuleBootup& operator=(const ModuleBootup& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ModuleBootup& operator=(ModuleBootup&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* PROTOBUF_NONNULL mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ModuleBootup& default_instance() {
+    return *reinterpret_cast<const ModuleBootup*>(
+        &_ModuleBootup_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 4;
+  friend void swap(ModuleBootup& a, ModuleBootup& b) { a.Swap(&b); }
+  inline void Swap(ModuleBootup* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ModuleBootup* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ModuleBootup* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<ModuleBootup>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const ModuleBootup& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const ModuleBootup& from) { ModuleBootup::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(::google::protobuf::MessageLite& to_msg,
+                        const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      const ::google::protobuf::MessageLite& msg, ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(ModuleBootup* PROTOBUF_NONNULL other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "odin.v1.ModuleBootup"; }
+
+ protected:
+  explicit ModuleBootup(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  ModuleBootup(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const ModuleBootup& from);
+  ModuleBootup(
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, ModuleBootup&& from) noexcept
+      : ModuleBootup(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
+  static void* PROTOBUF_NONNULL PlacementNew_(
+      const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static constexpr auto InternalNewImpl_();
+
+ public:
+  static constexpr auto InternalGenerateClassData_();
+
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kModuleNameFieldNumber = 1,
+    kInstanceIdFieldNumber = 2,
+    kVersionFieldNumber = 4,
+    kHostFieldNumber = 5,
+    kStartedAtFieldNumber = 3,
+  };
+  // string module_name = 1 [json_name = "moduleName"];
+  void clear_module_name() ;
+  const ::std::string& module_name() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_module_name(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_module_name();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_module_name();
+  void set_allocated_module_name(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_module_name() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_module_name(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_module_name();
+
+  public:
+  // string instance_id = 2 [json_name = "instanceId"];
+  void clear_instance_id() ;
+  const ::std::string& instance_id() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_instance_id(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_instance_id();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_instance_id();
+  void set_allocated_instance_id(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_instance_id() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_instance_id(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_instance_id();
+
+  public:
+  // string version = 4 [json_name = "version"];
+  void clear_version() ;
+  const ::std::string& version() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_version(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_version();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_version();
+  void set_allocated_version(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_version() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_version(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_version();
+
+  public:
+  // string host = 5 [json_name = "host"];
+  void clear_host() ;
+  const ::std::string& host() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_host(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_host();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_host();
+  void set_allocated_host(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_host() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_host(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_host();
+
+  public:
+  // int64 started_at = 3 [json_name = "startedAt"];
+  void clear_started_at() ;
+  ::int64_t started_at() const;
+  void set_started_at(::int64_t value);
+
+  private:
+  ::int64_t _internal_started_at() const;
+  void _internal_set_started_at(::int64_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:odin.v1.ModuleBootup)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<3, 5,
+                                   0, 62,
+                                   2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+        const ModuleBootup& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr module_name_;
+    ::google::protobuf::internal::ArenaStringPtr instance_id_;
+    ::google::protobuf::internal::ArenaStringPtr version_;
+    ::google::protobuf::internal::ArenaStringPtr host_;
+    ::int64_t started_at_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_odin_2fv1_2fsession_2eproto;
+};
+
+extern const ::google::protobuf::internal::ClassDataFull ModuleBootup_class_data_;
+// -------------------------------------------------------------------
+
 class Init final : public ::google::protobuf::Message
 /* @@protoc_insertion_point(class_definition:odin.v1.Init) */ {
  public:
@@ -778,6 +1298,216 @@ class Init final : public ::google::protobuf::Message
 };
 
 extern const ::google::protobuf::internal::ClassDataFull Init_class_data_;
+// -------------------------------------------------------------------
+
+class ModuleRegistry final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:odin.v1.ModuleRegistry) */ {
+ public:
+  inline ModuleRegistry() : ModuleRegistry(nullptr) {}
+  ~ModuleRegistry() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(ModuleRegistry* PROTOBUF_NONNULL msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(ModuleRegistry));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR ModuleRegistry(::google::protobuf::internal::ConstantInitialized);
+
+  inline ModuleRegistry(const ModuleRegistry& from) : ModuleRegistry(nullptr, from) {}
+  inline ModuleRegistry(ModuleRegistry&& from) noexcept
+      : ModuleRegistry(nullptr, ::std::move(from)) {}
+  inline ModuleRegistry& operator=(const ModuleRegistry& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ModuleRegistry& operator=(ModuleRegistry&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* PROTOBUF_NONNULL mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ModuleRegistry& default_instance() {
+    return *reinterpret_cast<const ModuleRegistry*>(
+        &_ModuleRegistry_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 6;
+  friend void swap(ModuleRegistry& a, ModuleRegistry& b) { a.Swap(&b); }
+  inline void Swap(ModuleRegistry* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ModuleRegistry* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ModuleRegistry* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<ModuleRegistry>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const ModuleRegistry& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const ModuleRegistry& from) { ModuleRegistry::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(::google::protobuf::MessageLite& to_msg,
+                        const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      const ::google::protobuf::MessageLite& msg, ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(ModuleRegistry* PROTOBUF_NONNULL other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "odin.v1.ModuleRegistry"; }
+
+ protected:
+  explicit ModuleRegistry(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  ModuleRegistry(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const ModuleRegistry& from);
+  ModuleRegistry(
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, ModuleRegistry&& from) noexcept
+      : ModuleRegistry(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
+  static void* PROTOBUF_NONNULL PlacementNew_(
+      const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static constexpr auto InternalNewImpl_();
+
+ public:
+  static constexpr auto InternalGenerateClassData_();
+
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kModulesFieldNumber = 1,
+    kLastUpdatedFieldNumber = 2,
+  };
+  // repeated .odin.v1.ModuleBootup modules = 1 [json_name = "modules"];
+  int modules_size() const;
+  private:
+  int _internal_modules_size() const;
+
+  public:
+  void clear_modules() ;
+  ::odin::v1::ModuleBootup* PROTOBUF_NONNULL mutable_modules(int index);
+  ::google::protobuf::RepeatedPtrField<::odin::v1::ModuleBootup>* PROTOBUF_NONNULL mutable_modules();
+
+  private:
+  const ::google::protobuf::RepeatedPtrField<::odin::v1::ModuleBootup>& _internal_modules() const;
+  ::google::protobuf::RepeatedPtrField<::odin::v1::ModuleBootup>* PROTOBUF_NONNULL _internal_mutable_modules();
+  public:
+  const ::odin::v1::ModuleBootup& modules(int index) const;
+  ::odin::v1::ModuleBootup* PROTOBUF_NONNULL add_modules();
+  const ::google::protobuf::RepeatedPtrField<::odin::v1::ModuleBootup>& modules() const;
+  // int64 last_updated = 2 [json_name = "lastUpdated"];
+  void clear_last_updated() ;
+  ::int64_t last_updated() const;
+  void set_last_updated(::int64_t value);
+
+  private:
+  ::int64_t _internal_last_updated() const;
+  void _internal_set_last_updated(::int64_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:odin.v1.ModuleRegistry)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<1, 2,
+                                   1, 0,
+                                   2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+        const ModuleRegistry& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::RepeatedPtrField< ::odin::v1::ModuleBootup > modules_;
+    ::int64_t last_updated_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_odin_2fv1_2fsession_2eproto;
+};
+
+extern const ::google::protobuf::internal::ClassDataFull ModuleRegistry_class_data_;
 // -------------------------------------------------------------------
 
 class Command final : public ::google::protobuf::Message
@@ -1626,6 +2356,578 @@ inline void Status::set_allocated_detail(::std::string* PROTOBUF_NULLABLE value)
     _impl_.detail_.Set("", GetArena());
   }
   // @@protoc_insertion_point(field_set_allocated:odin.v1.Status.detail)
+}
+
+// -------------------------------------------------------------------
+
+// ModuleBootup
+
+// string module_name = 1 [json_name = "moduleName"];
+inline void ModuleBootup::clear_module_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.module_name_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::std::string& ModuleBootup::module_name() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:odin.v1.ModuleBootup.module_name)
+  return _internal_module_name();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void ModuleBootup::set_module_name(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.module_name_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:odin.v1.ModuleBootup.module_name)
+}
+inline ::std::string* PROTOBUF_NONNULL ModuleBootup::mutable_module_name()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::std::string* _s = _internal_mutable_module_name();
+  // @@protoc_insertion_point(field_mutable:odin.v1.ModuleBootup.module_name)
+  return _s;
+}
+inline const ::std::string& ModuleBootup::_internal_module_name() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.module_name_.Get();
+}
+inline void ModuleBootup::_internal_set_module_name(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.module_name_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL ModuleBootup::_internal_mutable_module_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  return _impl_.module_name_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE ModuleBootup::release_module_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:odin.v1.ModuleBootup.module_name)
+  if ((_impl_._has_bits_[0] & 0x00000001u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  auto* released = _impl_.module_name_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.module_name_.Set("", GetArena());
+  }
+  return released;
+}
+inline void ModuleBootup::set_allocated_module_name(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  _impl_.module_name_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.module_name_.IsDefault()) {
+    _impl_.module_name_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:odin.v1.ModuleBootup.module_name)
+}
+
+// string instance_id = 2 [json_name = "instanceId"];
+inline void ModuleBootup::clear_instance_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.instance_id_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000002u;
+}
+inline const ::std::string& ModuleBootup::instance_id() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:odin.v1.ModuleBootup.instance_id)
+  return _internal_instance_id();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void ModuleBootup::set_instance_id(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  _impl_.instance_id_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:odin.v1.ModuleBootup.instance_id)
+}
+inline ::std::string* PROTOBUF_NONNULL ModuleBootup::mutable_instance_id()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::std::string* _s = _internal_mutable_instance_id();
+  // @@protoc_insertion_point(field_mutable:odin.v1.ModuleBootup.instance_id)
+  return _s;
+}
+inline const ::std::string& ModuleBootup::_internal_instance_id() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.instance_id_.Get();
+}
+inline void ModuleBootup::_internal_set_instance_id(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  _impl_.instance_id_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL ModuleBootup::_internal_mutable_instance_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  return _impl_.instance_id_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE ModuleBootup::release_instance_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:odin.v1.ModuleBootup.instance_id)
+  if ((_impl_._has_bits_[0] & 0x00000002u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  auto* released = _impl_.instance_id_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.instance_id_.Set("", GetArena());
+  }
+  return released;
+}
+inline void ModuleBootup::set_allocated_instance_id(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+  _impl_.instance_id_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.instance_id_.IsDefault()) {
+    _impl_.instance_id_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:odin.v1.ModuleBootup.instance_id)
+}
+
+// int64 started_at = 3 [json_name = "startedAt"];
+inline void ModuleBootup::clear_started_at() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.started_at_ = ::int64_t{0};
+  _impl_._has_bits_[0] &= ~0x00000010u;
+}
+inline ::int64_t ModuleBootup::started_at() const {
+  // @@protoc_insertion_point(field_get:odin.v1.ModuleBootup.started_at)
+  return _internal_started_at();
+}
+inline void ModuleBootup::set_started_at(::int64_t value) {
+  _internal_set_started_at(value);
+  _impl_._has_bits_[0] |= 0x00000010u;
+  // @@protoc_insertion_point(field_set:odin.v1.ModuleBootup.started_at)
+}
+inline ::int64_t ModuleBootup::_internal_started_at() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.started_at_;
+}
+inline void ModuleBootup::_internal_set_started_at(::int64_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.started_at_ = value;
+}
+
+// string version = 4 [json_name = "version"];
+inline void ModuleBootup::clear_version() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.version_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000004u;
+}
+inline const ::std::string& ModuleBootup::version() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:odin.v1.ModuleBootup.version)
+  return _internal_version();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void ModuleBootup::set_version(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000004u;
+  _impl_.version_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:odin.v1.ModuleBootup.version)
+}
+inline ::std::string* PROTOBUF_NONNULL ModuleBootup::mutable_version()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::std::string* _s = _internal_mutable_version();
+  // @@protoc_insertion_point(field_mutable:odin.v1.ModuleBootup.version)
+  return _s;
+}
+inline const ::std::string& ModuleBootup::_internal_version() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.version_.Get();
+}
+inline void ModuleBootup::_internal_set_version(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000004u;
+  _impl_.version_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL ModuleBootup::_internal_mutable_version() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000004u;
+  return _impl_.version_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE ModuleBootup::release_version() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:odin.v1.ModuleBootup.version)
+  if ((_impl_._has_bits_[0] & 0x00000004u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000004u;
+  auto* released = _impl_.version_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.version_.Set("", GetArena());
+  }
+  return released;
+}
+inline void ModuleBootup::set_allocated_version(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000004u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000004u;
+  }
+  _impl_.version_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.version_.IsDefault()) {
+    _impl_.version_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:odin.v1.ModuleBootup.version)
+}
+
+// string host = 5 [json_name = "host"];
+inline void ModuleBootup::clear_host() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.host_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000008u;
+}
+inline const ::std::string& ModuleBootup::host() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:odin.v1.ModuleBootup.host)
+  return _internal_host();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void ModuleBootup::set_host(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000008u;
+  _impl_.host_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:odin.v1.ModuleBootup.host)
+}
+inline ::std::string* PROTOBUF_NONNULL ModuleBootup::mutable_host()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::std::string* _s = _internal_mutable_host();
+  // @@protoc_insertion_point(field_mutable:odin.v1.ModuleBootup.host)
+  return _s;
+}
+inline const ::std::string& ModuleBootup::_internal_host() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.host_.Get();
+}
+inline void ModuleBootup::_internal_set_host(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000008u;
+  _impl_.host_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL ModuleBootup::_internal_mutable_host() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000008u;
+  return _impl_.host_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE ModuleBootup::release_host() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:odin.v1.ModuleBootup.host)
+  if ((_impl_._has_bits_[0] & 0x00000008u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000008u;
+  auto* released = _impl_.host_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.host_.Set("", GetArena());
+  }
+  return released;
+}
+inline void ModuleBootup::set_allocated_host(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000008u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000008u;
+  }
+  _impl_.host_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.host_.IsDefault()) {
+    _impl_.host_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:odin.v1.ModuleBootup.host)
+}
+
+// -------------------------------------------------------------------
+
+// ModuleHeartbeat
+
+// string module_name = 1 [json_name = "moduleName"];
+inline void ModuleHeartbeat::clear_module_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.module_name_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::std::string& ModuleHeartbeat::module_name() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:odin.v1.ModuleHeartbeat.module_name)
+  return _internal_module_name();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void ModuleHeartbeat::set_module_name(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.module_name_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:odin.v1.ModuleHeartbeat.module_name)
+}
+inline ::std::string* PROTOBUF_NONNULL ModuleHeartbeat::mutable_module_name()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::std::string* _s = _internal_mutable_module_name();
+  // @@protoc_insertion_point(field_mutable:odin.v1.ModuleHeartbeat.module_name)
+  return _s;
+}
+inline const ::std::string& ModuleHeartbeat::_internal_module_name() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.module_name_.Get();
+}
+inline void ModuleHeartbeat::_internal_set_module_name(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.module_name_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL ModuleHeartbeat::_internal_mutable_module_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  return _impl_.module_name_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE ModuleHeartbeat::release_module_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:odin.v1.ModuleHeartbeat.module_name)
+  if ((_impl_._has_bits_[0] & 0x00000001u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  auto* released = _impl_.module_name_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.module_name_.Set("", GetArena());
+  }
+  return released;
+}
+inline void ModuleHeartbeat::set_allocated_module_name(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  _impl_.module_name_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.module_name_.IsDefault()) {
+    _impl_.module_name_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:odin.v1.ModuleHeartbeat.module_name)
+}
+
+// string instance_id = 2 [json_name = "instanceId"];
+inline void ModuleHeartbeat::clear_instance_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.instance_id_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000002u;
+}
+inline const ::std::string& ModuleHeartbeat::instance_id() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:odin.v1.ModuleHeartbeat.instance_id)
+  return _internal_instance_id();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void ModuleHeartbeat::set_instance_id(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  _impl_.instance_id_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:odin.v1.ModuleHeartbeat.instance_id)
+}
+inline ::std::string* PROTOBUF_NONNULL ModuleHeartbeat::mutable_instance_id()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::std::string* _s = _internal_mutable_instance_id();
+  // @@protoc_insertion_point(field_mutable:odin.v1.ModuleHeartbeat.instance_id)
+  return _s;
+}
+inline const ::std::string& ModuleHeartbeat::_internal_instance_id() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.instance_id_.Get();
+}
+inline void ModuleHeartbeat::_internal_set_instance_id(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  _impl_.instance_id_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL ModuleHeartbeat::_internal_mutable_instance_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  return _impl_.instance_id_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE ModuleHeartbeat::release_instance_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:odin.v1.ModuleHeartbeat.instance_id)
+  if ((_impl_._has_bits_[0] & 0x00000002u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  auto* released = _impl_.instance_id_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.instance_id_.Set("", GetArena());
+  }
+  return released;
+}
+inline void ModuleHeartbeat::set_allocated_instance_id(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+  _impl_.instance_id_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.instance_id_.IsDefault()) {
+    _impl_.instance_id_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:odin.v1.ModuleHeartbeat.instance_id)
+}
+
+// int64 timestamp = 3 [json_name = "timestamp"];
+inline void ModuleHeartbeat::clear_timestamp() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.timestamp_ = ::int64_t{0};
+  _impl_._has_bits_[0] &= ~0x00000004u;
+}
+inline ::int64_t ModuleHeartbeat::timestamp() const {
+  // @@protoc_insertion_point(field_get:odin.v1.ModuleHeartbeat.timestamp)
+  return _internal_timestamp();
+}
+inline void ModuleHeartbeat::set_timestamp(::int64_t value) {
+  _internal_set_timestamp(value);
+  _impl_._has_bits_[0] |= 0x00000004u;
+  // @@protoc_insertion_point(field_set:odin.v1.ModuleHeartbeat.timestamp)
+}
+inline ::int64_t ModuleHeartbeat::_internal_timestamp() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.timestamp_;
+}
+inline void ModuleHeartbeat::_internal_set_timestamp(::int64_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.timestamp_ = value;
+}
+
+// .odin.v1.ModuleStatus status = 4 [json_name = "status"];
+inline void ModuleHeartbeat::clear_status() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.status_ = 0;
+  _impl_._has_bits_[0] &= ~0x00000008u;
+}
+inline ::odin::v1::ModuleStatus ModuleHeartbeat::status() const {
+  // @@protoc_insertion_point(field_get:odin.v1.ModuleHeartbeat.status)
+  return _internal_status();
+}
+inline void ModuleHeartbeat::set_status(::odin::v1::ModuleStatus value) {
+  _internal_set_status(value);
+  _impl_._has_bits_[0] |= 0x00000008u;
+  // @@protoc_insertion_point(field_set:odin.v1.ModuleHeartbeat.status)
+}
+inline ::odin::v1::ModuleStatus ModuleHeartbeat::_internal_status() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return static_cast<::odin::v1::ModuleStatus>(_impl_.status_);
+}
+inline void ModuleHeartbeat::_internal_set_status(::odin::v1::ModuleStatus value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.status_ = value;
+}
+
+// int32 active_sessions = 5 [json_name = "activeSessions"];
+inline void ModuleHeartbeat::clear_active_sessions() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.active_sessions_ = 0;
+  _impl_._has_bits_[0] &= ~0x00000010u;
+}
+inline ::int32_t ModuleHeartbeat::active_sessions() const {
+  // @@protoc_insertion_point(field_get:odin.v1.ModuleHeartbeat.active_sessions)
+  return _internal_active_sessions();
+}
+inline void ModuleHeartbeat::set_active_sessions(::int32_t value) {
+  _internal_set_active_sessions(value);
+  _impl_._has_bits_[0] |= 0x00000010u;
+  // @@protoc_insertion_point(field_set:odin.v1.ModuleHeartbeat.active_sessions)
+}
+inline ::int32_t ModuleHeartbeat::_internal_active_sessions() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.active_sessions_;
+}
+inline void ModuleHeartbeat::_internal_set_active_sessions(::int32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.active_sessions_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// ModuleRegistry
+
+// repeated .odin.v1.ModuleBootup modules = 1 [json_name = "modules"];
+inline int ModuleRegistry::_internal_modules_size() const {
+  return _internal_modules().size();
+}
+inline int ModuleRegistry::modules_size() const {
+  return _internal_modules_size();
+}
+inline void ModuleRegistry::clear_modules() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.modules_.Clear();
+}
+inline ::odin::v1::ModuleBootup* PROTOBUF_NONNULL ModuleRegistry::mutable_modules(int index)
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable:odin.v1.ModuleRegistry.modules)
+  return _internal_mutable_modules()->Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField<::odin::v1::ModuleBootup>* PROTOBUF_NONNULL ModuleRegistry::mutable_modules()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_list:odin.v1.ModuleRegistry.modules)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _internal_mutable_modules();
+}
+inline const ::odin::v1::ModuleBootup& ModuleRegistry::modules(int index) const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:odin.v1.ModuleRegistry.modules)
+  return _internal_modules().Get(index);
+}
+inline ::odin::v1::ModuleBootup* PROTOBUF_NONNULL ModuleRegistry::add_modules()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::odin::v1::ModuleBootup* _add = _internal_mutable_modules()->Add();
+  // @@protoc_insertion_point(field_add:odin.v1.ModuleRegistry.modules)
+  return _add;
+}
+inline const ::google::protobuf::RepeatedPtrField<::odin::v1::ModuleBootup>& ModuleRegistry::modules() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:odin.v1.ModuleRegistry.modules)
+  return _internal_modules();
+}
+inline const ::google::protobuf::RepeatedPtrField<::odin::v1::ModuleBootup>&
+ModuleRegistry::_internal_modules() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.modules_;
+}
+inline ::google::protobuf::RepeatedPtrField<::odin::v1::ModuleBootup>* PROTOBUF_NONNULL
+ModuleRegistry::_internal_mutable_modules() {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return &_impl_.modules_;
+}
+
+// int64 last_updated = 2 [json_name = "lastUpdated"];
+inline void ModuleRegistry::clear_last_updated() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.last_updated_ = ::int64_t{0};
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline ::int64_t ModuleRegistry::last_updated() const {
+  // @@protoc_insertion_point(field_get:odin.v1.ModuleRegistry.last_updated)
+  return _internal_last_updated();
+}
+inline void ModuleRegistry::set_last_updated(::int64_t value) {
+  _internal_set_last_updated(value);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  // @@protoc_insertion_point(field_set:odin.v1.ModuleRegistry.last_updated)
+}
+inline ::int64_t ModuleRegistry::_internal_last_updated() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.last_updated_;
+}
+inline void ModuleRegistry::_internal_set_last_updated(::int64_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.last_updated_ = value;
 }
 
 #ifdef __GNUC__

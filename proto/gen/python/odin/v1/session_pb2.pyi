@@ -1,7 +1,8 @@
+from google.protobuf.internal import containers as _containers
 from google.protobuf.internal import enum_type_wrapper as _enum_type_wrapper
 from google.protobuf import descriptor as _descriptor
 from google.protobuf import message as _message
-from typing import ClassVar as _ClassVar, Mapping as _Mapping, Optional as _Optional, Union as _Union
+from typing import ClassVar as _ClassVar, Iterable as _Iterable, Mapping as _Mapping, Optional as _Optional, Union as _Union
 
 DESCRIPTOR: _descriptor.FileDescriptor
 
@@ -49,3 +50,39 @@ class Status(_message.Message):
     status: ModuleStatus
     detail: str
     def __init__(self, session_id: _Optional[str] = ..., module: _Optional[str] = ..., status: _Optional[_Union[ModuleStatus, str]] = ..., detail: _Optional[str] = ...) -> None: ...
+
+class ModuleBootup(_message.Message):
+    __slots__ = ("module_name", "instance_id", "started_at", "version", "host")
+    MODULE_NAME_FIELD_NUMBER: _ClassVar[int]
+    INSTANCE_ID_FIELD_NUMBER: _ClassVar[int]
+    STARTED_AT_FIELD_NUMBER: _ClassVar[int]
+    VERSION_FIELD_NUMBER: _ClassVar[int]
+    HOST_FIELD_NUMBER: _ClassVar[int]
+    module_name: str
+    instance_id: str
+    started_at: int
+    version: str
+    host: str
+    def __init__(self, module_name: _Optional[str] = ..., instance_id: _Optional[str] = ..., started_at: _Optional[int] = ..., version: _Optional[str] = ..., host: _Optional[str] = ...) -> None: ...
+
+class ModuleHeartbeat(_message.Message):
+    __slots__ = ("module_name", "instance_id", "timestamp", "status", "active_sessions")
+    MODULE_NAME_FIELD_NUMBER: _ClassVar[int]
+    INSTANCE_ID_FIELD_NUMBER: _ClassVar[int]
+    TIMESTAMP_FIELD_NUMBER: _ClassVar[int]
+    STATUS_FIELD_NUMBER: _ClassVar[int]
+    ACTIVE_SESSIONS_FIELD_NUMBER: _ClassVar[int]
+    module_name: str
+    instance_id: str
+    timestamp: int
+    status: ModuleStatus
+    active_sessions: int
+    def __init__(self, module_name: _Optional[str] = ..., instance_id: _Optional[str] = ..., timestamp: _Optional[int] = ..., status: _Optional[_Union[ModuleStatus, str]] = ..., active_sessions: _Optional[int] = ...) -> None: ...
+
+class ModuleRegistry(_message.Message):
+    __slots__ = ("modules", "last_updated")
+    MODULES_FIELD_NUMBER: _ClassVar[int]
+    LAST_UPDATED_FIELD_NUMBER: _ClassVar[int]
+    modules: _containers.RepeatedCompositeFieldContainer[ModuleBootup]
+    last_updated: int
+    def __init__(self, modules: _Optional[_Iterable[_Union[ModuleBootup, _Mapping]]] = ..., last_updated: _Optional[int] = ...) -> None: ...

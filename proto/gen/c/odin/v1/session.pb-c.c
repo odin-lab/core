@@ -187,6 +187,141 @@ void   odin__v1__status__free_unpacked
   assert(message->base.descriptor == &odin__v1__status__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
+void   odin__v1__module_bootup__init
+                     (Odin__V1__ModuleBootup         *message)
+{
+  static const Odin__V1__ModuleBootup init_value = ODIN__V1__MODULE_BOOTUP__INIT;
+  *message = init_value;
+}
+size_t odin__v1__module_bootup__get_packed_size
+                     (const Odin__V1__ModuleBootup *message)
+{
+  assert(message->base.descriptor == &odin__v1__module_bootup__descriptor);
+  return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
+}
+size_t odin__v1__module_bootup__pack
+                     (const Odin__V1__ModuleBootup *message,
+                      uint8_t       *out)
+{
+  assert(message->base.descriptor == &odin__v1__module_bootup__descriptor);
+  return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
+}
+size_t odin__v1__module_bootup__pack_to_buffer
+                     (const Odin__V1__ModuleBootup *message,
+                      ProtobufCBuffer *buffer)
+{
+  assert(message->base.descriptor == &odin__v1__module_bootup__descriptor);
+  return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
+}
+Odin__V1__ModuleBootup *
+       odin__v1__module_bootup__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data)
+{
+  return (Odin__V1__ModuleBootup *)
+     protobuf_c_message_unpack (&odin__v1__module_bootup__descriptor,
+                                allocator, len, data);
+}
+void   odin__v1__module_bootup__free_unpacked
+                     (Odin__V1__ModuleBootup *message,
+                      ProtobufCAllocator *allocator)
+{
+  if(!message)
+    return;
+  assert(message->base.descriptor == &odin__v1__module_bootup__descriptor);
+  protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
+}
+void   odin__v1__module_heartbeat__init
+                     (Odin__V1__ModuleHeartbeat         *message)
+{
+  static const Odin__V1__ModuleHeartbeat init_value = ODIN__V1__MODULE_HEARTBEAT__INIT;
+  *message = init_value;
+}
+size_t odin__v1__module_heartbeat__get_packed_size
+                     (const Odin__V1__ModuleHeartbeat *message)
+{
+  assert(message->base.descriptor == &odin__v1__module_heartbeat__descriptor);
+  return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
+}
+size_t odin__v1__module_heartbeat__pack
+                     (const Odin__V1__ModuleHeartbeat *message,
+                      uint8_t       *out)
+{
+  assert(message->base.descriptor == &odin__v1__module_heartbeat__descriptor);
+  return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
+}
+size_t odin__v1__module_heartbeat__pack_to_buffer
+                     (const Odin__V1__ModuleHeartbeat *message,
+                      ProtobufCBuffer *buffer)
+{
+  assert(message->base.descriptor == &odin__v1__module_heartbeat__descriptor);
+  return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
+}
+Odin__V1__ModuleHeartbeat *
+       odin__v1__module_heartbeat__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data)
+{
+  return (Odin__V1__ModuleHeartbeat *)
+     protobuf_c_message_unpack (&odin__v1__module_heartbeat__descriptor,
+                                allocator, len, data);
+}
+void   odin__v1__module_heartbeat__free_unpacked
+                     (Odin__V1__ModuleHeartbeat *message,
+                      ProtobufCAllocator *allocator)
+{
+  if(!message)
+    return;
+  assert(message->base.descriptor == &odin__v1__module_heartbeat__descriptor);
+  protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
+}
+void   odin__v1__module_registry__init
+                     (Odin__V1__ModuleRegistry         *message)
+{
+  static const Odin__V1__ModuleRegistry init_value = ODIN__V1__MODULE_REGISTRY__INIT;
+  *message = init_value;
+}
+size_t odin__v1__module_registry__get_packed_size
+                     (const Odin__V1__ModuleRegistry *message)
+{
+  assert(message->base.descriptor == &odin__v1__module_registry__descriptor);
+  return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
+}
+size_t odin__v1__module_registry__pack
+                     (const Odin__V1__ModuleRegistry *message,
+                      uint8_t       *out)
+{
+  assert(message->base.descriptor == &odin__v1__module_registry__descriptor);
+  return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
+}
+size_t odin__v1__module_registry__pack_to_buffer
+                     (const Odin__V1__ModuleRegistry *message,
+                      ProtobufCBuffer *buffer)
+{
+  assert(message->base.descriptor == &odin__v1__module_registry__descriptor);
+  return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
+}
+Odin__V1__ModuleRegistry *
+       odin__v1__module_registry__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data)
+{
+  return (Odin__V1__ModuleRegistry *)
+     protobuf_c_message_unpack (&odin__v1__module_registry__descriptor,
+                                allocator, len, data);
+}
+void   odin__v1__module_registry__free_unpacked
+                     (Odin__V1__ModuleRegistry *message,
+                      ProtobufCAllocator *allocator)
+{
+  if(!message)
+    return;
+  assert(message->base.descriptor == &odin__v1__module_registry__descriptor);
+  protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
+}
 static const ProtobufCFieldDescriptor odin__v1__init__field_descriptors[2] =
 {
   {
@@ -402,6 +537,237 @@ const ProtobufCMessageDescriptor odin__v1__status__descriptor =
   odin__v1__status__field_indices_by_name,
   1,  odin__v1__status__number_ranges,
   (ProtobufCMessageInit) odin__v1__status__init,
+  NULL,NULL,NULL    /* reserved[123] */
+};
+static const ProtobufCFieldDescriptor odin__v1__module_bootup__field_descriptors[5] =
+{
+  {
+    "module_name",
+    1,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_STRING,
+    0,   /* quantifier_offset */
+    offsetof(Odin__V1__ModuleBootup, module_name),
+    NULL,
+    &protobuf_c_empty_string,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "instance_id",
+    2,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_STRING,
+    0,   /* quantifier_offset */
+    offsetof(Odin__V1__ModuleBootup, instance_id),
+    NULL,
+    &protobuf_c_empty_string,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "started_at",
+    3,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_INT64,
+    0,   /* quantifier_offset */
+    offsetof(Odin__V1__ModuleBootup, started_at),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "version",
+    4,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_STRING,
+    0,   /* quantifier_offset */
+    offsetof(Odin__V1__ModuleBootup, version),
+    NULL,
+    &protobuf_c_empty_string,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "host",
+    5,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_STRING,
+    0,   /* quantifier_offset */
+    offsetof(Odin__V1__ModuleBootup, host),
+    NULL,
+    &protobuf_c_empty_string,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+};
+static const unsigned odin__v1__module_bootup__field_indices_by_name[] = {
+  4,   /* field[4] = host */
+  1,   /* field[1] = instance_id */
+  0,   /* field[0] = module_name */
+  2,   /* field[2] = started_at */
+  3,   /* field[3] = version */
+};
+static const ProtobufCIntRange odin__v1__module_bootup__number_ranges[1 + 1] =
+{
+  { 1, 0 },
+  { 0, 5 }
+};
+const ProtobufCMessageDescriptor odin__v1__module_bootup__descriptor =
+{
+  PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
+  "odin.v1.ModuleBootup",
+  "ModuleBootup",
+  "Odin__V1__ModuleBootup",
+  "odin.v1",
+  sizeof(Odin__V1__ModuleBootup),
+  5,
+  odin__v1__module_bootup__field_descriptors,
+  odin__v1__module_bootup__field_indices_by_name,
+  1,  odin__v1__module_bootup__number_ranges,
+  (ProtobufCMessageInit) odin__v1__module_bootup__init,
+  NULL,NULL,NULL    /* reserved[123] */
+};
+static const ProtobufCFieldDescriptor odin__v1__module_heartbeat__field_descriptors[5] =
+{
+  {
+    "module_name",
+    1,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_STRING,
+    0,   /* quantifier_offset */
+    offsetof(Odin__V1__ModuleHeartbeat, module_name),
+    NULL,
+    &protobuf_c_empty_string,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "instance_id",
+    2,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_STRING,
+    0,   /* quantifier_offset */
+    offsetof(Odin__V1__ModuleHeartbeat, instance_id),
+    NULL,
+    &protobuf_c_empty_string,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "timestamp",
+    3,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_INT64,
+    0,   /* quantifier_offset */
+    offsetof(Odin__V1__ModuleHeartbeat, timestamp),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "status",
+    4,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_ENUM,
+    0,   /* quantifier_offset */
+    offsetof(Odin__V1__ModuleHeartbeat, status),
+    &odin__v1__module_status__descriptor,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "active_sessions",
+    5,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_INT32,
+    0,   /* quantifier_offset */
+    offsetof(Odin__V1__ModuleHeartbeat, active_sessions),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+};
+static const unsigned odin__v1__module_heartbeat__field_indices_by_name[] = {
+  4,   /* field[4] = active_sessions */
+  1,   /* field[1] = instance_id */
+  0,   /* field[0] = module_name */
+  3,   /* field[3] = status */
+  2,   /* field[2] = timestamp */
+};
+static const ProtobufCIntRange odin__v1__module_heartbeat__number_ranges[1 + 1] =
+{
+  { 1, 0 },
+  { 0, 5 }
+};
+const ProtobufCMessageDescriptor odin__v1__module_heartbeat__descriptor =
+{
+  PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
+  "odin.v1.ModuleHeartbeat",
+  "ModuleHeartbeat",
+  "Odin__V1__ModuleHeartbeat",
+  "odin.v1",
+  sizeof(Odin__V1__ModuleHeartbeat),
+  5,
+  odin__v1__module_heartbeat__field_descriptors,
+  odin__v1__module_heartbeat__field_indices_by_name,
+  1,  odin__v1__module_heartbeat__number_ranges,
+  (ProtobufCMessageInit) odin__v1__module_heartbeat__init,
+  NULL,NULL,NULL    /* reserved[123] */
+};
+static const ProtobufCFieldDescriptor odin__v1__module_registry__field_descriptors[2] =
+{
+  {
+    "modules",
+    1,
+    PROTOBUF_C_LABEL_REPEATED,
+    PROTOBUF_C_TYPE_MESSAGE,
+    offsetof(Odin__V1__ModuleRegistry, n_modules),
+    offsetof(Odin__V1__ModuleRegistry, modules),
+    &odin__v1__module_bootup__descriptor,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "last_updated",
+    2,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_INT64,
+    0,   /* quantifier_offset */
+    offsetof(Odin__V1__ModuleRegistry, last_updated),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+};
+static const unsigned odin__v1__module_registry__field_indices_by_name[] = {
+  1,   /* field[1] = last_updated */
+  0,   /* field[0] = modules */
+};
+static const ProtobufCIntRange odin__v1__module_registry__number_ranges[1 + 1] =
+{
+  { 1, 0 },
+  { 0, 2 }
+};
+const ProtobufCMessageDescriptor odin__v1__module_registry__descriptor =
+{
+  PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
+  "odin.v1.ModuleRegistry",
+  "ModuleRegistry",
+  "Odin__V1__ModuleRegistry",
+  "odin.v1",
+  sizeof(Odin__V1__ModuleRegistry),
+  2,
+  odin__v1__module_registry__field_descriptors,
+  odin__v1__module_registry__field_indices_by_name,
+  1,  odin__v1__module_registry__number_ranges,
+  (ProtobufCMessageInit) odin__v1__module_registry__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
 static const ProtobufCEnumValue odin__v1__module_status__enum_values_by_number[4] =

@@ -14,11 +14,16 @@ subclasses of `BaseSession`.
 
 import asyncio
 import logging
+import time
+import socket
+import uuid
 from abc import ABC, abstractmethod
 from enum import IntEnum
 from typing import Dict, Any, List, Optional
 
 from nats.aio.client import Client as NATS
+from nats.js import JetStreamContext
+from nats.js.kv import KeyValue
 
 # Import from the odin-proto package
 from odin.v1 import session_pb2 as pb
@@ -80,25 +85,111 @@ class BaseSession(ABC):
 class BaseModule(ABC):
     """Generic worker that subscribes to `session.*.<module>.cmd` and handles
     Init / Shutdown commands via Core‑NATS request‑reply.
+    Now also publishes module bootup status to KV store.
     """
 
     nc: NATS
     name: str
     queue_group: str
     sessions: Dict[str, BaseSession]
+    instance_id: str
+    kv: Optional[KeyValue]
+    heartbeat_task: Optional[asyncio.Task]
+    version: str
 
-    def __init__(self, nc: NATS, name: str, queue_group: Optional[str] = None):
+    def __init__(
+        self,
+        nc: NATS,
+        name: str,
+        queue_group: Optional[str] = None,
+        version: str = "1.0.0",
+    ):
         self.nc = nc
         self.name = name
         self.queue_group = queue_group or f"{name}_workers"
         self.sessions: Dict[str, BaseSession] = {}
+        self.instance_id = str(uuid.uuid4())
+        self.version = version
+        self.kv = None
+        self.heartbeat_task = None
 
     # ---- public bootstrap -----------------------------------------------
     async def start(self) -> None:
+        # Initialize JetStream and KV store
+        js = self.nc.jetstream()
+
+        # Create or get the module registry KV bucket
+        try:
+            self.kv = await js.key_value("module_registry")
+        except Exception:
+            # Create KV bucket if it doesn't exist
+            self.kv = await js.create_key_value(
+                description="Module bootup and status tracking",
+                bucket="module_registry",
+            )
+
+        # Publish bootup message
+        await self._publish_bootup()
+
+        # Start heartbeat task
+        self.heartbeat_task = asyncio.create_task(self._heartbeat_loop())
+
+        # Subscribe to commands
         subj = f"session.*.{self.name}.cmd"
-        # Queue group so multiple replicas share the load.
-        await self.nc.subscribe(subj, queue=self.queue_group, cb=self._on_command)  # type: ignore[arg-type]
+        await self.nc.subscribe(subj, queue=self.queue_group, cb=self._on_command)
         log.info("%s subscribed on %s (q=%s)", self.name, subj, self.queue_group)
+
+    async def stop(self) -> None:
+        """Graceful shutdown - remove from registry"""
+        if self.heartbeat_task:
+            self.heartbeat_task.cancel()
+            try:
+                await self.heartbeat_task
+            except asyncio.CancelledError:
+                pass
+
+        # Remove from KV store
+        if self.kv:
+            key = f"{self.name}.{self.instance_id}"
+            await self.kv.delete(key)
+            log.info(f"Removed {self.name} instance {self.instance_id} from registry")
+
+    # ---- KV store operations --------------------------------------------
+    async def _publish_bootup(self) -> None:
+        """Publish module bootup information to KV store"""
+        bootup = pb.ModuleBootup(
+            module_name=self.name,
+            instance_id=self.instance_id,
+            started_at=int(time.time()),
+            version=self.version,
+            host=socket.gethostname(),
+        )
+
+        key = f"{self.name}.{self.instance_id}"
+        await self.kv.put(key, bootup.SerializeToString())
+        log.info(f"Published bootup for {self.name} instance {self.instance_id}")
+
+    async def _heartbeat_loop(self) -> None:
+        """Periodically update heartbeat in KV store"""
+        while True:
+            try:
+                await asyncio.sleep(30)  # Heartbeat every 30 seconds
+
+                heartbeat = pb.ModuleHeartbeat(
+                    module_name=self.name,
+                    instance_id=self.instance_id,
+                    timestamp=int(time.time()),
+                    status=ModuleStatus.RUNNING,
+                    active_sessions=len(self.sessions),
+                )
+
+                key = f"{self.name}.{self.instance_id}.heartbeat"
+                await self.kv.put(key, heartbeat.SerializeToString())
+
+            except asyncio.CancelledError:
+                break
+            except Exception as e:
+                log.error(f"Heartbeat error for {self.name}: {e}")
 
     # ---- NATS message callback ------------------------------------------
     async def _on_command(self, msg):  # noqa: ANN001 – nats.Msg
