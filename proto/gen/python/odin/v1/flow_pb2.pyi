@@ -12,3 +12,15 @@ class TurnDetected(_message.Message):
     SESSION_FIELD_NUMBER: _ClassVar[int]
     session: _common_pb2.SessionInfo
     def __init__(self, session: _Optional[_Union[_common_pb2.SessionInfo, _Mapping]] = ...) -> None: ...
+
+class OdinStartSpeech(_message.Message):
+    __slots__ = ("session",)
+    SESSION_FIELD_NUMBER: _ClassVar[int]
+    session: _common_pb2.SessionInfo
+    def __init__(self, session: _Optional[_Union[_common_pb2.SessionInfo, _Mapping]] = ...) -> None: ...
+
+class OdinEndSpeech(_message.Message):
+    __slots__ = ("session",)
+    SESSION_FIELD_NUMBER: _ClassVar[int]
+    session: _common_pb2.SessionInfo
+    def __init__(self, session: _Optional[_Union[_common_pb2.SessionInfo, _Mapping]] = ...) -> None: ...

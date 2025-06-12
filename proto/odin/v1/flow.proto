@@ -13,3 +13,17 @@ message TurnDetected {
 
   SessionInfo session = 1;
 }
+
+message OdinStartSpeech {
+  option (odin.v1.nats_subject) = "flow.{session_id}.{module_name}.odin_start_speech";
+  option (odin.v1.nats_jetstream) = true;
+
+  SessionInfo session = 1;
+}
+
+message OdinEndSpeech {
+  option (odin.v1.nats_subject) = "flow.{session_id}.{module_name}.odin_end_speech";
+  option (odin.v1.nats_jetstream) = true;
+
+  SessionInfo session = 1;
+}

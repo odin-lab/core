@@ -19,6 +19,8 @@ PROTOBUF_C__BEGIN_DECLS
 #include "odin/v1/session.pb-c.h"
 
 typedef struct Odin__V1__TurnDetected Odin__V1__TurnDetected;
+typedef struct Odin__V1__OdinStartSpeech Odin__V1__OdinStartSpeech;
+typedef struct Odin__V1__OdinEndSpeech Odin__V1__OdinEndSpeech;
 
 
 /* --- enums --- */
@@ -36,6 +38,26 @@ struct  Odin__V1__TurnDetected
 };
 #define ODIN__V1__TURN_DETECTED__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&odin__v1__turn_detected__descriptor) \
+    , NULL }
+
+
+struct  Odin__V1__OdinStartSpeech
+{
+  ProtobufCMessage base;
+  Odin__V1__SessionInfo *session;
+};
+#define ODIN__V1__ODIN_START_SPEECH__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&odin__v1__odin_start_speech__descriptor) \
+    , NULL }
+
+
+struct  Odin__V1__OdinEndSpeech
+{
+  ProtobufCMessage base;
+  Odin__V1__SessionInfo *session;
+};
+#define ODIN__V1__ODIN_END_SPEECH__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&odin__v1__odin_end_speech__descriptor) \
     , NULL }
 
 
@@ -58,10 +80,54 @@ Odin__V1__TurnDetected *
 void   odin__v1__turn_detected__free_unpacked
                      (Odin__V1__TurnDetected *message,
                       ProtobufCAllocator *allocator);
+/* Odin__V1__OdinStartSpeech methods */
+void   odin__v1__odin_start_speech__init
+                     (Odin__V1__OdinStartSpeech         *message);
+size_t odin__v1__odin_start_speech__get_packed_size
+                     (const Odin__V1__OdinStartSpeech   *message);
+size_t odin__v1__odin_start_speech__pack
+                     (const Odin__V1__OdinStartSpeech   *message,
+                      uint8_t             *out);
+size_t odin__v1__odin_start_speech__pack_to_buffer
+                     (const Odin__V1__OdinStartSpeech   *message,
+                      ProtobufCBuffer     *buffer);
+Odin__V1__OdinStartSpeech *
+       odin__v1__odin_start_speech__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data);
+void   odin__v1__odin_start_speech__free_unpacked
+                     (Odin__V1__OdinStartSpeech *message,
+                      ProtobufCAllocator *allocator);
+/* Odin__V1__OdinEndSpeech methods */
+void   odin__v1__odin_end_speech__init
+                     (Odin__V1__OdinEndSpeech         *message);
+size_t odin__v1__odin_end_speech__get_packed_size
+                     (const Odin__V1__OdinEndSpeech   *message);
+size_t odin__v1__odin_end_speech__pack
+                     (const Odin__V1__OdinEndSpeech   *message,
+                      uint8_t             *out);
+size_t odin__v1__odin_end_speech__pack_to_buffer
+                     (const Odin__V1__OdinEndSpeech   *message,
+                      ProtobufCBuffer     *buffer);
+Odin__V1__OdinEndSpeech *
+       odin__v1__odin_end_speech__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data);
+void   odin__v1__odin_end_speech__free_unpacked
+                     (Odin__V1__OdinEndSpeech *message,
+                      ProtobufCAllocator *allocator);
 /* --- per-message closures --- */
 
 typedef void (*Odin__V1__TurnDetected_Closure)
                  (const Odin__V1__TurnDetected *message,
+                  void *closure_data);
+typedef void (*Odin__V1__OdinStartSpeech_Closure)
+                 (const Odin__V1__OdinStartSpeech *message,
+                  void *closure_data);
+typedef void (*Odin__V1__OdinEndSpeech_Closure)
+                 (const Odin__V1__OdinEndSpeech *message,
                   void *closure_data);
 
 /* --- services --- */
@@ -70,6 +136,8 @@ typedef void (*Odin__V1__TurnDetected_Closure)
 /* --- descriptors --- */
 
 extern const ProtobufCMessageDescriptor odin__v1__turn_detected__descriptor;
+extern const ProtobufCMessageDescriptor odin__v1__odin_start_speech__descriptor;
+extern const ProtobufCMessageDescriptor odin__v1__odin_end_speech__descriptor;
 
 PROTOBUF_C__END_DECLS
 
