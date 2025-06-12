@@ -80,7 +80,7 @@ class MicrophoneSession(BaseSession):
                 samplerate=self.sample_rate,
                 channels=1,
                 blocksize=self.chunk_size,
-                dtype="float32",
+                dtype="int32",
             )
             self.stream.start()
             log.info(f"Audio stream started successfully")
