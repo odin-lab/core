@@ -6,7 +6,7 @@ build-backend = "hatchling.build"
 name = "odin-nats"
 version = "0.1.0"
 description = "NATS-based orchestration layer for Odin speech pipeline"
-requires-python = ">=3.8"
+requires-python = ">=3.11"
 license = { text = "MIT" }
 
 dependencies = [

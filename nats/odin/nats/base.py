@@ -255,17 +255,20 @@ class SessionManager:
                 cmd_subj = f"session.{sess_id}.{m}.cmd"
                 cmd = pb.Command(init=pb.Init(session_id=sess_id, config=configs[m]))
                 log.debug(f"Sending init command to {cmd_subj}")
-                init_tasks[m] = asyncio.create_task(
+                init_tasks[cmd_subj] = asyncio.create_task(
                     self.nc.request(cmd_subj, cmd.SerializeToString(), timeout=timeout)
                 )
 
             # Gather first replies – they unblock the request‑reply wait.
             for m, t in init_tasks.items():
+                log.info(f"Starting {m}")
                 try:
-                    log.debug(f"Waiting for reply from {m}")
                     msg = await t
                 except asyncio.TimeoutError as te:  # noqa: PERF203 – keep explicit
                     raise RuntimeError(f"{m} did not ACK in {timeout}s") from te
+                except Exception as e:
+                    log.error(f"Error waiting for reply from {m}: {e}")
+                    raise e
 
                 log.debug(f"Received reply from {m}, type: {type(msg)}")
 
@@ -298,6 +301,7 @@ class SessionManager:
         """Gracefully tear‑down all modules."""
         shutdown_tasks: Dict[str, "asyncio.Task[bytes]"] = {}
         for m in self.modules:
+            log.info(f"Stopping {m}")
             subj = f"session.{sess_id}.{m}.cmd"
             cmd = pb.Command(shutdown=pb.Shutdown(session_id=sess_id))
             shutdown_tasks[m] = asyncio.create_task(
@@ -338,6 +342,7 @@ class SessionManager:
             if len(statuses) == len(self.modules) and all(
                 statuses.get(m) == ModuleStatus.RUNNING for m in self.modules
             ):
+                log.info(f"All started modules are RUNNING")
                 return
 
             # Check for any failures
