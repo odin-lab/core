@@ -10,40 +10,23 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file odin/v1/common.proto.
  */
 export const file_odin_v1_common: GenFile = /*@__PURE__*/
-  fileDesc("ChRvZGluL3YxL2NvbW1vbi5wcm90bxIHb2Rpbi52MSJOCgtTZXNzaW9uSW5mbxIKCgJpZBgBIAEoCRIOCgZzdGF0dXMYAiABKAkSEAoIbGFuZ3VhZ2UYAyABKAkSEQoJdGltZXN0YW1wGAQgASgDIjQKCUF1ZGlvRGF0YRISCgphdWRpb19kYXRhGAEgASgMEhMKC3NhbXBsZV9yYXRlGAIgASgFQlcKC2NvbS5vZGluLnYxQgtDb21tb25Qcm90b1ABogIDT1hYqgIHT2Rpbi5WMcoCB09kaW5cVjHiAhNPZGluXFYxXEdQQk1ldGFkYXRh6gIIT2Rpbjo6VjFiBnByb3RvMw");
+  fileDesc("ChRvZGluL3YxL2NvbW1vbi5wcm90bxIHb2Rpbi52MSIgCgtNZXNzYWdlSW5mbxIRCgl0aW1lc3RhbXAYASABKAMiNAoJQXVkaW9EYXRhEhIKCmF1ZGlvX2RhdGEYASABKAwSEwoLc2FtcGxlX3JhdGUYAiABKAVCVwoLY29tLm9kaW4udjFCC0NvbW1vblByb3RvUAGiAgNPWFiqAgdPZGluLlYxygIHT2RpblxWMeICE09kaW5cVjFcR1BCTWV0YWRhdGHqAghPZGluOjpWMWIGcHJvdG8z");
 
 /**
- * Common session information used across all messages
- *
- * @generated from message odin.v1.SessionInfo
+ * @generated from message odin.v1.MessageInfo
  */
-export type SessionInfo = Message<"odin.v1.SessionInfo"> & {
+export type MessageInfo = Message<"odin.v1.MessageInfo"> & {
   /**
-   * @generated from field: string id = 1;
-   */
-  id: string;
-
-  /**
-   * @generated from field: string status = 2;
-   */
-  status: string;
-
-  /**
-   * @generated from field: string language = 3;
-   */
-  language: string;
-
-  /**
-   * @generated from field: int64 timestamp = 4;
+   * @generated from field: int64 timestamp = 1;
    */
   timestamp: bigint;
 };
 
 /**
- * Describes the message odin.v1.SessionInfo.
- * Use `create(SessionInfoSchema)` to create a new message.
+ * Describes the message odin.v1.MessageInfo.
+ * Use `create(MessageInfoSchema)` to create a new message.
  */
-export const SessionInfoSchema: GenMessage<SessionInfo> = /*@__PURE__*/
+export const MessageInfoSchema: GenMessage<MessageInfo> = /*@__PURE__*/
   messageDesc(file_odin_v1_common, 0);
 
 /**

@@ -6,30 +6,36 @@ import "odin/v1/common.proto";
 import "odin/v1/options.proto";
 import "odin/v1/text_helper.proto";
 
+enum CompletionType {
+  WORD = 0;
+  SENTENCE = 1;
+}
+
 // output STT
 message Transcription {
-  option (odin.v1.nats_subject) = "text.{session_id}.{module_name}.transcription";
+  option (odin.v1.nats_subject) = "text.{session_id}.{instance_id}.transcription";
   option (odin.v1.nats_jetstream) = true;
 
   repeated Segment segments = 1;
-  SessionInfo session = 2;
+  MessageInfo info = 2;
 }
 
-message CompletionWord {
-  option (odin.v1.nats_subject) = "text.{session_id}.{module_name}.completion.word";
+message Completion {
+  option (odin.v1.nats_subject) = "text.{session_id}.{instance_id}.completion";
   option (odin.v1.nats_jetstream) = true;
 
-  string word = 1;
-  SessionInfo session = 2;
+  string content = 1;
+  CompletionType type = 2;
+  MessageInfo info = 3;
 }
 
-message CompletionSentence {
-  option (odin.v1.nats_subject) = "text.{session_id}.{module_name}.completion.sentence";
-  option (odin.v1.nats_jetstream) = true;
+// message CompletionSentence {
+//   option (odin.v1.nats_subject) = "text.{session_id}.{module_name}.completion.sentence";
+//   option (odin.v1.nats_jetstream) = true;
 
-  string sentence = 1;
-  SessionInfo session = 2;
-}
+//   string sentence = 1;
+//   SessionInfo session = 2;
+// }
 
 // Text input for LLM processing
 // message TextComplete {

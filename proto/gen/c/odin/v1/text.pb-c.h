@@ -19,12 +19,16 @@ PROTOBUF_C__BEGIN_DECLS
 #include "odin/v1/text_helper.pb-c.h"
 
 typedef struct Odin__V1__Transcription Odin__V1__Transcription;
-typedef struct Odin__V1__CompletionWord Odin__V1__CompletionWord;
-typedef struct Odin__V1__CompletionSentence Odin__V1__CompletionSentence;
+typedef struct Odin__V1__Completion Odin__V1__Completion;
 
 
 /* --- enums --- */
 
+typedef enum _Odin__V1__CompletionType {
+  ODIN__V1__COMPLETION_TYPE__WORD = 0,
+  ODIN__V1__COMPLETION_TYPE__SENTENCE = 1
+    PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(ODIN__V1__COMPLETION_TYPE)
+} Odin__V1__CompletionType;
 
 /* --- messages --- */
 
@@ -36,33 +40,23 @@ struct  Odin__V1__Transcription
   ProtobufCMessage base;
   size_t n_segments;
   Odin__V1__Segment **segments;
-  Odin__V1__SessionInfo *session;
+  Odin__V1__MessageInfo *info;
 };
 #define ODIN__V1__TRANSCRIPTION__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&odin__v1__transcription__descriptor) \
     , 0,NULL, NULL }
 
 
-struct  Odin__V1__CompletionWord
+struct  Odin__V1__Completion
 {
   ProtobufCMessage base;
-  char *word;
-  Odin__V1__SessionInfo *session;
+  char *content;
+  Odin__V1__CompletionType type;
+  Odin__V1__MessageInfo *info;
 };
-#define ODIN__V1__COMPLETION_WORD__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&odin__v1__completion_word__descriptor) \
-    , (char *)protobuf_c_empty_string, NULL }
-
-
-struct  Odin__V1__CompletionSentence
-{
-  ProtobufCMessage base;
-  char *sentence;
-  Odin__V1__SessionInfo *session;
-};
-#define ODIN__V1__COMPLETION_SENTENCE__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&odin__v1__completion_sentence__descriptor) \
-    , (char *)protobuf_c_empty_string, NULL }
+#define ODIN__V1__COMPLETION__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&odin__v1__completion__descriptor) \
+    , (char *)protobuf_c_empty_string, ODIN__V1__COMPLETION_TYPE__WORD, NULL }
 
 
 /* Odin__V1__Transcription methods */
@@ -84,54 +78,32 @@ Odin__V1__Transcription *
 void   odin__v1__transcription__free_unpacked
                      (Odin__V1__Transcription *message,
                       ProtobufCAllocator *allocator);
-/* Odin__V1__CompletionWord methods */
-void   odin__v1__completion_word__init
-                     (Odin__V1__CompletionWord         *message);
-size_t odin__v1__completion_word__get_packed_size
-                     (const Odin__V1__CompletionWord   *message);
-size_t odin__v1__completion_word__pack
-                     (const Odin__V1__CompletionWord   *message,
+/* Odin__V1__Completion methods */
+void   odin__v1__completion__init
+                     (Odin__V1__Completion         *message);
+size_t odin__v1__completion__get_packed_size
+                     (const Odin__V1__Completion   *message);
+size_t odin__v1__completion__pack
+                     (const Odin__V1__Completion   *message,
                       uint8_t             *out);
-size_t odin__v1__completion_word__pack_to_buffer
-                     (const Odin__V1__CompletionWord   *message,
+size_t odin__v1__completion__pack_to_buffer
+                     (const Odin__V1__Completion   *message,
                       ProtobufCBuffer     *buffer);
-Odin__V1__CompletionWord *
-       odin__v1__completion_word__unpack
+Odin__V1__Completion *
+       odin__v1__completion__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data);
-void   odin__v1__completion_word__free_unpacked
-                     (Odin__V1__CompletionWord *message,
-                      ProtobufCAllocator *allocator);
-/* Odin__V1__CompletionSentence methods */
-void   odin__v1__completion_sentence__init
-                     (Odin__V1__CompletionSentence         *message);
-size_t odin__v1__completion_sentence__get_packed_size
-                     (const Odin__V1__CompletionSentence   *message);
-size_t odin__v1__completion_sentence__pack
-                     (const Odin__V1__CompletionSentence   *message,
-                      uint8_t             *out);
-size_t odin__v1__completion_sentence__pack_to_buffer
-                     (const Odin__V1__CompletionSentence   *message,
-                      ProtobufCBuffer     *buffer);
-Odin__V1__CompletionSentence *
-       odin__v1__completion_sentence__unpack
-                     (ProtobufCAllocator  *allocator,
-                      size_t               len,
-                      const uint8_t       *data);
-void   odin__v1__completion_sentence__free_unpacked
-                     (Odin__V1__CompletionSentence *message,
+void   odin__v1__completion__free_unpacked
+                     (Odin__V1__Completion *message,
                       ProtobufCAllocator *allocator);
 /* --- per-message closures --- */
 
 typedef void (*Odin__V1__Transcription_Closure)
                  (const Odin__V1__Transcription *message,
                   void *closure_data);
-typedef void (*Odin__V1__CompletionWord_Closure)
-                 (const Odin__V1__CompletionWord *message,
-                  void *closure_data);
-typedef void (*Odin__V1__CompletionSentence_Closure)
-                 (const Odin__V1__CompletionSentence *message,
+typedef void (*Odin__V1__Completion_Closure)
+                 (const Odin__V1__Completion *message,
                   void *closure_data);
 
 /* --- services --- */
@@ -139,9 +111,9 @@ typedef void (*Odin__V1__CompletionSentence_Closure)
 
 /* --- descriptors --- */
 
+extern const ProtobufCEnumDescriptor    odin__v1__completion_type__descriptor;
 extern const ProtobufCMessageDescriptor odin__v1__transcription__descriptor;
-extern const ProtobufCMessageDescriptor odin__v1__completion_word__descriptor;
-extern const ProtobufCMessageDescriptor odin__v1__completion_sentence__descriptor;
+extern const ProtobufCMessageDescriptor odin__v1__completion__descriptor;
 
 PROTOBUF_C__END_DECLS
 

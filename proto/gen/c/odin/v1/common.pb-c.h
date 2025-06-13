@@ -15,7 +15,7 @@ PROTOBUF_C__BEGIN_DECLS
 #endif
 
 
-typedef struct Odin__V1__SessionInfo Odin__V1__SessionInfo;
+typedef struct Odin__V1__MessageInfo Odin__V1__MessageInfo;
 typedef struct Odin__V1__AudioData Odin__V1__AudioData;
 
 
@@ -24,20 +24,14 @@ typedef struct Odin__V1__AudioData Odin__V1__AudioData;
 
 /* --- messages --- */
 
-/*
- * Common session information used across all messages
- */
-struct  Odin__V1__SessionInfo
+struct  Odin__V1__MessageInfo
 {
   ProtobufCMessage base;
-  char *id;
-  char *status;
-  char *language;
   int64_t timestamp;
 };
-#define ODIN__V1__SESSION_INFO__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&odin__v1__session_info__descriptor) \
-    , (char *)protobuf_c_empty_string, (char *)protobuf_c_empty_string, (char *)protobuf_c_empty_string, 0 }
+#define ODIN__V1__MESSAGE_INFO__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&odin__v1__message_info__descriptor) \
+    , 0 }
 
 
 /*
@@ -54,24 +48,24 @@ struct  Odin__V1__AudioData
     , {0,NULL}, 0 }
 
 
-/* Odin__V1__SessionInfo methods */
-void   odin__v1__session_info__init
-                     (Odin__V1__SessionInfo         *message);
-size_t odin__v1__session_info__get_packed_size
-                     (const Odin__V1__SessionInfo   *message);
-size_t odin__v1__session_info__pack
-                     (const Odin__V1__SessionInfo   *message,
+/* Odin__V1__MessageInfo methods */
+void   odin__v1__message_info__init
+                     (Odin__V1__MessageInfo         *message);
+size_t odin__v1__message_info__get_packed_size
+                     (const Odin__V1__MessageInfo   *message);
+size_t odin__v1__message_info__pack
+                     (const Odin__V1__MessageInfo   *message,
                       uint8_t             *out);
-size_t odin__v1__session_info__pack_to_buffer
-                     (const Odin__V1__SessionInfo   *message,
+size_t odin__v1__message_info__pack_to_buffer
+                     (const Odin__V1__MessageInfo   *message,
                       ProtobufCBuffer     *buffer);
-Odin__V1__SessionInfo *
-       odin__v1__session_info__unpack
+Odin__V1__MessageInfo *
+       odin__v1__message_info__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data);
-void   odin__v1__session_info__free_unpacked
-                     (Odin__V1__SessionInfo *message,
+void   odin__v1__message_info__free_unpacked
+                     (Odin__V1__MessageInfo *message,
                       ProtobufCAllocator *allocator);
 /* Odin__V1__AudioData methods */
 void   odin__v1__audio_data__init
@@ -94,8 +88,8 @@ void   odin__v1__audio_data__free_unpacked
                       ProtobufCAllocator *allocator);
 /* --- per-message closures --- */
 
-typedef void (*Odin__V1__SessionInfo_Closure)
-                 (const Odin__V1__SessionInfo *message,
+typedef void (*Odin__V1__MessageInfo_Closure)
+                 (const Odin__V1__MessageInfo *message,
                   void *closure_data);
 typedef void (*Odin__V1__AudioData_Closure)
                  (const Odin__V1__AudioData *message,
@@ -106,7 +100,7 @@ typedef void (*Odin__V1__AudioData_Closure)
 
 /* --- descriptors --- */
 
-extern const ProtobufCMessageDescriptor odin__v1__session_info__descriptor;
+extern const ProtobufCMessageDescriptor odin__v1__message_info__descriptor;
 extern const ProtobufCMessageDescriptor odin__v1__audio_data__descriptor;
 
 PROTOBUF_C__END_DECLS

@@ -163,13 +163,13 @@ static const ProtobufCFieldDescriptor odin__v1__audio_buffer_speaker__field_desc
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "session",
+    "info",
     2,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_MESSAGE,
     0,   /* quantifier_offset */
-    offsetof(Odin__V1__AudioBufferSpeaker, session),
-    &odin__v1__session_info__descriptor,
+    offsetof(Odin__V1__AudioBufferSpeaker, info),
+    &odin__v1__message_info__descriptor,
     NULL,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
@@ -177,7 +177,7 @@ static const ProtobufCFieldDescriptor odin__v1__audio_buffer_speaker__field_desc
 };
 static const unsigned odin__v1__audio_buffer_speaker__field_indices_by_name[] = {
   0,   /* field[0] = audio */
-  1,   /* field[1] = session */
+  1,   /* field[1] = info */
 };
 static const ProtobufCIntRange odin__v1__audio_buffer_speaker__number_ranges[1 + 1] =
 {

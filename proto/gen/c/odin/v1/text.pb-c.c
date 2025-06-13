@@ -52,94 +52,49 @@ void   odin__v1__transcription__free_unpacked
   assert(message->base.descriptor == &odin__v1__transcription__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-void   odin__v1__completion_word__init
-                     (Odin__V1__CompletionWord         *message)
+void   odin__v1__completion__init
+                     (Odin__V1__Completion         *message)
 {
-  static const Odin__V1__CompletionWord init_value = ODIN__V1__COMPLETION_WORD__INIT;
+  static const Odin__V1__Completion init_value = ODIN__V1__COMPLETION__INIT;
   *message = init_value;
 }
-size_t odin__v1__completion_word__get_packed_size
-                     (const Odin__V1__CompletionWord *message)
+size_t odin__v1__completion__get_packed_size
+                     (const Odin__V1__Completion *message)
 {
-  assert(message->base.descriptor == &odin__v1__completion_word__descriptor);
+  assert(message->base.descriptor == &odin__v1__completion__descriptor);
   return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
 }
-size_t odin__v1__completion_word__pack
-                     (const Odin__V1__CompletionWord *message,
+size_t odin__v1__completion__pack
+                     (const Odin__V1__Completion *message,
                       uint8_t       *out)
 {
-  assert(message->base.descriptor == &odin__v1__completion_word__descriptor);
+  assert(message->base.descriptor == &odin__v1__completion__descriptor);
   return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
 }
-size_t odin__v1__completion_word__pack_to_buffer
-                     (const Odin__V1__CompletionWord *message,
+size_t odin__v1__completion__pack_to_buffer
+                     (const Odin__V1__Completion *message,
                       ProtobufCBuffer *buffer)
 {
-  assert(message->base.descriptor == &odin__v1__completion_word__descriptor);
+  assert(message->base.descriptor == &odin__v1__completion__descriptor);
   return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
 }
-Odin__V1__CompletionWord *
-       odin__v1__completion_word__unpack
+Odin__V1__Completion *
+       odin__v1__completion__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data)
 {
-  return (Odin__V1__CompletionWord *)
-     protobuf_c_message_unpack (&odin__v1__completion_word__descriptor,
+  return (Odin__V1__Completion *)
+     protobuf_c_message_unpack (&odin__v1__completion__descriptor,
                                 allocator, len, data);
 }
-void   odin__v1__completion_word__free_unpacked
-                     (Odin__V1__CompletionWord *message,
+void   odin__v1__completion__free_unpacked
+                     (Odin__V1__Completion *message,
                       ProtobufCAllocator *allocator)
 {
   if(!message)
     return;
-  assert(message->base.descriptor == &odin__v1__completion_word__descriptor);
-  protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
-}
-void   odin__v1__completion_sentence__init
-                     (Odin__V1__CompletionSentence         *message)
-{
-  static const Odin__V1__CompletionSentence init_value = ODIN__V1__COMPLETION_SENTENCE__INIT;
-  *message = init_value;
-}
-size_t odin__v1__completion_sentence__get_packed_size
-                     (const Odin__V1__CompletionSentence *message)
-{
-  assert(message->base.descriptor == &odin__v1__completion_sentence__descriptor);
-  return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
-}
-size_t odin__v1__completion_sentence__pack
-                     (const Odin__V1__CompletionSentence *message,
-                      uint8_t       *out)
-{
-  assert(message->base.descriptor == &odin__v1__completion_sentence__descriptor);
-  return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
-}
-size_t odin__v1__completion_sentence__pack_to_buffer
-                     (const Odin__V1__CompletionSentence *message,
-                      ProtobufCBuffer *buffer)
-{
-  assert(message->base.descriptor == &odin__v1__completion_sentence__descriptor);
-  return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
-}
-Odin__V1__CompletionSentence *
-       odin__v1__completion_sentence__unpack
-                     (ProtobufCAllocator  *allocator,
-                      size_t               len,
-                      const uint8_t       *data)
-{
-  return (Odin__V1__CompletionSentence *)
-     protobuf_c_message_unpack (&odin__v1__completion_sentence__descriptor,
-                                allocator, len, data);
-}
-void   odin__v1__completion_sentence__free_unpacked
-                     (Odin__V1__CompletionSentence *message,
-                      ProtobufCAllocator *allocator)
-{
-  if(!message)
-    return;
-  assert(message->base.descriptor == &odin__v1__completion_sentence__descriptor);
+  assert(message->base.descriptor == &odin__v1__completion__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
 static const ProtobufCFieldDescriptor odin__v1__transcription__field_descriptors[2] =
@@ -157,21 +112,21 @@ static const ProtobufCFieldDescriptor odin__v1__transcription__field_descriptors
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "session",
+    "info",
     2,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_MESSAGE,
     0,   /* quantifier_offset */
-    offsetof(Odin__V1__Transcription, session),
-    &odin__v1__session_info__descriptor,
+    offsetof(Odin__V1__Transcription, info),
+    &odin__v1__message_info__descriptor,
     NULL,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
 };
 static const unsigned odin__v1__transcription__field_indices_by_name[] = {
+  1,   /* field[1] = info */
   0,   /* field[0] = segments */
-  1,   /* field[1] = session */
 };
 static const ProtobufCIntRange odin__v1__transcription__number_ranges[1 + 1] =
 {
@@ -193,105 +148,95 @@ const ProtobufCMessageDescriptor odin__v1__transcription__descriptor =
   (ProtobufCMessageInit) odin__v1__transcription__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor odin__v1__completion_word__field_descriptors[2] =
+static const ProtobufCFieldDescriptor odin__v1__completion__field_descriptors[3] =
 {
   {
-    "word",
+    "content",
     1,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_STRING,
     0,   /* quantifier_offset */
-    offsetof(Odin__V1__CompletionWord, word),
+    offsetof(Odin__V1__Completion, content),
     NULL,
     &protobuf_c_empty_string,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "session",
+    "type",
     2,
     PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_MESSAGE,
+    PROTOBUF_C_TYPE_ENUM,
     0,   /* quantifier_offset */
-    offsetof(Odin__V1__CompletionWord, session),
-    &odin__v1__session_info__descriptor,
+    offsetof(Odin__V1__Completion, type),
+    &odin__v1__completion_type__descriptor,
     NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-};
-static const unsigned odin__v1__completion_word__field_indices_by_name[] = {
-  1,   /* field[1] = session */
-  0,   /* field[0] = word */
-};
-static const ProtobufCIntRange odin__v1__completion_word__number_ranges[1 + 1] =
-{
-  { 1, 0 },
-  { 0, 2 }
-};
-const ProtobufCMessageDescriptor odin__v1__completion_word__descriptor =
-{
-  PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "odin.v1.CompletionWord",
-  "CompletionWord",
-  "Odin__V1__CompletionWord",
-  "odin.v1",
-  sizeof(Odin__V1__CompletionWord),
-  2,
-  odin__v1__completion_word__field_descriptors,
-  odin__v1__completion_word__field_indices_by_name,
-  1,  odin__v1__completion_word__number_ranges,
-  (ProtobufCMessageInit) odin__v1__completion_word__init,
-  NULL,NULL,NULL    /* reserved[123] */
-};
-static const ProtobufCFieldDescriptor odin__v1__completion_sentence__field_descriptors[2] =
-{
-  {
-    "sentence",
-    1,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_STRING,
-    0,   /* quantifier_offset */
-    offsetof(Odin__V1__CompletionSentence, sentence),
-    NULL,
-    &protobuf_c_empty_string,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "session",
-    2,
+    "info",
+    3,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_MESSAGE,
     0,   /* quantifier_offset */
-    offsetof(Odin__V1__CompletionSentence, session),
-    &odin__v1__session_info__descriptor,
+    offsetof(Odin__V1__Completion, info),
+    &odin__v1__message_info__descriptor,
     NULL,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
 };
-static const unsigned odin__v1__completion_sentence__field_indices_by_name[] = {
-  0,   /* field[0] = sentence */
-  1,   /* field[1] = session */
+static const unsigned odin__v1__completion__field_indices_by_name[] = {
+  0,   /* field[0] = content */
+  2,   /* field[2] = info */
+  1,   /* field[1] = type */
 };
-static const ProtobufCIntRange odin__v1__completion_sentence__number_ranges[1 + 1] =
+static const ProtobufCIntRange odin__v1__completion__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 2 }
+  { 0, 3 }
 };
-const ProtobufCMessageDescriptor odin__v1__completion_sentence__descriptor =
+const ProtobufCMessageDescriptor odin__v1__completion__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "odin.v1.CompletionSentence",
-  "CompletionSentence",
-  "Odin__V1__CompletionSentence",
+  "odin.v1.Completion",
+  "Completion",
+  "Odin__V1__Completion",
   "odin.v1",
-  sizeof(Odin__V1__CompletionSentence),
-  2,
-  odin__v1__completion_sentence__field_descriptors,
-  odin__v1__completion_sentence__field_indices_by_name,
-  1,  odin__v1__completion_sentence__number_ranges,
-  (ProtobufCMessageInit) odin__v1__completion_sentence__init,
+  sizeof(Odin__V1__Completion),
+  3,
+  odin__v1__completion__field_descriptors,
+  odin__v1__completion__field_indices_by_name,
+  1,  odin__v1__completion__number_ranges,
+  (ProtobufCMessageInit) odin__v1__completion__init,
   NULL,NULL,NULL    /* reserved[123] */
+};
+static const ProtobufCEnumValue odin__v1__completion_type__enum_values_by_number[2] =
+{
+  { "WORD", "ODIN__V1__COMPLETION_TYPE__WORD", 0 },
+  { "SENTENCE", "ODIN__V1__COMPLETION_TYPE__SENTENCE", 1 },
+};
+static const ProtobufCIntRange odin__v1__completion_type__value_ranges[] = {
+{0, 0},{0, 2}
+};
+static const ProtobufCEnumValueIndex odin__v1__completion_type__enum_values_by_name[2] =
+{
+  { "SENTENCE", 1 },
+  { "WORD", 0 },
+};
+const ProtobufCEnumDescriptor odin__v1__completion_type__descriptor =
+{
+  PROTOBUF_C__ENUM_DESCRIPTOR_MAGIC,
+  "odin.v1.CompletionType",
+  "CompletionType",
+  "Odin__V1__CompletionType",
+  "odin.v1",
+  2,
+  odin__v1__completion_type__enum_values_by_number,
+  2,
+  odin__v1__completion_type__enum_values_by_name,
+  1,
+  odin__v1__completion_type__value_ranges,
+  NULL,NULL,NULL,NULL   /* reserved[1234] */
 };

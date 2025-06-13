@@ -33,6 +33,13 @@ typedef enum _Odin__V1__ModuleStatus {
   ODIN__V1__MODULE_STATUS__DISCONNECTED = 3
     PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(ODIN__V1__MODULE_STATUS)
 } Odin__V1__ModuleStatus;
+typedef enum _Odin__V1__ModuleType {
+  ODIN__V1__MODULE_TYPE__STT = 0,
+  ODIN__V1__MODULE_TYPE__TTS = 1,
+  ODIN__V1__MODULE_TYPE__AGENT = 2,
+  ODIN__V1__MODULE_TYPE__TURN = 3
+    PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(ODIN__V1__MODULE_TYPE)
+} Odin__V1__ModuleType;
 
 /* --- messages --- */
 
@@ -100,7 +107,15 @@ struct  Odin__V1__Status
 struct  Odin__V1__ModuleBootup
 {
   ProtobufCMessage base;
-  char *module_name;
+  Odin__V1__ModuleType type;
+  /*
+   * name of the module (eg. whisper-live for stt)
+   */
+  char *name;
+  /*
+   * semi random id
+   */
+  char *instance_id;
   /*
    * Unix timestamp
    */
@@ -120,13 +135,13 @@ struct  Odin__V1__ModuleBootup
 };
 #define ODIN__V1__MODULE_BOOTUP__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&odin__v1__module_bootup__descriptor) \
-    , (char *)protobuf_c_empty_string, 0, (char *)protobuf_c_empty_string, (char *)protobuf_c_empty_string, (char *)protobuf_c_empty_string }
+    , ODIN__V1__MODULE_TYPE__STT, (char *)protobuf_c_empty_string, (char *)protobuf_c_empty_string, 0, (char *)protobuf_c_empty_string, (char *)protobuf_c_empty_string, (char *)protobuf_c_empty_string }
 
 
 struct  Odin__V1__ModuleHeartbeat
 {
   ProtobufCMessage base;
-  char *module_name;
+  char *instance_id;
   /*
    * Unix timestamp of heartbeat
    */
@@ -317,6 +332,7 @@ typedef void (*Odin__V1__ModuleRegistry_Closure)
 /* --- descriptors --- */
 
 extern const ProtobufCEnumDescriptor    odin__v1__module_status__descriptor;
+extern const ProtobufCEnumDescriptor    odin__v1__module_type__descriptor;
 extern const ProtobufCMessageDescriptor odin__v1__init__descriptor;
 extern const ProtobufCMessageDescriptor odin__v1__shutdown__descriptor;
 extern const ProtobufCMessageDescriptor odin__v1__command__descriptor;

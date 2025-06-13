@@ -27,39 +27,30 @@ namespace _fl = ::google::protobuf::internal::field_layout;
 namespace odin {
 namespace v1 {
 
-inline constexpr SessionInfo::Impl_::Impl_(
+inline constexpr MessageInfo::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
-        id_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        status_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        language_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
         timestamp_{::int64_t{0}} {}
 
 template <typename>
-PROTOBUF_CONSTEXPR SessionInfo::SessionInfo(::_pbi::ConstantInitialized)
+PROTOBUF_CONSTEXPR MessageInfo::MessageInfo(::_pbi::ConstantInitialized)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(SessionInfo_class_data_.base()),
+    : ::google::protobuf::Message(MessageInfo_class_data_.base()),
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(),
 #endif  // PROTOBUF_CUSTOM_VTABLE
       _impl_(::_pbi::ConstantInitialized()) {
 }
-struct SessionInfoDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR SessionInfoDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~SessionInfoDefaultTypeInternal() {}
+struct MessageInfoDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR MessageInfoDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~MessageInfoDefaultTypeInternal() {}
   union {
-    SessionInfo _instance;
+    MessageInfo _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SessionInfoDefaultTypeInternal _SessionInfo_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MessageInfoDefaultTypeInternal _MessageInfo_default_instance_;
 
 inline constexpr AudioData::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -98,16 +89,10 @@ const ::uint32_t
     TableStruct_odin_2fv1_2fcommon_2eproto::offsets[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
         protodesc_cold) = {
         0x081, // bitmap
-        PROTOBUF_FIELD_OFFSET(::odin::v1::SessionInfo, _impl_._has_bits_),
-        7, // hasbit index offset
-        PROTOBUF_FIELD_OFFSET(::odin::v1::SessionInfo, _impl_.id_),
-        PROTOBUF_FIELD_OFFSET(::odin::v1::SessionInfo, _impl_.status_),
-        PROTOBUF_FIELD_OFFSET(::odin::v1::SessionInfo, _impl_.language_),
-        PROTOBUF_FIELD_OFFSET(::odin::v1::SessionInfo, _impl_.timestamp_),
+        PROTOBUF_FIELD_OFFSET(::odin::v1::MessageInfo, _impl_._has_bits_),
+        4, // hasbit index offset
+        PROTOBUF_FIELD_OFFSET(::odin::v1::MessageInfo, _impl_.timestamp_),
         0,
-        1,
-        2,
-        3,
         0x081, // bitmap
         PROTOBUF_FIELD_OFFSET(::odin::v1::AudioData, _impl_._has_bits_),
         5, // hasbit index offset
@@ -119,29 +104,28 @@ const ::uint32_t
 
 static const ::_pbi::MigrationSchema
     schemas[] ABSL_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
-        {0, sizeof(::odin::v1::SessionInfo)},
-        {11, sizeof(::odin::v1::AudioData)},
+        {0, sizeof(::odin::v1::MessageInfo)},
+        {5, sizeof(::odin::v1::AudioData)},
 };
 static const ::_pb::Message* PROTOBUF_NONNULL const file_default_instances[] = {
-    &::odin::v1::_SessionInfo_default_instance_._instance,
+    &::odin::v1::_MessageInfo_default_instance_._instance,
     &::odin::v1::_AudioData_default_instance_._instance,
 };
 const char descriptor_table_protodef_odin_2fv1_2fcommon_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
-    "\n\024odin/v1/common.proto\022\007odin.v1\"o\n\013Sessi"
-    "onInfo\022\016\n\002id\030\001 \001(\tR\002id\022\026\n\006status\030\002 \001(\tR\006"
-    "status\022\032\n\010language\030\003 \001(\tR\010language\022\034\n\tti"
-    "mestamp\030\004 \001(\003R\ttimestamp\"K\n\tAudioData\022\035\n"
-    "\naudio_data\030\001 \001(\014R\taudioData\022\037\n\013sample_r"
-    "ate\030\002 \001(\005R\nsampleRateBW\n\013com.odin.v1B\013Co"
-    "mmonProtoP\001\242\002\003OXX\252\002\007Odin.V1\312\002\007Odin\\V1\342\002\023"
-    "Odin\\V1\\GPBMetadata\352\002\010Odin::V1b\006proto3"
+    "\n\024odin/v1/common.proto\022\007odin.v1\"+\n\013Messa"
+    "geInfo\022\034\n\ttimestamp\030\001 \001(\003R\ttimestamp\"K\n\t"
+    "AudioData\022\035\n\naudio_data\030\001 \001(\014R\taudioData"
+    "\022\037\n\013sample_rate\030\002 \001(\005R\nsampleRateBW\n\013com"
+    ".odin.v1B\013CommonProtoP\001\242\002\003OXX\252\002\007Odin.V1\312"
+    "\002\007Odin\\V1\342\002\023Odin\\V1\\GPBMetadata\352\002\010Odin::"
+    "V1b\006proto3"
 };
 static ::absl::once_flag descriptor_table_odin_2fv1_2fcommon_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_odin_2fv1_2fcommon_2eproto = {
     false,
     false,
-    318,
+    250,
     descriptor_table_protodef_odin_2fv1_2fcommon_2eproto,
     "odin/v1/common.proto",
     &descriptor_table_odin_2fv1_2fcommon_2eproto_once,
@@ -158,249 +142,162 @@ namespace odin {
 namespace v1 {
 // ===================================================================
 
-class SessionInfo::_Internal {
+class MessageInfo::_Internal {
  public:
   using HasBits =
-      decltype(::std::declval<SessionInfo>()._impl_._has_bits_);
+      decltype(::std::declval<MessageInfo>()._impl_._has_bits_);
   static constexpr ::int32_t kHasBitsOffset =
-      8 * PROTOBUF_FIELD_OFFSET(SessionInfo, _impl_._has_bits_);
+      8 * PROTOBUF_FIELD_OFFSET(MessageInfo, _impl_._has_bits_);
 };
 
-SessionInfo::SessionInfo(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+MessageInfo::MessageInfo(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(arena, SessionInfo_class_data_.base()) {
+    : ::google::protobuf::Message(arena, MessageInfo_class_data_.base()) {
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:odin.v1.SessionInfo)
+  // @@protoc_insertion_point(arena_constructor:odin.v1.MessageInfo)
 }
-PROTOBUF_NDEBUG_INLINE SessionInfo::Impl_::Impl_(
-    ::google::protobuf::internal::InternalVisibility visibility,
-    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
-    const ::odin::v1::SessionInfo& from_msg)
-      : _has_bits_{from._has_bits_},
-        _cached_size_{0},
-        id_(arena, from.id_),
-        status_(arena, from.status_),
-        language_(arena, from.language_) {}
-
-SessionInfo::SessionInfo(
-    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
-    const SessionInfo& from)
+MessageInfo::MessageInfo(
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const MessageInfo& from)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(arena, SessionInfo_class_data_.base()) {
+    : ::google::protobuf::Message(arena, MessageInfo_class_data_.base()),
 #else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::Message(arena) {
+    : ::google::protobuf::Message(arena),
 #endif  // PROTOBUF_CUSTOM_VTABLE
-  SessionInfo* const _this = this;
-  (void)_this;
+      _impl_(from._impl_) {
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
-  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
-  _impl_.timestamp_ = from._impl_.timestamp_;
-
-  // @@protoc_insertion_point(copy_constructor:odin.v1.SessionInfo)
 }
-PROTOBUF_NDEBUG_INLINE SessionInfo::Impl_::Impl_(
+PROTOBUF_NDEBUG_INLINE MessageInfo::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
-      : _cached_size_{0},
-        id_(arena),
-        status_(arena),
-        language_(arena) {}
+      : _cached_size_{0} {}
 
-inline void SessionInfo::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
+inline void MessageInfo::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
   _impl_.timestamp_ = {};
 }
-SessionInfo::~SessionInfo() {
-  // @@protoc_insertion_point(destructor:odin.v1.SessionInfo)
+MessageInfo::~MessageInfo() {
+  // @@protoc_insertion_point(destructor:odin.v1.MessageInfo)
   SharedDtor(*this);
 }
-inline void SessionInfo::SharedDtor(MessageLite& self) {
-  SessionInfo& this_ = static_cast<SessionInfo&>(self);
+inline void MessageInfo::SharedDtor(MessageLite& self) {
+  MessageInfo& this_ = static_cast<MessageInfo&>(self);
   this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   ABSL_DCHECK(this_.GetArena() == nullptr);
-  this_._impl_.id_.Destroy();
-  this_._impl_.status_.Destroy();
-  this_._impl_.language_.Destroy();
   this_._impl_.~Impl_();
 }
 
-inline void* PROTOBUF_NONNULL SessionInfo::PlacementNew_(
+inline void* PROTOBUF_NONNULL MessageInfo::PlacementNew_(
     const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
     ::google::protobuf::Arena* PROTOBUF_NULLABLE arena) {
-  return ::new (mem) SessionInfo(arena);
+  return ::new (mem) MessageInfo(arena);
 }
-constexpr auto SessionInfo::InternalNewImpl_() {
-  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(SessionInfo),
-                                            alignof(SessionInfo));
+constexpr auto MessageInfo::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(MessageInfo),
+                                            alignof(MessageInfo));
 }
-constexpr auto SessionInfo::InternalGenerateClassData_() {
+constexpr auto MessageInfo::InternalGenerateClassData_() {
   return ::google::protobuf::internal::ClassDataFull{
       ::google::protobuf::internal::ClassData{
-          &_SessionInfo_default_instance_._instance,
+          &_MessageInfo_default_instance_._instance,
           &_table_.header,
           nullptr,  // OnDemandRegisterArenaDtor
           nullptr,  // IsInitialized
-          &SessionInfo::MergeImpl,
-          ::google::protobuf::Message::GetNewImpl<SessionInfo>(),
+          &MessageInfo::MergeImpl,
+          ::google::protobuf::Message::GetNewImpl<MessageInfo>(),
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-          &SessionInfo::SharedDtor,
-          ::google::protobuf::Message::GetClearImpl<SessionInfo>(), &SessionInfo::ByteSizeLong,
-              &SessionInfo::_InternalSerialize,
+          &MessageInfo::SharedDtor,
+          ::google::protobuf::Message::GetClearImpl<MessageInfo>(), &MessageInfo::ByteSizeLong,
+              &MessageInfo::_InternalSerialize,
 #endif  // PROTOBUF_CUSTOM_VTABLE
-          PROTOBUF_FIELD_OFFSET(SessionInfo, _impl_._cached_size_),
+          PROTOBUF_FIELD_OFFSET(MessageInfo, _impl_._cached_size_),
           false,
       },
-      &SessionInfo::kDescriptorMethods,
+      &MessageInfo::kDescriptorMethods,
       &descriptor_table_odin_2fv1_2fcommon_2eproto,
       nullptr,  // tracker
   };
 }
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const
-    ::google::protobuf::internal::ClassDataFull SessionInfo_class_data_ =
-        SessionInfo::InternalGenerateClassData_();
+    ::google::protobuf::internal::ClassDataFull MessageInfo_class_data_ =
+        MessageInfo::InternalGenerateClassData_();
 
 PROTOBUF_ATTRIBUTE_WEAK const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
-SessionInfo::GetClassData() const {
-  ::google::protobuf::internal::PrefetchToLocalCache(&SessionInfo_class_data_);
-  ::google::protobuf::internal::PrefetchToLocalCache(SessionInfo_class_data_.tc_table);
-  return SessionInfo_class_data_.base();
+MessageInfo::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&MessageInfo_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(MessageInfo_class_data_.tc_table);
+  return MessageInfo_class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 4, 0, 44, 2>
-SessionInfo::_table_ = {
+const ::_pbi::TcParseTable<0, 1, 0, 0, 2>
+MessageInfo::_table_ = {
   {
-    PROTOBUF_FIELD_OFFSET(SessionInfo, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(MessageInfo, _impl_._has_bits_),
     0, // no _extensions_
-    4, 24,  // max_field_number, fast_idx_mask
+    1, 0,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967280,  // skipmap
+    4294967294,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    4,  // num_field_entries
+    1,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
-    SessionInfo_class_data_.base(),
+    MessageInfo_class_data_.base(),
     nullptr,  // post_loop_handler
     ::_pbi::TcParser::GenericFallback,  // fallback
     #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
-    ::_pbi::TcParser::GetTable<::odin::v1::SessionInfo>(),  // to_prefetch
+    ::_pbi::TcParser::GetTable<::odin::v1::MessageInfo>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    // int64 timestamp = 4 [json_name = "timestamp"];
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(SessionInfo, _impl_.timestamp_), 3>(),
-     {32, 3, 0, PROTOBUF_FIELD_OFFSET(SessionInfo, _impl_.timestamp_)}},
-    // string id = 1 [json_name = "id"];
-    {::_pbi::TcParser::FastUS1,
-     {10, 0, 0, PROTOBUF_FIELD_OFFSET(SessionInfo, _impl_.id_)}},
-    // string status = 2 [json_name = "status"];
-    {::_pbi::TcParser::FastUS1,
-     {18, 1, 0, PROTOBUF_FIELD_OFFSET(SessionInfo, _impl_.status_)}},
-    // string language = 3 [json_name = "language"];
-    {::_pbi::TcParser::FastUS1,
-     {26, 2, 0, PROTOBUF_FIELD_OFFSET(SessionInfo, _impl_.language_)}},
+    // int64 timestamp = 1 [json_name = "timestamp"];
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(MessageInfo, _impl_.timestamp_), 0>(),
+     {8, 0, 0, PROTOBUF_FIELD_OFFSET(MessageInfo, _impl_.timestamp_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // string id = 1 [json_name = "id"];
-    {PROTOBUF_FIELD_OFFSET(SessionInfo, _impl_.id_), _Internal::kHasBitsOffset + 0, 0,
-    (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // string status = 2 [json_name = "status"];
-    {PROTOBUF_FIELD_OFFSET(SessionInfo, _impl_.status_), _Internal::kHasBitsOffset + 1, 0,
-    (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // string language = 3 [json_name = "language"];
-    {PROTOBUF_FIELD_OFFSET(SessionInfo, _impl_.language_), _Internal::kHasBitsOffset + 2, 0,
-    (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // int64 timestamp = 4 [json_name = "timestamp"];
-    {PROTOBUF_FIELD_OFFSET(SessionInfo, _impl_.timestamp_), _Internal::kHasBitsOffset + 3, 0,
+    // int64 timestamp = 1 [json_name = "timestamp"];
+    {PROTOBUF_FIELD_OFFSET(MessageInfo, _impl_.timestamp_), _Internal::kHasBitsOffset + 0, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kInt64)},
   }},
   // no aux_entries
   {{
-    "\23\2\6\10\0\0\0\0"
-    "odin.v1.SessionInfo"
-    "id"
-    "status"
-    "language"
   }},
 };
-PROTOBUF_NOINLINE void SessionInfo::Clear() {
-// @@protoc_insertion_point(message_clear_start:odin.v1.SessionInfo)
+PROTOBUF_NOINLINE void MessageInfo::Clear() {
+// @@protoc_insertion_point(message_clear_start:odin.v1.MessageInfo)
   ::google::protobuf::internal::TSanWrite(&_impl_);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  cached_has_bits = _impl_._has_bits_[0];
-  if ((cached_has_bits & 0x00000007u) != 0) {
-    if ((cached_has_bits & 0x00000001u) != 0) {
-      _impl_.id_.ClearNonDefaultToEmpty();
-    }
-    if ((cached_has_bits & 0x00000002u) != 0) {
-      _impl_.status_.ClearNonDefaultToEmpty();
-    }
-    if ((cached_has_bits & 0x00000004u) != 0) {
-      _impl_.language_.ClearNonDefaultToEmpty();
-    }
-  }
   _impl_.timestamp_ = ::int64_t{0};
   _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-::uint8_t* PROTOBUF_NONNULL SessionInfo::_InternalSerialize(
+::uint8_t* PROTOBUF_NONNULL MessageInfo::_InternalSerialize(
     const ::google::protobuf::MessageLite& base, ::uint8_t* PROTOBUF_NONNULL target,
     ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) {
-  const SessionInfo& this_ = static_cast<const SessionInfo&>(base);
+  const MessageInfo& this_ = static_cast<const MessageInfo&>(base);
 #else   // PROTOBUF_CUSTOM_VTABLE
-::uint8_t* PROTOBUF_NONNULL SessionInfo::_InternalSerialize(
+::uint8_t* PROTOBUF_NONNULL MessageInfo::_InternalSerialize(
     ::uint8_t* PROTOBUF_NONNULL target,
     ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
-  const SessionInfo& this_ = *this;
+  const MessageInfo& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
-  // @@protoc_insertion_point(serialize_to_array_start:odin.v1.SessionInfo)
+  // @@protoc_insertion_point(serialize_to_array_start:odin.v1.MessageInfo)
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
-  // string id = 1 [json_name = "id"];
+  // int64 timestamp = 1 [json_name = "timestamp"];
   if ((this_._impl_._has_bits_[0] & 0x00000001u) != 0) {
-    if (!this_._internal_id().empty()) {
-      const ::std::string& _s = this_._internal_id();
-      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "odin.v1.SessionInfo.id");
-      target = stream->WriteStringMaybeAliased(1, _s, target);
-    }
-  }
-
-  // string status = 2 [json_name = "status"];
-  if ((this_._impl_._has_bits_[0] & 0x00000002u) != 0) {
-    if (!this_._internal_status().empty()) {
-      const ::std::string& _s = this_._internal_status();
-      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "odin.v1.SessionInfo.status");
-      target = stream->WriteStringMaybeAliased(2, _s, target);
-    }
-  }
-
-  // string language = 3 [json_name = "language"];
-  if ((this_._impl_._has_bits_[0] & 0x00000004u) != 0) {
-    if (!this_._internal_language().empty()) {
-      const ::std::string& _s = this_._internal_language();
-      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "odin.v1.SessionInfo.language");
-      target = stream->WriteStringMaybeAliased(3, _s, target);
-    }
-  }
-
-  // int64 timestamp = 4 [json_name = "timestamp"];
-  if ((this_._impl_._has_bits_[0] & 0x00000008u) != 0) {
     if (this_._internal_timestamp() != 0) {
       target =
-          ::google::protobuf::internal::WireFormatLite::WriteInt64ToArrayWithField<4>(
+          ::google::protobuf::internal::WireFormatLite::WriteInt64ToArrayWithField<1>(
               stream, this_._internal_timestamp(), target);
     }
   }
@@ -410,50 +307,28 @@ PROTOBUF_NOINLINE void SessionInfo::Clear() {
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
             this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:odin.v1.SessionInfo)
+  // @@protoc_insertion_point(serialize_to_array_end:odin.v1.MessageInfo)
   return target;
 }
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-::size_t SessionInfo::ByteSizeLong(const MessageLite& base) {
-  const SessionInfo& this_ = static_cast<const SessionInfo&>(base);
+::size_t MessageInfo::ByteSizeLong(const MessageLite& base) {
+  const MessageInfo& this_ = static_cast<const MessageInfo&>(base);
 #else   // PROTOBUF_CUSTOM_VTABLE
-::size_t SessionInfo::ByteSizeLong() const {
-  const SessionInfo& this_ = *this;
+::size_t MessageInfo::ByteSizeLong() const {
+  const MessageInfo& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
-  // @@protoc_insertion_point(message_byte_size_start:odin.v1.SessionInfo)
+  // @@protoc_insertion_point(message_byte_size_start:odin.v1.MessageInfo)
   ::size_t total_size = 0;
 
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void)cached_has_bits;
 
-  ::_pbi::Prefetch5LinesFrom7Lines(&this_);
-  cached_has_bits = this_._impl_._has_bits_[0];
-  if ((cached_has_bits & 0x0000000fu) != 0) {
-    // string id = 1 [json_name = "id"];
+   {
+    // int64 timestamp = 1 [json_name = "timestamp"];
+    cached_has_bits = this_._impl_._has_bits_[0];
     if ((cached_has_bits & 0x00000001u) != 0) {
-      if (!this_._internal_id().empty()) {
-        total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                        this_._internal_id());
-      }
-    }
-    // string status = 2 [json_name = "status"];
-    if ((cached_has_bits & 0x00000002u) != 0) {
-      if (!this_._internal_status().empty()) {
-        total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                        this_._internal_status());
-      }
-    }
-    // string language = 3 [json_name = "language"];
-    if ((cached_has_bits & 0x00000004u) != 0) {
-      if (!this_._internal_language().empty()) {
-        total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                        this_._internal_language());
-      }
-    }
-    // int64 timestamp = 4 [json_name = "timestamp"];
-    if ((cached_has_bits & 0x00000008u) != 0) {
       if (this_._internal_timestamp() != 0) {
         total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(
             this_._internal_timestamp());
@@ -464,74 +339,40 @@ PROTOBUF_NOINLINE void SessionInfo::Clear() {
                                              &this_._impl_._cached_size_);
 }
 
-void SessionInfo::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
-  auto* const _this = static_cast<SessionInfo*>(&to_msg);
-  auto& from = static_cast<const SessionInfo&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:odin.v1.SessionInfo)
+void MessageInfo::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<MessageInfo*>(&to_msg);
+  auto& from = static_cast<const MessageInfo&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:odin.v1.MessageInfo)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   cached_has_bits = from._impl_._has_bits_[0];
-  if ((cached_has_bits & 0x0000000fu) != 0) {
-    if ((cached_has_bits & 0x00000001u) != 0) {
-      if (!from._internal_id().empty()) {
-        _this->_internal_set_id(from._internal_id());
-      } else {
-        if (_this->_impl_.id_.IsDefault()) {
-          _this->_internal_set_id("");
-        }
-      }
-    }
-    if ((cached_has_bits & 0x00000002u) != 0) {
-      if (!from._internal_status().empty()) {
-        _this->_internal_set_status(from._internal_status());
-      } else {
-        if (_this->_impl_.status_.IsDefault()) {
-          _this->_internal_set_status("");
-        }
-      }
-    }
-    if ((cached_has_bits & 0x00000004u) != 0) {
-      if (!from._internal_language().empty()) {
-        _this->_internal_set_language(from._internal_language());
-      } else {
-        if (_this->_impl_.language_.IsDefault()) {
-          _this->_internal_set_language("");
-        }
-      }
-    }
-    if ((cached_has_bits & 0x00000008u) != 0) {
-      if (from._internal_timestamp() != 0) {
-        _this->_impl_.timestamp_ = from._impl_.timestamp_;
-      }
+  if ((cached_has_bits & 0x00000001u) != 0) {
+    if (from._internal_timestamp() != 0) {
+      _this->_impl_.timestamp_ = from._impl_.timestamp_;
     }
   }
   _this->_impl_._has_bits_[0] |= cached_has_bits;
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void SessionInfo::CopyFrom(const SessionInfo& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:odin.v1.SessionInfo)
+void MessageInfo::CopyFrom(const MessageInfo& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:odin.v1.MessageInfo)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 
-void SessionInfo::InternalSwap(SessionInfo* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
+void MessageInfo::InternalSwap(MessageInfo* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
   using ::std::swap;
-  auto* arena = GetArena();
-  ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.id_, &other->_impl_.id_, arena);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.status_, &other->_impl_.status_, arena);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.language_, &other->_impl_.language_, arena);
   swap(_impl_.timestamp_, other->_impl_.timestamp_);
 }
 
-::google::protobuf::Metadata SessionInfo::GetMetadata() const {
+::google::protobuf::Metadata MessageInfo::GetMetadata() const {
   return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
 }
 // ===================================================================

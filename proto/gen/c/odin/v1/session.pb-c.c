@@ -539,15 +539,39 @@ const ProtobufCMessageDescriptor odin__v1__status__descriptor =
   (ProtobufCMessageInit) odin__v1__status__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor odin__v1__module_bootup__field_descriptors[5] =
+static const ProtobufCFieldDescriptor odin__v1__module_bootup__field_descriptors[7] =
 {
   {
-    "module_name",
+    "type",
     1,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_ENUM,
+    0,   /* quantifier_offset */
+    offsetof(Odin__V1__ModuleBootup, type),
+    &odin__v1__module_type__descriptor,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "name",
+    2,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_STRING,
     0,   /* quantifier_offset */
-    offsetof(Odin__V1__ModuleBootup, module_name),
+    offsetof(Odin__V1__ModuleBootup, name),
+    NULL,
+    &protobuf_c_empty_string,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "instance_id",
+    3,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_STRING,
+    0,   /* quantifier_offset */
+    offsetof(Odin__V1__ModuleBootup, instance_id),
     NULL,
     &protobuf_c_empty_string,
     0,             /* flags */
@@ -555,7 +579,7 @@ static const ProtobufCFieldDescriptor odin__v1__module_bootup__field_descriptors
   },
   {
     "started_at",
-    3,
+    4,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_INT64,
     0,   /* quantifier_offset */
@@ -567,7 +591,7 @@ static const ProtobufCFieldDescriptor odin__v1__module_bootup__field_descriptors
   },
   {
     "version",
-    4,
+    5,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_STRING,
     0,   /* quantifier_offset */
@@ -579,7 +603,7 @@ static const ProtobufCFieldDescriptor odin__v1__module_bootup__field_descriptors
   },
   {
     "host",
-    5,
+    6,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_STRING,
     0,   /* quantifier_offset */
@@ -591,7 +615,7 @@ static const ProtobufCFieldDescriptor odin__v1__module_bootup__field_descriptors
   },
   {
     "config_schema",
-    6,
+    7,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_STRING,
     0,   /* quantifier_offset */
@@ -603,17 +627,18 @@ static const ProtobufCFieldDescriptor odin__v1__module_bootup__field_descriptors
   },
 };
 static const unsigned odin__v1__module_bootup__field_indices_by_name[] = {
-  4,   /* field[4] = config_schema */
-  3,   /* field[3] = host */
-  0,   /* field[0] = module_name */
-  1,   /* field[1] = started_at */
-  2,   /* field[2] = version */
+  6,   /* field[6] = config_schema */
+  5,   /* field[5] = host */
+  2,   /* field[2] = instance_id */
+  1,   /* field[1] = name */
+  3,   /* field[3] = started_at */
+  0,   /* field[0] = type */
+  4,   /* field[4] = version */
 };
-static const ProtobufCIntRange odin__v1__module_bootup__number_ranges[2 + 1] =
+static const ProtobufCIntRange odin__v1__module_bootup__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 3, 1 },
-  { 0, 5 }
+  { 0, 7 }
 };
 const ProtobufCMessageDescriptor odin__v1__module_bootup__descriptor =
 {
@@ -623,22 +648,22 @@ const ProtobufCMessageDescriptor odin__v1__module_bootup__descriptor =
   "Odin__V1__ModuleBootup",
   "odin.v1",
   sizeof(Odin__V1__ModuleBootup),
-  5,
+  7,
   odin__v1__module_bootup__field_descriptors,
   odin__v1__module_bootup__field_indices_by_name,
-  2,  odin__v1__module_bootup__number_ranges,
+  1,  odin__v1__module_bootup__number_ranges,
   (ProtobufCMessageInit) odin__v1__module_bootup__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
 static const ProtobufCFieldDescriptor odin__v1__module_heartbeat__field_descriptors[4] =
 {
   {
-    "module_name",
-    1,
+    "instance_id",
+    2,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_STRING,
     0,   /* quantifier_offset */
-    offsetof(Odin__V1__ModuleHeartbeat, module_name),
+    offsetof(Odin__V1__ModuleHeartbeat, instance_id),
     NULL,
     &protobuf_c_empty_string,
     0,             /* flags */
@@ -683,14 +708,13 @@ static const ProtobufCFieldDescriptor odin__v1__module_heartbeat__field_descript
 };
 static const unsigned odin__v1__module_heartbeat__field_indices_by_name[] = {
   3,   /* field[3] = active_sessions */
-  0,   /* field[0] = module_name */
+  0,   /* field[0] = instance_id */
   2,   /* field[2] = status */
   1,   /* field[1] = timestamp */
 };
-static const ProtobufCIntRange odin__v1__module_heartbeat__number_ranges[2 + 1] =
+static const ProtobufCIntRange odin__v1__module_heartbeat__number_ranges[1 + 1] =
 {
-  { 1, 0 },
-  { 3, 1 },
+  { 2, 0 },
   { 0, 4 }
 };
 const ProtobufCMessageDescriptor odin__v1__module_heartbeat__descriptor =
@@ -704,7 +728,7 @@ const ProtobufCMessageDescriptor odin__v1__module_heartbeat__descriptor =
   4,
   odin__v1__module_heartbeat__field_descriptors,
   odin__v1__module_heartbeat__field_indices_by_name,
-  2,  odin__v1__module_heartbeat__number_ranges,
+  1,  odin__v1__module_heartbeat__number_ranges,
   (ProtobufCMessageInit) odin__v1__module_heartbeat__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
@@ -789,5 +813,37 @@ const ProtobufCEnumDescriptor odin__v1__module_status__descriptor =
   odin__v1__module_status__enum_values_by_name,
   1,
   odin__v1__module_status__value_ranges,
+  NULL,NULL,NULL,NULL   /* reserved[1234] */
+};
+static const ProtobufCEnumValue odin__v1__module_type__enum_values_by_number[4] =
+{
+  { "STT", "ODIN__V1__MODULE_TYPE__STT", 0 },
+  { "TTS", "ODIN__V1__MODULE_TYPE__TTS", 1 },
+  { "AGENT", "ODIN__V1__MODULE_TYPE__AGENT", 2 },
+  { "TURN", "ODIN__V1__MODULE_TYPE__TURN", 3 },
+};
+static const ProtobufCIntRange odin__v1__module_type__value_ranges[] = {
+{0, 0},{0, 4}
+};
+static const ProtobufCEnumValueIndex odin__v1__module_type__enum_values_by_name[4] =
+{
+  { "AGENT", 2 },
+  { "STT", 0 },
+  { "TTS", 1 },
+  { "TURN", 3 },
+};
+const ProtobufCEnumDescriptor odin__v1__module_type__descriptor =
+{
+  PROTOBUF_C__ENUM_DESCRIPTOR_MAGIC,
+  "odin.v1.ModuleType",
+  "ModuleType",
+  "Odin__V1__ModuleType",
+  "odin.v1",
+  4,
+  odin__v1__module_type__enum_values_by_number,
+  4,
+  odin__v1__module_type__enum_values_by_name,
+  1,
+  odin__v1__module_type__value_ranges,
   NULL,NULL,NULL,NULL   /* reserved[1234] */
 };

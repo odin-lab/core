@@ -49,7 +49,7 @@ struct  Odin__V1__AudioBufferSpeaker
 {
   ProtobufCMessage base;
   Odin__V1__AudioData *audio;
-  Odin__V1__SessionInfo *session;
+  Odin__V1__MessageInfo *info;
 };
 #define ODIN__V1__AUDIO_BUFFER_SPEAKER__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&odin__v1__audio_buffer_speaker__descriptor) \

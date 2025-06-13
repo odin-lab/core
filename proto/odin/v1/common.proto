@@ -3,11 +3,16 @@ syntax = "proto3";
 package odin.v1;
 
 // Common session information used across all messages
-message SessionInfo {
-  string id = 1;
-  string status = 2;
-  string language = 3;
-  int64 timestamp = 4;
+// message SessionInfo {
+//   string id = 1;
+//   // TODO: remove all these fields
+//   string status = 2;
+//   string language = 3;
+//   int64 timestamp = 4;
+// }
+
+message MessageInfo {
+  int64 timestamp = 1;
 }
 
 // Audio data with sample rate information

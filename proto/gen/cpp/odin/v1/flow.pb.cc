@@ -30,7 +30,7 @@ namespace v1 {
 inline constexpr TurnDetected::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
-        session_{nullptr} {}
+        info_{nullptr} {}
 
 template <typename>
 PROTOBUF_CONSTEXPR TurnDetected::TurnDetected(::_pbi::ConstantInitialized)
@@ -55,7 +55,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
 inline constexpr OdinStartSpeech::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
-        session_{nullptr} {}
+        info_{nullptr} {}
 
 template <typename>
 PROTOBUF_CONSTEXPR OdinStartSpeech::OdinStartSpeech(::_pbi::ConstantInitialized)
@@ -80,7 +80,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
 inline constexpr OdinEndSpeech::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
-        session_{nullptr} {}
+        info_{nullptr} {}
 
 template <typename>
 PROTOBUF_CONSTEXPR OdinEndSpeech::OdinEndSpeech(::_pbi::ConstantInitialized)
@@ -113,17 +113,17 @@ const ::uint32_t
         0x081, // bitmap
         PROTOBUF_FIELD_OFFSET(::odin::v1::TurnDetected, _impl_._has_bits_),
         4, // hasbit index offset
-        PROTOBUF_FIELD_OFFSET(::odin::v1::TurnDetected, _impl_.session_),
+        PROTOBUF_FIELD_OFFSET(::odin::v1::TurnDetected, _impl_.info_),
         0,
         0x081, // bitmap
         PROTOBUF_FIELD_OFFSET(::odin::v1::OdinStartSpeech, _impl_._has_bits_),
         4, // hasbit index offset
-        PROTOBUF_FIELD_OFFSET(::odin::v1::OdinStartSpeech, _impl_.session_),
+        PROTOBUF_FIELD_OFFSET(::odin::v1::OdinStartSpeech, _impl_.info_),
         0,
         0x081, // bitmap
         PROTOBUF_FIELD_OFFSET(::odin::v1::OdinEndSpeech, _impl_._has_bits_),
         4, // hasbit index offset
-        PROTOBUF_FIELD_OFFSET(::odin::v1::OdinEndSpeech, _impl_.session_),
+        PROTOBUF_FIELD_OFFSET(::odin::v1::OdinEndSpeech, _impl_.info_),
         0,
 };
 
@@ -142,18 +142,18 @@ const char descriptor_table_protodef_odin_2fv1_2fflow_2eproto[] ABSL_ATTRIBUTE_S
     protodesc_cold) = {
     "\n\022odin/v1/flow.proto\022\007odin.v1\032\024odin/v1/c"
     "ommon.proto\032\025odin/v1/options.proto\032\025odin"
-    "/v1/session.proto\"u\n\014TurnDetected\022.\n\007ses"
-    "sion\030\001 \001(\0132\024.odin.v1.SessionInfoR\007sessio"
-    "n:5\212\265\030-flow.{session_id}.{module_name}.t"
-    "urn_detected\220\265\030\001\"|\n\017OdinStartSpeech\022.\n\007s"
-    "ession\030\001 \001(\0132\024.odin.v1.SessionInfoR\007sess"
-    "ion:9\212\265\0301flow.{session_id}.{module_name}"
-    ".odin_start_speech\220\265\030\001\"x\n\rOdinEndSpeech\022"
-    ".\n\007session\030\001 \001(\0132\024.odin.v1.SessionInfoR\007"
-    "session:7\212\265\030/flow.{session_id}.{module_n"
-    "ame}.odin_end_speech\220\265\030\001BU\n\013com.odin.v1B"
-    "\tFlowProtoP\001\242\002\003OXX\252\002\007Odin.V1\312\002\007Odin\\V1\342\002"
-    "\023Odin\\V1\\GPBMetadata\352\002\010Odin::V1b\006proto3"
+    "/v1/session.proto\"o\n\014TurnDetected\022(\n\004inf"
+    "o\030\001 \001(\0132\024.odin.v1.MessageInfoR\004info:5\212\265\030"
+    "-flow.{session_id}.{instance_id}.turn_de"
+    "tected\220\265\030\001\"v\n\017OdinStartSpeech\022(\n\004info\030\001 "
+    "\001(\0132\024.odin.v1.MessageInfoR\004info:9\212\265\0301flo"
+    "w.{session_id}.{instance_id}.odin_start_"
+    "speech\220\265\030\001\"r\n\rOdinEndSpeech\022(\n\004info\030\001 \001("
+    "\0132\024.odin.v1.MessageInfoR\004info:7\212\265\030/flow."
+    "{session_id}.{instance_id}.odin_end_spee"
+    "ch\220\265\030\001BU\n\013com.odin.v1B\tFlowProtoP\001\242\002\003OXX"
+    "\252\002\007Odin.V1\312\002\007Odin\\V1\342\002\023Odin\\V1\\GPBMetada"
+    "ta\352\002\010Odin::V1b\006proto3"
 };
 static const ::_pbi::DescriptorTable* PROTOBUF_NONNULL const
     descriptor_table_odin_2fv1_2fflow_2eproto_deps[3] = {
@@ -165,7 +165,7 @@ static ::absl::once_flag descriptor_table_odin_2fv1_2fflow_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_odin_2fv1_2fflow_2eproto = {
     false,
     false,
-    559,
+    541,
     descriptor_table_protodef_odin_2fv1_2fflow_2eproto,
     "odin/v1/flow.proto",
     &descriptor_table_odin_2fv1_2fflow_2eproto_once,
@@ -190,9 +190,9 @@ class TurnDetected::_Internal {
       8 * PROTOBUF_FIELD_OFFSET(TurnDetected, _impl_._has_bits_);
 };
 
-void TurnDetected::clear_session() {
+void TurnDetected::clear_info() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.session_ != nullptr) _impl_.session_->Clear();
+  if (_impl_.info_ != nullptr) _impl_.info_->Clear();
   _impl_._has_bits_[0] &= ~0x00000001u;
 }
 TurnDetected::TurnDetected(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
@@ -225,8 +225,8 @@ TurnDetected::TurnDetected(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
   ::uint32_t cached_has_bits = _impl_._has_bits_[0];
-  _impl_.session_ = ((cached_has_bits & 0x00000001u) != 0)
-                ? ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.session_)
+  _impl_.info_ = ((cached_has_bits & 0x00000001u) != 0)
+                ? ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.info_)
                 : nullptr;
 
   // @@protoc_insertion_point(copy_constructor:odin.v1.TurnDetected)
@@ -238,7 +238,7 @@ PROTOBUF_NDEBUG_INLINE TurnDetected::Impl_::Impl_(
 
 inline void TurnDetected::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
-  _impl_.session_ = {};
+  _impl_.info_ = {};
 }
 TurnDetected::~TurnDetected() {
   // @@protoc_insertion_point(destructor:odin.v1.TurnDetected)
@@ -248,7 +248,7 @@ inline void TurnDetected::SharedDtor(MessageLite& self) {
   TurnDetected& this_ = static_cast<TurnDetected&>(self);
   this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   ABSL_DCHECK(this_.GetArena() == nullptr);
-  delete this_._impl_.session_;
+  delete this_._impl_.info_;
   this_._impl_.~Impl_();
 }
 
@@ -314,18 +314,18 @@ TurnDetected::_table_ = {
     ::_pbi::TcParser::GetTable<::odin::v1::TurnDetected>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    // .odin.v1.SessionInfo session = 1 [json_name = "session"];
+    // .odin.v1.MessageInfo info = 1 [json_name = "info"];
     {::_pbi::TcParser::FastMtS1,
-     {10, 0, 0, PROTOBUF_FIELD_OFFSET(TurnDetected, _impl_.session_)}},
+     {10, 0, 0, PROTOBUF_FIELD_OFFSET(TurnDetected, _impl_.info_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // .odin.v1.SessionInfo session = 1 [json_name = "session"];
-    {PROTOBUF_FIELD_OFFSET(TurnDetected, _impl_.session_), _Internal::kHasBitsOffset + 0, 0,
+    // .odin.v1.MessageInfo info = 1 [json_name = "info"];
+    {PROTOBUF_FIELD_OFFSET(TurnDetected, _impl_.info_), _Internal::kHasBitsOffset + 0, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
   }},
   {{
-      {::_pbi::TcParser::GetTable<::odin::v1::SessionInfo>()},
+      {::_pbi::TcParser::GetTable<::odin::v1::MessageInfo>()},
   }},
   {{
   }},
@@ -339,8 +339,8 @@ PROTOBUF_NOINLINE void TurnDetected::Clear() {
 
   cached_has_bits = _impl_._has_bits_[0];
   if ((cached_has_bits & 0x00000001u) != 0) {
-    ABSL_DCHECK(_impl_.session_ != nullptr);
-    _impl_.session_->Clear();
+    ABSL_DCHECK(_impl_.info_ != nullptr);
+    _impl_.info_->Clear();
   }
   _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
@@ -362,10 +362,10 @@ PROTOBUF_NOINLINE void TurnDetected::Clear() {
   (void)cached_has_bits;
 
   cached_has_bits = this_._impl_._has_bits_[0];
-  // .odin.v1.SessionInfo session = 1 [json_name = "session"];
+  // .odin.v1.MessageInfo info = 1 [json_name = "info"];
   if ((cached_has_bits & 0x00000001u) != 0) {
     target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-        1, *this_._impl_.session_, this_._impl_.session_->GetCachedSize(), target,
+        1, *this_._impl_.info_, this_._impl_.info_->GetCachedSize(), target,
         stream);
   }
 
@@ -393,11 +393,11 @@ PROTOBUF_NOINLINE void TurnDetected::Clear() {
   (void)cached_has_bits;
 
    {
-    // .odin.v1.SessionInfo session = 1 [json_name = "session"];
+    // .odin.v1.MessageInfo info = 1 [json_name = "info"];
     cached_has_bits = this_._impl_._has_bits_[0];
     if ((cached_has_bits & 0x00000001u) != 0) {
       total_size += 1 +
-                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.session_);
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.info_);
     }
   }
   return this_.MaybeComputeUnknownFieldsSize(total_size,
@@ -415,11 +415,11 @@ void TurnDetected::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::go
 
   cached_has_bits = from._impl_._has_bits_[0];
   if ((cached_has_bits & 0x00000001u) != 0) {
-    ABSL_DCHECK(from._impl_.session_ != nullptr);
-    if (_this->_impl_.session_ == nullptr) {
-      _this->_impl_.session_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.session_);
+    ABSL_DCHECK(from._impl_.info_ != nullptr);
+    if (_this->_impl_.info_ == nullptr) {
+      _this->_impl_.info_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.info_);
     } else {
-      _this->_impl_.session_->MergeFrom(*from._impl_.session_);
+      _this->_impl_.info_->MergeFrom(*from._impl_.info_);
     }
   }
   _this->_impl_._has_bits_[0] |= cached_has_bits;
@@ -438,7 +438,7 @@ void TurnDetected::InternalSwap(TurnDetected* PROTOBUF_RESTRICT PROTOBUF_NONNULL
   using ::std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
-  swap(_impl_.session_, other->_impl_.session_);
+  swap(_impl_.info_, other->_impl_.info_);
 }
 
 ::google::protobuf::Metadata TurnDetected::GetMetadata() const {
@@ -454,9 +454,9 @@ class OdinStartSpeech::_Internal {
       8 * PROTOBUF_FIELD_OFFSET(OdinStartSpeech, _impl_._has_bits_);
 };
 
-void OdinStartSpeech::clear_session() {
+void OdinStartSpeech::clear_info() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.session_ != nullptr) _impl_.session_->Clear();
+  if (_impl_.info_ != nullptr) _impl_.info_->Clear();
   _impl_._has_bits_[0] &= ~0x00000001u;
 }
 OdinStartSpeech::OdinStartSpeech(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
@@ -489,8 +489,8 @@ OdinStartSpeech::OdinStartSpeech(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
   ::uint32_t cached_has_bits = _impl_._has_bits_[0];
-  _impl_.session_ = ((cached_has_bits & 0x00000001u) != 0)
-                ? ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.session_)
+  _impl_.info_ = ((cached_has_bits & 0x00000001u) != 0)
+                ? ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.info_)
                 : nullptr;
 
   // @@protoc_insertion_point(copy_constructor:odin.v1.OdinStartSpeech)
@@ -502,7 +502,7 @@ PROTOBUF_NDEBUG_INLINE OdinStartSpeech::Impl_::Impl_(
 
 inline void OdinStartSpeech::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
-  _impl_.session_ = {};
+  _impl_.info_ = {};
 }
 OdinStartSpeech::~OdinStartSpeech() {
   // @@protoc_insertion_point(destructor:odin.v1.OdinStartSpeech)
@@ -512,7 +512,7 @@ inline void OdinStartSpeech::SharedDtor(MessageLite& self) {
   OdinStartSpeech& this_ = static_cast<OdinStartSpeech&>(self);
   this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   ABSL_DCHECK(this_.GetArena() == nullptr);
-  delete this_._impl_.session_;
+  delete this_._impl_.info_;
   this_._impl_.~Impl_();
 }
 
@@ -578,18 +578,18 @@ OdinStartSpeech::_table_ = {
     ::_pbi::TcParser::GetTable<::odin::v1::OdinStartSpeech>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    // .odin.v1.SessionInfo session = 1 [json_name = "session"];
+    // .odin.v1.MessageInfo info = 1 [json_name = "info"];
     {::_pbi::TcParser::FastMtS1,
-     {10, 0, 0, PROTOBUF_FIELD_OFFSET(OdinStartSpeech, _impl_.session_)}},
+     {10, 0, 0, PROTOBUF_FIELD_OFFSET(OdinStartSpeech, _impl_.info_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // .odin.v1.SessionInfo session = 1 [json_name = "session"];
-    {PROTOBUF_FIELD_OFFSET(OdinStartSpeech, _impl_.session_), _Internal::kHasBitsOffset + 0, 0,
+    // .odin.v1.MessageInfo info = 1 [json_name = "info"];
+    {PROTOBUF_FIELD_OFFSET(OdinStartSpeech, _impl_.info_), _Internal::kHasBitsOffset + 0, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
   }},
   {{
-      {::_pbi::TcParser::GetTable<::odin::v1::SessionInfo>()},
+      {::_pbi::TcParser::GetTable<::odin::v1::MessageInfo>()},
   }},
   {{
   }},
@@ -603,8 +603,8 @@ PROTOBUF_NOINLINE void OdinStartSpeech::Clear() {
 
   cached_has_bits = _impl_._has_bits_[0];
   if ((cached_has_bits & 0x00000001u) != 0) {
-    ABSL_DCHECK(_impl_.session_ != nullptr);
-    _impl_.session_->Clear();
+    ABSL_DCHECK(_impl_.info_ != nullptr);
+    _impl_.info_->Clear();
   }
   _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
@@ -626,10 +626,10 @@ PROTOBUF_NOINLINE void OdinStartSpeech::Clear() {
   (void)cached_has_bits;
 
   cached_has_bits = this_._impl_._has_bits_[0];
-  // .odin.v1.SessionInfo session = 1 [json_name = "session"];
+  // .odin.v1.MessageInfo info = 1 [json_name = "info"];
   if ((cached_has_bits & 0x00000001u) != 0) {
     target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-        1, *this_._impl_.session_, this_._impl_.session_->GetCachedSize(), target,
+        1, *this_._impl_.info_, this_._impl_.info_->GetCachedSize(), target,
         stream);
   }
 
@@ -657,11 +657,11 @@ PROTOBUF_NOINLINE void OdinStartSpeech::Clear() {
   (void)cached_has_bits;
 
    {
-    // .odin.v1.SessionInfo session = 1 [json_name = "session"];
+    // .odin.v1.MessageInfo info = 1 [json_name = "info"];
     cached_has_bits = this_._impl_._has_bits_[0];
     if ((cached_has_bits & 0x00000001u) != 0) {
       total_size += 1 +
-                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.session_);
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.info_);
     }
   }
   return this_.MaybeComputeUnknownFieldsSize(total_size,
@@ -679,11 +679,11 @@ void OdinStartSpeech::MergeImpl(::google::protobuf::MessageLite& to_msg, const :
 
   cached_has_bits = from._impl_._has_bits_[0];
   if ((cached_has_bits & 0x00000001u) != 0) {
-    ABSL_DCHECK(from._impl_.session_ != nullptr);
-    if (_this->_impl_.session_ == nullptr) {
-      _this->_impl_.session_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.session_);
+    ABSL_DCHECK(from._impl_.info_ != nullptr);
+    if (_this->_impl_.info_ == nullptr) {
+      _this->_impl_.info_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.info_);
     } else {
-      _this->_impl_.session_->MergeFrom(*from._impl_.session_);
+      _this->_impl_.info_->MergeFrom(*from._impl_.info_);
     }
   }
   _this->_impl_._has_bits_[0] |= cached_has_bits;
@@ -702,7 +702,7 @@ void OdinStartSpeech::InternalSwap(OdinStartSpeech* PROTOBUF_RESTRICT PROTOBUF_N
   using ::std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
-  swap(_impl_.session_, other->_impl_.session_);
+  swap(_impl_.info_, other->_impl_.info_);
 }
 
 ::google::protobuf::Metadata OdinStartSpeech::GetMetadata() const {
@@ -718,9 +718,9 @@ class OdinEndSpeech::_Internal {
       8 * PROTOBUF_FIELD_OFFSET(OdinEndSpeech, _impl_._has_bits_);
 };
 
-void OdinEndSpeech::clear_session() {
+void OdinEndSpeech::clear_info() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.session_ != nullptr) _impl_.session_->Clear();
+  if (_impl_.info_ != nullptr) _impl_.info_->Clear();
   _impl_._has_bits_[0] &= ~0x00000001u;
 }
 OdinEndSpeech::OdinEndSpeech(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
@@ -753,8 +753,8 @@ OdinEndSpeech::OdinEndSpeech(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
   ::uint32_t cached_has_bits = _impl_._has_bits_[0];
-  _impl_.session_ = ((cached_has_bits & 0x00000001u) != 0)
-                ? ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.session_)
+  _impl_.info_ = ((cached_has_bits & 0x00000001u) != 0)
+                ? ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.info_)
                 : nullptr;
 
   // @@protoc_insertion_point(copy_constructor:odin.v1.OdinEndSpeech)
@@ -766,7 +766,7 @@ PROTOBUF_NDEBUG_INLINE OdinEndSpeech::Impl_::Impl_(
 
 inline void OdinEndSpeech::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
-  _impl_.session_ = {};
+  _impl_.info_ = {};
 }
 OdinEndSpeech::~OdinEndSpeech() {
   // @@protoc_insertion_point(destructor:odin.v1.OdinEndSpeech)
@@ -776,7 +776,7 @@ inline void OdinEndSpeech::SharedDtor(MessageLite& self) {
   OdinEndSpeech& this_ = static_cast<OdinEndSpeech&>(self);
   this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   ABSL_DCHECK(this_.GetArena() == nullptr);
-  delete this_._impl_.session_;
+  delete this_._impl_.info_;
   this_._impl_.~Impl_();
 }
 
@@ -842,18 +842,18 @@ OdinEndSpeech::_table_ = {
     ::_pbi::TcParser::GetTable<::odin::v1::OdinEndSpeech>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    // .odin.v1.SessionInfo session = 1 [json_name = "session"];
+    // .odin.v1.MessageInfo info = 1 [json_name = "info"];
     {::_pbi::TcParser::FastMtS1,
-     {10, 0, 0, PROTOBUF_FIELD_OFFSET(OdinEndSpeech, _impl_.session_)}},
+     {10, 0, 0, PROTOBUF_FIELD_OFFSET(OdinEndSpeech, _impl_.info_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // .odin.v1.SessionInfo session = 1 [json_name = "session"];
-    {PROTOBUF_FIELD_OFFSET(OdinEndSpeech, _impl_.session_), _Internal::kHasBitsOffset + 0, 0,
+    // .odin.v1.MessageInfo info = 1 [json_name = "info"];
+    {PROTOBUF_FIELD_OFFSET(OdinEndSpeech, _impl_.info_), _Internal::kHasBitsOffset + 0, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
   }},
   {{
-      {::_pbi::TcParser::GetTable<::odin::v1::SessionInfo>()},
+      {::_pbi::TcParser::GetTable<::odin::v1::MessageInfo>()},
   }},
   {{
   }},
@@ -867,8 +867,8 @@ PROTOBUF_NOINLINE void OdinEndSpeech::Clear() {
 
   cached_has_bits = _impl_._has_bits_[0];
   if ((cached_has_bits & 0x00000001u) != 0) {
-    ABSL_DCHECK(_impl_.session_ != nullptr);
-    _impl_.session_->Clear();
+    ABSL_DCHECK(_impl_.info_ != nullptr);
+    _impl_.info_->Clear();
   }
   _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
@@ -890,10 +890,10 @@ PROTOBUF_NOINLINE void OdinEndSpeech::Clear() {
   (void)cached_has_bits;
 
   cached_has_bits = this_._impl_._has_bits_[0];
-  // .odin.v1.SessionInfo session = 1 [json_name = "session"];
+  // .odin.v1.MessageInfo info = 1 [json_name = "info"];
   if ((cached_has_bits & 0x00000001u) != 0) {
     target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-        1, *this_._impl_.session_, this_._impl_.session_->GetCachedSize(), target,
+        1, *this_._impl_.info_, this_._impl_.info_->GetCachedSize(), target,
         stream);
   }
 
@@ -921,11 +921,11 @@ PROTOBUF_NOINLINE void OdinEndSpeech::Clear() {
   (void)cached_has_bits;
 
    {
-    // .odin.v1.SessionInfo session = 1 [json_name = "session"];
+    // .odin.v1.MessageInfo info = 1 [json_name = "info"];
     cached_has_bits = this_._impl_._has_bits_[0];
     if ((cached_has_bits & 0x00000001u) != 0) {
       total_size += 1 +
-                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.session_);
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.info_);
     }
   }
   return this_.MaybeComputeUnknownFieldsSize(total_size,
@@ -943,11 +943,11 @@ void OdinEndSpeech::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::g
 
   cached_has_bits = from._impl_._has_bits_[0];
   if ((cached_has_bits & 0x00000001u) != 0) {
-    ABSL_DCHECK(from._impl_.session_ != nullptr);
-    if (_this->_impl_.session_ == nullptr) {
-      _this->_impl_.session_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.session_);
+    ABSL_DCHECK(from._impl_.info_ != nullptr);
+    if (_this->_impl_.info_ == nullptr) {
+      _this->_impl_.info_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.info_);
     } else {
-      _this->_impl_.session_->MergeFrom(*from._impl_.session_);
+      _this->_impl_.info_->MergeFrom(*from._impl_.info_);
     }
   }
   _this->_impl_._has_bits_[0] |= cached_has_bits;
@@ -966,7 +966,7 @@ void OdinEndSpeech::InternalSwap(OdinEndSpeech* PROTOBUF_RESTRICT PROTOBUF_NONNU
   using ::std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
-  swap(_impl_.session_, other->_impl_.session_);
+  swap(_impl_.info_, other->_impl_.info_);
 }
 
 ::google::protobuf::Metadata OdinEndSpeech::GetMetadata() const {

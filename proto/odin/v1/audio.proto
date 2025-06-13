@@ -17,10 +17,10 @@ message AudioBufferMic {
 // Generated speech audio from TTS
 // Subject pattern: audio.<session_id>.<module_name>.output
 message AudioBufferSpeaker {
-  option (odin.v1.nats_subject_pattern) = "audio.{session_id}.{module_name}.output";
+  option (odin.v1.nats_subject_pattern) = "audio.{session_id}.{instance_id}.output";
 
   AudioData audio = 1;
-  SessionInfo session = 2;
+  MessageInfo info = 2;
 }
 
 // Audio data with session information

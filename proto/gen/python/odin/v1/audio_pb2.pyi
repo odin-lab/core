@@ -15,9 +15,9 @@ class AudioBufferMic(_message.Message):
     def __init__(self, audio: _Optional[_Union[_common_pb2.AudioData, _Mapping]] = ..., client_id: _Optional[str] = ...) -> None: ...
 
 class AudioBufferSpeaker(_message.Message):
-    __slots__ = ("audio", "session")
+    __slots__ = ("audio", "info")
     AUDIO_FIELD_NUMBER: _ClassVar[int]
-    SESSION_FIELD_NUMBER: _ClassVar[int]
+    INFO_FIELD_NUMBER: _ClassVar[int]
     audio: _common_pb2.AudioData
-    session: _common_pb2.SessionInfo
-    def __init__(self, audio: _Optional[_Union[_common_pb2.AudioData, _Mapping]] = ..., session: _Optional[_Union[_common_pb2.SessionInfo, _Mapping]] = ...) -> None: ...
+    info: _common_pb2.MessageInfo
+    def __init__(self, audio: _Optional[_Union[_common_pb2.AudioData, _Mapping]] = ..., info: _Optional[_Union[_common_pb2.MessageInfo, _Mapping]] = ...) -> None: ...

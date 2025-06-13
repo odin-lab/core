@@ -28,6 +28,7 @@
 #include "google/protobuf/message_lite.h"
 #include "google/protobuf/repeated_field.h"  // IWYU pragma: export
 #include "google/protobuf/extension_set.h"  // IWYU pragma: export
+#include "google/protobuf/generated_enum_reflection.h"
 #include "google/protobuf/unknown_field_set.h"
 #include "odin/v1/common.pb.h"
 #include "odin/v1/options.pb.h"
@@ -57,14 +58,12 @@ extern const ::google::protobuf::internal::DescriptorTable descriptor_table_odin
 }  // extern "C"
 namespace odin {
 namespace v1 {
-class CompletionSentence;
-struct CompletionSentenceDefaultTypeInternal;
-extern CompletionSentenceDefaultTypeInternal _CompletionSentence_default_instance_;
-extern const ::google::protobuf::internal::ClassDataFull CompletionSentence_class_data_;
-class CompletionWord;
-struct CompletionWordDefaultTypeInternal;
-extern CompletionWordDefaultTypeInternal _CompletionWord_default_instance_;
-extern const ::google::protobuf::internal::ClassDataFull CompletionWord_class_data_;
+enum CompletionType : int;
+extern const uint32_t CompletionType_internal_data_[];
+class Completion;
+struct CompletionDefaultTypeInternal;
+extern CompletionDefaultTypeInternal _Completion_default_instance_;
+extern const ::google::protobuf::internal::ClassDataFull Completion_class_data_;
 class Transcription;
 struct TranscriptionDefaultTypeInternal;
 extern TranscriptionDefaultTypeInternal _Transcription_default_instance_;
@@ -73,11 +72,50 @@ extern const ::google::protobuf::internal::ClassDataFull Transcription_class_dat
 }  // namespace odin
 namespace google {
 namespace protobuf {
+template <>
+internal::EnumTraitsT<::odin::v1::CompletionType_internal_data_>
+    internal::EnumTraitsImpl::value<::odin::v1::CompletionType>;
 }  // namespace protobuf
 }  // namespace google
 
 namespace odin {
 namespace v1 {
+enum CompletionType : int {
+  WORD = 0,
+  SENTENCE = 1,
+  CompletionType_INT_MIN_SENTINEL_DO_NOT_USE_ =
+      ::std::numeric_limits<::int32_t>::min(),
+  CompletionType_INT_MAX_SENTINEL_DO_NOT_USE_ =
+      ::std::numeric_limits<::int32_t>::max(),
+};
+
+extern const uint32_t CompletionType_internal_data_[];
+inline constexpr CompletionType CompletionType_MIN =
+    static_cast<CompletionType>(0);
+inline constexpr CompletionType CompletionType_MAX =
+    static_cast<CompletionType>(1);
+inline bool CompletionType_IsValid(int value) {
+  return 0 <= value && value <= 1;
+}
+inline constexpr int CompletionType_ARRAYSIZE = 1 + 1;
+const ::google::protobuf::EnumDescriptor* PROTOBUF_NONNULL CompletionType_descriptor();
+template <typename T>
+const ::std::string& CompletionType_Name(T value) {
+  static_assert(::std::is_same<T, CompletionType>::value ||
+                    ::std::is_integral<T>::value,
+                "Incorrect type passed to CompletionType_Name().");
+  return CompletionType_Name(static_cast<CompletionType>(value));
+}
+template <>
+inline const ::std::string& CompletionType_Name(CompletionType value) {
+  return ::google::protobuf::internal::NameOfDenseEnum<CompletionType_descriptor, 0, 1>(
+      static_cast<int>(value));
+}
+inline bool CompletionType_Parse(
+    ::absl::string_view name, CompletionType* PROTOBUF_NONNULL value) {
+  return ::google::protobuf::internal::ParseNamedEnum<CompletionType>(CompletionType_descriptor(), name,
+                                           value);
+}
 
 // ===================================================================
 
@@ -228,7 +266,7 @@ class Transcription final : public ::google::protobuf::Message
   // accessors -------------------------------------------------------
   enum : int {
     kSegmentsFieldNumber = 1,
-    kSessionFieldNumber = 2,
+    kInfoFieldNumber = 2,
   };
   // repeated .odin.v1.Segment segments = 1 [json_name = "segments"];
   int segments_size() const;
@@ -247,19 +285,19 @@ class Transcription final : public ::google::protobuf::Message
   const ::odin::v1::Segment& segments(int index) const;
   ::odin::v1::Segment* PROTOBUF_NONNULL add_segments();
   const ::google::protobuf::RepeatedPtrField<::odin::v1::Segment>& segments() const;
-  // .odin.v1.SessionInfo session = 2 [json_name = "session"];
-  bool has_session() const;
-  void clear_session() ;
-  const ::odin::v1::SessionInfo& session() const;
-  [[nodiscard]] ::odin::v1::SessionInfo* PROTOBUF_NULLABLE release_session();
-  ::odin::v1::SessionInfo* PROTOBUF_NONNULL mutable_session();
-  void set_allocated_session(::odin::v1::SessionInfo* PROTOBUF_NULLABLE value);
-  void unsafe_arena_set_allocated_session(::odin::v1::SessionInfo* PROTOBUF_NULLABLE value);
-  ::odin::v1::SessionInfo* PROTOBUF_NULLABLE unsafe_arena_release_session();
+  // .odin.v1.MessageInfo info = 2 [json_name = "info"];
+  bool has_info() const;
+  void clear_info() ;
+  const ::odin::v1::MessageInfo& info() const;
+  [[nodiscard]] ::odin::v1::MessageInfo* PROTOBUF_NULLABLE release_info();
+  ::odin::v1::MessageInfo* PROTOBUF_NONNULL mutable_info();
+  void set_allocated_info(::odin::v1::MessageInfo* PROTOBUF_NULLABLE value);
+  void unsafe_arena_set_allocated_info(::odin::v1::MessageInfo* PROTOBUF_NULLABLE value);
+  ::odin::v1::MessageInfo* PROTOBUF_NULLABLE unsafe_arena_release_info();
 
   private:
-  const ::odin::v1::SessionInfo& _internal_session() const;
-  ::odin::v1::SessionInfo* PROTOBUF_NONNULL _internal_mutable_session();
+  const ::odin::v1::MessageInfo& _internal_info() const;
+  ::odin::v1::MessageInfo* PROTOBUF_NONNULL _internal_mutable_info();
 
   public:
   // @@protoc_insertion_point(class_scope:odin.v1.Transcription)
@@ -289,7 +327,7 @@ class Transcription final : public ::google::protobuf::Message
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::RepeatedPtrField< ::odin::v1::Segment > segments_;
-    ::odin::v1::SessionInfo* PROTOBUF_NULLABLE session_;
+    ::odin::v1::MessageInfo* PROTOBUF_NULLABLE info_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -299,30 +337,30 @@ class Transcription final : public ::google::protobuf::Message
 extern const ::google::protobuf::internal::ClassDataFull Transcription_class_data_;
 // -------------------------------------------------------------------
 
-class CompletionWord final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:odin.v1.CompletionWord) */ {
+class Completion final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:odin.v1.Completion) */ {
  public:
-  inline CompletionWord() : CompletionWord(nullptr) {}
-  ~CompletionWord() PROTOBUF_FINAL;
+  inline Completion() : Completion(nullptr) {}
+  ~Completion() PROTOBUF_FINAL;
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(CompletionWord* PROTOBUF_NONNULL msg, std::destroying_delete_t) {
+  void operator delete(Completion* PROTOBUF_NONNULL msg, std::destroying_delete_t) {
     SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(CompletionWord));
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(Completion));
   }
 #endif
 
   template <typename = void>
-  explicit PROTOBUF_CONSTEXPR CompletionWord(::google::protobuf::internal::ConstantInitialized);
+  explicit PROTOBUF_CONSTEXPR Completion(::google::protobuf::internal::ConstantInitialized);
 
-  inline CompletionWord(const CompletionWord& from) : CompletionWord(nullptr, from) {}
-  inline CompletionWord(CompletionWord&& from) noexcept
-      : CompletionWord(nullptr, ::std::move(from)) {}
-  inline CompletionWord& operator=(const CompletionWord& from) {
+  inline Completion(const Completion& from) : Completion(nullptr, from) {}
+  inline Completion(Completion&& from) noexcept
+      : Completion(nullptr, ::std::move(from)) {}
+  inline Completion& operator=(const Completion& from) {
     CopyFrom(from);
     return *this;
   }
-  inline CompletionWord& operator=(CompletionWord&& from) noexcept {
+  inline Completion& operator=(Completion&& from) noexcept {
     if (this == &from) return *this;
     if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
       InternalSwap(&from);
@@ -350,13 +388,13 @@ class CompletionWord final : public ::google::protobuf::Message
   static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const CompletionWord& default_instance() {
-    return *reinterpret_cast<const CompletionWord*>(
-        &_CompletionWord_default_instance_);
+  static const Completion& default_instance() {
+    return *reinterpret_cast<const Completion*>(
+        &_Completion_default_instance_);
   }
   static constexpr int kIndexInFileMessages = 1;
-  friend void swap(CompletionWord& a, CompletionWord& b) { a.Swap(&b); }
-  inline void Swap(CompletionWord* PROTOBUF_NONNULL other) {
+  friend void swap(Completion& a, Completion& b) { a.Swap(&b); }
+  inline void Swap(Completion* PROTOBUF_NONNULL other) {
     if (other == this) return;
     if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
       InternalSwap(other);
@@ -364,7 +402,7 @@ class CompletionWord final : public ::google::protobuf::Message
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(CompletionWord* PROTOBUF_NONNULL other) {
+  void UnsafeArenaSwap(Completion* PROTOBUF_NONNULL other) {
     if (other == this) return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -372,13 +410,13 @@ class CompletionWord final : public ::google::protobuf::Message
 
   // implements Message ----------------------------------------------
 
-  CompletionWord* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<CompletionWord>(arena);
+  Completion* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<Completion>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const CompletionWord& from);
+  void CopyFrom(const Completion& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const CompletionWord& from) { CompletionWord::MergeImpl(*this, from); }
+  void MergeFrom(const Completion& from) { Completion::MergeImpl(*this, from); }
 
   private:
   static void MergeImpl(::google::protobuf::MessageLite& to_msg,
@@ -414,18 +452,18 @@ class CompletionWord final : public ::google::protobuf::Message
   private:
   void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
   static void SharedDtor(MessageLite& self);
-  void InternalSwap(CompletionWord* PROTOBUF_NONNULL other);
+  void InternalSwap(Completion* PROTOBUF_NONNULL other);
  private:
   template <typename T>
   friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "odin.v1.CompletionWord"; }
+  static ::absl::string_view FullMessageName() { return "odin.v1.Completion"; }
 
  protected:
-  explicit CompletionWord(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-  CompletionWord(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const CompletionWord& from);
-  CompletionWord(
-      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, CompletionWord&& from) noexcept
-      : CompletionWord(arena) {
+  explicit Completion(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  Completion(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Completion& from);
+  Completion(
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, Completion&& from) noexcept
+      : Completion(arena) {
     *this = ::std::move(from);
   }
   const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
@@ -442,45 +480,56 @@ class CompletionWord final : public ::google::protobuf::Message
 
   // accessors -------------------------------------------------------
   enum : int {
-    kWordFieldNumber = 1,
-    kSessionFieldNumber = 2,
+    kContentFieldNumber = 1,
+    kInfoFieldNumber = 3,
+    kTypeFieldNumber = 2,
   };
-  // string word = 1 [json_name = "word"];
-  void clear_word() ;
-  const ::std::string& word() const;
+  // string content = 1 [json_name = "content"];
+  void clear_content() ;
+  const ::std::string& content() const;
   template <typename Arg_ = const ::std::string&, typename... Args_>
-  void set_word(Arg_&& arg, Args_... args);
-  ::std::string* PROTOBUF_NONNULL mutable_word();
-  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_word();
-  void set_allocated_word(::std::string* PROTOBUF_NULLABLE value);
+  void set_content(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_content();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_content();
+  void set_allocated_content(::std::string* PROTOBUF_NULLABLE value);
 
   private:
-  const ::std::string& _internal_word() const;
-  PROTOBUF_ALWAYS_INLINE void _internal_set_word(const ::std::string& value);
-  ::std::string* PROTOBUF_NONNULL _internal_mutable_word();
+  const ::std::string& _internal_content() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_content(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_content();
 
   public:
-  // .odin.v1.SessionInfo session = 2 [json_name = "session"];
-  bool has_session() const;
-  void clear_session() ;
-  const ::odin::v1::SessionInfo& session() const;
-  [[nodiscard]] ::odin::v1::SessionInfo* PROTOBUF_NULLABLE release_session();
-  ::odin::v1::SessionInfo* PROTOBUF_NONNULL mutable_session();
-  void set_allocated_session(::odin::v1::SessionInfo* PROTOBUF_NULLABLE value);
-  void unsafe_arena_set_allocated_session(::odin::v1::SessionInfo* PROTOBUF_NULLABLE value);
-  ::odin::v1::SessionInfo* PROTOBUF_NULLABLE unsafe_arena_release_session();
+  // .odin.v1.MessageInfo info = 3 [json_name = "info"];
+  bool has_info() const;
+  void clear_info() ;
+  const ::odin::v1::MessageInfo& info() const;
+  [[nodiscard]] ::odin::v1::MessageInfo* PROTOBUF_NULLABLE release_info();
+  ::odin::v1::MessageInfo* PROTOBUF_NONNULL mutable_info();
+  void set_allocated_info(::odin::v1::MessageInfo* PROTOBUF_NULLABLE value);
+  void unsafe_arena_set_allocated_info(::odin::v1::MessageInfo* PROTOBUF_NULLABLE value);
+  ::odin::v1::MessageInfo* PROTOBUF_NULLABLE unsafe_arena_release_info();
 
   private:
-  const ::odin::v1::SessionInfo& _internal_session() const;
-  ::odin::v1::SessionInfo* PROTOBUF_NONNULL _internal_mutable_session();
+  const ::odin::v1::MessageInfo& _internal_info() const;
+  ::odin::v1::MessageInfo* PROTOBUF_NONNULL _internal_mutable_info();
 
   public:
-  // @@protoc_insertion_point(class_scope:odin.v1.CompletionWord)
+  // .odin.v1.CompletionType type = 2 [json_name = "type"];
+  void clear_type() ;
+  ::odin::v1::CompletionType type() const;
+  void set_type(::odin::v1::CompletionType value);
+
+  private:
+  ::odin::v1::CompletionType _internal_type() const;
+  void _internal_set_type(::odin::v1::CompletionType value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:odin.v1.Completion)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<1, 2,
-                                   1, 35,
+  static const ::google::protobuf::internal::TcParseTable<2, 3,
+                                   1, 34,
                                    2>
       _table_;
 
@@ -498,231 +547,19 @@ class CompletionWord final : public ::google::protobuf::Message
     inline explicit Impl_(
         ::google::protobuf::internal::InternalVisibility visibility,
         ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
-        const CompletionWord& from_msg);
+        const Completion& from_msg);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
-    ::google::protobuf::internal::ArenaStringPtr word_;
-    ::odin::v1::SessionInfo* PROTOBUF_NULLABLE session_;
+    ::google::protobuf::internal::ArenaStringPtr content_;
+    ::odin::v1::MessageInfo* PROTOBUF_NULLABLE info_;
+    int type_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
   friend struct ::TableStruct_odin_2fv1_2ftext_2eproto;
 };
 
-extern const ::google::protobuf::internal::ClassDataFull CompletionWord_class_data_;
-// -------------------------------------------------------------------
-
-class CompletionSentence final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:odin.v1.CompletionSentence) */ {
- public:
-  inline CompletionSentence() : CompletionSentence(nullptr) {}
-  ~CompletionSentence() PROTOBUF_FINAL;
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(CompletionSentence* PROTOBUF_NONNULL msg, std::destroying_delete_t) {
-    SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(CompletionSentence));
-  }
-#endif
-
-  template <typename = void>
-  explicit PROTOBUF_CONSTEXPR CompletionSentence(::google::protobuf::internal::ConstantInitialized);
-
-  inline CompletionSentence(const CompletionSentence& from) : CompletionSentence(nullptr, from) {}
-  inline CompletionSentence(CompletionSentence&& from) noexcept
-      : CompletionSentence(nullptr, ::std::move(from)) {}
-  inline CompletionSentence& operator=(const CompletionSentence& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline CompletionSentence& operator=(CompletionSentence&& from) noexcept {
-    if (this == &from) return *this;
-    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* PROTOBUF_NONNULL mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const CompletionSentence& default_instance() {
-    return *reinterpret_cast<const CompletionSentence*>(
-        &_CompletionSentence_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages = 2;
-  friend void swap(CompletionSentence& a, CompletionSentence& b) { a.Swap(&b); }
-  inline void Swap(CompletionSentence* PROTOBUF_NONNULL other) {
-    if (other == this) return;
-    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(CompletionSentence* PROTOBUF_NONNULL other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  CompletionSentence* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<CompletionSentence>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const CompletionSentence& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const CompletionSentence& from) { CompletionSentence::MergeImpl(*this, from); }
-
-  private:
-  static void MergeImpl(::google::protobuf::MessageLite& to_msg,
-                        const ::google::protobuf::MessageLite& from_msg);
-
-  public:
-  bool IsInitialized() const {
-    return true;
-  }
-  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
-  #if defined(PROTOBUF_CUSTOM_VTABLE)
-  private:
-  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
-  static ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
-      const ::google::protobuf::MessageLite& msg, ::uint8_t* PROTOBUF_NONNULL target,
-      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream);
-
-  public:
-  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
-  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
-      ::uint8_t* PROTOBUF_NONNULL target,
-      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
-    return _InternalSerialize(*this, target, stream);
-  }
-  #else   // PROTOBUF_CUSTOM_VTABLE
-  ::size_t ByteSizeLong() const final;
-  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
-      ::uint8_t* PROTOBUF_NONNULL target,
-      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const final;
-  #endif  // PROTOBUF_CUSTOM_VTABLE
-  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-  static void SharedDtor(MessageLite& self);
-  void InternalSwap(CompletionSentence* PROTOBUF_NONNULL other);
- private:
-  template <typename T>
-  friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "odin.v1.CompletionSentence"; }
-
- protected:
-  explicit CompletionSentence(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-  CompletionSentence(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const CompletionSentence& from);
-  CompletionSentence(
-      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, CompletionSentence&& from) noexcept
-      : CompletionSentence(arena) {
-    *this = ::std::move(from);
-  }
-  const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
-  static void* PROTOBUF_NONNULL PlacementNew_(
-      const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
-      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-  static constexpr auto InternalNewImpl_();
-
- public:
-  static constexpr auto InternalGenerateClassData_();
-
-  ::google::protobuf::Metadata GetMetadata() const;
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-  enum : int {
-    kSentenceFieldNumber = 1,
-    kSessionFieldNumber = 2,
-  };
-  // string sentence = 1 [json_name = "sentence"];
-  void clear_sentence() ;
-  const ::std::string& sentence() const;
-  template <typename Arg_ = const ::std::string&, typename... Args_>
-  void set_sentence(Arg_&& arg, Args_... args);
-  ::std::string* PROTOBUF_NONNULL mutable_sentence();
-  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_sentence();
-  void set_allocated_sentence(::std::string* PROTOBUF_NULLABLE value);
-
-  private:
-  const ::std::string& _internal_sentence() const;
-  PROTOBUF_ALWAYS_INLINE void _internal_set_sentence(const ::std::string& value);
-  ::std::string* PROTOBUF_NONNULL _internal_mutable_sentence();
-
-  public:
-  // .odin.v1.SessionInfo session = 2 [json_name = "session"];
-  bool has_session() const;
-  void clear_session() ;
-  const ::odin::v1::SessionInfo& session() const;
-  [[nodiscard]] ::odin::v1::SessionInfo* PROTOBUF_NULLABLE release_session();
-  ::odin::v1::SessionInfo* PROTOBUF_NONNULL mutable_session();
-  void set_allocated_session(::odin::v1::SessionInfo* PROTOBUF_NULLABLE value);
-  void unsafe_arena_set_allocated_session(::odin::v1::SessionInfo* PROTOBUF_NULLABLE value);
-  ::odin::v1::SessionInfo* PROTOBUF_NULLABLE unsafe_arena_release_session();
-
-  private:
-  const ::odin::v1::SessionInfo& _internal_session() const;
-  ::odin::v1::SessionInfo* PROTOBUF_NONNULL _internal_mutable_session();
-
-  public:
-  // @@protoc_insertion_point(class_scope:odin.v1.CompletionSentence)
- private:
-  class _Internal;
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<1, 2,
-                                   1, 43,
-                                   2>
-      _table_;
-
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-    inline explicit constexpr Impl_(::google::protobuf::internal::ConstantInitialized) noexcept;
-    inline explicit Impl_(
-        ::google::protobuf::internal::InternalVisibility visibility,
-        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-    inline explicit Impl_(
-        ::google::protobuf::internal::InternalVisibility visibility,
-        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
-        const CompletionSentence& from_msg);
-    ::google::protobuf::internal::HasBits<1> _has_bits_;
-    ::google::protobuf::internal::CachedSize _cached_size_;
-    ::google::protobuf::internal::ArenaStringPtr sentence_;
-    ::odin::v1::SessionInfo* PROTOBUF_NULLABLE session_;
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_odin_2fv1_2ftext_2eproto;
-};
-
-extern const ::google::protobuf::internal::ClassDataFull CompletionSentence_class_data_;
+extern const ::google::protobuf::internal::ClassDataFull Completion_class_data_;
 
 // ===================================================================
 
@@ -786,41 +623,41 @@ Transcription::_internal_mutable_segments() {
   return &_impl_.segments_;
 }
 
-// .odin.v1.SessionInfo session = 2 [json_name = "session"];
-inline bool Transcription::has_session() const {
+// .odin.v1.MessageInfo info = 2 [json_name = "info"];
+inline bool Transcription::has_info() const {
   bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
-  PROTOBUF_ASSUME(!value || _impl_.session_ != nullptr);
+  PROTOBUF_ASSUME(!value || _impl_.info_ != nullptr);
   return value;
 }
-inline const ::odin::v1::SessionInfo& Transcription::_internal_session() const {
+inline const ::odin::v1::MessageInfo& Transcription::_internal_info() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  const ::odin::v1::SessionInfo* p = _impl_.session_;
-  return p != nullptr ? *p : reinterpret_cast<const ::odin::v1::SessionInfo&>(::odin::v1::_SessionInfo_default_instance_);
+  const ::odin::v1::MessageInfo* p = _impl_.info_;
+  return p != nullptr ? *p : reinterpret_cast<const ::odin::v1::MessageInfo&>(::odin::v1::_MessageInfo_default_instance_);
 }
-inline const ::odin::v1::SessionInfo& Transcription::session() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:odin.v1.Transcription.session)
-  return _internal_session();
+inline const ::odin::v1::MessageInfo& Transcription::info() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:odin.v1.Transcription.info)
+  return _internal_info();
 }
-inline void Transcription::unsafe_arena_set_allocated_session(
-    ::odin::v1::SessionInfo* PROTOBUF_NULLABLE value) {
+inline void Transcription::unsafe_arena_set_allocated_info(
+    ::odin::v1::MessageInfo* PROTOBUF_NULLABLE value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (GetArena() == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.session_);
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.info_);
   }
-  _impl_.session_ = reinterpret_cast<::odin::v1::SessionInfo*>(value);
+  _impl_.info_ = reinterpret_cast<::odin::v1::MessageInfo*>(value);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000001u;
   } else {
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:odin.v1.Transcription.session)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:odin.v1.Transcription.info)
 }
-inline ::odin::v1::SessionInfo* PROTOBUF_NULLABLE Transcription::release_session() {
+inline ::odin::v1::MessageInfo* PROTOBUF_NULLABLE Transcription::release_info() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::odin::v1::SessionInfo* released = _impl_.session_;
-  _impl_.session_ = nullptr;
+  ::odin::v1::MessageInfo* released = _impl_.info_;
+  _impl_.info_ = nullptr;
   if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
     auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
     released = ::google::protobuf::internal::DuplicateIfNonNull(released);
@@ -834,35 +671,35 @@ inline ::odin::v1::SessionInfo* PROTOBUF_NULLABLE Transcription::release_session
   }
   return released;
 }
-inline ::odin::v1::SessionInfo* PROTOBUF_NULLABLE Transcription::unsafe_arena_release_session() {
+inline ::odin::v1::MessageInfo* PROTOBUF_NULLABLE Transcription::unsafe_arena_release_info() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:odin.v1.Transcription.session)
+  // @@protoc_insertion_point(field_release:odin.v1.Transcription.info)
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::odin::v1::SessionInfo* temp = _impl_.session_;
-  _impl_.session_ = nullptr;
+  ::odin::v1::MessageInfo* temp = _impl_.info_;
+  _impl_.info_ = nullptr;
   return temp;
 }
-inline ::odin::v1::SessionInfo* PROTOBUF_NONNULL Transcription::_internal_mutable_session() {
+inline ::odin::v1::MessageInfo* PROTOBUF_NONNULL Transcription::_internal_mutable_info() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.session_ == nullptr) {
-    auto* p = ::google::protobuf::Message::DefaultConstruct<::odin::v1::SessionInfo>(GetArena());
-    _impl_.session_ = reinterpret_cast<::odin::v1::SessionInfo*>(p);
+  if (_impl_.info_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::odin::v1::MessageInfo>(GetArena());
+    _impl_.info_ = reinterpret_cast<::odin::v1::MessageInfo*>(p);
   }
-  return _impl_.session_;
+  return _impl_.info_;
 }
-inline ::odin::v1::SessionInfo* PROTOBUF_NONNULL Transcription::mutable_session()
+inline ::odin::v1::MessageInfo* PROTOBUF_NONNULL Transcription::mutable_info()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   _impl_._has_bits_[0] |= 0x00000001u;
-  ::odin::v1::SessionInfo* _msg = _internal_mutable_session();
-  // @@protoc_insertion_point(field_mutable:odin.v1.Transcription.session)
+  ::odin::v1::MessageInfo* _msg = _internal_mutable_info();
+  // @@protoc_insertion_point(field_mutable:odin.v1.Transcription.info)
   return _msg;
 }
-inline void Transcription::set_allocated_session(::odin::v1::SessionInfo* PROTOBUF_NULLABLE value) {
+inline void Transcription::set_allocated_info(::odin::v1::MessageInfo* PROTOBUF_NULLABLE value) {
   ::google::protobuf::Arena* message_arena = GetArena();
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (message_arena == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.session_);
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.info_);
   }
 
   if (value != nullptr) {
@@ -875,114 +712,138 @@ inline void Transcription::set_allocated_session(::odin::v1::SessionInfo* PROTOB
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
 
-  _impl_.session_ = reinterpret_cast<::odin::v1::SessionInfo*>(value);
-  // @@protoc_insertion_point(field_set_allocated:odin.v1.Transcription.session)
+  _impl_.info_ = reinterpret_cast<::odin::v1::MessageInfo*>(value);
+  // @@protoc_insertion_point(field_set_allocated:odin.v1.Transcription.info)
 }
 
 // -------------------------------------------------------------------
 
-// CompletionWord
+// Completion
 
-// string word = 1 [json_name = "word"];
-inline void CompletionWord::clear_word() {
+// string content = 1 [json_name = "content"];
+inline void Completion::clear_content() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.word_.ClearToEmpty();
+  _impl_.content_.ClearToEmpty();
   _impl_._has_bits_[0] &= ~0x00000001u;
 }
-inline const ::std::string& CompletionWord::word() const
+inline const ::std::string& Completion::content() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:odin.v1.CompletionWord.word)
-  return _internal_word();
+  // @@protoc_insertion_point(field_get:odin.v1.Completion.content)
+  return _internal_content();
 }
 template <typename Arg_, typename... Args_>
-PROTOBUF_ALWAYS_INLINE void CompletionWord::set_word(Arg_&& arg, Args_... args) {
+PROTOBUF_ALWAYS_INLINE void Completion::set_content(Arg_&& arg, Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000001u;
-  _impl_.word_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:odin.v1.CompletionWord.word)
+  _impl_.content_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:odin.v1.Completion.content)
 }
-inline ::std::string* PROTOBUF_NONNULL CompletionWord::mutable_word()
+inline ::std::string* PROTOBUF_NONNULL Completion::mutable_content()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::std::string* _s = _internal_mutable_word();
-  // @@protoc_insertion_point(field_mutable:odin.v1.CompletionWord.word)
+  ::std::string* _s = _internal_mutable_content();
+  // @@protoc_insertion_point(field_mutable:odin.v1.Completion.content)
   return _s;
 }
-inline const ::std::string& CompletionWord::_internal_word() const {
+inline const ::std::string& Completion::_internal_content() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.word_.Get();
+  return _impl_.content_.Get();
 }
-inline void CompletionWord::_internal_set_word(const ::std::string& value) {
+inline void Completion::_internal_set_content(const ::std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000001u;
-  _impl_.word_.Set(value, GetArena());
+  _impl_.content_.Set(value, GetArena());
 }
-inline ::std::string* PROTOBUF_NONNULL CompletionWord::_internal_mutable_word() {
+inline ::std::string* PROTOBUF_NONNULL Completion::_internal_mutable_content() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000001u;
-  return _impl_.word_.Mutable( GetArena());
+  return _impl_.content_.Mutable( GetArena());
 }
-inline ::std::string* PROTOBUF_NULLABLE CompletionWord::release_word() {
+inline ::std::string* PROTOBUF_NULLABLE Completion::release_content() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:odin.v1.CompletionWord.word)
+  // @@protoc_insertion_point(field_release:odin.v1.Completion.content)
   if ((_impl_._has_bits_[0] & 0x00000001u) == 0) {
     return nullptr;
   }
   _impl_._has_bits_[0] &= ~0x00000001u;
-  auto* released = _impl_.word_.Release();
+  auto* released = _impl_.content_.Release();
   if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
-    _impl_.word_.Set("", GetArena());
+    _impl_.content_.Set("", GetArena());
   }
   return released;
 }
-inline void CompletionWord::set_allocated_word(::std::string* PROTOBUF_NULLABLE value) {
+inline void Completion::set_allocated_content(::std::string* PROTOBUF_NULLABLE value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000001u;
   } else {
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
-  _impl_.word_.SetAllocated(value, GetArena());
-  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.word_.IsDefault()) {
-    _impl_.word_.Set("", GetArena());
+  _impl_.content_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.content_.IsDefault()) {
+    _impl_.content_.Set("", GetArena());
   }
-  // @@protoc_insertion_point(field_set_allocated:odin.v1.CompletionWord.word)
+  // @@protoc_insertion_point(field_set_allocated:odin.v1.Completion.content)
 }
 
-// .odin.v1.SessionInfo session = 2 [json_name = "session"];
-inline bool CompletionWord::has_session() const {
+// .odin.v1.CompletionType type = 2 [json_name = "type"];
+inline void Completion::clear_type() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.type_ = 0;
+  _impl_._has_bits_[0] &= ~0x00000004u;
+}
+inline ::odin::v1::CompletionType Completion::type() const {
+  // @@protoc_insertion_point(field_get:odin.v1.Completion.type)
+  return _internal_type();
+}
+inline void Completion::set_type(::odin::v1::CompletionType value) {
+  _internal_set_type(value);
+  _impl_._has_bits_[0] |= 0x00000004u;
+  // @@protoc_insertion_point(field_set:odin.v1.Completion.type)
+}
+inline ::odin::v1::CompletionType Completion::_internal_type() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return static_cast<::odin::v1::CompletionType>(_impl_.type_);
+}
+inline void Completion::_internal_set_type(::odin::v1::CompletionType value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.type_ = value;
+}
+
+// .odin.v1.MessageInfo info = 3 [json_name = "info"];
+inline bool Completion::has_info() const {
   bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
-  PROTOBUF_ASSUME(!value || _impl_.session_ != nullptr);
+  PROTOBUF_ASSUME(!value || _impl_.info_ != nullptr);
   return value;
 }
-inline const ::odin::v1::SessionInfo& CompletionWord::_internal_session() const {
+inline const ::odin::v1::MessageInfo& Completion::_internal_info() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  const ::odin::v1::SessionInfo* p = _impl_.session_;
-  return p != nullptr ? *p : reinterpret_cast<const ::odin::v1::SessionInfo&>(::odin::v1::_SessionInfo_default_instance_);
+  const ::odin::v1::MessageInfo* p = _impl_.info_;
+  return p != nullptr ? *p : reinterpret_cast<const ::odin::v1::MessageInfo&>(::odin::v1::_MessageInfo_default_instance_);
 }
-inline const ::odin::v1::SessionInfo& CompletionWord::session() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:odin.v1.CompletionWord.session)
-  return _internal_session();
+inline const ::odin::v1::MessageInfo& Completion::info() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:odin.v1.Completion.info)
+  return _internal_info();
 }
-inline void CompletionWord::unsafe_arena_set_allocated_session(
-    ::odin::v1::SessionInfo* PROTOBUF_NULLABLE value) {
+inline void Completion::unsafe_arena_set_allocated_info(
+    ::odin::v1::MessageInfo* PROTOBUF_NULLABLE value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (GetArena() == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.session_);
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.info_);
   }
-  _impl_.session_ = reinterpret_cast<::odin::v1::SessionInfo*>(value);
+  _impl_.info_ = reinterpret_cast<::odin::v1::MessageInfo*>(value);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000002u;
   } else {
     _impl_._has_bits_[0] &= ~0x00000002u;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:odin.v1.CompletionWord.session)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:odin.v1.Completion.info)
 }
-inline ::odin::v1::SessionInfo* PROTOBUF_NULLABLE CompletionWord::release_session() {
+inline ::odin::v1::MessageInfo* PROTOBUF_NULLABLE Completion::release_info() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
 
   _impl_._has_bits_[0] &= ~0x00000002u;
-  ::odin::v1::SessionInfo* released = _impl_.session_;
-  _impl_.session_ = nullptr;
+  ::odin::v1::MessageInfo* released = _impl_.info_;
+  _impl_.info_ = nullptr;
   if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
     auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
     released = ::google::protobuf::internal::DuplicateIfNonNull(released);
@@ -996,35 +857,35 @@ inline ::odin::v1::SessionInfo* PROTOBUF_NULLABLE CompletionWord::release_sessio
   }
   return released;
 }
-inline ::odin::v1::SessionInfo* PROTOBUF_NULLABLE CompletionWord::unsafe_arena_release_session() {
+inline ::odin::v1::MessageInfo* PROTOBUF_NULLABLE Completion::unsafe_arena_release_info() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:odin.v1.CompletionWord.session)
+  // @@protoc_insertion_point(field_release:odin.v1.Completion.info)
 
   _impl_._has_bits_[0] &= ~0x00000002u;
-  ::odin::v1::SessionInfo* temp = _impl_.session_;
-  _impl_.session_ = nullptr;
+  ::odin::v1::MessageInfo* temp = _impl_.info_;
+  _impl_.info_ = nullptr;
   return temp;
 }
-inline ::odin::v1::SessionInfo* PROTOBUF_NONNULL CompletionWord::_internal_mutable_session() {
+inline ::odin::v1::MessageInfo* PROTOBUF_NONNULL Completion::_internal_mutable_info() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.session_ == nullptr) {
-    auto* p = ::google::protobuf::Message::DefaultConstruct<::odin::v1::SessionInfo>(GetArena());
-    _impl_.session_ = reinterpret_cast<::odin::v1::SessionInfo*>(p);
+  if (_impl_.info_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::odin::v1::MessageInfo>(GetArena());
+    _impl_.info_ = reinterpret_cast<::odin::v1::MessageInfo*>(p);
   }
-  return _impl_.session_;
+  return _impl_.info_;
 }
-inline ::odin::v1::SessionInfo* PROTOBUF_NONNULL CompletionWord::mutable_session()
+inline ::odin::v1::MessageInfo* PROTOBUF_NONNULL Completion::mutable_info()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   _impl_._has_bits_[0] |= 0x00000002u;
-  ::odin::v1::SessionInfo* _msg = _internal_mutable_session();
-  // @@protoc_insertion_point(field_mutable:odin.v1.CompletionWord.session)
+  ::odin::v1::MessageInfo* _msg = _internal_mutable_info();
+  // @@protoc_insertion_point(field_mutable:odin.v1.Completion.info)
   return _msg;
 }
-inline void CompletionWord::set_allocated_session(::odin::v1::SessionInfo* PROTOBUF_NULLABLE value) {
+inline void Completion::set_allocated_info(::odin::v1::MessageInfo* PROTOBUF_NULLABLE value) {
   ::google::protobuf::Arena* message_arena = GetArena();
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (message_arena == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.session_);
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.info_);
   }
 
   if (value != nullptr) {
@@ -1037,170 +898,8 @@ inline void CompletionWord::set_allocated_session(::odin::v1::SessionInfo* PROTO
     _impl_._has_bits_[0] &= ~0x00000002u;
   }
 
-  _impl_.session_ = reinterpret_cast<::odin::v1::SessionInfo*>(value);
-  // @@protoc_insertion_point(field_set_allocated:odin.v1.CompletionWord.session)
-}
-
-// -------------------------------------------------------------------
-
-// CompletionSentence
-
-// string sentence = 1 [json_name = "sentence"];
-inline void CompletionSentence::clear_sentence() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.sentence_.ClearToEmpty();
-  _impl_._has_bits_[0] &= ~0x00000001u;
-}
-inline const ::std::string& CompletionSentence::sentence() const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:odin.v1.CompletionSentence.sentence)
-  return _internal_sentence();
-}
-template <typename Arg_, typename... Args_>
-PROTOBUF_ALWAYS_INLINE void CompletionSentence::set_sentence(Arg_&& arg, Args_... args) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_._has_bits_[0] |= 0x00000001u;
-  _impl_.sentence_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:odin.v1.CompletionSentence.sentence)
-}
-inline ::std::string* PROTOBUF_NONNULL CompletionSentence::mutable_sentence()
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::std::string* _s = _internal_mutable_sentence();
-  // @@protoc_insertion_point(field_mutable:odin.v1.CompletionSentence.sentence)
-  return _s;
-}
-inline const ::std::string& CompletionSentence::_internal_sentence() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.sentence_.Get();
-}
-inline void CompletionSentence::_internal_set_sentence(const ::std::string& value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_._has_bits_[0] |= 0x00000001u;
-  _impl_.sentence_.Set(value, GetArena());
-}
-inline ::std::string* PROTOBUF_NONNULL CompletionSentence::_internal_mutable_sentence() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_._has_bits_[0] |= 0x00000001u;
-  return _impl_.sentence_.Mutable( GetArena());
-}
-inline ::std::string* PROTOBUF_NULLABLE CompletionSentence::release_sentence() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:odin.v1.CompletionSentence.sentence)
-  if ((_impl_._has_bits_[0] & 0x00000001u) == 0) {
-    return nullptr;
-  }
-  _impl_._has_bits_[0] &= ~0x00000001u;
-  auto* released = _impl_.sentence_.Release();
-  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
-    _impl_.sentence_.Set("", GetArena());
-  }
-  return released;
-}
-inline void CompletionSentence::set_allocated_sentence(::std::string* PROTOBUF_NULLABLE value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000001u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000001u;
-  }
-  _impl_.sentence_.SetAllocated(value, GetArena());
-  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.sentence_.IsDefault()) {
-    _impl_.sentence_.Set("", GetArena());
-  }
-  // @@protoc_insertion_point(field_set_allocated:odin.v1.CompletionSentence.sentence)
-}
-
-// .odin.v1.SessionInfo session = 2 [json_name = "session"];
-inline bool CompletionSentence::has_session() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
-  PROTOBUF_ASSUME(!value || _impl_.session_ != nullptr);
-  return value;
-}
-inline const ::odin::v1::SessionInfo& CompletionSentence::_internal_session() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  const ::odin::v1::SessionInfo* p = _impl_.session_;
-  return p != nullptr ? *p : reinterpret_cast<const ::odin::v1::SessionInfo&>(::odin::v1::_SessionInfo_default_instance_);
-}
-inline const ::odin::v1::SessionInfo& CompletionSentence::session() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:odin.v1.CompletionSentence.session)
-  return _internal_session();
-}
-inline void CompletionSentence::unsafe_arena_set_allocated_session(
-    ::odin::v1::SessionInfo* PROTOBUF_NULLABLE value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (GetArena() == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.session_);
-  }
-  _impl_.session_ = reinterpret_cast<::odin::v1::SessionInfo*>(value);
-  if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000002u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000002u;
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:odin.v1.CompletionSentence.session)
-}
-inline ::odin::v1::SessionInfo* PROTOBUF_NULLABLE CompletionSentence::release_session() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-
-  _impl_._has_bits_[0] &= ~0x00000002u;
-  ::odin::v1::SessionInfo* released = _impl_.session_;
-  _impl_.session_ = nullptr;
-  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
-    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
-    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-    if (GetArena() == nullptr) {
-      delete old;
-    }
-  } else {
-    if (GetArena() != nullptr) {
-      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-    }
-  }
-  return released;
-}
-inline ::odin::v1::SessionInfo* PROTOBUF_NULLABLE CompletionSentence::unsafe_arena_release_session() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:odin.v1.CompletionSentence.session)
-
-  _impl_._has_bits_[0] &= ~0x00000002u;
-  ::odin::v1::SessionInfo* temp = _impl_.session_;
-  _impl_.session_ = nullptr;
-  return temp;
-}
-inline ::odin::v1::SessionInfo* PROTOBUF_NONNULL CompletionSentence::_internal_mutable_session() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.session_ == nullptr) {
-    auto* p = ::google::protobuf::Message::DefaultConstruct<::odin::v1::SessionInfo>(GetArena());
-    _impl_.session_ = reinterpret_cast<::odin::v1::SessionInfo*>(p);
-  }
-  return _impl_.session_;
-}
-inline ::odin::v1::SessionInfo* PROTOBUF_NONNULL CompletionSentence::mutable_session()
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  _impl_._has_bits_[0] |= 0x00000002u;
-  ::odin::v1::SessionInfo* _msg = _internal_mutable_session();
-  // @@protoc_insertion_point(field_mutable:odin.v1.CompletionSentence.session)
-  return _msg;
-}
-inline void CompletionSentence::set_allocated_session(::odin::v1::SessionInfo* PROTOBUF_NULLABLE value) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (message_arena == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.session_);
-  }
-
-  if (value != nullptr) {
-    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::google::protobuf::Message*>(value)->GetArena();
-    if (message_arena != submessage_arena) {
-      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
-    }
-    _impl_._has_bits_[0] |= 0x00000002u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000002u;
-  }
-
-  _impl_.session_ = reinterpret_cast<::odin::v1::SessionInfo*>(value);
-  // @@protoc_insertion_point(field_set_allocated:odin.v1.CompletionSentence.session)
+  _impl_.info_ = reinterpret_cast<::odin::v1::MessageInfo*>(value);
+  // @@protoc_insertion_point(field_set_allocated:odin.v1.Completion.info)
 }
 
 #ifdef __GNUC__
@@ -1211,6 +910,19 @@ inline void CompletionSentence::set_allocated_session(::odin::v1::SessionInfo* P
 }  // namespace v1
 }  // namespace odin
 
+
+namespace google {
+namespace protobuf {
+
+template <>
+struct is_proto_enum<::odin::v1::CompletionType> : std::true_type {};
+template <>
+inline const EnumDescriptor* PROTOBUF_NONNULL GetEnumDescriptor<::odin::v1::CompletionType>() {
+  return ::odin::v1::CompletionType_descriptor();
+}
+
+}  // namespace protobuf
+}  // namespace google
 
 // @@protoc_insertion_point(global_scope)
 

@@ -8,19 +8,19 @@ from typing import ClassVar as _ClassVar, Mapping as _Mapping, Optional as _Opti
 DESCRIPTOR: _descriptor.FileDescriptor
 
 class TurnDetected(_message.Message):
-    __slots__ = ("session",)
-    SESSION_FIELD_NUMBER: _ClassVar[int]
-    session: _common_pb2.SessionInfo
-    def __init__(self, session: _Optional[_Union[_common_pb2.SessionInfo, _Mapping]] = ...) -> None: ...
+    __slots__ = ("info",)
+    INFO_FIELD_NUMBER: _ClassVar[int]
+    info: _common_pb2.MessageInfo
+    def __init__(self, info: _Optional[_Union[_common_pb2.MessageInfo, _Mapping]] = ...) -> None: ...
 
 class OdinStartSpeech(_message.Message):
-    __slots__ = ("session",)
-    SESSION_FIELD_NUMBER: _ClassVar[int]
-    session: _common_pb2.SessionInfo
-    def __init__(self, session: _Optional[_Union[_common_pb2.SessionInfo, _Mapping]] = ...) -> None: ...
+    __slots__ = ("info",)
+    INFO_FIELD_NUMBER: _ClassVar[int]
+    info: _common_pb2.MessageInfo
+    def __init__(self, info: _Optional[_Union[_common_pb2.MessageInfo, _Mapping]] = ...) -> None: ...
 
 class OdinEndSpeech(_message.Message):
-    __slots__ = ("session",)
-    SESSION_FIELD_NUMBER: _ClassVar[int]
-    session: _common_pb2.SessionInfo
-    def __init__(self, session: _Optional[_Union[_common_pb2.SessionInfo, _Mapping]] = ...) -> None: ...
+    __slots__ = ("info",)
+    INFO_FIELD_NUMBER: _ClassVar[int]
+    info: _common_pb2.MessageInfo
+    def __init__(self, info: _Optional[_Union[_common_pb2.MessageInfo, _Mapping]] = ...) -> None: ...

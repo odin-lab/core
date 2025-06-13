@@ -31,7 +31,7 @@ inline constexpr AudioBufferSpeaker::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
         audio_{nullptr},
-        session_{nullptr} {}
+        info_{nullptr} {}
 
 template <typename>
 PROTOBUF_CONSTEXPR AudioBufferSpeaker::AudioBufferSpeaker(::_pbi::ConstantInitialized)
@@ -100,7 +100,7 @@ const ::uint32_t
         PROTOBUF_FIELD_OFFSET(::odin::v1::AudioBufferSpeaker, _impl_._has_bits_),
         5, // hasbit index offset
         PROTOBUF_FIELD_OFFSET(::odin::v1::AudioBufferSpeaker, _impl_.audio_),
-        PROTOBUF_FIELD_OFFSET(::odin::v1::AudioBufferSpeaker, _impl_.session_),
+        PROTOBUF_FIELD_OFFSET(::odin::v1::AudioBufferSpeaker, _impl_.info_),
         0,
         1,
 };
@@ -121,13 +121,13 @@ const char descriptor_table_protodef_odin_2fv1_2faudio_2eproto[] ABSL_ATTRIBUTE_
     "AudioBufferMic\022(\n\005audio\030\001 \001(\0132\022.odin.v1."
     "AudioDataR\005audio\022\033\n\tclient_id\030\002 \001(\tR\010cli"
     "entId:*\242\265\030&audio.{session_id}.{module_na"
-    "me}.input\"\233\001\n\022AudioBufferSpeaker\022(\n\005audi"
-    "o\030\001 \001(\0132\022.odin.v1.AudioDataR\005audio\022.\n\007se"
-    "ssion\030\002 \001(\0132\024.odin.v1.SessionInfoR\007sessi"
-    "on:+\242\265\030\'audio.{session_id}.{module_name}"
-    ".outputBV\n\013com.odin.v1B\nAudioProtoP\001\242\002\003O"
-    "XX\252\002\007Odin.V1\312\002\007Odin\\V1\342\002\023Odin\\V1\\GPBMeta"
-    "data\352\002\010Odin::V1b\006proto3"
+    "me}.input\"\225\001\n\022AudioBufferSpeaker\022(\n\005audi"
+    "o\030\001 \001(\0132\022.odin.v1.AudioDataR\005audio\022(\n\004in"
+    "fo\030\002 \001(\0132\024.odin.v1.MessageInfoR\004info:+\242\265"
+    "\030\'audio.{session_id}.{instance_id}.outpu"
+    "tBV\n\013com.odin.v1B\nAudioProtoP\001\242\002\003OXX\252\002\007O"
+    "din.V1\312\002\007Odin\\V1\342\002\023Odin\\V1\\GPBMetadata\352\002"
+    "\010Odin::V1b\006proto3"
 };
 static const ::_pbi::DescriptorTable* PROTOBUF_NONNULL const
     descriptor_table_odin_2fv1_2faudio_2eproto_deps[2] = {
@@ -138,7 +138,7 @@ static ::absl::once_flag descriptor_table_odin_2fv1_2faudio_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_odin_2fv1_2faudio_2eproto = {
     false,
     false,
-    463,
+    457,
     descriptor_table_protodef_odin_2fv1_2faudio_2eproto,
     "odin/v1/audio.proto",
     &descriptor_table_odin_2fv1_2faudio_2eproto_once,
@@ -481,9 +481,9 @@ void AudioBufferSpeaker::clear_audio() {
   if (_impl_.audio_ != nullptr) _impl_.audio_->Clear();
   _impl_._has_bits_[0] &= ~0x00000001u;
 }
-void AudioBufferSpeaker::clear_session() {
+void AudioBufferSpeaker::clear_info() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.session_ != nullptr) _impl_.session_->Clear();
+  if (_impl_.info_ != nullptr) _impl_.info_->Clear();
   _impl_._has_bits_[0] &= ~0x00000002u;
 }
 AudioBufferSpeaker::AudioBufferSpeaker(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
@@ -519,8 +519,8 @@ AudioBufferSpeaker::AudioBufferSpeaker(
   _impl_.audio_ = ((cached_has_bits & 0x00000001u) != 0)
                 ? ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.audio_)
                 : nullptr;
-  _impl_.session_ = ((cached_has_bits & 0x00000002u) != 0)
-                ? ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.session_)
+  _impl_.info_ = ((cached_has_bits & 0x00000002u) != 0)
+                ? ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.info_)
                 : nullptr;
 
   // @@protoc_insertion_point(copy_constructor:odin.v1.AudioBufferSpeaker)
@@ -535,9 +535,9 @@ inline void AudioBufferSpeaker::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena
   ::memset(reinterpret_cast<char *>(&_impl_) +
                offsetof(Impl_, audio_),
            0,
-           offsetof(Impl_, session_) -
+           offsetof(Impl_, info_) -
                offsetof(Impl_, audio_) +
-               sizeof(Impl_::session_));
+               sizeof(Impl_::info_));
 }
 AudioBufferSpeaker::~AudioBufferSpeaker() {
   // @@protoc_insertion_point(destructor:odin.v1.AudioBufferSpeaker)
@@ -548,7 +548,7 @@ inline void AudioBufferSpeaker::SharedDtor(MessageLite& self) {
   this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   ABSL_DCHECK(this_.GetArena() == nullptr);
   delete this_._impl_.audio_;
-  delete this_._impl_.session_;
+  delete this_._impl_.info_;
   this_._impl_.~Impl_();
 }
 
@@ -614,9 +614,9 @@ AudioBufferSpeaker::_table_ = {
     ::_pbi::TcParser::GetTable<::odin::v1::AudioBufferSpeaker>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    // .odin.v1.SessionInfo session = 2 [json_name = "session"];
+    // .odin.v1.MessageInfo info = 2 [json_name = "info"];
     {::_pbi::TcParser::FastMtS1,
-     {18, 1, 1, PROTOBUF_FIELD_OFFSET(AudioBufferSpeaker, _impl_.session_)}},
+     {18, 1, 1, PROTOBUF_FIELD_OFFSET(AudioBufferSpeaker, _impl_.info_)}},
     // .odin.v1.AudioData audio = 1 [json_name = "audio"];
     {::_pbi::TcParser::FastMtS1,
      {10, 0, 0, PROTOBUF_FIELD_OFFSET(AudioBufferSpeaker, _impl_.audio_)}},
@@ -626,13 +626,13 @@ AudioBufferSpeaker::_table_ = {
     // .odin.v1.AudioData audio = 1 [json_name = "audio"];
     {PROTOBUF_FIELD_OFFSET(AudioBufferSpeaker, _impl_.audio_), _Internal::kHasBitsOffset + 0, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
-    // .odin.v1.SessionInfo session = 2 [json_name = "session"];
-    {PROTOBUF_FIELD_OFFSET(AudioBufferSpeaker, _impl_.session_), _Internal::kHasBitsOffset + 1, 1,
+    // .odin.v1.MessageInfo info = 2 [json_name = "info"];
+    {PROTOBUF_FIELD_OFFSET(AudioBufferSpeaker, _impl_.info_), _Internal::kHasBitsOffset + 1, 1,
     (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
   }},
   {{
       {::_pbi::TcParser::GetTable<::odin::v1::AudioData>()},
-      {::_pbi::TcParser::GetTable<::odin::v1::SessionInfo>()},
+      {::_pbi::TcParser::GetTable<::odin::v1::MessageInfo>()},
   }},
   {{
   }},
@@ -651,8 +651,8 @@ PROTOBUF_NOINLINE void AudioBufferSpeaker::Clear() {
       _impl_.audio_->Clear();
     }
     if ((cached_has_bits & 0x00000002u) != 0) {
-      ABSL_DCHECK(_impl_.session_ != nullptr);
-      _impl_.session_->Clear();
+      ABSL_DCHECK(_impl_.info_ != nullptr);
+      _impl_.info_->Clear();
     }
   }
   _impl_._has_bits_.Clear();
@@ -682,10 +682,10 @@ PROTOBUF_NOINLINE void AudioBufferSpeaker::Clear() {
         stream);
   }
 
-  // .odin.v1.SessionInfo session = 2 [json_name = "session"];
+  // .odin.v1.MessageInfo info = 2 [json_name = "info"];
   if ((cached_has_bits & 0x00000002u) != 0) {
     target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-        2, *this_._impl_.session_, this_._impl_.session_->GetCachedSize(), target,
+        2, *this_._impl_.info_, this_._impl_.info_->GetCachedSize(), target,
         stream);
   }
 
@@ -720,10 +720,10 @@ PROTOBUF_NOINLINE void AudioBufferSpeaker::Clear() {
       total_size += 1 +
                     ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.audio_);
     }
-    // .odin.v1.SessionInfo session = 2 [json_name = "session"];
+    // .odin.v1.MessageInfo info = 2 [json_name = "info"];
     if ((cached_has_bits & 0x00000002u) != 0) {
       total_size += 1 +
-                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.session_);
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.info_);
     }
   }
   return this_.MaybeComputeUnknownFieldsSize(total_size,
@@ -750,11 +750,11 @@ void AudioBufferSpeaker::MergeImpl(::google::protobuf::MessageLite& to_msg, cons
       }
     }
     if ((cached_has_bits & 0x00000002u) != 0) {
-      ABSL_DCHECK(from._impl_.session_ != nullptr);
-      if (_this->_impl_.session_ == nullptr) {
-        _this->_impl_.session_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.session_);
+      ABSL_DCHECK(from._impl_.info_ != nullptr);
+      if (_this->_impl_.info_ == nullptr) {
+        _this->_impl_.info_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.info_);
       } else {
-        _this->_impl_.session_->MergeFrom(*from._impl_.session_);
+        _this->_impl_.info_->MergeFrom(*from._impl_.info_);
       }
     }
   }
@@ -775,8 +775,8 @@ void AudioBufferSpeaker::InternalSwap(AudioBufferSpeaker* PROTOBUF_RESTRICT PROT
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
   ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(AudioBufferSpeaker, _impl_.session_)
-      + sizeof(AudioBufferSpeaker::_impl_.session_)
+      PROTOBUF_FIELD_OFFSET(AudioBufferSpeaker, _impl_.info_)
+      + sizeof(AudioBufferSpeaker::_impl_.info_)
       - PROTOBUF_FIELD_OFFSET(AudioBufferSpeaker, _impl_.audio_)>(
           reinterpret_cast<char*>(&_impl_.audio_),
           reinterpret_cast<char*>(&other->_impl_.audio_));

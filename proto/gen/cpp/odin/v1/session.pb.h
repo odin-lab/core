@@ -57,6 +57,8 @@ namespace odin {
 namespace v1 {
 enum ModuleStatus : int;
 extern const uint32_t ModuleStatus_internal_data_[];
+enum ModuleType : int;
+extern const uint32_t ModuleType_internal_data_[];
 class Command;
 struct CommandDefaultTypeInternal;
 extern CommandDefaultTypeInternal _Command_default_instance_;
@@ -92,6 +94,9 @@ namespace protobuf {
 template <>
 internal::EnumTraitsT<::odin::v1::ModuleStatus_internal_data_>
     internal::EnumTraitsImpl::value<::odin::v1::ModuleStatus>;
+template <>
+internal::EnumTraitsT<::odin::v1::ModuleType_internal_data_>
+    internal::EnumTraitsImpl::value<::odin::v1::ModuleType>;
 }  // namespace protobuf
 }  // namespace google
 
@@ -133,6 +138,44 @@ inline const ::std::string& ModuleStatus_Name(ModuleStatus value) {
 inline bool ModuleStatus_Parse(
     ::absl::string_view name, ModuleStatus* PROTOBUF_NONNULL value) {
   return ::google::protobuf::internal::ParseNamedEnum<ModuleStatus>(ModuleStatus_descriptor(), name,
+                                           value);
+}
+enum ModuleType : int {
+  STT = 0,
+  TTS = 1,
+  AGENT = 2,
+  TURN = 3,
+  ModuleType_INT_MIN_SENTINEL_DO_NOT_USE_ =
+      ::std::numeric_limits<::int32_t>::min(),
+  ModuleType_INT_MAX_SENTINEL_DO_NOT_USE_ =
+      ::std::numeric_limits<::int32_t>::max(),
+};
+
+extern const uint32_t ModuleType_internal_data_[];
+inline constexpr ModuleType ModuleType_MIN =
+    static_cast<ModuleType>(0);
+inline constexpr ModuleType ModuleType_MAX =
+    static_cast<ModuleType>(3);
+inline bool ModuleType_IsValid(int value) {
+  return 0 <= value && value <= 3;
+}
+inline constexpr int ModuleType_ARRAYSIZE = 3 + 1;
+const ::google::protobuf::EnumDescriptor* PROTOBUF_NONNULL ModuleType_descriptor();
+template <typename T>
+const ::std::string& ModuleType_Name(T value) {
+  static_assert(::std::is_same<T, ModuleType>::value ||
+                    ::std::is_integral<T>::value,
+                "Incorrect type passed to ModuleType_Name().");
+  return ModuleType_Name(static_cast<ModuleType>(value));
+}
+template <>
+inline const ::std::string& ModuleType_Name(ModuleType value) {
+  return ::google::protobuf::internal::NameOfDenseEnum<ModuleType_descriptor, 0, 3>(
+      static_cast<int>(value));
+}
+inline bool ModuleType_Parse(
+    ::absl::string_view name, ModuleType* PROTOBUF_NONNULL value) {
+  return ::google::protobuf::internal::ParseNamedEnum<ModuleType>(ModuleType_descriptor(), name,
                                            value);
 }
 
@@ -722,24 +765,24 @@ class ModuleHeartbeat final : public ::google::protobuf::Message
 
   // accessors -------------------------------------------------------
   enum : int {
-    kModuleNameFieldNumber = 1,
+    kInstanceIdFieldNumber = 2,
     kTimestampFieldNumber = 3,
     kStatusFieldNumber = 4,
     kActiveSessionsFieldNumber = 5,
   };
-  // string module_name = 1 [json_name = "moduleName"];
-  void clear_module_name() ;
-  const ::std::string& module_name() const;
+  // string instance_id = 2 [json_name = "instanceId"];
+  void clear_instance_id() ;
+  const ::std::string& instance_id() const;
   template <typename Arg_ = const ::std::string&, typename... Args_>
-  void set_module_name(Arg_&& arg, Args_... args);
-  ::std::string* PROTOBUF_NONNULL mutable_module_name();
-  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_module_name();
-  void set_allocated_module_name(::std::string* PROTOBUF_NULLABLE value);
+  void set_instance_id(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_instance_id();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_instance_id();
+  void set_allocated_instance_id(::std::string* PROTOBUF_NULLABLE value);
 
   private:
-  const ::std::string& _internal_module_name() const;
-  PROTOBUF_ALWAYS_INLINE void _internal_set_module_name(const ::std::string& value);
-  ::std::string* PROTOBUF_NONNULL _internal_mutable_module_name();
+  const ::std::string& _internal_instance_id() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_instance_id(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_instance_id();
 
   public:
   // int64 timestamp = 3 [json_name = "timestamp"];
@@ -776,7 +819,7 @@ class ModuleHeartbeat final : public ::google::protobuf::Message
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<3, 4,
+  static const ::google::protobuf::internal::TcParseTable<2, 4,
                                    0, 43,
                                    2>
       _table_;
@@ -798,7 +841,7 @@ class ModuleHeartbeat final : public ::google::protobuf::Message
         const ModuleHeartbeat& from_msg);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
-    ::google::protobuf::internal::ArenaStringPtr module_name_;
+    ::google::protobuf::internal::ArenaStringPtr instance_id_;
     ::int64_t timestamp_;
     int status_;
     ::int32_t active_sessions_;
@@ -954,28 +997,45 @@ class ModuleBootup final : public ::google::protobuf::Message
 
   // accessors -------------------------------------------------------
   enum : int {
-    kModuleNameFieldNumber = 1,
-    kVersionFieldNumber = 4,
-    kHostFieldNumber = 5,
-    kConfigSchemaFieldNumber = 6,
-    kStartedAtFieldNumber = 3,
+    kNameFieldNumber = 2,
+    kInstanceIdFieldNumber = 3,
+    kVersionFieldNumber = 5,
+    kHostFieldNumber = 6,
+    kConfigSchemaFieldNumber = 7,
+    kStartedAtFieldNumber = 4,
+    kTypeFieldNumber = 1,
   };
-  // string module_name = 1 [json_name = "moduleName"];
-  void clear_module_name() ;
-  const ::std::string& module_name() const;
+  // string name = 2 [json_name = "name"];
+  void clear_name() ;
+  const ::std::string& name() const;
   template <typename Arg_ = const ::std::string&, typename... Args_>
-  void set_module_name(Arg_&& arg, Args_... args);
-  ::std::string* PROTOBUF_NONNULL mutable_module_name();
-  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_module_name();
-  void set_allocated_module_name(::std::string* PROTOBUF_NULLABLE value);
+  void set_name(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_name();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_name();
+  void set_allocated_name(::std::string* PROTOBUF_NULLABLE value);
 
   private:
-  const ::std::string& _internal_module_name() const;
-  PROTOBUF_ALWAYS_INLINE void _internal_set_module_name(const ::std::string& value);
-  ::std::string* PROTOBUF_NONNULL _internal_mutable_module_name();
+  const ::std::string& _internal_name() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_name(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_name();
 
   public:
-  // string version = 4 [json_name = "version"];
+  // string instance_id = 3 [json_name = "instanceId"];
+  void clear_instance_id() ;
+  const ::std::string& instance_id() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_instance_id(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_instance_id();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_instance_id();
+  void set_allocated_instance_id(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_instance_id() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_instance_id(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_instance_id();
+
+  public:
+  // string version = 5 [json_name = "version"];
   void clear_version() ;
   const ::std::string& version() const;
   template <typename Arg_ = const ::std::string&, typename... Args_>
@@ -990,7 +1050,7 @@ class ModuleBootup final : public ::google::protobuf::Message
   ::std::string* PROTOBUF_NONNULL _internal_mutable_version();
 
   public:
-  // string host = 5 [json_name = "host"];
+  // string host = 6 [json_name = "host"];
   void clear_host() ;
   const ::std::string& host() const;
   template <typename Arg_ = const ::std::string&, typename... Args_>
@@ -1005,7 +1065,7 @@ class ModuleBootup final : public ::google::protobuf::Message
   ::std::string* PROTOBUF_NONNULL _internal_mutable_host();
 
   public:
-  // string config_schema = 6 [json_name = "configSchema"];
+  // string config_schema = 7 [json_name = "configSchema"];
   void clear_config_schema() ;
   const ::std::string& config_schema() const;
   template <typename Arg_ = const ::std::string&, typename... Args_>
@@ -1020,7 +1080,7 @@ class ModuleBootup final : public ::google::protobuf::Message
   ::std::string* PROTOBUF_NONNULL _internal_mutable_config_schema();
 
   public:
-  // int64 started_at = 3 [json_name = "startedAt"];
+  // int64 started_at = 4 [json_name = "startedAt"];
   void clear_started_at() ;
   ::int64_t started_at() const;
   void set_started_at(::int64_t value);
@@ -1030,12 +1090,22 @@ class ModuleBootup final : public ::google::protobuf::Message
   void _internal_set_started_at(::int64_t value);
 
   public:
+  // .odin.v1.ModuleType type = 1 [json_name = "type"];
+  void clear_type() ;
+  ::odin::v1::ModuleType type() const;
+  void set_type(::odin::v1::ModuleType value);
+
+  private:
+  ::odin::v1::ModuleType _internal_type() const;
+  void _internal_set_type(::odin::v1::ModuleType value);
+
+  public:
   // @@protoc_insertion_point(class_scope:odin.v1.ModuleBootup)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<3, 5,
-                                   0, 64,
+  static const ::google::protobuf::internal::TcParseTable<3, 7,
+                                   0, 68,
                                    2>
       _table_;
 
@@ -1056,11 +1126,13 @@ class ModuleBootup final : public ::google::protobuf::Message
         const ModuleBootup& from_msg);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
-    ::google::protobuf::internal::ArenaStringPtr module_name_;
+    ::google::protobuf::internal::ArenaStringPtr name_;
+    ::google::protobuf::internal::ArenaStringPtr instance_id_;
     ::google::protobuf::internal::ArenaStringPtr version_;
     ::google::protobuf::internal::ArenaStringPtr host_;
     ::google::protobuf::internal::ArenaStringPtr config_schema_;
     ::int64_t started_at_;
+    int type_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -2345,76 +2417,165 @@ inline void Status::set_allocated_detail(::std::string* PROTOBUF_NULLABLE value)
 
 // ModuleBootup
 
-// string module_name = 1 [json_name = "moduleName"];
-inline void ModuleBootup::clear_module_name() {
+// .odin.v1.ModuleType type = 1 [json_name = "type"];
+inline void ModuleBootup::clear_type() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.module_name_.ClearToEmpty();
+  _impl_.type_ = 0;
+  _impl_._has_bits_[0] &= ~0x00000040u;
+}
+inline ::odin::v1::ModuleType ModuleBootup::type() const {
+  // @@protoc_insertion_point(field_get:odin.v1.ModuleBootup.type)
+  return _internal_type();
+}
+inline void ModuleBootup::set_type(::odin::v1::ModuleType value) {
+  _internal_set_type(value);
+  _impl_._has_bits_[0] |= 0x00000040u;
+  // @@protoc_insertion_point(field_set:odin.v1.ModuleBootup.type)
+}
+inline ::odin::v1::ModuleType ModuleBootup::_internal_type() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return static_cast<::odin::v1::ModuleType>(_impl_.type_);
+}
+inline void ModuleBootup::_internal_set_type(::odin::v1::ModuleType value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.type_ = value;
+}
+
+// string name = 2 [json_name = "name"];
+inline void ModuleBootup::clear_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.name_.ClearToEmpty();
   _impl_._has_bits_[0] &= ~0x00000001u;
 }
-inline const ::std::string& ModuleBootup::module_name() const
+inline const ::std::string& ModuleBootup::name() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:odin.v1.ModuleBootup.module_name)
-  return _internal_module_name();
+  // @@protoc_insertion_point(field_get:odin.v1.ModuleBootup.name)
+  return _internal_name();
 }
 template <typename Arg_, typename... Args_>
-PROTOBUF_ALWAYS_INLINE void ModuleBootup::set_module_name(Arg_&& arg, Args_... args) {
+PROTOBUF_ALWAYS_INLINE void ModuleBootup::set_name(Arg_&& arg, Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000001u;
-  _impl_.module_name_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:odin.v1.ModuleBootup.module_name)
+  _impl_.name_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:odin.v1.ModuleBootup.name)
 }
-inline ::std::string* PROTOBUF_NONNULL ModuleBootup::mutable_module_name()
+inline ::std::string* PROTOBUF_NONNULL ModuleBootup::mutable_name()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::std::string* _s = _internal_mutable_module_name();
-  // @@protoc_insertion_point(field_mutable:odin.v1.ModuleBootup.module_name)
+  ::std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:odin.v1.ModuleBootup.name)
   return _s;
 }
-inline const ::std::string& ModuleBootup::_internal_module_name() const {
+inline const ::std::string& ModuleBootup::_internal_name() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.module_name_.Get();
+  return _impl_.name_.Get();
 }
-inline void ModuleBootup::_internal_set_module_name(const ::std::string& value) {
+inline void ModuleBootup::_internal_set_name(const ::std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000001u;
-  _impl_.module_name_.Set(value, GetArena());
+  _impl_.name_.Set(value, GetArena());
 }
-inline ::std::string* PROTOBUF_NONNULL ModuleBootup::_internal_mutable_module_name() {
+inline ::std::string* PROTOBUF_NONNULL ModuleBootup::_internal_mutable_name() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000001u;
-  return _impl_.module_name_.Mutable( GetArena());
+  return _impl_.name_.Mutable( GetArena());
 }
-inline ::std::string* PROTOBUF_NULLABLE ModuleBootup::release_module_name() {
+inline ::std::string* PROTOBUF_NULLABLE ModuleBootup::release_name() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:odin.v1.ModuleBootup.module_name)
+  // @@protoc_insertion_point(field_release:odin.v1.ModuleBootup.name)
   if ((_impl_._has_bits_[0] & 0x00000001u) == 0) {
     return nullptr;
   }
   _impl_._has_bits_[0] &= ~0x00000001u;
-  auto* released = _impl_.module_name_.Release();
+  auto* released = _impl_.name_.Release();
   if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
-    _impl_.module_name_.Set("", GetArena());
+    _impl_.name_.Set("", GetArena());
   }
   return released;
 }
-inline void ModuleBootup::set_allocated_module_name(::std::string* PROTOBUF_NULLABLE value) {
+inline void ModuleBootup::set_allocated_name(::std::string* PROTOBUF_NULLABLE value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000001u;
   } else {
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
-  _impl_.module_name_.SetAllocated(value, GetArena());
-  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.module_name_.IsDefault()) {
-    _impl_.module_name_.Set("", GetArena());
+  _impl_.name_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.name_.IsDefault()) {
+    _impl_.name_.Set("", GetArena());
   }
-  // @@protoc_insertion_point(field_set_allocated:odin.v1.ModuleBootup.module_name)
+  // @@protoc_insertion_point(field_set_allocated:odin.v1.ModuleBootup.name)
 }
 
-// int64 started_at = 3 [json_name = "startedAt"];
+// string instance_id = 3 [json_name = "instanceId"];
+inline void ModuleBootup::clear_instance_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.instance_id_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000002u;
+}
+inline const ::std::string& ModuleBootup::instance_id() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:odin.v1.ModuleBootup.instance_id)
+  return _internal_instance_id();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void ModuleBootup::set_instance_id(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  _impl_.instance_id_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:odin.v1.ModuleBootup.instance_id)
+}
+inline ::std::string* PROTOBUF_NONNULL ModuleBootup::mutable_instance_id()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::std::string* _s = _internal_mutable_instance_id();
+  // @@protoc_insertion_point(field_mutable:odin.v1.ModuleBootup.instance_id)
+  return _s;
+}
+inline const ::std::string& ModuleBootup::_internal_instance_id() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.instance_id_.Get();
+}
+inline void ModuleBootup::_internal_set_instance_id(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  _impl_.instance_id_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL ModuleBootup::_internal_mutable_instance_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  return _impl_.instance_id_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE ModuleBootup::release_instance_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:odin.v1.ModuleBootup.instance_id)
+  if ((_impl_._has_bits_[0] & 0x00000002u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  auto* released = _impl_.instance_id_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.instance_id_.Set("", GetArena());
+  }
+  return released;
+}
+inline void ModuleBootup::set_allocated_instance_id(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+  _impl_.instance_id_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.instance_id_.IsDefault()) {
+    _impl_.instance_id_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:odin.v1.ModuleBootup.instance_id)
+}
+
+// int64 started_at = 4 [json_name = "startedAt"];
 inline void ModuleBootup::clear_started_at() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.started_at_ = ::int64_t{0};
-  _impl_._has_bits_[0] &= ~0x00000010u;
+  _impl_._has_bits_[0] &= ~0x00000020u;
 }
 inline ::int64_t ModuleBootup::started_at() const {
   // @@protoc_insertion_point(field_get:odin.v1.ModuleBootup.started_at)
@@ -2422,7 +2583,7 @@ inline ::int64_t ModuleBootup::started_at() const {
 }
 inline void ModuleBootup::set_started_at(::int64_t value) {
   _internal_set_started_at(value);
-  _impl_._has_bits_[0] |= 0x00000010u;
+  _impl_._has_bits_[0] |= 0x00000020u;
   // @@protoc_insertion_point(field_set:odin.v1.ModuleBootup.started_at)
 }
 inline ::int64_t ModuleBootup::_internal_started_at() const {
@@ -2434,11 +2595,11 @@ inline void ModuleBootup::_internal_set_started_at(::int64_t value) {
   _impl_.started_at_ = value;
 }
 
-// string version = 4 [json_name = "version"];
+// string version = 5 [json_name = "version"];
 inline void ModuleBootup::clear_version() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.version_.ClearToEmpty();
-  _impl_._has_bits_[0] &= ~0x00000002u;
+  _impl_._has_bits_[0] &= ~0x00000004u;
 }
 inline const ::std::string& ModuleBootup::version() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
@@ -2448,7 +2609,7 @@ inline const ::std::string& ModuleBootup::version() const
 template <typename Arg_, typename... Args_>
 PROTOBUF_ALWAYS_INLINE void ModuleBootup::set_version(Arg_&& arg, Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_._has_bits_[0] |= 0x00000002u;
+  _impl_._has_bits_[0] |= 0x00000004u;
   _impl_.version_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
   // @@protoc_insertion_point(field_set:odin.v1.ModuleBootup.version)
 }
@@ -2464,21 +2625,21 @@ inline const ::std::string& ModuleBootup::_internal_version() const {
 }
 inline void ModuleBootup::_internal_set_version(const ::std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_._has_bits_[0] |= 0x00000002u;
+  _impl_._has_bits_[0] |= 0x00000004u;
   _impl_.version_.Set(value, GetArena());
 }
 inline ::std::string* PROTOBUF_NONNULL ModuleBootup::_internal_mutable_version() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_._has_bits_[0] |= 0x00000002u;
+  _impl_._has_bits_[0] |= 0x00000004u;
   return _impl_.version_.Mutable( GetArena());
 }
 inline ::std::string* PROTOBUF_NULLABLE ModuleBootup::release_version() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   // @@protoc_insertion_point(field_release:odin.v1.ModuleBootup.version)
-  if ((_impl_._has_bits_[0] & 0x00000002u) == 0) {
+  if ((_impl_._has_bits_[0] & 0x00000004u) == 0) {
     return nullptr;
   }
-  _impl_._has_bits_[0] &= ~0x00000002u;
+  _impl_._has_bits_[0] &= ~0x00000004u;
   auto* released = _impl_.version_.Release();
   if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
     _impl_.version_.Set("", GetArena());
@@ -2488,9 +2649,9 @@ inline ::std::string* PROTOBUF_NULLABLE ModuleBootup::release_version() {
 inline void ModuleBootup::set_allocated_version(::std::string* PROTOBUF_NULLABLE value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000002u;
+    _impl_._has_bits_[0] |= 0x00000004u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000002u;
+    _impl_._has_bits_[0] &= ~0x00000004u;
   }
   _impl_.version_.SetAllocated(value, GetArena());
   if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.version_.IsDefault()) {
@@ -2499,11 +2660,11 @@ inline void ModuleBootup::set_allocated_version(::std::string* PROTOBUF_NULLABLE
   // @@protoc_insertion_point(field_set_allocated:odin.v1.ModuleBootup.version)
 }
 
-// string host = 5 [json_name = "host"];
+// string host = 6 [json_name = "host"];
 inline void ModuleBootup::clear_host() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.host_.ClearToEmpty();
-  _impl_._has_bits_[0] &= ~0x00000004u;
+  _impl_._has_bits_[0] &= ~0x00000008u;
 }
 inline const ::std::string& ModuleBootup::host() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
@@ -2513,7 +2674,7 @@ inline const ::std::string& ModuleBootup::host() const
 template <typename Arg_, typename... Args_>
 PROTOBUF_ALWAYS_INLINE void ModuleBootup::set_host(Arg_&& arg, Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_._has_bits_[0] |= 0x00000004u;
+  _impl_._has_bits_[0] |= 0x00000008u;
   _impl_.host_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
   // @@protoc_insertion_point(field_set:odin.v1.ModuleBootup.host)
 }
@@ -2529,21 +2690,21 @@ inline const ::std::string& ModuleBootup::_internal_host() const {
 }
 inline void ModuleBootup::_internal_set_host(const ::std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_._has_bits_[0] |= 0x00000004u;
+  _impl_._has_bits_[0] |= 0x00000008u;
   _impl_.host_.Set(value, GetArena());
 }
 inline ::std::string* PROTOBUF_NONNULL ModuleBootup::_internal_mutable_host() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_._has_bits_[0] |= 0x00000004u;
+  _impl_._has_bits_[0] |= 0x00000008u;
   return _impl_.host_.Mutable( GetArena());
 }
 inline ::std::string* PROTOBUF_NULLABLE ModuleBootup::release_host() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   // @@protoc_insertion_point(field_release:odin.v1.ModuleBootup.host)
-  if ((_impl_._has_bits_[0] & 0x00000004u) == 0) {
+  if ((_impl_._has_bits_[0] & 0x00000008u) == 0) {
     return nullptr;
   }
-  _impl_._has_bits_[0] &= ~0x00000004u;
+  _impl_._has_bits_[0] &= ~0x00000008u;
   auto* released = _impl_.host_.Release();
   if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
     _impl_.host_.Set("", GetArena());
@@ -2553,9 +2714,9 @@ inline ::std::string* PROTOBUF_NULLABLE ModuleBootup::release_host() {
 inline void ModuleBootup::set_allocated_host(::std::string* PROTOBUF_NULLABLE value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000004u;
+    _impl_._has_bits_[0] |= 0x00000008u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000004u;
+    _impl_._has_bits_[0] &= ~0x00000008u;
   }
   _impl_.host_.SetAllocated(value, GetArena());
   if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.host_.IsDefault()) {
@@ -2564,11 +2725,11 @@ inline void ModuleBootup::set_allocated_host(::std::string* PROTOBUF_NULLABLE va
   // @@protoc_insertion_point(field_set_allocated:odin.v1.ModuleBootup.host)
 }
 
-// string config_schema = 6 [json_name = "configSchema"];
+// string config_schema = 7 [json_name = "configSchema"];
 inline void ModuleBootup::clear_config_schema() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.config_schema_.ClearToEmpty();
-  _impl_._has_bits_[0] &= ~0x00000008u;
+  _impl_._has_bits_[0] &= ~0x00000010u;
 }
 inline const ::std::string& ModuleBootup::config_schema() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
@@ -2578,7 +2739,7 @@ inline const ::std::string& ModuleBootup::config_schema() const
 template <typename Arg_, typename... Args_>
 PROTOBUF_ALWAYS_INLINE void ModuleBootup::set_config_schema(Arg_&& arg, Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_._has_bits_[0] |= 0x00000008u;
+  _impl_._has_bits_[0] |= 0x00000010u;
   _impl_.config_schema_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
   // @@protoc_insertion_point(field_set:odin.v1.ModuleBootup.config_schema)
 }
@@ -2594,21 +2755,21 @@ inline const ::std::string& ModuleBootup::_internal_config_schema() const {
 }
 inline void ModuleBootup::_internal_set_config_schema(const ::std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_._has_bits_[0] |= 0x00000008u;
+  _impl_._has_bits_[0] |= 0x00000010u;
   _impl_.config_schema_.Set(value, GetArena());
 }
 inline ::std::string* PROTOBUF_NONNULL ModuleBootup::_internal_mutable_config_schema() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_._has_bits_[0] |= 0x00000008u;
+  _impl_._has_bits_[0] |= 0x00000010u;
   return _impl_.config_schema_.Mutable( GetArena());
 }
 inline ::std::string* PROTOBUF_NULLABLE ModuleBootup::release_config_schema() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   // @@protoc_insertion_point(field_release:odin.v1.ModuleBootup.config_schema)
-  if ((_impl_._has_bits_[0] & 0x00000008u) == 0) {
+  if ((_impl_._has_bits_[0] & 0x00000010u) == 0) {
     return nullptr;
   }
-  _impl_._has_bits_[0] &= ~0x00000008u;
+  _impl_._has_bits_[0] &= ~0x00000010u;
   auto* released = _impl_.config_schema_.Release();
   if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
     _impl_.config_schema_.Set("", GetArena());
@@ -2618,9 +2779,9 @@ inline ::std::string* PROTOBUF_NULLABLE ModuleBootup::release_config_schema() {
 inline void ModuleBootup::set_allocated_config_schema(::std::string* PROTOBUF_NULLABLE value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000008u;
+    _impl_._has_bits_[0] |= 0x00000010u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000008u;
+    _impl_._has_bits_[0] &= ~0x00000010u;
   }
   _impl_.config_schema_.SetAllocated(value, GetArena());
   if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.config_schema_.IsDefault()) {
@@ -2633,69 +2794,69 @@ inline void ModuleBootup::set_allocated_config_schema(::std::string* PROTOBUF_NU
 
 // ModuleHeartbeat
 
-// string module_name = 1 [json_name = "moduleName"];
-inline void ModuleHeartbeat::clear_module_name() {
+// string instance_id = 2 [json_name = "instanceId"];
+inline void ModuleHeartbeat::clear_instance_id() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.module_name_.ClearToEmpty();
+  _impl_.instance_id_.ClearToEmpty();
   _impl_._has_bits_[0] &= ~0x00000001u;
 }
-inline const ::std::string& ModuleHeartbeat::module_name() const
+inline const ::std::string& ModuleHeartbeat::instance_id() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:odin.v1.ModuleHeartbeat.module_name)
-  return _internal_module_name();
+  // @@protoc_insertion_point(field_get:odin.v1.ModuleHeartbeat.instance_id)
+  return _internal_instance_id();
 }
 template <typename Arg_, typename... Args_>
-PROTOBUF_ALWAYS_INLINE void ModuleHeartbeat::set_module_name(Arg_&& arg, Args_... args) {
+PROTOBUF_ALWAYS_INLINE void ModuleHeartbeat::set_instance_id(Arg_&& arg, Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000001u;
-  _impl_.module_name_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:odin.v1.ModuleHeartbeat.module_name)
+  _impl_.instance_id_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:odin.v1.ModuleHeartbeat.instance_id)
 }
-inline ::std::string* PROTOBUF_NONNULL ModuleHeartbeat::mutable_module_name()
+inline ::std::string* PROTOBUF_NONNULL ModuleHeartbeat::mutable_instance_id()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::std::string* _s = _internal_mutable_module_name();
-  // @@protoc_insertion_point(field_mutable:odin.v1.ModuleHeartbeat.module_name)
+  ::std::string* _s = _internal_mutable_instance_id();
+  // @@protoc_insertion_point(field_mutable:odin.v1.ModuleHeartbeat.instance_id)
   return _s;
 }
-inline const ::std::string& ModuleHeartbeat::_internal_module_name() const {
+inline const ::std::string& ModuleHeartbeat::_internal_instance_id() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.module_name_.Get();
+  return _impl_.instance_id_.Get();
 }
-inline void ModuleHeartbeat::_internal_set_module_name(const ::std::string& value) {
+inline void ModuleHeartbeat::_internal_set_instance_id(const ::std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000001u;
-  _impl_.module_name_.Set(value, GetArena());
+  _impl_.instance_id_.Set(value, GetArena());
 }
-inline ::std::string* PROTOBUF_NONNULL ModuleHeartbeat::_internal_mutable_module_name() {
+inline ::std::string* PROTOBUF_NONNULL ModuleHeartbeat::_internal_mutable_instance_id() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000001u;
-  return _impl_.module_name_.Mutable( GetArena());
+  return _impl_.instance_id_.Mutable( GetArena());
 }
-inline ::std::string* PROTOBUF_NULLABLE ModuleHeartbeat::release_module_name() {
+inline ::std::string* PROTOBUF_NULLABLE ModuleHeartbeat::release_instance_id() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:odin.v1.ModuleHeartbeat.module_name)
+  // @@protoc_insertion_point(field_release:odin.v1.ModuleHeartbeat.instance_id)
   if ((_impl_._has_bits_[0] & 0x00000001u) == 0) {
     return nullptr;
   }
   _impl_._has_bits_[0] &= ~0x00000001u;
-  auto* released = _impl_.module_name_.Release();
+  auto* released = _impl_.instance_id_.Release();
   if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
-    _impl_.module_name_.Set("", GetArena());
+    _impl_.instance_id_.Set("", GetArena());
   }
   return released;
 }
-inline void ModuleHeartbeat::set_allocated_module_name(::std::string* PROTOBUF_NULLABLE value) {
+inline void ModuleHeartbeat::set_allocated_instance_id(::std::string* PROTOBUF_NULLABLE value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000001u;
   } else {
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
-  _impl_.module_name_.SetAllocated(value, GetArena());
-  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.module_name_.IsDefault()) {
-    _impl_.module_name_.Set("", GetArena());
+  _impl_.instance_id_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.instance_id_.IsDefault()) {
+    _impl_.instance_id_.Set("", GetArena());
   }
-  // @@protoc_insertion_point(field_set_allocated:odin.v1.ModuleHeartbeat.module_name)
+  // @@protoc_insertion_point(field_set_allocated:odin.v1.ModuleHeartbeat.instance_id)
 }
 
 // int64 timestamp = 3 [json_name = "timestamp"];
@@ -2865,6 +3026,12 @@ struct is_proto_enum<::odin::v1::ModuleStatus> : std::true_type {};
 template <>
 inline const EnumDescriptor* PROTOBUF_NONNULL GetEnumDescriptor<::odin::v1::ModuleStatus>() {
   return ::odin::v1::ModuleStatus_descriptor();
+}
+template <>
+struct is_proto_enum<::odin::v1::ModuleType> : std::true_type {};
+template <>
+inline const EnumDescriptor* PROTOBUF_NONNULL GetEnumDescriptor<::odin::v1::ModuleType>() {
+  return ::odin::v1::ModuleType_descriptor();
 }
 
 }  // namespace protobuf

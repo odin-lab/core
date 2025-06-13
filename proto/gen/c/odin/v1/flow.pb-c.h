@@ -34,7 +34,7 @@ typedef struct Odin__V1__OdinEndSpeech Odin__V1__OdinEndSpeech;
 struct  Odin__V1__TurnDetected
 {
   ProtobufCMessage base;
-  Odin__V1__SessionInfo *session;
+  Odin__V1__MessageInfo *info;
 };
 #define ODIN__V1__TURN_DETECTED__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&odin__v1__turn_detected__descriptor) \
@@ -44,7 +44,7 @@ struct  Odin__V1__TurnDetected
 struct  Odin__V1__OdinStartSpeech
 {
   ProtobufCMessage base;
-  Odin__V1__SessionInfo *session;
+  Odin__V1__MessageInfo *info;
 };
 #define ODIN__V1__ODIN_START_SPEECH__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&odin__v1__odin_start_speech__descriptor) \
@@ -54,7 +54,7 @@ struct  Odin__V1__OdinStartSpeech
 struct  Odin__V1__OdinEndSpeech
 {
   ProtobufCMessage base;
-  Odin__V1__SessionInfo *session;
+  Odin__V1__MessageInfo *info;
 };
 #define ODIN__V1__ODIN_END_SPEECH__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&odin__v1__odin_end_speech__descriptor) \

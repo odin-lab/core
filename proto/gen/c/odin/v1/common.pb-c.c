@@ -7,49 +7,49 @@
 #endif
 
 #include "odin/v1/common.pb-c.h"
-void   odin__v1__session_info__init
-                     (Odin__V1__SessionInfo         *message)
+void   odin__v1__message_info__init
+                     (Odin__V1__MessageInfo         *message)
 {
-  static const Odin__V1__SessionInfo init_value = ODIN__V1__SESSION_INFO__INIT;
+  static const Odin__V1__MessageInfo init_value = ODIN__V1__MESSAGE_INFO__INIT;
   *message = init_value;
 }
-size_t odin__v1__session_info__get_packed_size
-                     (const Odin__V1__SessionInfo *message)
+size_t odin__v1__message_info__get_packed_size
+                     (const Odin__V1__MessageInfo *message)
 {
-  assert(message->base.descriptor == &odin__v1__session_info__descriptor);
+  assert(message->base.descriptor == &odin__v1__message_info__descriptor);
   return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
 }
-size_t odin__v1__session_info__pack
-                     (const Odin__V1__SessionInfo *message,
+size_t odin__v1__message_info__pack
+                     (const Odin__V1__MessageInfo *message,
                       uint8_t       *out)
 {
-  assert(message->base.descriptor == &odin__v1__session_info__descriptor);
+  assert(message->base.descriptor == &odin__v1__message_info__descriptor);
   return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
 }
-size_t odin__v1__session_info__pack_to_buffer
-                     (const Odin__V1__SessionInfo *message,
+size_t odin__v1__message_info__pack_to_buffer
+                     (const Odin__V1__MessageInfo *message,
                       ProtobufCBuffer *buffer)
 {
-  assert(message->base.descriptor == &odin__v1__session_info__descriptor);
+  assert(message->base.descriptor == &odin__v1__message_info__descriptor);
   return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
 }
-Odin__V1__SessionInfo *
-       odin__v1__session_info__unpack
+Odin__V1__MessageInfo *
+       odin__v1__message_info__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data)
 {
-  return (Odin__V1__SessionInfo *)
-     protobuf_c_message_unpack (&odin__v1__session_info__descriptor,
+  return (Odin__V1__MessageInfo *)
+     protobuf_c_message_unpack (&odin__v1__message_info__descriptor,
                                 allocator, len, data);
 }
-void   odin__v1__session_info__free_unpacked
-                     (Odin__V1__SessionInfo *message,
+void   odin__v1__message_info__free_unpacked
+                     (Odin__V1__MessageInfo *message,
                       ProtobufCAllocator *allocator)
 {
   if(!message)
     return;
-  assert(message->base.descriptor == &odin__v1__session_info__descriptor);
+  assert(message->base.descriptor == &odin__v1__message_info__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
 void   odin__v1__audio_data__init
@@ -97,81 +97,42 @@ void   odin__v1__audio_data__free_unpacked
   assert(message->base.descriptor == &odin__v1__audio_data__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-static const ProtobufCFieldDescriptor odin__v1__session_info__field_descriptors[4] =
+static const ProtobufCFieldDescriptor odin__v1__message_info__field_descriptors[1] =
 {
   {
-    "id",
-    1,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_STRING,
-    0,   /* quantifier_offset */
-    offsetof(Odin__V1__SessionInfo, id),
-    NULL,
-    &protobuf_c_empty_string,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "status",
-    2,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_STRING,
-    0,   /* quantifier_offset */
-    offsetof(Odin__V1__SessionInfo, status),
-    NULL,
-    &protobuf_c_empty_string,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "language",
-    3,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_STRING,
-    0,   /* quantifier_offset */
-    offsetof(Odin__V1__SessionInfo, language),
-    NULL,
-    &protobuf_c_empty_string,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
     "timestamp",
-    4,
+    1,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_INT64,
     0,   /* quantifier_offset */
-    offsetof(Odin__V1__SessionInfo, timestamp),
+    offsetof(Odin__V1__MessageInfo, timestamp),
     NULL,
     NULL,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
 };
-static const unsigned odin__v1__session_info__field_indices_by_name[] = {
-  0,   /* field[0] = id */
-  2,   /* field[2] = language */
-  1,   /* field[1] = status */
-  3,   /* field[3] = timestamp */
+static const unsigned odin__v1__message_info__field_indices_by_name[] = {
+  0,   /* field[0] = timestamp */
 };
-static const ProtobufCIntRange odin__v1__session_info__number_ranges[1 + 1] =
+static const ProtobufCIntRange odin__v1__message_info__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 4 }
+  { 0, 1 }
 };
-const ProtobufCMessageDescriptor odin__v1__session_info__descriptor =
+const ProtobufCMessageDescriptor odin__v1__message_info__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "odin.v1.SessionInfo",
-  "SessionInfo",
-  "Odin__V1__SessionInfo",
+  "odin.v1.MessageInfo",
+  "MessageInfo",
+  "Odin__V1__MessageInfo",
   "odin.v1",
-  sizeof(Odin__V1__SessionInfo),
-  4,
-  odin__v1__session_info__field_descriptors,
-  odin__v1__session_info__field_indices_by_name,
-  1,  odin__v1__session_info__number_ranges,
-  (ProtobufCMessageInit) odin__v1__session_info__init,
+  sizeof(Odin__V1__MessageInfo),
+  1,
+  odin__v1__message_info__field_descriptors,
+  odin__v1__message_info__field_indices_by_name,
+  1,  odin__v1__message_info__number_ranges,
+  (ProtobufCMessageInit) odin__v1__message_info__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
 static const ProtobufCFieldDescriptor odin__v1__audio_data__field_descriptors[2] =

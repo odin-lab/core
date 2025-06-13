@@ -4,7 +4,7 @@
 
 import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv2";
-import type { SessionInfo } from "./common_pb";
+import type { MessageInfo } from "./common_pb";
 import { file_odin_v1_common } from "./common_pb";
 import { file_odin_v1_options } from "./options_pb";
 import { file_odin_v1_session } from "./session_pb";
@@ -14,7 +14,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file odin/v1/flow.proto.
  */
 export const file_odin_v1_flow: GenFile = /*@__PURE__*/
-  fileDesc("ChJvZGluL3YxL2Zsb3cucHJvdG8SB29kaW4udjEibAoMVHVybkRldGVjdGVkEiUKB3Nlc3Npb24YASABKAsyFC5vZGluLnYxLlNlc3Npb25JbmZvOjWKtRgtZmxvdy57c2Vzc2lvbl9pZH0ue21vZHVsZV9uYW1lfS50dXJuX2RldGVjdGVkkLUYASJzCg9PZGluU3RhcnRTcGVlY2gSJQoHc2Vzc2lvbhgBIAEoCzIULm9kaW4udjEuU2Vzc2lvbkluZm86OYq1GDFmbG93LntzZXNzaW9uX2lkfS57bW9kdWxlX25hbWV9Lm9kaW5fc3RhcnRfc3BlZWNokLUYASJvCg1PZGluRW5kU3BlZWNoEiUKB3Nlc3Npb24YASABKAsyFC5vZGluLnYxLlNlc3Npb25JbmZvOjeKtRgvZmxvdy57c2Vzc2lvbl9pZH0ue21vZHVsZV9uYW1lfS5vZGluX2VuZF9zcGVlY2iQtRgBQlUKC2NvbS5vZGluLnYxQglGbG93UHJvdG9QAaICA09YWKoCB09kaW4uVjHKAgdPZGluXFYx4gITT2RpblxWMVxHUEJNZXRhZGF0YeoCCE9kaW46OlYxYgZwcm90bzM", [file_odin_v1_common, file_odin_v1_options, file_odin_v1_session]);
+  fileDesc("ChJvZGluL3YxL2Zsb3cucHJvdG8SB29kaW4udjEiaQoMVHVybkRldGVjdGVkEiIKBGluZm8YASABKAsyFC5vZGluLnYxLk1lc3NhZ2VJbmZvOjWKtRgtZmxvdy57c2Vzc2lvbl9pZH0ue2luc3RhbmNlX2lkfS50dXJuX2RldGVjdGVkkLUYASJwCg9PZGluU3RhcnRTcGVlY2gSIgoEaW5mbxgBIAEoCzIULm9kaW4udjEuTWVzc2FnZUluZm86OYq1GDFmbG93LntzZXNzaW9uX2lkfS57aW5zdGFuY2VfaWR9Lm9kaW5fc3RhcnRfc3BlZWNokLUYASJsCg1PZGluRW5kU3BlZWNoEiIKBGluZm8YASABKAsyFC5vZGluLnYxLk1lc3NhZ2VJbmZvOjeKtRgvZmxvdy57c2Vzc2lvbl9pZH0ue2luc3RhbmNlX2lkfS5vZGluX2VuZF9zcGVlY2iQtRgBQlUKC2NvbS5vZGluLnYxQglGbG93UHJvdG9QAaICA09YWKoCB09kaW4uVjHKAgdPZGluXFYx4gITT2RpblxWMVxHUEJNZXRhZGF0YeoCCE9kaW46OlYxYgZwcm90bzM", [file_odin_v1_common, file_odin_v1_options, file_odin_v1_session]);
 
 /**
  * Flow information with role and content
@@ -23,9 +23,9 @@ export const file_odin_v1_flow: GenFile = /*@__PURE__*/
  */
 export type TurnDetected = Message<"odin.v1.TurnDetected"> & {
   /**
-   * @generated from field: odin.v1.SessionInfo session = 1;
+   * @generated from field: odin.v1.MessageInfo info = 1;
    */
-  session?: SessionInfo;
+  info?: MessageInfo;
 };
 
 /**
@@ -40,9 +40,9 @@ export const TurnDetectedSchema: GenMessage<TurnDetected> = /*@__PURE__*/
  */
 export type OdinStartSpeech = Message<"odin.v1.OdinStartSpeech"> & {
   /**
-   * @generated from field: odin.v1.SessionInfo session = 1;
+   * @generated from field: odin.v1.MessageInfo info = 1;
    */
-  session?: SessionInfo;
+  info?: MessageInfo;
 };
 
 /**
@@ -57,9 +57,9 @@ export const OdinStartSpeechSchema: GenMessage<OdinStartSpeech> = /*@__PURE__*/
  */
 export type OdinEndSpeech = Message<"odin.v1.OdinEndSpeech"> & {
   /**
-   * @generated from field: odin.v1.SessionInfo session = 1;
+   * @generated from field: odin.v1.MessageInfo info = 1;
    */
-  session?: SessionInfo;
+  info?: MessageInfo;
 };
 
 /**

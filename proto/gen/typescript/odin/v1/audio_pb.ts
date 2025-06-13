@@ -4,7 +4,7 @@
 
 import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv2";
-import type { AudioData, SessionInfo } from "./common_pb";
+import type { AudioData, MessageInfo } from "./common_pb";
 import { file_odin_v1_common } from "./common_pb";
 import { file_odin_v1_options } from "./options_pb";
 import type { Message } from "@bufbuild/protobuf";
@@ -13,7 +13,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file odin/v1/audio.proto.
  */
 export const file_odin_v1_audio: GenFile = /*@__PURE__*/
-  fileDesc("ChNvZGluL3YxL2F1ZGlvLnByb3RvEgdvZGluLnYxInIKDkF1ZGlvQnVmZmVyTWljEiEKBWF1ZGlvGAEgASgLMhIub2Rpbi52MS5BdWRpb0RhdGESEQoJY2xpZW50X2lkGAIgASgJOiqitRgmYXVkaW8ue3Nlc3Npb25faWR9Lnttb2R1bGVfbmFtZX0uaW5wdXQiiwEKEkF1ZGlvQnVmZmVyU3BlYWtlchIhCgVhdWRpbxgBIAEoCzISLm9kaW4udjEuQXVkaW9EYXRhEiUKB3Nlc3Npb24YAiABKAsyFC5vZGluLnYxLlNlc3Npb25JbmZvOiuitRgnYXVkaW8ue3Nlc3Npb25faWR9Lnttb2R1bGVfbmFtZX0ub3V0cHV0QlYKC2NvbS5vZGluLnYxQgpBdWRpb1Byb3RvUAGiAgNPWFiqAgdPZGluLlYxygIHT2RpblxWMeICE09kaW5cVjFcR1BCTWV0YWRhdGHqAghPZGluOjpWMWIGcHJvdG8z", [file_odin_v1_common, file_odin_v1_options]);
+  fileDesc("ChNvZGluL3YxL2F1ZGlvLnByb3RvEgdvZGluLnYxInIKDkF1ZGlvQnVmZmVyTWljEiEKBWF1ZGlvGAEgASgLMhIub2Rpbi52MS5BdWRpb0RhdGESEQoJY2xpZW50X2lkGAIgASgJOiqitRgmYXVkaW8ue3Nlc3Npb25faWR9Lnttb2R1bGVfbmFtZX0uaW5wdXQiiAEKEkF1ZGlvQnVmZmVyU3BlYWtlchIhCgVhdWRpbxgBIAEoCzISLm9kaW4udjEuQXVkaW9EYXRhEiIKBGluZm8YAiABKAsyFC5vZGluLnYxLk1lc3NhZ2VJbmZvOiuitRgnYXVkaW8ue3Nlc3Npb25faWR9LntpbnN0YW5jZV9pZH0ub3V0cHV0QlYKC2NvbS5vZGluLnYxQgpBdWRpb1Byb3RvUAGiAgNPWFiqAgdPZGluLlYxygIHT2RpblxWMeICE09kaW5cVjFcR1BCTWV0YWRhdGHqAghPZGluOjpWMWIGcHJvdG8z", [file_odin_v1_common, file_odin_v1_options]);
 
 /**
  * Raw audio data chunks from microphone input
@@ -53,9 +53,9 @@ export type AudioBufferSpeaker = Message<"odin.v1.AudioBufferSpeaker"> & {
   audio?: AudioData;
 
   /**
-   * @generated from field: odin.v1.SessionInfo session = 2;
+   * @generated from field: odin.v1.MessageInfo info = 2;
    */
-  session?: SessionInfo;
+  info?: MessageInfo;
 };
 
 /**

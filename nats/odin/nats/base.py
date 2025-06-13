@@ -121,10 +121,8 @@ class BaseModule(ABC):
         try:
             self.kv = await js.key_value("module_registry")
         except Exception:
-            # Create KV bucket if it doesn't exist
-            self.kv = await js.create_key_value(
-                description="Module bootup and status tracking",
-                bucket="module_registry",
+            raise RuntimeError(
+                "Failed to open module registry KV bucket! Is the server running and the bucket created?"
             )
 
         # Publish bootup message

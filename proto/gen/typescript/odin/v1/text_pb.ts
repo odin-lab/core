@@ -2,9 +2,9 @@
 // @generated from file odin/v1/text.proto (package odin.v1, syntax proto3)
 /* eslint-disable */
 
-import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
-import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv2";
-import type { SessionInfo } from "./common_pb";
+import type { GenEnum, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
+import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv2";
+import type { MessageInfo } from "./common_pb";
 import { file_odin_v1_common } from "./common_pb";
 import { file_odin_v1_options } from "./options_pb";
 import type { Segment } from "./text_helper_pb";
@@ -15,7 +15,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file odin/v1/text.proto.
  */
 export const file_odin_v1_text: GenFile = /*@__PURE__*/
-  fileDesc("ChJvZGluL3YxL3RleHQucHJvdG8SB29kaW4udjEikQEKDVRyYW5zY3JpcHRpb24SIgoIc2VnbWVudHMYASADKAsyEC5vZGluLnYxLlNlZ21lbnQSJQoHc2Vzc2lvbhgCIAEoCzIULm9kaW4udjEuU2Vzc2lvbkluZm86NYq1GC10ZXh0LntzZXNzaW9uX2lkfS57bW9kdWxlX25hbWV9LnRyYW5zY3JpcHRpb26QtRgBIn4KDkNvbXBsZXRpb25Xb3JkEgwKBHdvcmQYASABKAkSJQoHc2Vzc2lvbhgCIAEoCzIULm9kaW4udjEuU2Vzc2lvbkluZm86N4q1GC90ZXh0LntzZXNzaW9uX2lkfS57bW9kdWxlX25hbWV9LmNvbXBsZXRpb24ud29yZJC1GAEiigEKEkNvbXBsZXRpb25TZW50ZW5jZRIQCghzZW50ZW5jZRgBIAEoCRIlCgdzZXNzaW9uGAIgASgLMhQub2Rpbi52MS5TZXNzaW9uSW5mbzo7irUYM3RleHQue3Nlc3Npb25faWR9Lnttb2R1bGVfbmFtZX0uY29tcGxldGlvbi5zZW50ZW5jZZC1GAFCVQoLY29tLm9kaW4udjFCCVRleHRQcm90b1ABogIDT1hYqgIHT2Rpbi5WMcoCB09kaW5cVjHiAhNPZGluXFYxXEdQQk1ldGFkYXRh6gIIT2Rpbjo6VjFiBnByb3RvMw", [file_odin_v1_common, file_odin_v1_options, file_odin_v1_text_helper]);
+  fileDesc("ChJvZGluL3YxL3RleHQucHJvdG8SB29kaW4udjEijgEKDVRyYW5zY3JpcHRpb24SIgoIc2VnbWVudHMYASADKAsyEC5vZGluLnYxLlNlZ21lbnQSIgoEaW5mbxgCIAEoCzIULm9kaW4udjEuTWVzc2FnZUluZm86NYq1GC10ZXh0LntzZXNzaW9uX2lkfS57aW5zdGFuY2VfaWR9LnRyYW5zY3JpcHRpb26QtRgBIpwBCgpDb21wbGV0aW9uEg8KB2NvbnRlbnQYASABKAkSJQoEdHlwZRgCIAEoDjIXLm9kaW4udjEuQ29tcGxldGlvblR5cGUSIgoEaW5mbxgDIAEoCzIULm9kaW4udjEuTWVzc2FnZUluZm86Moq1GCp0ZXh0LntzZXNzaW9uX2lkfS57aW5zdGFuY2VfaWR9LmNvbXBsZXRpb26QtRgBKigKDkNvbXBsZXRpb25UeXBlEggKBFdPUkQQABIMCghTRU5URU5DRRABQlUKC2NvbS5vZGluLnYxQglUZXh0UHJvdG9QAaICA09YWKoCB09kaW4uVjHKAgdPZGluXFYx4gITT2RpblxWMVxHUEJNZXRhZGF0YeoCCE9kaW46OlYxYgZwcm90bzM", [file_odin_v1_common, file_odin_v1_options, file_odin_v1_text_helper]);
 
 /**
  * output STT
@@ -29,9 +29,9 @@ export type Transcription = Message<"odin.v1.Transcription"> & {
   segments: Segment[];
 
   /**
-   * @generated from field: odin.v1.SessionInfo session = 2;
+   * @generated from field: odin.v1.MessageInfo info = 2;
    */
-  session?: SessionInfo;
+  info?: MessageInfo;
 };
 
 /**
@@ -42,46 +42,50 @@ export const TranscriptionSchema: GenMessage<Transcription> = /*@__PURE__*/
   messageDesc(file_odin_v1_text, 0);
 
 /**
- * @generated from message odin.v1.CompletionWord
+ * @generated from message odin.v1.Completion
  */
-export type CompletionWord = Message<"odin.v1.CompletionWord"> & {
+export type Completion = Message<"odin.v1.Completion"> & {
   /**
-   * @generated from field: string word = 1;
+   * @generated from field: string content = 1;
    */
-  word: string;
+  content: string;
 
   /**
-   * @generated from field: odin.v1.SessionInfo session = 2;
+   * @generated from field: odin.v1.CompletionType type = 2;
    */
-  session?: SessionInfo;
+  type: CompletionType;
+
+  /**
+   * @generated from field: odin.v1.MessageInfo info = 3;
+   */
+  info?: MessageInfo;
 };
 
 /**
- * Describes the message odin.v1.CompletionWord.
- * Use `create(CompletionWordSchema)` to create a new message.
+ * Describes the message odin.v1.Completion.
+ * Use `create(CompletionSchema)` to create a new message.
  */
-export const CompletionWordSchema: GenMessage<CompletionWord> = /*@__PURE__*/
+export const CompletionSchema: GenMessage<Completion> = /*@__PURE__*/
   messageDesc(file_odin_v1_text, 1);
 
 /**
- * @generated from message odin.v1.CompletionSentence
+ * @generated from enum odin.v1.CompletionType
  */
-export type CompletionSentence = Message<"odin.v1.CompletionSentence"> & {
+export enum CompletionType {
   /**
-   * @generated from field: string sentence = 1;
+   * @generated from enum value: WORD = 0;
    */
-  sentence: string;
+  WORD = 0,
 
   /**
-   * @generated from field: odin.v1.SessionInfo session = 2;
+   * @generated from enum value: SENTENCE = 1;
    */
-  session?: SessionInfo;
-};
+  SENTENCE = 1,
+}
 
 /**
- * Describes the message odin.v1.CompletionSentence.
- * Use `create(CompletionSentenceSchema)` to create a new message.
+ * Describes the enum odin.v1.CompletionType.
  */
-export const CompletionSentenceSchema: GenMessage<CompletionSentence> = /*@__PURE__*/
-  messageDesc(file_odin_v1_text, 2);
+export const CompletionTypeSchema: GenEnum<CompletionType> = /*@__PURE__*/
+  enumDesc(file_odin_v1_text, 0);
 

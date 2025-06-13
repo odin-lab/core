@@ -145,20 +145,20 @@ void   odin__v1__odin_end_speech__free_unpacked
 static const ProtobufCFieldDescriptor odin__v1__turn_detected__field_descriptors[1] =
 {
   {
-    "session",
+    "info",
     1,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_MESSAGE,
     0,   /* quantifier_offset */
-    offsetof(Odin__V1__TurnDetected, session),
-    &odin__v1__session_info__descriptor,
+    offsetof(Odin__V1__TurnDetected, info),
+    &odin__v1__message_info__descriptor,
     NULL,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
 };
 static const unsigned odin__v1__turn_detected__field_indices_by_name[] = {
-  0,   /* field[0] = session */
+  0,   /* field[0] = info */
 };
 static const ProtobufCIntRange odin__v1__turn_detected__number_ranges[1 + 1] =
 {
@@ -183,20 +183,20 @@ const ProtobufCMessageDescriptor odin__v1__turn_detected__descriptor =
 static const ProtobufCFieldDescriptor odin__v1__odin_start_speech__field_descriptors[1] =
 {
   {
-    "session",
+    "info",
     1,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_MESSAGE,
     0,   /* quantifier_offset */
-    offsetof(Odin__V1__OdinStartSpeech, session),
-    &odin__v1__session_info__descriptor,
+    offsetof(Odin__V1__OdinStartSpeech, info),
+    &odin__v1__message_info__descriptor,
     NULL,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
 };
 static const unsigned odin__v1__odin_start_speech__field_indices_by_name[] = {
-  0,   /* field[0] = session */
+  0,   /* field[0] = info */
 };
 static const ProtobufCIntRange odin__v1__odin_start_speech__number_ranges[1 + 1] =
 {
@@ -221,20 +221,20 @@ const ProtobufCMessageDescriptor odin__v1__odin_start_speech__descriptor =
 static const ProtobufCFieldDescriptor odin__v1__odin_end_speech__field_descriptors[1] =
 {
   {
-    "session",
+    "info",
     1,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_MESSAGE,
     0,   /* quantifier_offset */
-    offsetof(Odin__V1__OdinEndSpeech, session),
-    &odin__v1__session_info__descriptor,
+    offsetof(Odin__V1__OdinEndSpeech, info),
+    &odin__v1__message_info__descriptor,
     NULL,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
 };
 static const unsigned odin__v1__odin_end_speech__field_indices_by_name[] = {
-  0,   /* field[0] = session */
+  0,   /* field[0] = info */
 };
 static const ProtobufCIntRange odin__v1__odin_end_speech__number_ranges[1 + 1] =
 {
