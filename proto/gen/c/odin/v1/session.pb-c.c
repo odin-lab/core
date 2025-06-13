@@ -477,12 +477,12 @@ static const ProtobufCFieldDescriptor odin__v1__status__field_descriptors[4] =
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "module",
+    "instance_id",
     2,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_STRING,
     0,   /* quantifier_offset */
-    offsetof(Odin__V1__Status, module),
+    offsetof(Odin__V1__Status, instance_id),
     NULL,
     &protobuf_c_empty_string,
     0,             /* flags */
@@ -515,7 +515,7 @@ static const ProtobufCFieldDescriptor odin__v1__status__field_descriptors[4] =
 };
 static const unsigned odin__v1__status__field_indices_by_name[] = {
   3,   /* field[3] = detail */
-  1,   /* field[1] = module */
+  1,   /* field[1] = instance_id */
   0,   /* field[0] = session_id */
   2,   /* field[2] = status */
 };

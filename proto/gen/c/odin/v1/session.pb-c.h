@@ -89,7 +89,7 @@ struct  Odin__V1__Status
 {
   ProtobufCMessage base;
   char *session_id;
-  char *module;
+  char *instance_id;
   Odin__V1__ModuleStatus status;
   /*
    * error text if FAILED

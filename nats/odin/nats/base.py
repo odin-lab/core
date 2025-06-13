@@ -19,13 +19,15 @@ import socket
 from abc import ABC, abstractmethod
 from enum import IntEnum
 from typing import Dict, Any, List, Optional
+import uuid
 
 from nats.aio.client import Client as NATS
 from nats.js import JetStreamContext
 from nats.js.kv import KeyValue
 
 # Import from the odin-proto package
-from odin.v1 import session_pb2 as pb
+from odin.v1 import session_pb2 as session_dec
+
 
 log = logging.getLogger(__name__)
 
@@ -46,11 +48,11 @@ class ModuleStatus(IntEnum):
 class BaseSession(ABC):
     """Lifecycle wrapper around whatever engine you run per session (STT, TTS …)."""
 
-    def __init__(self, session_id: str, config: bytes, nc: NATS, module_name: str):
+    def __init__(self, session_id: str, config: bytes, nc: NATS, instance_id: str):
         self.session_id = session_id
         self.config = config  # opaque – pass to your engine as you wish
         self.nc = nc
-        self.module_name = module_name
+        self.instance_id = instance_id
 
     # ---- abstract hooks --------------------------------------------------
     @abstractmethod
@@ -65,12 +67,12 @@ class BaseSession(ABC):
     async def publish_status(self, status: ModuleStatus, detail: str = "") -> None:
         """Emit a Status message to `session.<id>.<module>.status` (regular NATS)."""
         log.debug(
-            f"Publishing status {status} for {self.module_name} in session {self.session_id}"
+            f"Publishing status {status} for {self.instance_id} in session {self.session_id}"
         )
-        subj = f"session.{self.session_id}.{self.module_name}.status"
-        msg = pb.Status(
+        subj = f"session.{self.session_id}.{self.instance_id}.status"
+        msg = session_dec.Status(
             session_id=self.session_id,
-            module=self.module_name,
+            instance_id=self.instance_id,
             status=status,
             detail=detail,
         ).SerializeToString()
@@ -88,6 +90,7 @@ class BaseModule(ABC):
     """
 
     nc: NATS
+    type: session_dec.ModuleType
     name: str
     queue_group: str
     sessions: Dict[str, BaseSession]
@@ -98,6 +101,7 @@ class BaseModule(ABC):
     def __init__(
         self,
         nc: NATS,
+        type: session_dec.ModuleType,
         name: str,
         queue_group: Optional[str] = None,
         version: str = "1.0.0",
@@ -105,6 +109,8 @@ class BaseModule(ABC):
     ):
         self.nc = nc
         self.name = name
+        self.type = type
+        self.instance_id = f"{type}-{name}-{uuid.uuid4()[:6]}"
         self.queue_group = queue_group or f"{name}_workers"
         self.sessions: Dict[str, BaseSession] = {}
         self.version = version
@@ -132,7 +138,7 @@ class BaseModule(ABC):
         self.heartbeat_task = asyncio.create_task(self._heartbeat_loop())
 
         # Subscribe to commands
-        subj = f"session.*.{self.name}.cmd"
+        subj = f"session.*.{self.instance_id}.cmd"
         await self.nc.subscribe(subj, queue=self.queue_group, cb=self._on_command)
         log.info("%s subscribed on %s (q=%s)", self.name, subj, self.queue_group)
 
@@ -154,15 +160,17 @@ class BaseModule(ABC):
     # ---- KV store operations --------------------------------------------
     async def _publish_bootup(self) -> None:
         """Publish module bootup information to KV store"""
-        bootup = pb.ModuleBootup(
-            module_name=self.name,
+        bootup = session_dec.ModuleBootup(
+            type=self.type,
+            name=self.name,
+            instance_id=self.instance_id,
             started_at=int(time.time()),
             version=self.version,
             host=socket.gethostname(),
             config_schema=self.config_schema,
         )
 
-        key = f"{self.name}"
+        key = f"{self.instance_id}.bootup"
         await self.kv.put(key, bootup.SerializeToString())
         log.info(f"Published bootup for {self.name}")
 
@@ -172,14 +180,14 @@ class BaseModule(ABC):
             try:
                 await asyncio.sleep(30)  # Heartbeat every 30 seconds
 
-                heartbeat = pb.ModuleHeartbeat(
-                    module_name=self.name,
+                heartbeat = session_dec.ModuleHeartbeat(
+                    instance_id=self.instance_id,
                     timestamp=int(time.time()),
                     status=ModuleStatus.RUNNING,
                     active_sessions=len(self.sessions),
                 )
 
-                key = f"{self.name}.heartbeat"
+                key = f"{self.instance_id}.heartbeat"
                 await self.kv.put(key, heartbeat.SerializeToString())
 
             except asyncio.CancelledError:
@@ -193,7 +201,7 @@ class BaseModule(ABC):
         log.debug(f"{self.name} received command on subject: {msg.subject}")
 
         try:
-            cmd = pb.Command.FromString(msg.data)
+            cmd = session_dec.Command.FromString(msg.data)
             log.debug(f"{self.name} parsed command successfully")
         except Exception as e:
             log.error(f"{self.name} failed to parse command: {e}")
@@ -219,9 +227,9 @@ class BaseModule(ABC):
             # Quick ACK so requester can unblock - use regular NATS, not JetStream
             await self.nc.publish(
                 reply,
-                pb.Status(
+                session_dec.Status(
                     session_id=sess_id,
-                    module=self.name,
+                    instance_id=self.instance_id,
                     status=ModuleStatus.INITIALIZING,
                 ).SerializeToString(),
             )
@@ -246,7 +254,7 @@ class BaseModule(ABC):
             try:
                 await self.nc.publish(
                     reply,
-                    pb.Status(
+                    session.Status(
                         session_id=sess_id,
                         module=self.name,
                         status=ModuleStatus.FAILED,
@@ -263,7 +271,7 @@ class BaseModule(ABC):
             # Nothing to clean, but still respond so SessionManager unblocks.
             await self.nc.publish(
                 reply,
-                pb.Status(
+                session.Status(
                     session_id=sess_id,
                     module=self.name,
                     status=ModuleStatus.DISCONNECTED,
@@ -276,7 +284,7 @@ class BaseModule(ABC):
         await session.publish_status(ModuleStatus.DISCONNECTED)
         await self.nc.publish(
             reply,
-            pb.Status(
+            session.Status(
                 session_id=sess_id,
                 module=self.name,
                 status=ModuleStatus.DISCONNECTED,
@@ -305,7 +313,7 @@ class SessionManager:
     async def _on_status(self, msg):
         """Callback for status updates - stores them for later checking."""
         try:
-            st = pb.Status()
+            st = session_dec.Status()
             st.ParseFromString(msg.data)
 
             # Extract session_id from subject: session.<id>.<module>.status
@@ -340,7 +348,9 @@ class SessionManager:
             init_tasks: Dict[str, "asyncio.Task[bytes]"] = {}
             for m in self.modules:
                 cmd_subj = f"session.{sess_id}.{m}.cmd"
-                cmd = pb.Command(init=pb.Init(session_id=sess_id, config=configs[m]))
+                cmd = session_dec.Command(
+                    init=session_dec.Init(session_id=sess_id, config=configs[m])
+                )
                 log.debug(f"Sending init command to {cmd_subj}")
                 init_tasks[cmd_subj] = asyncio.create_task(
                     self.nc.request(cmd_subj, cmd.SerializeToString(), timeout=timeout)
@@ -367,7 +377,7 @@ class SessionManager:
 
                 log.debug(f"Reply data from {m}: {len(data)} bytes")
                 try:
-                    st = pb.Status()
+                    st = session_dec.Status()
                     st.ParseFromString(data)
                     if st.status == ModuleStatus.FAILED:
                         raise RuntimeError(f"{m} failed during init: {st.detail}")
@@ -390,7 +400,7 @@ class SessionManager:
         for m in self.modules:
             log.info(f"Stopping {m}")
             subj = f"session.{sess_id}.{m}.cmd"
-            cmd = pb.Command(shutdown=pb.Shutdown(session_id=sess_id))
+            cmd = session_dec.Command(shutdown=session_dec.Shutdown(session_id=sess_id))
             shutdown_tasks[m] = asyncio.create_task(
                 self.nc.request(subj, cmd.SerializeToString(), timeout=timeout)
             )
@@ -406,7 +416,7 @@ class SessionManager:
             else:
                 data = msg
 
-            st = pb.Status()
+            st = session_dec.Status()
             st.ParseFromString(data)
             if st.status != ModuleStatus.DISCONNECTED:
                 raise RuntimeError(f"{m} returned unexpected state {st.status}")

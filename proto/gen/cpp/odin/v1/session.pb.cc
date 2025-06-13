@@ -33,7 +33,7 @@ inline constexpr Status::Impl_::Impl_(
         session_id_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
-        module_(
+        instance_id_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
         detail_(
@@ -270,7 +270,7 @@ const ::uint32_t
         PROTOBUF_FIELD_OFFSET(::odin::v1::Status, _impl_._has_bits_),
         7, // hasbit index offset
         PROTOBUF_FIELD_OFFSET(::odin::v1::Status, _impl_.session_id_),
-        PROTOBUF_FIELD_OFFSET(::odin::v1::Status, _impl_.module_),
+        PROTOBUF_FIELD_OFFSET(::odin::v1::Status, _impl_.instance_id_),
         PROTOBUF_FIELD_OFFSET(::odin::v1::Status, _impl_.status_),
         PROTOBUF_FIELD_OFFSET(::odin::v1::Status, _impl_.detail_),
         0,
@@ -341,34 +341,34 @@ const char descriptor_table_protodef_odin_2fv1_2fsession_2eproto[] ABSL_ATTRIBUT
     "d\030\001 \001(\tR\tsessionId\"f\n\007Command\022#\n\004init\030\001 "
     "\001(\0132\r.odin.v1.InitH\000R\004init\022/\n\010shutdown\030\002"
     " \001(\0132\021.odin.v1.ShutdownH\000R\010shutdownB\005\n\003c"
-    "md\"\206\001\n\006Status\022\035\n\nsession_id\030\001 \001(\tR\tsessi"
-    "onId\022\026\n\006module\030\002 \001(\tR\006module\022-\n\006status\030\003"
-    " \001(\0162\025.odin.v1.ModuleStatusR\006status\022\026\n\006d"
-    "etail\030\004 \001(\tR\006detail\"\336\001\n\014ModuleBootup\022\'\n\004"
-    "type\030\001 \001(\0162\023.odin.v1.ModuleTypeR\004type\022\022\n"
-    "\004name\030\002 \001(\tR\004name\022\037\n\013instance_id\030\003 \001(\tR\n"
-    "instanceId\022\035\n\nstarted_at\030\004 \001(\003R\tstartedA"
-    "t\022\030\n\007version\030\005 \001(\tR\007version\022\022\n\004host\030\006 \001("
-    "\tR\004host\022#\n\rconfig_schema\030\007 \001(\tR\014configSc"
-    "hema\"\250\001\n\017ModuleHeartbeat\022\037\n\013instance_id\030"
-    "\002 \001(\tR\ninstanceId\022\034\n\ttimestamp\030\003 \001(\003R\tti"
-    "mestamp\022-\n\006status\030\004 \001(\0162\025.odin.v1.Module"
-    "StatusR\006status\022\'\n\017active_sessions\030\005 \001(\005R"
-    "\016activeSessions\"d\n\016ModuleRegistry\022/\n\007mod"
-    "ules\030\001 \003(\0132\025.odin.v1.ModuleBootupR\007modul"
-    "es\022!\n\014last_updated\030\002 \001(\003R\013lastUpdated*K\n"
-    "\014ModuleStatus\022\020\n\014INITIALIZING\020\000\022\013\n\007RUNNI"
-    "NG\020\001\022\n\n\006FAILED\020\002\022\020\n\014DISCONNECTED\020\003*3\n\nMo"
-    "duleType\022\007\n\003STT\020\000\022\007\n\003TTS\020\001\022\t\n\005AGENT\020\002\022\010\n"
-    "\004TURN\020\003BX\n\013com.odin.v1B\014SessionProtoP\001\242\002"
-    "\003OXX\252\002\007Odin.V1\312\002\007Odin\\V1\342\002\023Odin\\V1\\GPBMe"
-    "tadata\352\002\010Odin::V1b\006proto3"
+    "md\"\217\001\n\006Status\022\035\n\nsession_id\030\001 \001(\tR\tsessi"
+    "onId\022\037\n\013instance_id\030\002 \001(\tR\ninstanceId\022-\n"
+    "\006status\030\003 \001(\0162\025.odin.v1.ModuleStatusR\006st"
+    "atus\022\026\n\006detail\030\004 \001(\tR\006detail\"\336\001\n\014ModuleB"
+    "ootup\022\'\n\004type\030\001 \001(\0162\023.odin.v1.ModuleType"
+    "R\004type\022\022\n\004name\030\002 \001(\tR\004name\022\037\n\013instance_i"
+    "d\030\003 \001(\tR\ninstanceId\022\035\n\nstarted_at\030\004 \001(\003R"
+    "\tstartedAt\022\030\n\007version\030\005 \001(\tR\007version\022\022\n\004"
+    "host\030\006 \001(\tR\004host\022#\n\rconfig_schema\030\007 \001(\tR"
+    "\014configSchema\"\250\001\n\017ModuleHeartbeat\022\037\n\013ins"
+    "tance_id\030\002 \001(\tR\ninstanceId\022\034\n\ttimestamp\030"
+    "\003 \001(\003R\ttimestamp\022-\n\006status\030\004 \001(\0162\025.odin."
+    "v1.ModuleStatusR\006status\022\'\n\017active_sessio"
+    "ns\030\005 \001(\005R\016activeSessions\"d\n\016ModuleRegist"
+    "ry\022/\n\007modules\030\001 \003(\0132\025.odin.v1.ModuleBoot"
+    "upR\007modules\022!\n\014last_updated\030\002 \001(\003R\013lastU"
+    "pdated*K\n\014ModuleStatus\022\020\n\014INITIALIZING\020\000"
+    "\022\013\n\007RUNNING\020\001\022\n\n\006FAILED\020\002\022\020\n\014DISCONNECTE"
+    "D\020\003*3\n\nModuleType\022\007\n\003STT\020\000\022\007\n\003TTS\020\001\022\t\n\005A"
+    "GENT\020\002\022\010\n\004TURN\020\003BX\n\013com.odin.v1B\014Session"
+    "ProtoP\001\242\002\003OXX\252\002\007Odin.V1\312\002\007Odin\\V1\342\002\023Odin"
+    "\\V1\\GPBMetadata\352\002\010Odin::V1b\006proto3"
 };
 static ::absl::once_flag descriptor_table_odin_2fv1_2fsession_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_odin_2fv1_2fsession_2eproto = {
     false,
     false,
-    1105,
+    1114,
     descriptor_table_protodef_odin_2fv1_2fsession_2eproto,
     "odin/v1/session.proto",
     &descriptor_table_odin_2fv1_2fsession_2eproto_once,
@@ -1343,7 +1343,7 @@ PROTOBUF_NDEBUG_INLINE Status::Impl_::Impl_(
       : _has_bits_{from._has_bits_},
         _cached_size_{0},
         session_id_(arena, from.session_id_),
-        module_(arena, from.module_),
+        instance_id_(arena, from.instance_id_),
         detail_(arena, from.detail_) {}
 
 Status::Status(
@@ -1368,7 +1368,7 @@ PROTOBUF_NDEBUG_INLINE Status::Impl_::Impl_(
     ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
       : _cached_size_{0},
         session_id_(arena),
-        module_(arena),
+        instance_id_(arena),
         detail_(arena) {}
 
 inline void Status::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
@@ -1384,7 +1384,7 @@ inline void Status::SharedDtor(MessageLite& self) {
   this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   ABSL_DCHECK(this_.GetArena() == nullptr);
   this_._impl_.session_id_.Destroy();
-  this_._impl_.module_.Destroy();
+  this_._impl_.instance_id_.Destroy();
   this_._impl_.detail_.Destroy();
   this_._impl_.~Impl_();
 }
@@ -1432,7 +1432,7 @@ Status::GetClassData() const {
   return Status_class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 4, 0, 45, 2>
+const ::_pbi::TcParseTable<2, 4, 0, 50, 2>
 Status::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(Status, _impl_._has_bits_),
@@ -1457,9 +1457,9 @@ Status::_table_ = {
     // string session_id = 1 [json_name = "sessionId"];
     {::_pbi::TcParser::FastUS1,
      {10, 0, 0, PROTOBUF_FIELD_OFFSET(Status, _impl_.session_id_)}},
-    // string module = 2 [json_name = "module"];
+    // string instance_id = 2 [json_name = "instanceId"];
     {::_pbi::TcParser::FastUS1,
-     {18, 1, 0, PROTOBUF_FIELD_OFFSET(Status, _impl_.module_)}},
+     {18, 1, 0, PROTOBUF_FIELD_OFFSET(Status, _impl_.instance_id_)}},
     // .odin.v1.ModuleStatus status = 3 [json_name = "status"];
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Status, _impl_.status_), 3>(),
      {24, 3, 0, PROTOBUF_FIELD_OFFSET(Status, _impl_.status_)}},
@@ -1469,8 +1469,8 @@ Status::_table_ = {
     // string session_id = 1 [json_name = "sessionId"];
     {PROTOBUF_FIELD_OFFSET(Status, _impl_.session_id_), _Internal::kHasBitsOffset + 0, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // string module = 2 [json_name = "module"];
-    {PROTOBUF_FIELD_OFFSET(Status, _impl_.module_), _Internal::kHasBitsOffset + 1, 0,
+    // string instance_id = 2 [json_name = "instanceId"];
+    {PROTOBUF_FIELD_OFFSET(Status, _impl_.instance_id_), _Internal::kHasBitsOffset + 1, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
     // .odin.v1.ModuleStatus status = 3 [json_name = "status"];
     {PROTOBUF_FIELD_OFFSET(Status, _impl_.status_), _Internal::kHasBitsOffset + 3, 0,
@@ -1481,10 +1481,10 @@ Status::_table_ = {
   }},
   // no aux_entries
   {{
-    "\16\12\6\0\6\0\0\0"
+    "\16\12\13\0\6\0\0\0"
     "odin.v1.Status"
     "session_id"
-    "module"
+    "instance_id"
     "detail"
   }},
 };
@@ -1501,7 +1501,7 @@ PROTOBUF_NOINLINE void Status::Clear() {
       _impl_.session_id_.ClearNonDefaultToEmpty();
     }
     if ((cached_has_bits & 0x00000002u) != 0) {
-      _impl_.module_.ClearNonDefaultToEmpty();
+      _impl_.instance_id_.ClearNonDefaultToEmpty();
     }
     if ((cached_has_bits & 0x00000004u) != 0) {
       _impl_.detail_.ClearNonDefaultToEmpty();
@@ -1537,12 +1537,12 @@ PROTOBUF_NOINLINE void Status::Clear() {
     }
   }
 
-  // string module = 2 [json_name = "module"];
+  // string instance_id = 2 [json_name = "instanceId"];
   if ((this_._impl_._has_bits_[0] & 0x00000002u) != 0) {
-    if (!this_._internal_module().empty()) {
-      const ::std::string& _s = this_._internal_module();
+    if (!this_._internal_instance_id().empty()) {
+      const ::std::string& _s = this_._internal_instance_id();
       ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "odin.v1.Status.module");
+          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "odin.v1.Status.instance_id");
       target = stream->WriteStringMaybeAliased(2, _s, target);
     }
   }
@@ -1599,11 +1599,11 @@ PROTOBUF_NOINLINE void Status::Clear() {
                                         this_._internal_session_id());
       }
     }
-    // string module = 2 [json_name = "module"];
+    // string instance_id = 2 [json_name = "instanceId"];
     if ((cached_has_bits & 0x00000002u) != 0) {
-      if (!this_._internal_module().empty()) {
+      if (!this_._internal_instance_id().empty()) {
         total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                        this_._internal_module());
+                                        this_._internal_instance_id());
       }
     }
     // string detail = 4 [json_name = "detail"];
@@ -1645,11 +1645,11 @@ void Status::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::
       }
     }
     if ((cached_has_bits & 0x00000002u) != 0) {
-      if (!from._internal_module().empty()) {
-        _this->_internal_set_module(from._internal_module());
+      if (!from._internal_instance_id().empty()) {
+        _this->_internal_set_instance_id(from._internal_instance_id());
       } else {
-        if (_this->_impl_.module_.IsDefault()) {
-          _this->_internal_set_module("");
+        if (_this->_impl_.instance_id_.IsDefault()) {
+          _this->_internal_set_instance_id("");
         }
       }
     }
@@ -1687,7 +1687,7 @@ void Status::InternalSwap(Status* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.session_id_, &other->_impl_.session_id_, arena);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.module_, &other->_impl_.module_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.instance_id_, &other->_impl_.instance_id_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.detail_, &other->_impl_.detail_, arena);
   swap(_impl_.status_, other->_impl_.status_);
 }

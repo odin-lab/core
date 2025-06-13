@@ -51,16 +51,16 @@ class Command(_message.Message):
     def __init__(self, init: _Optional[_Union[Init, _Mapping]] = ..., shutdown: _Optional[_Union[Shutdown, _Mapping]] = ...) -> None: ...
 
 class Status(_message.Message):
-    __slots__ = ("session_id", "module", "status", "detail")
+    __slots__ = ("session_id", "instance_id", "status", "detail")
     SESSION_ID_FIELD_NUMBER: _ClassVar[int]
-    MODULE_FIELD_NUMBER: _ClassVar[int]
+    INSTANCE_ID_FIELD_NUMBER: _ClassVar[int]
     STATUS_FIELD_NUMBER: _ClassVar[int]
     DETAIL_FIELD_NUMBER: _ClassVar[int]
     session_id: str
-    module: str
+    instance_id: str
     status: ModuleStatus
     detail: str
-    def __init__(self, session_id: _Optional[str] = ..., module: _Optional[str] = ..., status: _Optional[_Union[ModuleStatus, str]] = ..., detail: _Optional[str] = ...) -> None: ...
+    def __init__(self, session_id: _Optional[str] = ..., instance_id: _Optional[str] = ..., status: _Optional[_Union[ModuleStatus, str]] = ..., detail: _Optional[str] = ...) -> None: ...
 
 class ModuleBootup(_message.Message):
     __slots__ = ("type", "name", "instance_id", "started_at", "version", "host", "config_schema")

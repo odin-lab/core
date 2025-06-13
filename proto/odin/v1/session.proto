@@ -34,7 +34,7 @@ message Command {
 
 message Status {
   string       session_id = 1;
-  string       module     = 2;
+  string       instance_id = 2;
   ModuleStatus status     = 3;
   string       detail     = 4;   // error text if FAILED
 }
