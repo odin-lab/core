@@ -110,7 +110,7 @@ class BaseModule(ABC):
         self.nc = nc
         self.name = name
         self.type = type
-        self.instance_id = f"{type}-{name}-{uuid.uuid4()[:6]}"
+        self.instance_id = f"{session_dec.ModuleType.Name(type).lower()}-{name}-{str(uuid.uuid4())[:6]}"
         self.queue_group = queue_group or f"{name}_workers"
         self.sessions: Dict[str, BaseSession] = {}
         self.version = version
@@ -140,7 +140,7 @@ class BaseModule(ABC):
         # Subscribe to commands
         subj = f"session.*.{self.instance_id}.cmd"
         await self.nc.subscribe(subj, queue=self.queue_group, cb=self._on_command)
-        log.info("%s subscribed on %s (q=%s)", self.name, subj, self.queue_group)
+        log.info("%s subscribed on %s (q=%s)", self.instance_id, subj, self.queue_group)
 
     async def stop(self) -> None:
         """Graceful shutdown - remove from registry"""
@@ -153,9 +153,9 @@ class BaseModule(ABC):
 
         # Remove from KV store
         if self.kv:
-            key = f"{self.name}"
-            await self.kv.delete(key)
-            log.info(f"Removed {self.name} from registry")
+            await self.kv.purge(f"{self.instance_id}.bootup")
+            await self.kv.purge(f"{self.instance_id}.heartbeat")
+            log.info(f"Removed {self.instance_id} from registry")
 
     # ---- KV store operations --------------------------------------------
     async def _publish_bootup(self) -> None:
@@ -172,13 +172,12 @@ class BaseModule(ABC):
 
         key = f"{self.instance_id}.bootup"
         await self.kv.put(key, bootup.SerializeToString())
-        log.info(f"Published bootup for {self.name}")
+        log.info(f"Published bootup for {self.instance_id}")
 
     async def _heartbeat_loop(self) -> None:
         """Periodically update heartbeat in KV store"""
         while True:
             try:
-                await asyncio.sleep(30)  # Heartbeat every 30 seconds
 
                 heartbeat = session_dec.ModuleHeartbeat(
                     instance_id=self.instance_id,
@@ -189,6 +188,8 @@ class BaseModule(ABC):
 
                 key = f"{self.instance_id}.heartbeat"
                 await self.kv.put(key, heartbeat.SerializeToString())
+
+                await asyncio.sleep(30)  # Heartbeat every 30 seconds
 
             except asyncio.CancelledError:
                 break
@@ -254,9 +255,9 @@ class BaseModule(ABC):
             try:
                 await self.nc.publish(
                     reply,
-                    session.Status(
+                    session_dec.Status(
                         session_id=sess_id,
-                        module=self.name,
+                        instance_id=self.instance_id,
                         status=ModuleStatus.FAILED,
                         detail=err,
                     ).SerializeToString(),
@@ -271,9 +272,9 @@ class BaseModule(ABC):
             # Nothing to clean, but still respond so SessionManager unblocks.
             await self.nc.publish(
                 reply,
-                session.Status(
+                session_dec.Status(
                     session_id=sess_id,
-                    module=self.name,
+                    instance_id=self.instance_id,
                     status=ModuleStatus.DISCONNECTED,
                     detail="unknown session",
                 ).SerializeToString(),
@@ -284,9 +285,9 @@ class BaseModule(ABC):
         await session.publish_status(ModuleStatus.DISCONNECTED)
         await self.nc.publish(
             reply,
-            session.Status(
+            session_dec.Status(
                 session_id=sess_id,
-                module=self.name,
+                instance_id=self.instance_id,
                 status=ModuleStatus.DISCONNECTED,
             ).SerializeToString(),
         )
@@ -304,9 +305,9 @@ class BaseModule(ABC):
 class SessionManager:
     """Start / stop multi‑module sessions and wait for them to become RUNNING."""
 
-    def __init__(self, nc: NATS, modules: List[str]):
+    def __init__(self, nc: NATS, instances: List[str]):
         self.nc = nc
-        self.modules = modules
+        self.instances = instances
         # Store status updates by session_id -> module -> status
         self.session_statuses: Dict[str, Dict[str, ModuleStatus]] = {}
 
@@ -325,9 +326,9 @@ class SessionManager:
                 if sess_id not in self.session_statuses:
                     self.session_statuses[sess_id] = {}
 
-                self.session_statuses[sess_id][st.module] = st.status
+                self.session_statuses[sess_id][st.instance_id] = st.status
                 log.debug(
-                    f"Stored status for session {sess_id}, module {st.module}: {st.status}"
+                    f"Stored status for session {sess_id}, instance {st.instance_id}: {st.status}"
                 )
         except Exception as e:
             log.error(f"Failed to parse status message: {e}")
@@ -346,10 +347,10 @@ class SessionManager:
         try:
             # 1) Send Init commands in parallel and wait for INITIALIZING / FAILED replies.
             init_tasks: Dict[str, "asyncio.Task[bytes]"] = {}
-            for m in self.modules:
-                cmd_subj = f"session.{sess_id}.{m}.cmd"
+            for instance in self.instances:
+                cmd_subj = f"session.{sess_id}.{instance}.cmd"
                 cmd = session_dec.Command(
-                    init=session_dec.Init(session_id=sess_id, config=configs[m])
+                    init=session_dec.Init(session_id=sess_id, config=configs[instance])
                 )
                 log.debug(f"Sending init command to {cmd_subj}")
                 init_tasks[cmd_subj] = asyncio.create_task(
@@ -357,17 +358,17 @@ class SessionManager:
                 )
 
             # Gather first replies – they unblock the request‑reply wait.
-            for m, t in init_tasks.items():
-                log.info(f"Starting {m}")
+            for instance, t in init_tasks.items():
+                log.info(f"Starting {instance}")
                 try:
                     msg = await t
                 except asyncio.TimeoutError as te:  # noqa: PERF203 – keep explicit
-                    raise RuntimeError(f"{m} did not ACK in {timeout}s") from te
+                    raise RuntimeError(f"{instance} did not ACK in {timeout}s") from te
                 except Exception as e:
-                    log.error(f"Error waiting for reply from {m}: {e}")
+                    log.error(f"Error waiting for reply from {instance}: {e}")
                     raise e
 
-                log.debug(f"Received reply from {m}, type: {type(msg)}")
+                log.debug(f"Received reply from {instance}, type: {type(msg)}")
 
                 # Check if msg is bytes or a Message object
                 if hasattr(msg, "data"):
@@ -375,14 +376,16 @@ class SessionManager:
                 else:
                     data = msg
 
-                log.debug(f"Reply data from {m}: {len(data)} bytes")
+                log.debug(f"Reply data from {instance}: {len(data)} bytes")
                 try:
                     st = session_dec.Status()
                     st.ParseFromString(data)
                     if st.status == ModuleStatus.FAILED:
-                        raise RuntimeError(f"{m} failed during init: {st.detail}")
+                        raise RuntimeError(
+                            f"{instance} failed during init: {st.detail}"
+                        )
                 except Exception as e:
-                    log.error(f"Failed to parse reply from {m}: {e}")
+                    log.error(f"Failed to parse reply from {instance}: {e}")
                     log.error(f"Reply data (first 100 bytes): {data[:100]}")
                     raise
 
@@ -397,7 +400,7 @@ class SessionManager:
     async def stop_session(self, sess_id: str, *, timeout: float = 0.1) -> None:
         """Gracefully tear‑down all modules."""
         shutdown_tasks: Dict[str, "asyncio.Task[bytes]"] = {}
-        for m in self.modules:
+        for m in self.instances:
             log.info(f"Stopping {m}")
             subj = f"session.{sess_id}.{m}.cmd"
             cmd = session_dec.Command(shutdown=session_dec.Shutdown(session_id=sess_id))
@@ -436,14 +439,14 @@ class SessionManager:
             statuses = self.session_statuses.get(sess_id, {})
 
             # Check if all modules are RUNNING
-            if len(statuses) == len(self.modules) and all(
-                statuses.get(m) == ModuleStatus.RUNNING for m in self.modules
+            if len(statuses) == len(self.instances) and all(
+                statuses.get(m) == ModuleStatus.RUNNING for m in self.instances
             ):
                 log.info(f"All started modules are RUNNING")
                 return
 
             # Check for any failures
-            for m in self.modules:
+            for m in self.instances:
                 status = statuses.get(m)
                 if status == ModuleStatus.FAILED:
                     raise RuntimeError(f"Module {m} failed during initialization")
@@ -454,7 +457,7 @@ class SessionManager:
         # Timeout - report which modules aren't ready
         statuses = self.session_statuses.get(sess_id, {})
         not_running = []
-        for m in self.modules:
+        for m in self.instances:
             status = statuses.get(m)
             if status != ModuleStatus.RUNNING:
                 not_running.append(
