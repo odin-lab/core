@@ -26,7 +26,7 @@ from odin.v1 import common_pb2 as odin_dot_v1_dot_common__pb2
 from odin.v1 import options_pb2 as odin_dot_v1_dot_options__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x13odin/v1/audio.proto\x12\x07odin.v1\x1a\x14odin/v1/common.proto\x1a\x15odin/v1/options.proto\"\x83\x01\n\x0e\x41udioBufferMic\x12(\n\x05\x61udio\x18\x01 \x01(\x0b\x32\x12.odin.v1.AudioDataR\x05\x61udio\x12\x1b\n\tclient_id\x18\x02 \x01(\tR\x08\x63lientId:*\xa2\xb5\x18&audio.{session_id}.{module_name}.input\"\x95\x01\n\x12\x41udioBufferSpeaker\x12(\n\x05\x61udio\x18\x01 \x01(\x0b\x32\x12.odin.v1.AudioDataR\x05\x61udio\x12(\n\x04info\x18\x02 \x01(\x0b\x32\x14.odin.v1.MessageInfoR\x04info:+\xa2\xb5\x18\'audio.{session_id}.{instance_id}.outputBV\n\x0b\x63om.odin.v1B\nAudioProtoP\x01\xa2\x02\x03OXX\xaa\x02\x07Odin.V1\xca\x02\x07Odin\\V1\xe2\x02\x13Odin\\V1\\GPBMetadata\xea\x02\x08Odin::V1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x13odin/v1/audio.proto\x12\x07odin.v1\x1a\x14odin/v1/common.proto\x1a\x15odin/v1/options.proto\"\x90\x01\n\x0e\x41udioBufferMic\x12(\n\x05\x61udio\x18\x01 \x01(\x0b\x32\x12.odin.v1.AudioDataR\x05\x61udio\x12(\n\x04info\x18\x02 \x01(\x0b\x32\x14.odin.v1.MessageInfoR\x04info:*\xa2\xb5\x18&audio.{session_id}.{module_name}.input\"\x95\x01\n\x12\x41udioBufferSpeaker\x12(\n\x05\x61udio\x18\x01 \x01(\x0b\x32\x12.odin.v1.AudioDataR\x05\x61udio\x12(\n\x04info\x18\x02 \x01(\x0b\x32\x14.odin.v1.MessageInfoR\x04info:+\xa2\xb5\x18\'audio.{session_id}.{instance_id}.outputBV\n\x0b\x63om.odin.v1B\nAudioProtoP\x01\xa2\x02\x03OXX\xaa\x02\x07Odin.V1\xca\x02\x07Odin\\V1\xe2\x02\x13Odin\\V1\\GPBMetadata\xea\x02\x08Odin::V1b\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -39,7 +39,7 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_AUDIOBUFFERSPEAKER']._loaded_options = None
   _globals['_AUDIOBUFFERSPEAKER']._serialized_options = b'\242\265\030\'audio.{session_id}.{instance_id}.output'
   _globals['_AUDIOBUFFERMIC']._serialized_start=78
-  _globals['_AUDIOBUFFERMIC']._serialized_end=209
-  _globals['_AUDIOBUFFERSPEAKER']._serialized_start=212
-  _globals['_AUDIOBUFFERSPEAKER']._serialized_end=361
+  _globals['_AUDIOBUFFERMIC']._serialized_end=222
+  _globals['_AUDIOBUFFERSPEAKER']._serialized_start=225
+  _globals['_AUDIOBUFFERSPEAKER']._serialized_end=374
 # @@protoc_insertion_point(module_scope)

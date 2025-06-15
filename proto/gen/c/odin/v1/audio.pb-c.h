@@ -34,11 +34,11 @@ struct  Odin__V1__AudioBufferMic
 {
   ProtobufCMessage base;
   Odin__V1__AudioData *audio;
-  char *client_id;
+  Odin__V1__MessageInfo *info;
 };
 #define ODIN__V1__AUDIO_BUFFER_MIC__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&odin__v1__audio_buffer_mic__descriptor) \
-    , NULL, (char *)protobuf_c_empty_string }
+    , NULL, NULL }
 
 
 /*

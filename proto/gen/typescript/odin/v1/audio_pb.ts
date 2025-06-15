@@ -13,7 +13,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file odin/v1/audio.proto.
  */
 export const file_odin_v1_audio: GenFile = /*@__PURE__*/
-  fileDesc("ChNvZGluL3YxL2F1ZGlvLnByb3RvEgdvZGluLnYxInIKDkF1ZGlvQnVmZmVyTWljEiEKBWF1ZGlvGAEgASgLMhIub2Rpbi52MS5BdWRpb0RhdGESEQoJY2xpZW50X2lkGAIgASgJOiqitRgmYXVkaW8ue3Nlc3Npb25faWR9Lnttb2R1bGVfbmFtZX0uaW5wdXQiiAEKEkF1ZGlvQnVmZmVyU3BlYWtlchIhCgVhdWRpbxgBIAEoCzISLm9kaW4udjEuQXVkaW9EYXRhEiIKBGluZm8YAiABKAsyFC5vZGluLnYxLk1lc3NhZ2VJbmZvOiuitRgnYXVkaW8ue3Nlc3Npb25faWR9LntpbnN0YW5jZV9pZH0ub3V0cHV0QlYKC2NvbS5vZGluLnYxQgpBdWRpb1Byb3RvUAGiAgNPWFiqAgdPZGluLlYxygIHT2RpblxWMeICE09kaW5cVjFcR1BCTWV0YWRhdGHqAghPZGluOjpWMWIGcHJvdG8z", [file_odin_v1_common, file_odin_v1_options]);
+  fileDesc("ChNvZGluL3YxL2F1ZGlvLnByb3RvEgdvZGluLnYxIoMBCg5BdWRpb0J1ZmZlck1pYxIhCgVhdWRpbxgBIAEoCzISLm9kaW4udjEuQXVkaW9EYXRhEiIKBGluZm8YAiABKAsyFC5vZGluLnYxLk1lc3NhZ2VJbmZvOiqitRgmYXVkaW8ue3Nlc3Npb25faWR9Lnttb2R1bGVfbmFtZX0uaW5wdXQiiAEKEkF1ZGlvQnVmZmVyU3BlYWtlchIhCgVhdWRpbxgBIAEoCzISLm9kaW4udjEuQXVkaW9EYXRhEiIKBGluZm8YAiABKAsyFC5vZGluLnYxLk1lc3NhZ2VJbmZvOiuitRgnYXVkaW8ue3Nlc3Npb25faWR9LntpbnN0YW5jZV9pZH0ub3V0cHV0QlYKC2NvbS5vZGluLnYxQgpBdWRpb1Byb3RvUAGiAgNPWFiqAgdPZGluLlYxygIHT2RpblxWMeICE09kaW5cVjFcR1BCTWV0YWRhdGHqAghPZGluOjpWMWIGcHJvdG8z", [file_odin_v1_common, file_odin_v1_options]);
 
 /**
  * Raw audio data chunks from microphone input
@@ -28,9 +28,9 @@ export type AudioBufferMic = Message<"odin.v1.AudioBufferMic"> & {
   audio?: AudioData;
 
   /**
-   * @generated from field: string client_id = 2;
+   * @generated from field: odin.v1.MessageInfo info = 2;
    */
-  clientId: string;
+  info?: MessageInfo;
 };
 
 /**

@@ -112,21 +112,21 @@ static const ProtobufCFieldDescriptor odin__v1__audio_buffer_mic__field_descript
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "client_id",
+    "info",
     2,
     PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_STRING,
+    PROTOBUF_C_TYPE_MESSAGE,
     0,   /* quantifier_offset */
-    offsetof(Odin__V1__AudioBufferMic, client_id),
+    offsetof(Odin__V1__AudioBufferMic, info),
+    &odin__v1__message_info__descriptor,
     NULL,
-    &protobuf_c_empty_string,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
 };
 static const unsigned odin__v1__audio_buffer_mic__field_indices_by_name[] = {
   0,   /* field[0] = audio */
-  1,   /* field[1] = client_id */
+  1,   /* field[1] = info */
 };
 static const ProtobufCIntRange odin__v1__audio_buffer_mic__number_ranges[1 + 1] =
 {

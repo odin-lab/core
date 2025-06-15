@@ -11,7 +11,7 @@ message AudioBufferMic {
   option (odin.v1.nats_subject_pattern) = "audio.{session_id}.{module_name}.input";
 
   AudioData audio = 1;
-  string client_id = 2;
+  MessageInfo info = 2;
 }
 
 // Generated speech audio from TTS
