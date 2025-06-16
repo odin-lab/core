@@ -202,11 +202,11 @@ class BaseModule(ABC):
     # ---- NATS message callback ------------------------------------------
     async def _on_command(self, msg):  # noqa: ANN001 – nats.Msg
         """Handle Init / Shutdown commands coming from the SessionManager."""
-        log.debug(f"{self.name} received command on subject: {msg.subject}")
+        log.info(f"{self.name} received command on subject: {msg.subject}")
 
         try:
             cmd = session_dec.Command.FromString(msg.data)
-            log.debug(f"{self.name} parsed command successfully")
+            log.info(f"{self.name} parsed command successfully")
         except Exception as e:
             log.error(f"{self.name} failed to parse command: {e}")
             return
@@ -214,11 +214,11 @@ class BaseModule(ABC):
         if cmd.HasField("init"):
             sess_id = cmd.init.session_id
             cfg = cmd.init.config
-            log.debug(f"{self.name} handling init command for session {sess_id}")
+            log.info(f"{self.name} handling init command for session {sess_id}")
             await self._handle_init(sess_id, cfg, msg.reply)
         elif cmd.HasField("shutdown"):
             sess_id = cmd.shutdown.session_id
-            log.debug(f"{self.name} handling shutdown command for session {sess_id}")
+            log.info(f"{self.name} handling shutdown command for session {sess_id}")
             await self._handle_shutdown(sess_id, msg.reply)
         else:
             log.warning("Unknown command received by %s", self.name)
@@ -226,7 +226,7 @@ class BaseModule(ABC):
     # ---- command handlers ----------------------------------------------
     async def _handle_init(self, sess_id: str, cfg: bytes, reply: str) -> None:
         try:
-            log.debug(f"Handling init for session {sess_id}, reply subject: {reply}")
+            log.info(f"Handling init for session {sess_id}, reply subject: {reply}")
 
             # Quick ACK so requester can unblock - use regular NATS, not JetStream
             await self.nc.publish(
@@ -237,15 +237,15 @@ class BaseModule(ABC):
                     status=ModuleStatus.INITIALIZING,
                 ).SerializeToString(),
             )
-            log.debug(f"Sent INITIALIZING status for {self.name}")
+            log.info(f"Sent INITIALIZING status for {self.name}")
 
             session = await self.create_session(sess_id, cfg)
-            log.debug(f"Created session object for {self.name}")
+            log.info(f"Created session object for {self.name}")
             self.sessions[sess_id] = session
 
-            log.debug(f"Starting initialization for {self.name}")
+            log.info(f"Starting initialization for {self.name}")
             await session.initialize()
-            log.debug(f"Completed initialization for {self.name}")
+            log.info(f"Completed initialization for {self.name}")
 
             # This one uses regular NATS for status updates
             await session.publish_status(ModuleStatus.RUNNING)

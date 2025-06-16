@@ -815,19 +815,21 @@ const ProtobufCEnumDescriptor odin__v1__module_status__descriptor =
   odin__v1__module_status__value_ranges,
   NULL,NULL,NULL,NULL   /* reserved[1234] */
 };
-static const ProtobufCEnumValue odin__v1__module_type__enum_values_by_number[4] =
+static const ProtobufCEnumValue odin__v1__module_type__enum_values_by_number[5] =
 {
   { "STT", "ODIN__V1__MODULE_TYPE__STT", 0 },
   { "TTS", "ODIN__V1__MODULE_TYPE__TTS", 1 },
   { "AGENT", "ODIN__V1__MODULE_TYPE__AGENT", 2 },
   { "TURN", "ODIN__V1__MODULE_TYPE__TURN", 3 },
+  { "RECORDER", "ODIN__V1__MODULE_TYPE__RECORDER", 4 },
 };
 static const ProtobufCIntRange odin__v1__module_type__value_ranges[] = {
-{0, 0},{0, 4}
+{0, 0},{0, 5}
 };
-static const ProtobufCEnumValueIndex odin__v1__module_type__enum_values_by_name[4] =
+static const ProtobufCEnumValueIndex odin__v1__module_type__enum_values_by_name[5] =
 {
   { "AGENT", 2 },
+  { "RECORDER", 4 },
   { "STT", 0 },
   { "TTS", 1 },
   { "TURN", 3 },
@@ -839,9 +841,9 @@ const ProtobufCEnumDescriptor odin__v1__module_type__descriptor =
   "ModuleType",
   "Odin__V1__ModuleType",
   "odin.v1",
-  4,
+  5,
   odin__v1__module_type__enum_values_by_number,
-  4,
+  5,
   odin__v1__module_type__enum_values_by_name,
   1,
   odin__v1__module_type__value_ranges,
