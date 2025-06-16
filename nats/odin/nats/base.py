@@ -26,6 +26,7 @@ from nats.js import JetStreamContext
 from nats.js.kv import KeyValue
 
 # Import from the odin-proto package
+from odin.nats.observability import setup_tracing
 from odin.v1 import session_pb2 as session_dec
 
 
@@ -117,6 +118,8 @@ class BaseModule(ABC):
         self.kv = None
         self.heartbeat_task = None
         self.config_schema = config_schema
+
+        setup_tracing(self.instance_id)
 
     # ---- public bootstrap -----------------------------------------------
     async def start(self) -> None:
