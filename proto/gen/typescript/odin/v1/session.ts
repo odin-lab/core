@@ -7,6 +7,7 @@
 /* eslint-disable */
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
 import { FileDescriptorProto as FileDescriptorProto1 } from "ts-proto-descriptors";
+import { protoMetadata as protoMetadata1 } from "./options";
 
 export const protobufPackage = "odin.v1";
 
@@ -880,7 +881,7 @@ export const protoMetadata = {
   fileDescriptor: {
     "name": "odin/v1/session.proto",
     "package": "odin.v1",
-    "dependency": [],
+    "dependency": ["odin/v1/options.proto"],
     "publicDependency": [],
     "weakDependency": [],
     "messageType": [{
@@ -973,7 +974,13 @@ export const protoMetadata = {
       "enumType": [],
       "extensionRange": [],
       "oneofDecl": [{ "name": "cmd", "options": undefined }],
-      "options": undefined,
+      "options": {
+        "messageSetWireFormat": false,
+        "noStandardDescriptorAccessor": false,
+        "deprecated": false,
+        "mapEntry": false,
+        "uninterpretedOption": [],
+      },
       "reservedRange": [],
       "reservedName": [],
     }, {
@@ -1277,61 +1284,61 @@ export const protoMetadata = {
     "sourceCodeInfo": {
       "location": [{
         "path": [4, 3, 2, 3],
-        "span": [39, 2, 30],
+        "span": [43, 2, 30],
         "leadingComments": "",
         "trailingComments": " error text if FAILED\n",
         "leadingDetachedComments": [],
       }, {
         "path": [4, 4],
-        "span": [43, 0, 51, 1],
+        "span": [47, 0, 55, 1],
         "leadingComments": " New messages for module bootup tracking\n",
         "trailingComments": "",
         "leadingDetachedComments": [],
       }, {
         "path": [4, 4, 2, 1],
-        "span": [45, 2, 18],
+        "span": [49, 2, 18],
         "leadingComments": "",
         "trailingComments": " name of the module (eg. whisper-live for stt)\n",
         "leadingDetachedComments": [],
       }, {
         "path": [4, 4, 2, 2],
-        "span": [46, 2, 25],
+        "span": [50, 2, 25],
         "leadingComments": "",
         "trailingComments": " semi random id\n",
         "leadingDetachedComments": [],
       }, {
         "path": [4, 4, 2, 3],
-        "span": [47, 2, 25],
+        "span": [51, 2, 25],
         "leadingComments": "",
         "trailingComments": " Unix timestamp\n",
         "leadingDetachedComments": [],
       }, {
         "path": [4, 4, 2, 4],
-        "span": [48, 2, 25],
+        "span": [52, 2, 25],
         "leadingComments": "",
         "trailingComments": " module version\n",
         "leadingDetachedComments": [],
       }, {
         "path": [4, 4, 2, 5],
-        "span": [49, 2, 25],
+        "span": [53, 2, 25],
         "leadingComments": "",
         "trailingComments": " hostname/IP where module is running\n",
         "leadingDetachedComments": [],
       }, {
         "path": [4, 4, 2, 6],
-        "span": [50, 2, 27],
+        "span": [54, 2, 27],
         "leadingComments": "",
         "trailingComments": " JSON schema for module config\n",
         "leadingDetachedComments": [],
       }, {
         "path": [4, 5, 2, 1],
-        "span": [55, 2, 25],
+        "span": [59, 2, 25],
         "leadingComments": "",
         "trailingComments": " Unix timestamp of heartbeat\n",
         "leadingDetachedComments": [],
       }, {
         "path": [4, 5, 2, 3],
-        "span": [57, 2, 29],
+        "span": [61, 2, 29],
         "leadingComments": "",
         "trailingComments": " number of active sessions\n",
         "leadingDetachedComments": [],
@@ -1350,7 +1357,8 @@ export const protoMetadata = {
     ".odin.v1.ModuleHeartbeat": ModuleHeartbeat,
     ".odin.v1.ModuleRegistry": ModuleRegistry,
   },
-  dependencies: [],
+  dependencies: [protoMetadata1],
+  options: { messages: { "Command": { options: { "nats_subject": "session.{session_id}.{instance_id}.cmd" } } } },
 } as const satisfies ProtoMetadata;
 
 function bytesFromBase64(b64: string): Uint8Array {

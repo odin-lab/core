@@ -7,11 +7,7 @@
 /* eslint-disable */
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
 import { FileDescriptorProto as FileDescriptorProto1 } from "ts-proto-descriptors";
-import {
-  AudioData,
-  MessageInfo,
-  protoMetadata as protoMetadata1,
-} from "./common";
+import { AudioData, MessageInfo, protoMetadata as protoMetadata1 } from "./common";
 import { protoMetadata as protoMetadata2 } from "./options";
 
 export const protobufPackage = "odin.v1";
@@ -39,10 +35,7 @@ function createBaseAudioBufferMic(): AudioBufferMic {
 }
 
 export const AudioBufferMic: MessageFns<AudioBufferMic> = {
-  encode(
-    message: AudioBufferMic,
-    writer: BinaryWriter = new BinaryWriter()
-  ): BinaryWriter {
+  encode(message: AudioBufferMic, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
     if (message.audio !== undefined) {
       AudioData.encode(message.audio, writer.uint32(10).fork()).join();
     }
@@ -53,8 +46,7 @@ export const AudioBufferMic: MessageFns<AudioBufferMic> = {
   },
 
   decode(input: BinaryReader | Uint8Array, length?: number): AudioBufferMic {
-    const reader =
-      input instanceof BinaryReader ? input : new BinaryReader(input);
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseAudioBufferMic();
     while (reader.pos < end) {
@@ -103,23 +95,17 @@ export const AudioBufferMic: MessageFns<AudioBufferMic> = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<AudioBufferMic>, I>>(
-    base?: I
-  ): AudioBufferMic {
+  create<I extends Exact<DeepPartial<AudioBufferMic>, I>>(base?: I): AudioBufferMic {
     return AudioBufferMic.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<AudioBufferMic>, I>>(
-    object: I
-  ): AudioBufferMic {
+  fromPartial<I extends Exact<DeepPartial<AudioBufferMic>, I>>(object: I): AudioBufferMic {
     const message = createBaseAudioBufferMic();
-    message.audio =
-      object.audio !== undefined && object.audio !== null
-        ? AudioData.fromPartial(object.audio)
-        : undefined;
-    message.info =
-      object.info !== undefined && object.info !== null
-        ? MessageInfo.fromPartial(object.info)
-        : undefined;
+    message.audio = (object.audio !== undefined && object.audio !== null)
+      ? AudioData.fromPartial(object.audio)
+      : undefined;
+    message.info = (object.info !== undefined && object.info !== null)
+      ? MessageInfo.fromPartial(object.info)
+      : undefined;
     return message;
   },
 };
@@ -129,10 +115,7 @@ function createBaseAudioBufferSpeaker(): AudioBufferSpeaker {
 }
 
 export const AudioBufferSpeaker: MessageFns<AudioBufferSpeaker> = {
-  encode(
-    message: AudioBufferSpeaker,
-    writer: BinaryWriter = new BinaryWriter()
-  ): BinaryWriter {
+  encode(message: AudioBufferSpeaker, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
     if (message.audio !== undefined) {
       AudioData.encode(message.audio, writer.uint32(10).fork()).join();
     }
@@ -142,12 +125,8 @@ export const AudioBufferSpeaker: MessageFns<AudioBufferSpeaker> = {
     return writer;
   },
 
-  decode(
-    input: BinaryReader | Uint8Array,
-    length?: number
-  ): AudioBufferSpeaker {
-    const reader =
-      input instanceof BinaryReader ? input : new BinaryReader(input);
+  decode(input: BinaryReader | Uint8Array, length?: number): AudioBufferSpeaker {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseAudioBufferSpeaker();
     while (reader.pos < end) {
@@ -196,23 +175,17 @@ export const AudioBufferSpeaker: MessageFns<AudioBufferSpeaker> = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<AudioBufferSpeaker>, I>>(
-    base?: I
-  ): AudioBufferSpeaker {
+  create<I extends Exact<DeepPartial<AudioBufferSpeaker>, I>>(base?: I): AudioBufferSpeaker {
     return AudioBufferSpeaker.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<AudioBufferSpeaker>, I>>(
-    object: I
-  ): AudioBufferSpeaker {
+  fromPartial<I extends Exact<DeepPartial<AudioBufferSpeaker>, I>>(object: I): AudioBufferSpeaker {
     const message = createBaseAudioBufferSpeaker();
-    message.audio =
-      object.audio !== undefined && object.audio !== null
-        ? AudioData.fromPartial(object.audio)
-        : undefined;
-    message.info =
-      object.info !== undefined && object.info !== null
-        ? MessageInfo.fromPartial(object.info)
-        : undefined;
+    message.audio = (object.audio !== undefined && object.audio !== null)
+      ? AudioData.fromPartial(object.audio)
+      : undefined;
+    message.info = (object.info !== undefined && object.info !== null)
+      ? MessageInfo.fromPartial(object.info)
+      : undefined;
     return message;
   },
 };
@@ -231,214 +204,169 @@ export interface ProtoMetadata {
   options?: {
     options?: { [key: string]: any };
     services?: {
-      [key: string]: {
-        options?: { [key: string]: any };
-        methods?: { [key: string]: { [key: string]: any } };
-      };
+      [key: string]: { options?: { [key: string]: any }; methods?: { [key: string]: { [key: string]: any } } };
     };
     messages?: { [key: string]: ProtoMetaMessageOptions };
-    enums?: {
-      [key: string]: {
-        options?: { [key: string]: any };
-        values?: { [key: string]: { [key: string]: any } };
-      };
-    };
+    enums?: { [key: string]: { options?: { [key: string]: any }; values?: { [key: string]: { [key: string]: any } } } };
   };
 }
 
 export const protoMetadata = {
   fileDescriptor: {
-    name: "odin/v1/audio.proto",
-    package: "odin.v1",
-    dependency: ["odin/v1/common.proto", "odin/v1/options.proto"],
-    publicDependency: [],
-    weakDependency: [],
-    messageType: [
-      {
-        name: "AudioBufferMic",
-        field: [
-          {
-            name: "audio",
-            number: 1,
-            label: 1,
-            type: 11,
-            typeName: ".odin.v1.AudioData",
-            extendee: "",
-            defaultValue: "",
-            oneofIndex: 0,
-            jsonName: "audio",
-            options: undefined,
-            proto3Optional: false,
-          },
-          {
-            name: "info",
-            number: 2,
-            label: 1,
-            type: 11,
-            typeName: ".odin.v1.MessageInfo",
-            extendee: "",
-            defaultValue: "",
-            oneofIndex: 0,
-            jsonName: "info",
-            options: undefined,
-            proto3Optional: false,
-          },
-        ],
-        extension: [],
-        nestedType: [],
-        enumType: [],
-        extensionRange: [],
-        oneofDecl: [],
-        options: {
-          messageSetWireFormat: false,
-          noStandardDescriptorAccessor: false,
-          deprecated: false,
-          mapEntry: false,
-          uninterpretedOption: [],
-        },
-        reservedRange: [],
-        reservedName: [],
+    "name": "odin/v1/audio.proto",
+    "package": "odin.v1",
+    "dependency": ["odin/v1/common.proto", "odin/v1/options.proto"],
+    "publicDependency": [],
+    "weakDependency": [],
+    "messageType": [{
+      "name": "AudioBufferMic",
+      "field": [{
+        "name": "audio",
+        "number": 1,
+        "label": 1,
+        "type": 11,
+        "typeName": ".odin.v1.AudioData",
+        "extendee": "",
+        "defaultValue": "",
+        "oneofIndex": 0,
+        "jsonName": "audio",
+        "options": undefined,
+        "proto3Optional": false,
+      }, {
+        "name": "info",
+        "number": 2,
+        "label": 1,
+        "type": 11,
+        "typeName": ".odin.v1.MessageInfo",
+        "extendee": "",
+        "defaultValue": "",
+        "oneofIndex": 0,
+        "jsonName": "info",
+        "options": undefined,
+        "proto3Optional": false,
+      }],
+      "extension": [],
+      "nestedType": [],
+      "enumType": [],
+      "extensionRange": [],
+      "oneofDecl": [],
+      "options": {
+        "messageSetWireFormat": false,
+        "noStandardDescriptorAccessor": false,
+        "deprecated": false,
+        "mapEntry": false,
+        "uninterpretedOption": [],
       },
-      {
-        name: "AudioBufferSpeaker",
-        field: [
-          {
-            name: "audio",
-            number: 1,
-            label: 1,
-            type: 11,
-            typeName: ".odin.v1.AudioData",
-            extendee: "",
-            defaultValue: "",
-            oneofIndex: 0,
-            jsonName: "audio",
-            options: undefined,
-            proto3Optional: false,
-          },
-          {
-            name: "info",
-            number: 2,
-            label: 1,
-            type: 11,
-            typeName: ".odin.v1.MessageInfo",
-            extendee: "",
-            defaultValue: "",
-            oneofIndex: 0,
-            jsonName: "info",
-            options: undefined,
-            proto3Optional: false,
-          },
-        ],
-        extension: [],
-        nestedType: [],
-        enumType: [],
-        extensionRange: [],
-        oneofDecl: [],
-        options: {
-          messageSetWireFormat: false,
-          noStandardDescriptorAccessor: false,
-          deprecated: false,
-          mapEntry: false,
-          uninterpretedOption: [],
-        },
-        reservedRange: [],
-        reservedName: [],
+      "reservedRange": [],
+      "reservedName": [],
+    }, {
+      "name": "AudioBufferSpeaker",
+      "field": [{
+        "name": "audio",
+        "number": 1,
+        "label": 1,
+        "type": 11,
+        "typeName": ".odin.v1.AudioData",
+        "extendee": "",
+        "defaultValue": "",
+        "oneofIndex": 0,
+        "jsonName": "audio",
+        "options": undefined,
+        "proto3Optional": false,
+      }, {
+        "name": "info",
+        "number": 2,
+        "label": 1,
+        "type": 11,
+        "typeName": ".odin.v1.MessageInfo",
+        "extendee": "",
+        "defaultValue": "",
+        "oneofIndex": 0,
+        "jsonName": "info",
+        "options": undefined,
+        "proto3Optional": false,
+      }],
+      "extension": [],
+      "nestedType": [],
+      "enumType": [],
+      "extensionRange": [],
+      "oneofDecl": [],
+      "options": {
+        "messageSetWireFormat": false,
+        "noStandardDescriptorAccessor": false,
+        "deprecated": false,
+        "mapEntry": false,
+        "uninterpretedOption": [],
       },
-    ],
-    enumType: [],
-    service: [],
-    extension: [],
-    options: {
-      javaPackage: "com.odin.v1",
-      javaOuterClassname: "AudioProto",
-      javaMultipleFiles: true,
-      javaGenerateEqualsAndHash: false,
-      javaStringCheckUtf8: false,
-      optimizeFor: 1,
-      goPackage: "",
-      ccGenericServices: false,
-      javaGenericServices: false,
-      pyGenericServices: false,
-      phpGenericServices: false,
-      deprecated: false,
-      ccEnableArenas: true,
-      objcClassPrefix: "OXX",
-      csharpNamespace: "Odin.V1",
-      swiftPrefix: "",
-      phpClassPrefix: "",
-      phpNamespace: "Odin\\V1",
-      phpMetadataNamespace: "Odin\\V1\\GPBMetadata",
-      rubyPackage: "Odin::V1",
-      uninterpretedOption: [],
+      "reservedRange": [],
+      "reservedName": [],
+    }],
+    "enumType": [],
+    "service": [],
+    "extension": [],
+    "options": {
+      "javaPackage": "com.odin.v1",
+      "javaOuterClassname": "AudioProto",
+      "javaMultipleFiles": true,
+      "javaGenerateEqualsAndHash": false,
+      "javaStringCheckUtf8": false,
+      "optimizeFor": 1,
+      "goPackage": "",
+      "ccGenericServices": false,
+      "javaGenericServices": false,
+      "pyGenericServices": false,
+      "phpGenericServices": false,
+      "deprecated": false,
+      "ccEnableArenas": true,
+      "objcClassPrefix": "OXX",
+      "csharpNamespace": "Odin.V1",
+      "swiftPrefix": "",
+      "phpClassPrefix": "",
+      "phpNamespace": "Odin\\V1",
+      "phpMetadataNamespace": "Odin\\V1\\GPBMetadata",
+      "rubyPackage": "Odin::V1",
+      "uninterpretedOption": [],
     },
-    sourceCodeInfo: {
-      location: [
-        {
-          path: [4, 0],
-          span: [9, 0, 14, 1],
-          leadingComments:
-            " Raw audio data chunks from microphone input\n Subject pattern: audio.<session_id>.<module_name>.input\n",
-          trailingComments: "",
-          leadingDetachedComments: [],
-        },
-        {
-          path: [4, 1],
-          span: [18, 0, 23, 1],
-          leadingComments:
-            " Generated speech audio from TTS\n Subject pattern: audio.<session_id>.<module_name>.output\n",
-          trailingComments: "",
-          leadingDetachedComments: [],
-        },
-      ],
+    "sourceCodeInfo": {
+      "location": [{
+        "path": [4, 0],
+        "span": [9, 0, 14, 1],
+        "leadingComments":
+          " Raw audio data chunks from microphone input\n Subject pattern: audio.<session_id>.<module_name>.input\n",
+        "trailingComments": "",
+        "leadingDetachedComments": [],
+      }, {
+        "path": [4, 1],
+        "span": [18, 0, 23, 1],
+        "leadingComments":
+          " Generated speech audio from TTS\n Subject pattern: audio.<session_id>.<module_name>.output\n",
+        "trailingComments": "",
+        "leadingDetachedComments": [],
+      }],
     },
-    syntax: "proto3",
+    "syntax": "proto3",
   },
-  references: {
-    ".odin.v1.AudioBufferMic": AudioBufferMic,
-    ".odin.v1.AudioBufferSpeaker": AudioBufferSpeaker,
-  },
+  references: { ".odin.v1.AudioBufferMic": AudioBufferMic, ".odin.v1.AudioBufferSpeaker": AudioBufferSpeaker },
   dependencies: [protoMetadata1, protoMetadata2],
   options: {
     messages: {
-      AudioBufferMic: {
-        options: {
-          nats_subject_pattern: "audio.{session_id}.{instance_id}.input",
-        },
-      },
-      AudioBufferSpeaker: {
-        options: {
-          nats_subject_pattern: "audio.{session_id}.{instance_id}.output",
-        },
-      },
+      "AudioBufferMic": { options: { "nats_subject": "audio.{session_id}.{instance_id}.input" } },
+      "AudioBufferSpeaker": { options: { "nats_subject": "audio.{session_id}.{instance_id}.output" } },
     },
   },
 } as const satisfies ProtoMetadata;
 
-type Builtin =
-  | Date
-  | Function
-  | Uint8Array
-  | string
-  | number
-  | boolean
-  | undefined;
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin
-  ? T
-  : T extends globalThis.Array<infer U>
-  ? globalThis.Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U>
-  ? ReadonlyArray<DeepPartial<U>>
-  : T extends {}
-  ? { [K in keyof T]?: DeepPartial<T[K]> }
+export type DeepPartial<T> = T extends Builtin ? T
+  : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>>
+  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
+  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
   : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin
-  ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & {
-      [K in Exclude<keyof I, KeysOfUnion<P>>]: never;
-    };
+export type Exact<P, I extends P> = P extends Builtin ? P
+  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function isSet(value: any): boolean {
   return value !== null && value !== undefined;

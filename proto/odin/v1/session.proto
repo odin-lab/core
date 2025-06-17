@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+import "odin/v1/options.proto";
+
 package odin.v1;
 
 enum ModuleStatus {
@@ -27,6 +29,8 @@ message Shutdown {
 }
 
 message Command {
+  option (odin.v1.nats_subject) = "session.{session_id}.{instance_id}.cmd";
+
   oneof cmd {
     Init     init     = 1;
     Shutdown shutdown = 2;

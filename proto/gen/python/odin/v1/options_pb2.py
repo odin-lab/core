@@ -25,7 +25,7 @@ _sym_db = _symbol_database.Default()
 from google.protobuf import descriptor_pb2 as google_dot_protobuf_dot_descriptor__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x15odin/v1/options.proto\x12\x07odin.v1\x1a google/protobuf/descriptor.proto:D\n\x0cnats_subject\x12\x1f.google.protobuf.MessageOptions\x18\xd1\x86\x03 \x01(\tR\x0bnatsSubject:S\n\x14nats_subject_pattern\x12\x1f.google.protobuf.MessageOptions\x18\xd4\x86\x03 \x01(\tR\x12natsSubjectPattern:H\n\x0enats_jetstream\x12\x1f.google.protobuf.MessageOptions\x18\xd2\x86\x03 \x01(\x08R\rnatsJetstream:B\n\x0bnats_stream\x12\x1f.google.protobuf.MessageOptions\x18\xd3\x86\x03 \x01(\tR\nnatsStreamBX\n\x0b\x63om.odin.v1B\x0cOptionsProtoP\x01\xa2\x02\x03OXX\xaa\x02\x07Odin.V1\xca\x02\x07Odin\\V1\xe2\x02\x13Odin\\V1\\GPBMetadata\xea\x02\x08Odin::V1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x15odin/v1/options.proto\x12\x07odin.v1\x1a google/protobuf/descriptor.proto:D\n\x0cnats_subject\x12\x1f.google.protobuf.MessageOptions\x18\xd1\x86\x03 \x01(\tR\x0bnatsSubjectBX\n\x0b\x63om.odin.v1B\x0cOptionsProtoP\x01\xa2\x02\x03OXX\xaa\x02\x07Odin.V1\xca\x02\x07Odin\\V1\xe2\x02\x13Odin\\V1\\GPBMetadata\xea\x02\x08Odin::V1b\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)

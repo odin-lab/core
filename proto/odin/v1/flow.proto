@@ -9,21 +9,18 @@ import "odin/v1/session.proto";
 // Flow information with role and content
 message TurnDetected {
   option (odin.v1.nats_subject) = "flow.{session_id}.{instance_id}.turn_detected";
-  option (odin.v1.nats_jetstream) = true;
 
   MessageInfo info = 1;
 }
 
 message OdinStartSpeech {
   option (odin.v1.nats_subject) = "flow.{session_id}.{instance_id}.odin_start_speech";
-  option (odin.v1.nats_jetstream) = true;
 
   MessageInfo info = 1;
 }
 
 message OdinEndSpeech {
   option (odin.v1.nats_subject) = "flow.{session_id}.{instance_id}.odin_end_speech";
-  option (odin.v1.nats_jetstream) = true;
 
   MessageInfo info = 1;
 }

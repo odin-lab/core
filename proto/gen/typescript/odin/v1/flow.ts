@@ -351,7 +351,7 @@ export const protoMetadata = {
     "sourceCodeInfo": {
       "location": [{
         "path": [4, 0],
-        "span": [9, 0, 14, 1],
+        "span": [9, 0, 13, 1],
         "leadingComments": " Flow information with role and content\n",
         "trailingComments": "",
         "leadingDetachedComments": [],
@@ -367,15 +367,9 @@ export const protoMetadata = {
   dependencies: [protoMetadata1, protoMetadata2, protoMetadata3],
   options: {
     messages: {
-      "TurnDetected": {
-        options: { "nats_subject": "flow.{session_id}.{instance_id}.turn_detected", "nats_jetstream": true },
-      },
-      "OdinStartSpeech": {
-        options: { "nats_subject": "flow.{session_id}.{instance_id}.odin_start_speech", "nats_jetstream": true },
-      },
-      "OdinEndSpeech": {
-        options: { "nats_subject": "flow.{session_id}.{instance_id}.odin_end_speech", "nats_jetstream": true },
-      },
+      "TurnDetected": { options: { "nats_subject": "flow.{session_id}.{instance_id}.turn_detected" } },
+      "OdinStartSpeech": { options: { "nats_subject": "flow.{session_id}.{instance_id}.odin_start_speech" } },
+      "OdinEndSpeech": { options: { "nats_subject": "flow.{session_id}.{instance_id}.odin_end_speech" } },
     },
   },
 } as const satisfies ProtoMetadata;

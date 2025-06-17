@@ -142,18 +142,18 @@ const char descriptor_table_protodef_odin_2fv1_2fflow_2eproto[] ABSL_ATTRIBUTE_S
     protodesc_cold) = {
     "\n\022odin/v1/flow.proto\022\007odin.v1\032\024odin/v1/c"
     "ommon.proto\032\025odin/v1/options.proto\032\025odin"
-    "/v1/session.proto\"o\n\014TurnDetected\022(\n\004inf"
-    "o\030\001 \001(\0132\024.odin.v1.MessageInfoR\004info:5\212\265\030"
+    "/v1/session.proto\"k\n\014TurnDetected\022(\n\004inf"
+    "o\030\001 \001(\0132\024.odin.v1.MessageInfoR\004info:1\212\265\030"
     "-flow.{session_id}.{instance_id}.turn_de"
-    "tected\220\265\030\001\"v\n\017OdinStartSpeech\022(\n\004info\030\001 "
-    "\001(\0132\024.odin.v1.MessageInfoR\004info:9\212\265\0301flo"
-    "w.{session_id}.{instance_id}.odin_start_"
-    "speech\220\265\030\001\"r\n\rOdinEndSpeech\022(\n\004info\030\001 \001("
-    "\0132\024.odin.v1.MessageInfoR\004info:7\212\265\030/flow."
-    "{session_id}.{instance_id}.odin_end_spee"
-    "ch\220\265\030\001BU\n\013com.odin.v1B\tFlowProtoP\001\242\002\003OXX"
-    "\252\002\007Odin.V1\312\002\007Odin\\V1\342\002\023Odin\\V1\\GPBMetada"
-    "ta\352\002\010Odin::V1b\006proto3"
+    "tected\"r\n\017OdinStartSpeech\022(\n\004info\030\001 \001(\0132"
+    "\024.odin.v1.MessageInfoR\004info:5\212\265\0301flow.{s"
+    "ession_id}.{instance_id}.odin_start_spee"
+    "ch\"n\n\rOdinEndSpeech\022(\n\004info\030\001 \001(\0132\024.odin"
+    ".v1.MessageInfoR\004info:3\212\265\030/flow.{session"
+    "_id}.{instance_id}.odin_end_speechBU\n\013co"
+    "m.odin.v1B\tFlowProtoP\001\242\002\003OXX\252\002\007Odin.V1\312\002"
+    "\007Odin\\V1\342\002\023Odin\\V1\\GPBMetadata\352\002\010Odin::V"
+    "1b\006proto3"
 };
 static const ::_pbi::DescriptorTable* PROTOBUF_NONNULL const
     descriptor_table_odin_2fv1_2fflow_2eproto_deps[3] = {
@@ -165,7 +165,7 @@ static ::absl::once_flag descriptor_table_odin_2fv1_2fflow_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_odin_2fv1_2fflow_2eproto = {
     false,
     false,
-    541,
+    529,
     descriptor_table_protodef_odin_2fv1_2fflow_2eproto,
     "odin/v1/flow.proto",
     &descriptor_table_odin_2fv1_2fflow_2eproto_once,

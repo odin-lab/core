@@ -8,7 +8,7 @@ import "odin/v1/options.proto";
 // Raw audio data chunks from microphone input
 // Subject pattern: audio.<session_id>.<module_name>.input
 message AudioBufferMic {
-  option (odin.v1.nats_subject_pattern) = "audio.{session_id}.{instance_id}.input";
+  option (odin.v1.nats_subject) = "audio.{session_id}.{instance_id}.input";
 
   AudioData audio = 1;
   MessageInfo info = 2;
@@ -17,7 +17,7 @@ message AudioBufferMic {
 // Generated speech audio from TTS
 // Subject pattern: audio.<session_id>.<module_name>.output
 message AudioBufferSpeaker {
-  option (odin.v1.nats_subject_pattern) = "audio.{session_id}.{instance_id}.output";
+  option (odin.v1.nats_subject) = "audio.{session_id}.{instance_id}.output";
 
   AudioData audio = 1;
   MessageInfo info = 2;

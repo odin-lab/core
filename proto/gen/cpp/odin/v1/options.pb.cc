@@ -41,15 +41,9 @@ const char descriptor_table_protodef_odin_2fv1_2foptions_2eproto[] ABSL_ATTRIBUT
     "\n\025odin/v1/options.proto\022\007odin.v1\032 google"
     "/protobuf/descriptor.proto:D\n\014nats_subje"
     "ct\022\037.google.protobuf.MessageOptions\030\321\206\003 "
-    "\001(\tR\013natsSubject:S\n\024nats_subject_pattern"
-    "\022\037.google.protobuf.MessageOptions\030\324\206\003 \001("
-    "\tR\022natsSubjectPattern:H\n\016nats_jetstream\022"
-    "\037.google.protobuf.MessageOptions\030\322\206\003 \001(\010"
-    "R\rnatsJetstream:B\n\013nats_stream\022\037.google."
-    "protobuf.MessageOptions\030\323\206\003 \001(\tR\nnatsStr"
-    "eamBX\n\013com.odin.v1B\014OptionsProtoP\001\242\002\003OXX"
-    "\252\002\007Odin.V1\312\002\007Odin\\V1\342\002\023Odin\\V1\\GPBMetada"
-    "ta\352\002\010Odin::V1b\006proto3"
+    "\001(\tR\013natsSubjectBX\n\013com.odin.v1B\014Options"
+    "ProtoP\001\242\002\003OXX\252\002\007Odin.V1\312\002\007Odin\\V1\342\002\023Odin"
+    "\\V1\\GPBMetadata\352\002\010Odin::V1b\006proto3"
 };
 static const ::_pbi::DescriptorTable* PROTOBUF_NONNULL const
     descriptor_table_odin_2fv1_2foptions_2eproto_deps[1] = {
@@ -59,7 +53,7 @@ static ::absl::once_flag descriptor_table_odin_2fv1_2foptions_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_odin_2fv1_2foptions_2eproto = {
     false,
     false,
-    461,
+    234,
     descriptor_table_protodef_odin_2fv1_2foptions_2eproto,
     "odin/v1/options.proto",
     &descriptor_table_odin_2fv1_2foptions_2eproto_once,
@@ -79,20 +73,6 @@ PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY2 ::_pbi::ExtensionIdentifier<
         ::google::protobuf::MessageOptions, ::_pbi::StringTypeTraits, 9, false>
         nats_subject(kNatsSubjectFieldNumber, nats_subject_default);
-const std::string nats_subject_pattern_default("");
-PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY2 ::_pbi::ExtensionIdentifier<
-        ::google::protobuf::MessageOptions, ::_pbi::StringTypeTraits, 9, false>
-        nats_subject_pattern(kNatsSubjectPatternFieldNumber, nats_subject_pattern_default);
-PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY2 ::_pbi::ExtensionIdentifier<
-        ::google::protobuf::MessageOptions, ::_pbi::PrimitiveTypeTraits< bool >, 8, false>
-        nats_jetstream(kNatsJetstreamFieldNumber, false);
-const std::string nats_stream_default("");
-PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY2 ::_pbi::ExtensionIdentifier<
-        ::google::protobuf::MessageOptions, ::_pbi::StringTypeTraits, 9, false>
-        nats_stream(kNatsStreamFieldNumber, nats_stream_default);
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace v1
 }  // namespace odin
@@ -106,15 +86,6 @@ PROTOBUF_ATTRIBUTE_INIT_PRIORITY2 static ::std::false_type
         (::_pbi::AddDescriptors(&descriptor_table_odin_2fv1_2foptions_2eproto),
         ::_pbi::ExtensionSet::RegisterExtension(
             &::google::protobuf::MessageOptions::default_instance(), 50001, 9,
-            false, false),
-        ::_pbi::ExtensionSet::RegisterExtension(
-            &::google::protobuf::MessageOptions::default_instance(), 50004, 9,
-            false, false),
-        ::_pbi::ExtensionSet::RegisterExtension(
-            &::google::protobuf::MessageOptions::default_instance(), 50002, 8,
-            false, false),
-        ::_pbi::ExtensionSet::RegisterExtension(
-            &::google::protobuf::MessageOptions::default_instance(), 50003, 9,
             false, false),
          ::std::false_type{});
 #include "google/protobuf/port_undef.inc"

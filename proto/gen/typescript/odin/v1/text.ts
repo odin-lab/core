@@ -404,7 +404,7 @@ export const protoMetadata = {
     "sourceCodeInfo": {
       "location": [{
         "path": [4, 0],
-        "span": [14, 0, 20, 1],
+        "span": [14, 0, 19, 1],
         "leadingComments": " output STT\n",
         "trailingComments": "",
         "leadingDetachedComments": [],
@@ -420,12 +420,8 @@ export const protoMetadata = {
   dependencies: [protoMetadata1, protoMetadata2, protoMetadata3],
   options: {
     messages: {
-      "Transcription": {
-        options: { "nats_subject": "text.{session_id}.{instance_id}.transcription", "nats_jetstream": true },
-      },
-      "Completion": {
-        options: { "nats_subject": "text.{session_id}.{instance_id}.completion", "nats_jetstream": true },
-      },
+      "Transcription": { options: { "nats_subject": "text.{session_id}.{instance_id}.transcription" } },
+      "Completion": { options: { "nats_subject": "text.{session_id}.{instance_id}.completion" } },
     },
   },
 } as const satisfies ProtoMetadata;

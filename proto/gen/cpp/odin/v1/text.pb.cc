@@ -121,19 +121,19 @@ const char descriptor_table_protodef_odin_2fv1_2ftext_2eproto[] ABSL_ATTRIBUTE_S
     protodesc_cold) = {
     "\n\022odin/v1/text.proto\022\007odin.v1\032\024odin/v1/c"
     "ommon.proto\032\025odin/v1/options.proto\032\031odin"
-    "/v1/text_helper.proto\"\236\001\n\rTranscription\022"
+    "/v1/text_helper.proto\"\232\001\n\rTranscription\022"
     ",\n\010segments\030\001 \003(\0132\020.odin.v1.SegmentR\010seg"
     "ments\022(\n\004info\030\002 \001(\0132\024.odin.v1.MessageInf"
-    "oR\004info:5\212\265\030-text.{session_id}.{instance"
-    "_id}.transcription\220\265\030\001\"\261\001\n\nCompletion\022\030\n"
-    "\007content\030\001 \001(\tR\007content\022+\n\004type\030\002 \001(\0162\027."
-    "odin.v1.CompletionTypeR\004type\022(\n\004info\030\003 \001"
-    "(\0132\024.odin.v1.MessageInfoR\004info:2\212\265\030*text"
-    ".{session_id}.{instance_id}.completion\220\265"
-    "\030\001*(\n\016CompletionType\022\010\n\004WORD\020\000\022\014\n\010SENTEN"
-    "CE\020\001BU\n\013com.odin.v1B\tTextProtoP\001\242\002\003OXX\252\002"
-    "\007Odin.V1\312\002\007Odin\\V1\342\002\023Odin\\V1\\GPBMetadata"
-    "\352\002\010Odin::V1b\006proto3"
+    "oR\004info:1\212\265\030-text.{session_id}.{instance"
+    "_id}.transcription\"\255\001\n\nCompletion\022\030\n\007con"
+    "tent\030\001 \001(\tR\007content\022+\n\004type\030\002 \001(\0162\027.odin"
+    ".v1.CompletionTypeR\004type\022(\n\004info\030\003 \001(\0132\024"
+    ".odin.v1.MessageInfoR\004info:.\212\265\030*text.{se"
+    "ssion_id}.{instance_id}.completion*(\n\016Co"
+    "mpletionType\022\010\n\004WORD\020\000\022\014\n\010SENTENCE\020\001BU\n\013"
+    "com.odin.v1B\tTextProtoP\001\242\002\003OXX\252\002\007Odin.V1"
+    "\312\002\007Odin\\V1\342\002\023Odin\\V1\\GPBMetadata\352\002\010Odin:"
+    ":V1b\006proto3"
 };
 static const ::_pbi::DescriptorTable* PROTOBUF_NONNULL const
     descriptor_table_odin_2fv1_2ftext_2eproto_deps[3] = {
@@ -145,7 +145,7 @@ static ::absl::once_flag descriptor_table_odin_2fv1_2ftext_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_odin_2fv1_2ftext_2eproto = {
     false,
     false,
-    579,
+    571,
     descriptor_table_protodef_odin_2fv1_2ftext_2eproto,
     "odin/v1/text.proto",
     &descriptor_table_odin_2fv1_2ftext_2eproto_once,

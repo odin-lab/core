@@ -14,7 +14,6 @@ enum CompletionType {
 // output STT
 message Transcription {
   option (odin.v1.nats_subject) = "text.{session_id}.{instance_id}.transcription";
-  option (odin.v1.nats_jetstream) = true;
 
   repeated Segment segments = 1;
   MessageInfo info = 2;
@@ -22,7 +21,6 @@ message Transcription {
 
 message Completion {
   option (odin.v1.nats_subject) = "text.{session_id}.{instance_id}.completion";
-  option (odin.v1.nats_jetstream) = true;
 
   string content = 1;
   CompletionType type = 2;

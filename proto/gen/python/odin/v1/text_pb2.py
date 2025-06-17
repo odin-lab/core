@@ -27,7 +27,7 @@ from odin.v1 import options_pb2 as odin_dot_v1_dot_options__pb2
 from odin.v1 import text_helper_pb2 as odin_dot_v1_dot_text__helper__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x12odin/v1/text.proto\x12\x07odin.v1\x1a\x14odin/v1/common.proto\x1a\x15odin/v1/options.proto\x1a\x19odin/v1/text_helper.proto\"\x9e\x01\n\rTranscription\x12,\n\x08segments\x18\x01 \x03(\x0b\x32\x10.odin.v1.SegmentR\x08segments\x12(\n\x04info\x18\x02 \x01(\x0b\x32\x14.odin.v1.MessageInfoR\x04info:5\x8a\xb5\x18-text.{session_id}.{instance_id}.transcription\x90\xb5\x18\x01\"\xb1\x01\n\nCompletion\x12\x18\n\x07\x63ontent\x18\x01 \x01(\tR\x07\x63ontent\x12+\n\x04type\x18\x02 \x01(\x0e\x32\x17.odin.v1.CompletionTypeR\x04type\x12(\n\x04info\x18\x03 \x01(\x0b\x32\x14.odin.v1.MessageInfoR\x04info:2\x8a\xb5\x18*text.{session_id}.{instance_id}.completion\x90\xb5\x18\x01*(\n\x0e\x43ompletionType\x12\x08\n\x04WORD\x10\x00\x12\x0c\n\x08SENTENCE\x10\x01\x42U\n\x0b\x63om.odin.v1B\tTextProtoP\x01\xa2\x02\x03OXX\xaa\x02\x07Odin.V1\xca\x02\x07Odin\\V1\xe2\x02\x13Odin\\V1\\GPBMetadata\xea\x02\x08Odin::V1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x12odin/v1/text.proto\x12\x07odin.v1\x1a\x14odin/v1/common.proto\x1a\x15odin/v1/options.proto\x1a\x19odin/v1/text_helper.proto\"\x9a\x01\n\rTranscription\x12,\n\x08segments\x18\x01 \x03(\x0b\x32\x10.odin.v1.SegmentR\x08segments\x12(\n\x04info\x18\x02 \x01(\x0b\x32\x14.odin.v1.MessageInfoR\x04info:1\x8a\xb5\x18-text.{session_id}.{instance_id}.transcription\"\xad\x01\n\nCompletion\x12\x18\n\x07\x63ontent\x18\x01 \x01(\tR\x07\x63ontent\x12+\n\x04type\x18\x02 \x01(\x0e\x32\x17.odin.v1.CompletionTypeR\x04type\x12(\n\x04info\x18\x03 \x01(\x0b\x32\x14.odin.v1.MessageInfoR\x04info:.\x8a\xb5\x18*text.{session_id}.{instance_id}.completion*(\n\x0e\x43ompletionType\x12\x08\n\x04WORD\x10\x00\x12\x0c\n\x08SENTENCE\x10\x01\x42U\n\x0b\x63om.odin.v1B\tTextProtoP\x01\xa2\x02\x03OXX\xaa\x02\x07Odin.V1\xca\x02\x07Odin\\V1\xe2\x02\x13Odin\\V1\\GPBMetadata\xea\x02\x08Odin::V1b\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -36,13 +36,13 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['DESCRIPTOR']._loaded_options = None
   _globals['DESCRIPTOR']._serialized_options = b'\n\013com.odin.v1B\tTextProtoP\001\242\002\003OXX\252\002\007Odin.V1\312\002\007Odin\\V1\342\002\023Odin\\V1\\GPBMetadata\352\002\010Odin::V1'
   _globals['_TRANSCRIPTION']._loaded_options = None
-  _globals['_TRANSCRIPTION']._serialized_options = b'\212\265\030-text.{session_id}.{instance_id}.transcription\220\265\030\001'
+  _globals['_TRANSCRIPTION']._serialized_options = b'\212\265\030-text.{session_id}.{instance_id}.transcription'
   _globals['_COMPLETION']._loaded_options = None
-  _globals['_COMPLETION']._serialized_options = b'\212\265\030*text.{session_id}.{instance_id}.completion\220\265\030\001'
-  _globals['_COMPLETIONTYPE']._serialized_start=444
-  _globals['_COMPLETIONTYPE']._serialized_end=484
+  _globals['_COMPLETION']._serialized_options = b'\212\265\030*text.{session_id}.{instance_id}.completion'
+  _globals['_COMPLETIONTYPE']._serialized_start=436
+  _globals['_COMPLETIONTYPE']._serialized_end=476
   _globals['_TRANSCRIPTION']._serialized_start=104
-  _globals['_TRANSCRIPTION']._serialized_end=262
-  _globals['_COMPLETION']._serialized_start=265
-  _globals['_COMPLETION']._serialized_end=442
+  _globals['_TRANSCRIPTION']._serialized_end=258
+  _globals['_COMPLETION']._serialized_start=261
+  _globals['_COMPLETION']._serialized_end=434
 # @@protoc_insertion_point(module_scope)

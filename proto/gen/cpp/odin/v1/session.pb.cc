@@ -335,46 +335,51 @@ static const ::_pb::Message* PROTOBUF_NONNULL const file_default_instances[] = {
 };
 const char descriptor_table_protodef_odin_2fv1_2fsession_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
-    "\n\025odin/v1/session.proto\022\007odin.v1\"=\n\004Init"
-    "\022\035\n\nsession_id\030\001 \001(\tR\tsessionId\022\026\n\006confi"
-    "g\030\002 \001(\014R\006config\")\n\010Shutdown\022\035\n\nsession_i"
-    "d\030\001 \001(\tR\tsessionId\"f\n\007Command\022#\n\004init\030\001 "
-    "\001(\0132\r.odin.v1.InitH\000R\004init\022/\n\010shutdown\030\002"
-    " \001(\0132\021.odin.v1.ShutdownH\000R\010shutdownB\005\n\003c"
-    "md\"\217\001\n\006Status\022\035\n\nsession_id\030\001 \001(\tR\tsessi"
-    "onId\022\037\n\013instance_id\030\002 \001(\tR\ninstanceId\022-\n"
-    "\006status\030\003 \001(\0162\025.odin.v1.ModuleStatusR\006st"
-    "atus\022\026\n\006detail\030\004 \001(\tR\006detail\"\336\001\n\014ModuleB"
-    "ootup\022\'\n\004type\030\001 \001(\0162\023.odin.v1.ModuleType"
-    "R\004type\022\022\n\004name\030\002 \001(\tR\004name\022\037\n\013instance_i"
-    "d\030\003 \001(\tR\ninstanceId\022\035\n\nstarted_at\030\004 \001(\003R"
-    "\tstartedAt\022\030\n\007version\030\005 \001(\tR\007version\022\022\n\004"
-    "host\030\006 \001(\tR\004host\022#\n\rconfig_schema\030\007 \001(\tR"
-    "\014configSchema\"\250\001\n\017ModuleHeartbeat\022\037\n\013ins"
-    "tance_id\030\002 \001(\tR\ninstanceId\022\034\n\ttimestamp\030"
-    "\003 \001(\003R\ttimestamp\022-\n\006status\030\004 \001(\0162\025.odin."
-    "v1.ModuleStatusR\006status\022\'\n\017active_sessio"
-    "ns\030\005 \001(\005R\016activeSessions\"d\n\016ModuleRegist"
-    "ry\022/\n\007modules\030\001 \003(\0132\025.odin.v1.ModuleBoot"
-    "upR\007modules\022!\n\014last_updated\030\002 \001(\003R\013lastU"
-    "pdated*K\n\014ModuleStatus\022\020\n\014INITIALIZING\020\000"
-    "\022\013\n\007RUNNING\020\001\022\n\n\006FAILED\020\002\022\020\n\014DISCONNECTE"
-    "D\020\003*A\n\nModuleType\022\007\n\003STT\020\000\022\007\n\003TTS\020\001\022\t\n\005A"
-    "GENT\020\002\022\010\n\004TURN\020\003\022\014\n\010RECORDER\020\004BX\n\013com.od"
-    "in.v1B\014SessionProtoP\001\242\002\003OXX\252\002\007Odin.V1\312\002\007"
-    "Odin\\V1\342\002\023Odin\\V1\\GPBMetadata\352\002\010Odin::V1"
-    "b\006proto3"
+    "\n\025odin/v1/session.proto\022\007odin.v1\032\025odin/v"
+    "1/options.proto\"=\n\004Init\022\035\n\nsession_id\030\001 "
+    "\001(\tR\tsessionId\022\026\n\006config\030\002 \001(\014R\006config\")"
+    "\n\010Shutdown\022\035\n\nsession_id\030\001 \001(\tR\tsessionI"
+    "d\"\222\001\n\007Command\022#\n\004init\030\001 \001(\0132\r.odin.v1.In"
+    "itH\000R\004init\022/\n\010shutdown\030\002 \001(\0132\021.odin.v1.S"
+    "hutdownH\000R\010shutdown:*\212\265\030&session.{sessio"
+    "n_id}.{instance_id}.cmdB\005\n\003cmd\"\217\001\n\006Statu"
+    "s\022\035\n\nsession_id\030\001 \001(\tR\tsessionId\022\037\n\013inst"
+    "ance_id\030\002 \001(\tR\ninstanceId\022-\n\006status\030\003 \001("
+    "\0162\025.odin.v1.ModuleStatusR\006status\022\026\n\006deta"
+    "il\030\004 \001(\tR\006detail\"\336\001\n\014ModuleBootup\022\'\n\004typ"
+    "e\030\001 \001(\0162\023.odin.v1.ModuleTypeR\004type\022\022\n\004na"
+    "me\030\002 \001(\tR\004name\022\037\n\013instance_id\030\003 \001(\tR\nins"
+    "tanceId\022\035\n\nstarted_at\030\004 \001(\003R\tstartedAt\022\030"
+    "\n\007version\030\005 \001(\tR\007version\022\022\n\004host\030\006 \001(\tR\004"
+    "host\022#\n\rconfig_schema\030\007 \001(\tR\014configSchem"
+    "a\"\250\001\n\017ModuleHeartbeat\022\037\n\013instance_id\030\002 \001"
+    "(\tR\ninstanceId\022\034\n\ttimestamp\030\003 \001(\003R\ttimes"
+    "tamp\022-\n\006status\030\004 \001(\0162\025.odin.v1.ModuleSta"
+    "tusR\006status\022\'\n\017active_sessions\030\005 \001(\005R\016ac"
+    "tiveSessions\"d\n\016ModuleRegistry\022/\n\007module"
+    "s\030\001 \003(\0132\025.odin.v1.ModuleBootupR\007modules\022"
+    "!\n\014last_updated\030\002 \001(\003R\013lastUpdated*K\n\014Mo"
+    "duleStatus\022\020\n\014INITIALIZING\020\000\022\013\n\007RUNNING\020"
+    "\001\022\n\n\006FAILED\020\002\022\020\n\014DISCONNECTED\020\003*A\n\nModul"
+    "eType\022\007\n\003STT\020\000\022\007\n\003TTS\020\001\022\t\n\005AGENT\020\002\022\010\n\004TU"
+    "RN\020\003\022\014\n\010RECORDER\020\004BX\n\013com.odin.v1B\014Sessi"
+    "onProtoP\001\242\002\003OXX\252\002\007Odin.V1\312\002\007Odin\\V1\342\002\023Od"
+    "in\\V1\\GPBMetadata\352\002\010Odin::V1b\006proto3"
+};
+static const ::_pbi::DescriptorTable* PROTOBUF_NONNULL const
+    descriptor_table_odin_2fv1_2fsession_2eproto_deps[1] = {
+        &::descriptor_table_odin_2fv1_2foptions_2eproto,
 };
 static ::absl::once_flag descriptor_table_odin_2fv1_2fsession_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_odin_2fv1_2fsession_2eproto = {
     false,
     false,
-    1128,
+    1196,
     descriptor_table_protodef_odin_2fv1_2fsession_2eproto,
     "odin/v1/session.proto",
     &descriptor_table_odin_2fv1_2fsession_2eproto_once,
-    nullptr,
-    0,
+    descriptor_table_odin_2fv1_2fsession_2eproto_deps,
+    1,
     7,
     schemas,
     file_default_instances,
