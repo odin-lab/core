@@ -119,7 +119,7 @@ const char descriptor_table_protodef_odin_2fv1_2faudio_2eproto[] ABSL_ATTRIBUTE_
     "AudioBufferMic\022(\n\005audio\030\001 \001(\0132\022.odin.v1."
     "AudioDataR\005audio\022(\n\004info\030\002 \001(\0132\024.odin.v1"
     ".MessageInfoR\004info:*\242\265\030&audio.{session_i"
-    "d}.{module_name}.input\"\225\001\n\022AudioBufferSp"
+    "d}.{instance_id}.input\"\225\001\n\022AudioBufferSp"
     "eaker\022(\n\005audio\030\001 \001(\0132\022.odin.v1.AudioData"
     "R\005audio\022(\n\004info\030\002 \001(\0132\024.odin.v1.MessageI"
     "nfoR\004info:+\242\265\030\'audio.{session_id}.{insta"

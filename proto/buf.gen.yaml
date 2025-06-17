@@ -13,18 +13,29 @@ plugins:
       - pyi_out=gen/python  # Generate .pyi stub files for type hints
 
   # TypeScript generation for React frontend
-  - plugin: buf.build/bufbuild/es
-    out: gen/typescript
-    opt:
-      - target=ts
-      - import_extension=none
+  # - plugin: buf.build/bufbuild/es
+  #   out: gen/typescript
+  #   opt:
+  #     - target=ts
+  #     - import_extension=none
   
-  # Additional TypeScript plugin for better NATS integration
-  - plugin: buf.build/connectrpc/es
-    out: gen/typescript
+  
+  - plugin: buf.build/community/stephenh-ts-proto
+    out: gen/typescript  
     opt:
-      - target=ts
-      - import_extension=none
+      - env=browser
+      - outputServices=generic-definitions
+      - useExactTypes=true
+      - esModuleInterop=true
+      - stringEnums=true
+      - outputSchema=const
+
+  # # Additional TypeScript plugin for better NATS integration
+  # - plugin: buf.build/connectrpc/es
+  #   out: gen/typescript
+  #   opt:
+  #     - target=ts
+  #     - import_extension=none
 
   # C++ generation for ESP32 hardware client
   - plugin: buf.build/protocolbuffers/cpp
