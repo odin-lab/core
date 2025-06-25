@@ -147,6 +147,10 @@ class BaseModule(ABC):
 
     async def stop(self) -> None:
         """Graceful shutdown - remove from registry"""
+
+        for sess_id, session in self.sessions.items():
+            await self._handle_shutdown(sess_id, f"session.{sess_id}.{self.instance_id}.cmd")
+
         if self.heartbeat_task:
             self.heartbeat_task.cancel()
             try:
