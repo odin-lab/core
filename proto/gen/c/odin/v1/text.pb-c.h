@@ -20,6 +20,7 @@ PROTOBUF_C__BEGIN_DECLS
 
 typedef struct Odin__V1__Transcription Odin__V1__Transcription;
 typedef struct Odin__V1__Completion Odin__V1__Completion;
+typedef struct Odin__V1__CompletionToken Odin__V1__CompletionToken;
 
 
 /* --- enums --- */
@@ -57,6 +58,17 @@ struct  Odin__V1__Completion
 #define ODIN__V1__COMPLETION__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&odin__v1__completion__descriptor) \
     , (char *)protobuf_c_empty_string, ODIN__V1__COMPLETION_TYPE__WORD, NULL }
+
+
+struct  Odin__V1__CompletionToken
+{
+  ProtobufCMessage base;
+  char *content;
+  Odin__V1__MessageInfo *info;
+};
+#define ODIN__V1__COMPLETION_TOKEN__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&odin__v1__completion_token__descriptor) \
+    , (char *)protobuf_c_empty_string, NULL }
 
 
 /* Odin__V1__Transcription methods */
@@ -97,6 +109,25 @@ Odin__V1__Completion *
 void   odin__v1__completion__free_unpacked
                      (Odin__V1__Completion *message,
                       ProtobufCAllocator *allocator);
+/* Odin__V1__CompletionToken methods */
+void   odin__v1__completion_token__init
+                     (Odin__V1__CompletionToken         *message);
+size_t odin__v1__completion_token__get_packed_size
+                     (const Odin__V1__CompletionToken   *message);
+size_t odin__v1__completion_token__pack
+                     (const Odin__V1__CompletionToken   *message,
+                      uint8_t             *out);
+size_t odin__v1__completion_token__pack_to_buffer
+                     (const Odin__V1__CompletionToken   *message,
+                      ProtobufCBuffer     *buffer);
+Odin__V1__CompletionToken *
+       odin__v1__completion_token__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data);
+void   odin__v1__completion_token__free_unpacked
+                     (Odin__V1__CompletionToken *message,
+                      ProtobufCAllocator *allocator);
 /* --- per-message closures --- */
 
 typedef void (*Odin__V1__Transcription_Closure)
@@ -104,6 +135,9 @@ typedef void (*Odin__V1__Transcription_Closure)
                   void *closure_data);
 typedef void (*Odin__V1__Completion_Closure)
                  (const Odin__V1__Completion *message,
+                  void *closure_data);
+typedef void (*Odin__V1__CompletionToken_Closure)
+                 (const Odin__V1__CompletionToken *message,
                   void *closure_data);
 
 /* --- services --- */
@@ -114,6 +148,7 @@ typedef void (*Odin__V1__Completion_Closure)
 extern const ProtobufCEnumDescriptor    odin__v1__completion_type__descriptor;
 extern const ProtobufCMessageDescriptor odin__v1__transcription__descriptor;
 extern const ProtobufCMessageDescriptor odin__v1__completion__descriptor;
+extern const ProtobufCMessageDescriptor odin__v1__completion_token__descriptor;
 
 PROTOBUF_C__END_DECLS
 

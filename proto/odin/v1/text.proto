@@ -27,6 +27,13 @@ message Completion {
   MessageInfo info = 3;
 }
 
+message CompletionToken {
+  option (odin.v1.nats_subject) = "text.{session_id}.{instance_id}.token";
+
+  string content = 1;
+  MessageInfo info = 2;
+}
+
 // message CompletionSentence {
 //   option (odin.v1.nats_subject) = "text.{session_id}.{module_name}.completion.sentence";
 //   option (odin.v1.nats_jetstream) = true;

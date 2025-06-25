@@ -70,6 +70,11 @@ export interface Completion {
   info: MessageInfo | undefined;
 }
 
+export interface CompletionToken {
+  content: string;
+  info: MessageInfo | undefined;
+}
+
 function createBaseTranscription(): Transcription {
   return { segments: [], info: undefined };
 }
@@ -242,6 +247,84 @@ export const Completion: MessageFns<Completion> = {
   },
 };
 
+function createBaseCompletionToken(): CompletionToken {
+  return { content: "", info: undefined };
+}
+
+export const CompletionToken: MessageFns<CompletionToken> = {
+  encode(message: CompletionToken, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.content !== "") {
+      writer.uint32(10).string(message.content);
+    }
+    if (message.info !== undefined) {
+      MessageInfo.encode(message.info, writer.uint32(18).fork()).join();
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): CompletionToken {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseCompletionToken();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.content = reader.string();
+          continue;
+        }
+        case 2: {
+          if (tag !== 18) {
+            break;
+          }
+
+          message.info = MessageInfo.decode(reader, reader.uint32());
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): CompletionToken {
+    return {
+      content: isSet(object.content) ? globalThis.String(object.content) : "",
+      info: isSet(object.info) ? MessageInfo.fromJSON(object.info) : undefined,
+    };
+  },
+
+  toJSON(message: CompletionToken): unknown {
+    const obj: any = {};
+    if (message.content !== "") {
+      obj.content = message.content;
+    }
+    if (message.info !== undefined) {
+      obj.info = MessageInfo.toJSON(message.info);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<CompletionToken>, I>>(base?: I): CompletionToken {
+    return CompletionToken.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<CompletionToken>, I>>(object: I): CompletionToken {
+    const message = createBaseCompletionToken();
+    message.content = object.content ?? "";
+    message.info = (object.info !== undefined && object.info !== null)
+      ? MessageInfo.fromPartial(object.info)
+      : undefined;
+    return message;
+  },
+};
+
 type ProtoMetaMessageOptions = {
   options?: { [key: string]: any };
   fields?: { [key: string]: { [key: string]: any } };
@@ -364,6 +447,47 @@ export const protoMetadata = {
       },
       "reservedRange": [],
       "reservedName": [],
+    }, {
+      "name": "CompletionToken",
+      "field": [{
+        "name": "content",
+        "number": 1,
+        "label": 1,
+        "type": 9,
+        "typeName": "",
+        "extendee": "",
+        "defaultValue": "",
+        "oneofIndex": 0,
+        "jsonName": "content",
+        "options": undefined,
+        "proto3Optional": false,
+      }, {
+        "name": "info",
+        "number": 2,
+        "label": 1,
+        "type": 11,
+        "typeName": ".odin.v1.MessageInfo",
+        "extendee": "",
+        "defaultValue": "",
+        "oneofIndex": 0,
+        "jsonName": "info",
+        "options": undefined,
+        "proto3Optional": false,
+      }],
+      "extension": [],
+      "nestedType": [],
+      "enumType": [],
+      "extensionRange": [],
+      "oneofDecl": [],
+      "options": {
+        "messageSetWireFormat": false,
+        "noStandardDescriptorAccessor": false,
+        "deprecated": false,
+        "mapEntry": false,
+        "uninterpretedOption": [],
+      },
+      "reservedRange": [],
+      "reservedName": [],
     }],
     "enumType": [{
       "name": "CompletionType",
@@ -416,12 +540,14 @@ export const protoMetadata = {
     ".odin.v1.CompletionType": CompletionType,
     ".odin.v1.Transcription": Transcription,
     ".odin.v1.Completion": Completion,
+    ".odin.v1.CompletionToken": CompletionToken,
   },
   dependencies: [protoMetadata1, protoMetadata2, protoMetadata3],
   options: {
     messages: {
       "Transcription": { options: { "nats_subject": "text.{session_id}.{instance_id}.transcription" } },
       "Completion": { options: { "nats_subject": "text.{session_id}.{instance_id}.completion" } },
+      "CompletionToken": { options: { "nats_subject": "text.{session_id}.{instance_id}.token" } },
     },
   },
 } as const satisfies ProtoMetadata;

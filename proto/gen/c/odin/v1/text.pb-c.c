@@ -97,6 +97,51 @@ void   odin__v1__completion__free_unpacked
   assert(message->base.descriptor == &odin__v1__completion__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
+void   odin__v1__completion_token__init
+                     (Odin__V1__CompletionToken         *message)
+{
+  static const Odin__V1__CompletionToken init_value = ODIN__V1__COMPLETION_TOKEN__INIT;
+  *message = init_value;
+}
+size_t odin__v1__completion_token__get_packed_size
+                     (const Odin__V1__CompletionToken *message)
+{
+  assert(message->base.descriptor == &odin__v1__completion_token__descriptor);
+  return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
+}
+size_t odin__v1__completion_token__pack
+                     (const Odin__V1__CompletionToken *message,
+                      uint8_t       *out)
+{
+  assert(message->base.descriptor == &odin__v1__completion_token__descriptor);
+  return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
+}
+size_t odin__v1__completion_token__pack_to_buffer
+                     (const Odin__V1__CompletionToken *message,
+                      ProtobufCBuffer *buffer)
+{
+  assert(message->base.descriptor == &odin__v1__completion_token__descriptor);
+  return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
+}
+Odin__V1__CompletionToken *
+       odin__v1__completion_token__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data)
+{
+  return (Odin__V1__CompletionToken *)
+     protobuf_c_message_unpack (&odin__v1__completion_token__descriptor,
+                                allocator, len, data);
+}
+void   odin__v1__completion_token__free_unpacked
+                     (Odin__V1__CompletionToken *message,
+                      ProtobufCAllocator *allocator)
+{
+  if(!message)
+    return;
+  assert(message->base.descriptor == &odin__v1__completion_token__descriptor);
+  protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
+}
 static const ProtobufCFieldDescriptor odin__v1__transcription__field_descriptors[2] =
 {
   {
@@ -210,6 +255,57 @@ const ProtobufCMessageDescriptor odin__v1__completion__descriptor =
   odin__v1__completion__field_indices_by_name,
   1,  odin__v1__completion__number_ranges,
   (ProtobufCMessageInit) odin__v1__completion__init,
+  NULL,NULL,NULL    /* reserved[123] */
+};
+static const ProtobufCFieldDescriptor odin__v1__completion_token__field_descriptors[2] =
+{
+  {
+    "content",
+    1,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_STRING,
+    0,   /* quantifier_offset */
+    offsetof(Odin__V1__CompletionToken, content),
+    NULL,
+    &protobuf_c_empty_string,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "info",
+    2,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_MESSAGE,
+    0,   /* quantifier_offset */
+    offsetof(Odin__V1__CompletionToken, info),
+    &odin__v1__message_info__descriptor,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+};
+static const unsigned odin__v1__completion_token__field_indices_by_name[] = {
+  0,   /* field[0] = content */
+  1,   /* field[1] = info */
+};
+static const ProtobufCIntRange odin__v1__completion_token__number_ranges[1 + 1] =
+{
+  { 1, 0 },
+  { 0, 2 }
+};
+const ProtobufCMessageDescriptor odin__v1__completion_token__descriptor =
+{
+  PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
+  "odin.v1.CompletionToken",
+  "CompletionToken",
+  "Odin__V1__CompletionToken",
+  "odin.v1",
+  sizeof(Odin__V1__CompletionToken),
+  2,
+  odin__v1__completion_token__field_descriptors,
+  odin__v1__completion_token__field_indices_by_name,
+  1,  odin__v1__completion_token__number_ranges,
+  (ProtobufCMessageInit) odin__v1__completion_token__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
 static const ProtobufCEnumValue odin__v1__completion_type__enum_values_by_number[2] =

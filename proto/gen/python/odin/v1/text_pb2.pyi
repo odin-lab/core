@@ -33,3 +33,11 @@ class Completion(_message.Message):
     type: CompletionType
     info: _common_pb2.MessageInfo
     def __init__(self, content: _Optional[str] = ..., type: _Optional[_Union[CompletionType, str]] = ..., info: _Optional[_Union[_common_pb2.MessageInfo, _Mapping]] = ...) -> None: ...
+
+class CompletionToken(_message.Message):
+    __slots__ = ("content", "info")
+    CONTENT_FIELD_NUMBER: _ClassVar[int]
+    INFO_FIELD_NUMBER: _ClassVar[int]
+    content: str
+    info: _common_pb2.MessageInfo
+    def __init__(self, content: _Optional[str] = ..., info: _Optional[_Union[_common_pb2.MessageInfo, _Mapping]] = ...) -> None: ...
