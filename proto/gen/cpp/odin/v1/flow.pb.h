@@ -32,6 +32,7 @@
 #include "odin/v1/common.pb.h"
 #include "odin/v1/options.pb.h"
 #include "odin/v1/session.pb.h"
+#include "odin/v1/text_helper.pb.h"
 // @@protoc_insertion_point(includes)
 
 // Must be included last.
@@ -227,9 +228,43 @@ class TurnDetected final : public ::google::protobuf::Message
 
   // accessors -------------------------------------------------------
   enum : int {
-    kInfoFieldNumber = 1,
+    kSegmentsFieldNumber = 1,
+    kTextFieldNumber = 2,
+    kInfoFieldNumber = 3,
   };
-  // .odin.v1.MessageInfo info = 1 [json_name = "info"];
+  // repeated .odin.v1.Segment segments = 1 [json_name = "segments"];
+  int segments_size() const;
+  private:
+  int _internal_segments_size() const;
+
+  public:
+  void clear_segments() ;
+  ::odin::v1::Segment* PROTOBUF_NONNULL mutable_segments(int index);
+  ::google::protobuf::RepeatedPtrField<::odin::v1::Segment>* PROTOBUF_NONNULL mutable_segments();
+
+  private:
+  const ::google::protobuf::RepeatedPtrField<::odin::v1::Segment>& _internal_segments() const;
+  ::google::protobuf::RepeatedPtrField<::odin::v1::Segment>* PROTOBUF_NONNULL _internal_mutable_segments();
+  public:
+  const ::odin::v1::Segment& segments(int index) const;
+  ::odin::v1::Segment* PROTOBUF_NONNULL add_segments();
+  const ::google::protobuf::RepeatedPtrField<::odin::v1::Segment>& segments() const;
+  // string text = 2 [json_name = "text"];
+  void clear_text() ;
+  const ::std::string& text() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_text(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_text();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_text();
+  void set_allocated_text(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_text() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_text(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_text();
+
+  public:
+  // .odin.v1.MessageInfo info = 3 [json_name = "info"];
   bool has_info() const;
   void clear_info() ;
   const ::odin::v1::MessageInfo& info() const;
@@ -248,8 +283,8 @@ class TurnDetected final : public ::google::protobuf::Message
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<0, 1,
-                                   1, 0,
+  static const ::google::protobuf::internal::TcParseTable<2, 3,
+                                   2, 33,
                                    2>
       _table_;
 
@@ -270,6 +305,8 @@ class TurnDetected final : public ::google::protobuf::Message
         const TurnDetected& from_msg);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::RepeatedPtrField< ::odin::v1::Segment > segments_;
+    ::google::protobuf::internal::ArenaStringPtr text_;
     ::odin::v1::MessageInfo* PROTOBUF_NULLABLE info_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -687,9 +724,120 @@ extern const ::google::protobuf::internal::ClassDataFull OdinEndSpeech_class_dat
 
 // TurnDetected
 
-// .odin.v1.MessageInfo info = 1 [json_name = "info"];
+// repeated .odin.v1.Segment segments = 1 [json_name = "segments"];
+inline int TurnDetected::_internal_segments_size() const {
+  return _internal_segments().size();
+}
+inline int TurnDetected::segments_size() const {
+  return _internal_segments_size();
+}
+inline ::odin::v1::Segment* PROTOBUF_NONNULL TurnDetected::mutable_segments(int index)
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable:odin.v1.TurnDetected.segments)
+  return _internal_mutable_segments()->Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField<::odin::v1::Segment>* PROTOBUF_NONNULL TurnDetected::mutable_segments()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_list:odin.v1.TurnDetected.segments)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _internal_mutable_segments();
+}
+inline const ::odin::v1::Segment& TurnDetected::segments(int index) const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:odin.v1.TurnDetected.segments)
+  return _internal_segments().Get(index);
+}
+inline ::odin::v1::Segment* PROTOBUF_NONNULL TurnDetected::add_segments()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::odin::v1::Segment* _add = _internal_mutable_segments()->Add();
+  // @@protoc_insertion_point(field_add:odin.v1.TurnDetected.segments)
+  return _add;
+}
+inline const ::google::protobuf::RepeatedPtrField<::odin::v1::Segment>& TurnDetected::segments() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:odin.v1.TurnDetected.segments)
+  return _internal_segments();
+}
+inline const ::google::protobuf::RepeatedPtrField<::odin::v1::Segment>&
+TurnDetected::_internal_segments() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.segments_;
+}
+inline ::google::protobuf::RepeatedPtrField<::odin::v1::Segment>* PROTOBUF_NONNULL
+TurnDetected::_internal_mutable_segments() {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return &_impl_.segments_;
+}
+
+// string text = 2 [json_name = "text"];
+inline void TurnDetected::clear_text() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.text_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::std::string& TurnDetected::text() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:odin.v1.TurnDetected.text)
+  return _internal_text();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void TurnDetected::set_text(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.text_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:odin.v1.TurnDetected.text)
+}
+inline ::std::string* PROTOBUF_NONNULL TurnDetected::mutable_text()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::std::string* _s = _internal_mutable_text();
+  // @@protoc_insertion_point(field_mutable:odin.v1.TurnDetected.text)
+  return _s;
+}
+inline const ::std::string& TurnDetected::_internal_text() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.text_.Get();
+}
+inline void TurnDetected::_internal_set_text(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.text_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL TurnDetected::_internal_mutable_text() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  return _impl_.text_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE TurnDetected::release_text() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:odin.v1.TurnDetected.text)
+  if ((_impl_._has_bits_[0] & 0x00000001u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  auto* released = _impl_.text_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.text_.Set("", GetArena());
+  }
+  return released;
+}
+inline void TurnDetected::set_allocated_text(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  _impl_.text_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.text_.IsDefault()) {
+    _impl_.text_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:odin.v1.TurnDetected.text)
+}
+
+// .odin.v1.MessageInfo info = 3 [json_name = "info"];
 inline bool TurnDetected::has_info() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.info_ != nullptr);
   return value;
 }
@@ -710,16 +858,16 @@ inline void TurnDetected::unsafe_arena_set_allocated_info(
   }
   _impl_.info_ = reinterpret_cast<::odin::v1::MessageInfo*>(value);
   if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000001u;
+    _impl_._has_bits_[0] |= 0x00000002u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000001u;
+    _impl_._has_bits_[0] &= ~0x00000002u;
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:odin.v1.TurnDetected.info)
 }
 inline ::odin::v1::MessageInfo* PROTOBUF_NULLABLE TurnDetected::release_info() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
 
-  _impl_._has_bits_[0] &= ~0x00000001u;
+  _impl_._has_bits_[0] &= ~0x00000002u;
   ::odin::v1::MessageInfo* released = _impl_.info_;
   _impl_.info_ = nullptr;
   if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
@@ -739,7 +887,7 @@ inline ::odin::v1::MessageInfo* PROTOBUF_NULLABLE TurnDetected::unsafe_arena_rel
   ::google::protobuf::internal::TSanWrite(&_impl_);
   // @@protoc_insertion_point(field_release:odin.v1.TurnDetected.info)
 
-  _impl_._has_bits_[0] &= ~0x00000001u;
+  _impl_._has_bits_[0] &= ~0x00000002u;
   ::odin::v1::MessageInfo* temp = _impl_.info_;
   _impl_.info_ = nullptr;
   return temp;
@@ -754,7 +902,7 @@ inline ::odin::v1::MessageInfo* PROTOBUF_NONNULL TurnDetected::_internal_mutable
 }
 inline ::odin::v1::MessageInfo* PROTOBUF_NONNULL TurnDetected::mutable_info()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_._has_bits_[0] |= 0x00000002u;
   ::odin::v1::MessageInfo* _msg = _internal_mutable_info();
   // @@protoc_insertion_point(field_mutable:odin.v1.TurnDetected.info)
   return _msg;
@@ -771,9 +919,9 @@ inline void TurnDetected::set_allocated_info(::odin::v1::MessageInfo* PROTOBUF_N
     if (message_arena != submessage_arena) {
       value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
     }
-    _impl_._has_bits_[0] |= 0x00000001u;
+    _impl_._has_bits_[0] |= 0x00000002u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000001u;
+    _impl_._has_bits_[0] &= ~0x00000002u;
   }
 
   _impl_.info_ = reinterpret_cast<::odin::v1::MessageInfo*>(value);

@@ -10,11 +10,14 @@ import { FileDescriptorProto as FileDescriptorProto1 } from "ts-proto-descriptor
 import { MessageInfo, protoMetadata as protoMetadata1 } from "./common";
 import { protoMetadata as protoMetadata2 } from "./options";
 import { protoMetadata as protoMetadata3 } from "./session";
+import { protoMetadata as protoMetadata4, Segment } from "./text_helper";
 
 export const protobufPackage = "odin.v1";
 
 /** Flow information with role and content */
 export interface TurnDetected {
+  segments: Segment[];
+  text: string;
   info: MessageInfo | undefined;
 }
 
@@ -27,13 +30,19 @@ export interface OdinEndSpeech {
 }
 
 function createBaseTurnDetected(): TurnDetected {
-  return { info: undefined };
+  return { segments: [], text: "", info: undefined };
 }
 
 export const TurnDetected: MessageFns<TurnDetected> = {
   encode(message: TurnDetected, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    for (const v of message.segments) {
+      Segment.encode(v!, writer.uint32(10).fork()).join();
+    }
+    if (message.text !== "") {
+      writer.uint32(18).string(message.text);
+    }
     if (message.info !== undefined) {
-      MessageInfo.encode(message.info, writer.uint32(10).fork()).join();
+      MessageInfo.encode(message.info, writer.uint32(26).fork()).join();
     }
     return writer;
   },
@@ -50,6 +59,22 @@ export const TurnDetected: MessageFns<TurnDetected> = {
             break;
           }
 
+          message.segments.push(Segment.decode(reader, reader.uint32()));
+          continue;
+        }
+        case 2: {
+          if (tag !== 18) {
+            break;
+          }
+
+          message.text = reader.string();
+          continue;
+        }
+        case 3: {
+          if (tag !== 26) {
+            break;
+          }
+
           message.info = MessageInfo.decode(reader, reader.uint32());
           continue;
         }
@@ -63,11 +88,21 @@ export const TurnDetected: MessageFns<TurnDetected> = {
   },
 
   fromJSON(object: any): TurnDetected {
-    return { info: isSet(object.info) ? MessageInfo.fromJSON(object.info) : undefined };
+    return {
+      segments: globalThis.Array.isArray(object?.segments) ? object.segments.map((e: any) => Segment.fromJSON(e)) : [],
+      text: isSet(object.text) ? globalThis.String(object.text) : "",
+      info: isSet(object.info) ? MessageInfo.fromJSON(object.info) : undefined,
+    };
   },
 
   toJSON(message: TurnDetected): unknown {
     const obj: any = {};
+    if (message.segments?.length) {
+      obj.segments = message.segments.map((e) => Segment.toJSON(e));
+    }
+    if (message.text !== "") {
+      obj.text = message.text;
+    }
     if (message.info !== undefined) {
       obj.info = MessageInfo.toJSON(message.info);
     }
@@ -79,6 +114,8 @@ export const TurnDetected: MessageFns<TurnDetected> = {
   },
   fromPartial<I extends Exact<DeepPartial<TurnDetected>, I>>(object: I): TurnDetected {
     const message = createBaseTurnDetected();
+    message.segments = object.segments?.map((e) => Segment.fromPartial(e)) || [];
+    message.text = object.text ?? "";
     message.info = (object.info !== undefined && object.info !== null)
       ? MessageInfo.fromPartial(object.info)
       : undefined;
@@ -231,14 +268,43 @@ export const protoMetadata = {
   fileDescriptor: {
     "name": "odin/v1/flow.proto",
     "package": "odin.v1",
-    "dependency": ["odin/v1/common.proto", "odin/v1/options.proto", "odin/v1/session.proto"],
+    "dependency": [
+      "odin/v1/common.proto",
+      "odin/v1/options.proto",
+      "odin/v1/session.proto",
+      "odin/v1/text_helper.proto",
+    ],
     "publicDependency": [],
     "weakDependency": [],
     "messageType": [{
       "name": "TurnDetected",
       "field": [{
-        "name": "info",
+        "name": "segments",
         "number": 1,
+        "label": 3,
+        "type": 11,
+        "typeName": ".odin.v1.Segment",
+        "extendee": "",
+        "defaultValue": "",
+        "oneofIndex": 0,
+        "jsonName": "segments",
+        "options": undefined,
+        "proto3Optional": false,
+      }, {
+        "name": "text",
+        "number": 2,
+        "label": 1,
+        "type": 9,
+        "typeName": "",
+        "extendee": "",
+        "defaultValue": "",
+        "oneofIndex": 0,
+        "jsonName": "text",
+        "options": undefined,
+        "proto3Optional": false,
+      }, {
+        "name": "info",
+        "number": 3,
         "label": 1,
         "type": 11,
         "typeName": ".odin.v1.MessageInfo",
@@ -351,7 +417,7 @@ export const protoMetadata = {
     "sourceCodeInfo": {
       "location": [{
         "path": [4, 0],
-        "span": [9, 0, 13, 1],
+        "span": [10, 0, 16, 1],
         "leadingComments": " Flow information with role and content\n",
         "trailingComments": "",
         "leadingDetachedComments": [],
@@ -364,7 +430,7 @@ export const protoMetadata = {
     ".odin.v1.OdinStartSpeech": OdinStartSpeech,
     ".odin.v1.OdinEndSpeech": OdinEndSpeech,
   },
-  dependencies: [protoMetadata1, protoMetadata2, protoMetadata3],
+  dependencies: [protoMetadata1, protoMetadata2, protoMetadata3, protoMetadata4],
   options: {
     messages: {
       "TurnDetected": { options: { "nats_subject": "flow.{session_id}.{instance_id}.turn_detected" } },

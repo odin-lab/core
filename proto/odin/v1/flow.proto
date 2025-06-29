@@ -5,12 +5,15 @@ package odin.v1;
 import "odin/v1/common.proto";
 import "odin/v1/options.proto";
 import "odin/v1/session.proto";
+import "odin/v1/text_helper.proto";
 
 // Flow information with role and content
 message TurnDetected {
   option (odin.v1.nats_subject) = "flow.{session_id}.{instance_id}.turn_detected";
 
-  MessageInfo info = 1;
+  repeated Segment segments = 1;
+  string text = 2;
+  MessageInfo info = 3;
 }
 
 message OdinStartSpeech {

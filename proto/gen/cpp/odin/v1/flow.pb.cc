@@ -30,6 +30,10 @@ namespace v1 {
 inline constexpr TurnDetected::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
+        segments_{},
+        text_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
         info_{nullptr} {}
 
 template <typename>
@@ -112,9 +116,13 @@ const ::uint32_t
         protodesc_cold) = {
         0x081, // bitmap
         PROTOBUF_FIELD_OFFSET(::odin::v1::TurnDetected, _impl_._has_bits_),
-        4, // hasbit index offset
+        6, // hasbit index offset
+        PROTOBUF_FIELD_OFFSET(::odin::v1::TurnDetected, _impl_.segments_),
+        PROTOBUF_FIELD_OFFSET(::odin::v1::TurnDetected, _impl_.text_),
         PROTOBUF_FIELD_OFFSET(::odin::v1::TurnDetected, _impl_.info_),
+        ~0u,
         0,
+        1,
         0x081, // bitmap
         PROTOBUF_FIELD_OFFSET(::odin::v1::OdinStartSpeech, _impl_._has_bits_),
         4, // hasbit index offset
@@ -130,8 +138,8 @@ const ::uint32_t
 static const ::_pbi::MigrationSchema
     schemas[] ABSL_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
         {0, sizeof(::odin::v1::TurnDetected)},
-        {5, sizeof(::odin::v1::OdinStartSpeech)},
-        {10, sizeof(::odin::v1::OdinEndSpeech)},
+        {9, sizeof(::odin::v1::OdinStartSpeech)},
+        {14, sizeof(::odin::v1::OdinEndSpeech)},
 };
 static const ::_pb::Message* PROTOBUF_NONNULL const file_default_instances[] = {
     &::odin::v1::_TurnDetected_default_instance_._instance,
@@ -142,35 +150,38 @@ const char descriptor_table_protodef_odin_2fv1_2fflow_2eproto[] ABSL_ATTRIBUTE_S
     protodesc_cold) = {
     "\n\022odin/v1/flow.proto\022\007odin.v1\032\024odin/v1/c"
     "ommon.proto\032\025odin/v1/options.proto\032\025odin"
-    "/v1/session.proto\"k\n\014TurnDetected\022(\n\004inf"
-    "o\030\001 \001(\0132\024.odin.v1.MessageInfoR\004info:1\212\265\030"
-    "-flow.{session_id}.{instance_id}.turn_de"
-    "tected\"r\n\017OdinStartSpeech\022(\n\004info\030\001 \001(\0132"
-    "\024.odin.v1.MessageInfoR\004info:5\212\265\0301flow.{s"
-    "ession_id}.{instance_id}.odin_start_spee"
-    "ch\"n\n\rOdinEndSpeech\022(\n\004info\030\001 \001(\0132\024.odin"
-    ".v1.MessageInfoR\004info:3\212\265\030/flow.{session"
-    "_id}.{instance_id}.odin_end_speechBU\n\013co"
-    "m.odin.v1B\tFlowProtoP\001\242\002\003OXX\252\002\007Odin.V1\312\002"
-    "\007Odin\\V1\342\002\023Odin\\V1\\GPBMetadata\352\002\010Odin::V"
-    "1b\006proto3"
+    "/v1/session.proto\032\031odin/v1/text_helper.p"
+    "roto\"\255\001\n\014TurnDetected\022,\n\010segments\030\001 \003(\0132"
+    "\020.odin.v1.SegmentR\010segments\022\022\n\004text\030\002 \001("
+    "\tR\004text\022(\n\004info\030\003 \001(\0132\024.odin.v1.MessageI"
+    "nfoR\004info:1\212\265\030-flow.{session_id}.{instan"
+    "ce_id}.turn_detected\"r\n\017OdinStartSpeech\022"
+    "(\n\004info\030\001 \001(\0132\024.odin.v1.MessageInfoR\004inf"
+    "o:5\212\265\0301flow.{session_id}.{instance_id}.o"
+    "din_start_speech\"n\n\rOdinEndSpeech\022(\n\004inf"
+    "o\030\001 \001(\0132\024.odin.v1.MessageInfoR\004info:3\212\265\030"
+    "/flow.{session_id}.{instance_id}.odin_en"
+    "d_speechBU\n\013com.odin.v1B\tFlowProtoP\001\242\002\003O"
+    "XX\252\002\007Odin.V1\312\002\007Odin\\V1\342\002\023Odin\\V1\\GPBMeta"
+    "data\352\002\010Odin::V1b\006proto3"
 };
 static const ::_pbi::DescriptorTable* PROTOBUF_NONNULL const
-    descriptor_table_odin_2fv1_2fflow_2eproto_deps[3] = {
+    descriptor_table_odin_2fv1_2fflow_2eproto_deps[4] = {
         &::descriptor_table_odin_2fv1_2fcommon_2eproto,
         &::descriptor_table_odin_2fv1_2foptions_2eproto,
         &::descriptor_table_odin_2fv1_2fsession_2eproto,
+        &::descriptor_table_odin_2fv1_2ftext_5fhelper_2eproto,
 };
 static ::absl::once_flag descriptor_table_odin_2fv1_2fflow_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_odin_2fv1_2fflow_2eproto = {
     false,
     false,
-    529,
+    623,
     descriptor_table_protodef_odin_2fv1_2fflow_2eproto,
     "odin/v1/flow.proto",
     &descriptor_table_odin_2fv1_2fflow_2eproto_once,
     descriptor_table_odin_2fv1_2fflow_2eproto_deps,
-    3,
+    4,
     3,
     schemas,
     file_default_instances,
@@ -190,10 +201,14 @@ class TurnDetected::_Internal {
       8 * PROTOBUF_FIELD_OFFSET(TurnDetected, _impl_._has_bits_);
 };
 
+void TurnDetected::clear_segments() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.segments_.Clear();
+}
 void TurnDetected::clear_info() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (_impl_.info_ != nullptr) _impl_.info_->Clear();
-  _impl_._has_bits_[0] &= ~0x00000001u;
+  _impl_._has_bits_[0] &= ~0x00000002u;
 }
 TurnDetected::TurnDetected(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
@@ -209,7 +224,9 @@ PROTOBUF_NDEBUG_INLINE TurnDetected::Impl_::Impl_(
     ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
     const ::odin::v1::TurnDetected& from_msg)
       : _has_bits_{from._has_bits_},
-        _cached_size_{0} {}
+        _cached_size_{0},
+        segments_{visibility, arena, from.segments_},
+        text_(arena, from.text_) {}
 
 TurnDetected::TurnDetected(
     ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
@@ -225,7 +242,7 @@ TurnDetected::TurnDetected(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
   ::uint32_t cached_has_bits = _impl_._has_bits_[0];
-  _impl_.info_ = ((cached_has_bits & 0x00000001u) != 0)
+  _impl_.info_ = ((cached_has_bits & 0x00000002u) != 0)
                 ? ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.info_)
                 : nullptr;
 
@@ -234,7 +251,9 @@ TurnDetected::TurnDetected(
 PROTOBUF_NDEBUG_INLINE TurnDetected::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
-      : _cached_size_{0} {}
+      : _cached_size_{0},
+        segments_{visibility, arena},
+        text_(arena) {}
 
 inline void TurnDetected::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
@@ -248,6 +267,7 @@ inline void TurnDetected::SharedDtor(MessageLite& self) {
   TurnDetected& this_ = static_cast<TurnDetected&>(self);
   this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.text_.Destroy();
   delete this_._impl_.info_;
   this_._impl_.~Impl_();
 }
@@ -258,8 +278,20 @@ inline void* PROTOBUF_NONNULL TurnDetected::PlacementNew_(
   return ::new (mem) TurnDetected(arena);
 }
 constexpr auto TurnDetected::InternalNewImpl_() {
-  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(TurnDetected),
-                                            alignof(TurnDetected));
+  constexpr auto arena_bits = ::google::protobuf::internal::EncodePlacementArenaOffsets({
+      PROTOBUF_FIELD_OFFSET(TurnDetected, _impl_.segments_) +
+          decltype(TurnDetected::_impl_.segments_)::
+              InternalGetArenaOffset(
+                  ::google::protobuf::Message::internal_visibility()),
+  });
+  if (arena_bits.has_value()) {
+    return ::google::protobuf::internal::MessageCreator::CopyInit(
+        sizeof(TurnDetected), alignof(TurnDetected), *arena_bits);
+  } else {
+    return ::google::protobuf::internal::MessageCreator(&TurnDetected::PlacementNew_,
+                                 sizeof(TurnDetected),
+                                 alignof(TurnDetected));
+  }
 }
 constexpr auto TurnDetected::InternalGenerateClassData_() {
   return ::google::protobuf::internal::ClassDataFull{
@@ -295,17 +327,17 @@ TurnDetected::GetClassData() const {
   return TurnDetected_class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 1, 1, 0, 2>
+const ::_pbi::TcParseTable<2, 3, 2, 33, 2>
 TurnDetected::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(TurnDetected, _impl_._has_bits_),
     0, // no _extensions_
-    1, 0,  // max_field_number, fast_idx_mask
+    3, 24,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967294,  // skipmap
+    4294967288,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    1,  // num_field_entries
-    1,  // num_aux_entries
+    3,  // num_field_entries
+    2,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     TurnDetected_class_data_.base(),
     nullptr,  // post_loop_handler
@@ -314,20 +346,37 @@ TurnDetected::_table_ = {
     ::_pbi::TcParser::GetTable<::odin::v1::TurnDetected>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    // .odin.v1.MessageInfo info = 1 [json_name = "info"];
+    {::_pbi::TcParser::MiniParse, {}},
+    // repeated .odin.v1.Segment segments = 1 [json_name = "segments"];
+    {::_pbi::TcParser::FastMtR1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(TurnDetected, _impl_.segments_)}},
+    // string text = 2 [json_name = "text"];
+    {::_pbi::TcParser::FastUS1,
+     {18, 0, 0, PROTOBUF_FIELD_OFFSET(TurnDetected, _impl_.text_)}},
+    // .odin.v1.MessageInfo info = 3 [json_name = "info"];
     {::_pbi::TcParser::FastMtS1,
-     {10, 0, 0, PROTOBUF_FIELD_OFFSET(TurnDetected, _impl_.info_)}},
+     {26, 1, 1, PROTOBUF_FIELD_OFFSET(TurnDetected, _impl_.info_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // .odin.v1.MessageInfo info = 1 [json_name = "info"];
-    {PROTOBUF_FIELD_OFFSET(TurnDetected, _impl_.info_), _Internal::kHasBitsOffset + 0, 0,
+    // repeated .odin.v1.Segment segments = 1 [json_name = "segments"];
+    {PROTOBUF_FIELD_OFFSET(TurnDetected, _impl_.segments_), -1, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+    // string text = 2 [json_name = "text"];
+    {PROTOBUF_FIELD_OFFSET(TurnDetected, _impl_.text_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // .odin.v1.MessageInfo info = 3 [json_name = "info"];
+    {PROTOBUF_FIELD_OFFSET(TurnDetected, _impl_.info_), _Internal::kHasBitsOffset + 1, 1,
     (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
   }},
   {{
+      {::_pbi::TcParser::GetTable<::odin::v1::Segment>()},
       {::_pbi::TcParser::GetTable<::odin::v1::MessageInfo>()},
   }},
   {{
+    "\24\0\4\0\0\0\0\0"
+    "odin.v1.TurnDetected"
+    "text"
   }},
 };
 PROTOBUF_NOINLINE void TurnDetected::Clear() {
@@ -337,10 +386,16 @@ PROTOBUF_NOINLINE void TurnDetected::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  _impl_.segments_.Clear();
   cached_has_bits = _impl_._has_bits_[0];
-  if ((cached_has_bits & 0x00000001u) != 0) {
-    ABSL_DCHECK(_impl_.info_ != nullptr);
-    _impl_.info_->Clear();
+  if ((cached_has_bits & 0x00000003u) != 0) {
+    if ((cached_has_bits & 0x00000001u) != 0) {
+      _impl_.text_.ClearNonDefaultToEmpty();
+    }
+    if ((cached_has_bits & 0x00000002u) != 0) {
+      ABSL_DCHECK(_impl_.info_ != nullptr);
+      _impl_.info_->Clear();
+    }
   }
   _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
@@ -361,11 +416,32 @@ PROTOBUF_NOINLINE void TurnDetected::Clear() {
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
+  // repeated .odin.v1.Segment segments = 1 [json_name = "segments"];
+  for (unsigned i = 0, n = static_cast<unsigned>(
+                           this_._internal_segments_size());
+       i < n; i++) {
+    const auto& repfield = this_._internal_segments().Get(i);
+    target =
+        ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+            1, repfield, repfield.GetCachedSize(),
+            target, stream);
+  }
+
+  // string text = 2 [json_name = "text"];
+  if ((this_._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    if (!this_._internal_text().empty()) {
+      const ::std::string& _s = this_._internal_text();
+      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "odin.v1.TurnDetected.text");
+      target = stream->WriteStringMaybeAliased(2, _s, target);
+    }
+  }
+
   cached_has_bits = this_._impl_._has_bits_[0];
-  // .odin.v1.MessageInfo info = 1 [json_name = "info"];
-  if ((cached_has_bits & 0x00000001u) != 0) {
+  // .odin.v1.MessageInfo info = 3 [json_name = "info"];
+  if ((cached_has_bits & 0x00000002u) != 0) {
     target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-        1, *this_._impl_.info_, this_._impl_.info_->GetCachedSize(), target,
+        3, *this_._impl_.info_, this_._impl_.info_->GetCachedSize(), target,
         stream);
   }
 
@@ -392,10 +468,27 @@ PROTOBUF_NOINLINE void TurnDetected::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void)cached_has_bits;
 
+  ::_pbi::Prefetch5LinesFrom7Lines(&this_);
    {
-    // .odin.v1.MessageInfo info = 1 [json_name = "info"];
-    cached_has_bits = this_._impl_._has_bits_[0];
+    // repeated .odin.v1.Segment segments = 1 [json_name = "segments"];
+    {
+      total_size += 1UL * this_._internal_segments_size();
+      for (const auto& msg : this_._internal_segments()) {
+        total_size += ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
+      }
+    }
+  }
+  cached_has_bits = this_._impl_._has_bits_[0];
+  if ((cached_has_bits & 0x00000003u) != 0) {
+    // string text = 2 [json_name = "text"];
     if ((cached_has_bits & 0x00000001u) != 0) {
+      if (!this_._internal_text().empty()) {
+        total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                        this_._internal_text());
+      }
+    }
+    // .odin.v1.MessageInfo info = 3 [json_name = "info"];
+    if ((cached_has_bits & 0x00000002u) != 0) {
       total_size += 1 +
                     ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.info_);
     }
@@ -413,13 +506,26 @@ void TurnDetected::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::go
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
+  _this->_internal_mutable_segments()->MergeFrom(
+      from._internal_segments());
   cached_has_bits = from._impl_._has_bits_[0];
-  if ((cached_has_bits & 0x00000001u) != 0) {
-    ABSL_DCHECK(from._impl_.info_ != nullptr);
-    if (_this->_impl_.info_ == nullptr) {
-      _this->_impl_.info_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.info_);
-    } else {
-      _this->_impl_.info_->MergeFrom(*from._impl_.info_);
+  if ((cached_has_bits & 0x00000003u) != 0) {
+    if ((cached_has_bits & 0x00000001u) != 0) {
+      if (!from._internal_text().empty()) {
+        _this->_internal_set_text(from._internal_text());
+      } else {
+        if (_this->_impl_.text_.IsDefault()) {
+          _this->_internal_set_text("");
+        }
+      }
+    }
+    if ((cached_has_bits & 0x00000002u) != 0) {
+      ABSL_DCHECK(from._impl_.info_ != nullptr);
+      if (_this->_impl_.info_ == nullptr) {
+        _this->_impl_.info_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.info_);
+      } else {
+        _this->_impl_.info_->MergeFrom(*from._impl_.info_);
+      }
     }
   }
   _this->_impl_._has_bits_[0] |= cached_has_bits;
@@ -436,8 +542,12 @@ void TurnDetected::CopyFrom(const TurnDetected& from) {
 
 void TurnDetected::InternalSwap(TurnDetected* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
   using ::std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  _impl_.segments_.InternalSwap(&other->_impl_.segments_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.text_, &other->_impl_.text_, arena);
   swap(_impl_.info_, other->_impl_.info_);
 }
 

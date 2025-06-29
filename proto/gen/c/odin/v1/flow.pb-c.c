@@ -142,11 +142,35 @@ void   odin__v1__odin_end_speech__free_unpacked
   assert(message->base.descriptor == &odin__v1__odin_end_speech__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-static const ProtobufCFieldDescriptor odin__v1__turn_detected__field_descriptors[1] =
+static const ProtobufCFieldDescriptor odin__v1__turn_detected__field_descriptors[3] =
 {
   {
-    "info",
+    "segments",
     1,
+    PROTOBUF_C_LABEL_REPEATED,
+    PROTOBUF_C_TYPE_MESSAGE,
+    offsetof(Odin__V1__TurnDetected, n_segments),
+    offsetof(Odin__V1__TurnDetected, segments),
+    &odin__v1__segment__descriptor,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "text",
+    2,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_STRING,
+    0,   /* quantifier_offset */
+    offsetof(Odin__V1__TurnDetected, text),
+    NULL,
+    &protobuf_c_empty_string,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "info",
+    3,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_MESSAGE,
     0,   /* quantifier_offset */
@@ -158,12 +182,14 @@ static const ProtobufCFieldDescriptor odin__v1__turn_detected__field_descriptors
   },
 };
 static const unsigned odin__v1__turn_detected__field_indices_by_name[] = {
-  0,   /* field[0] = info */
+  2,   /* field[2] = info */
+  0,   /* field[0] = segments */
+  1,   /* field[1] = text */
 };
 static const ProtobufCIntRange odin__v1__turn_detected__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 1 }
+  { 0, 3 }
 };
 const ProtobufCMessageDescriptor odin__v1__turn_detected__descriptor =
 {
@@ -173,7 +199,7 @@ const ProtobufCMessageDescriptor odin__v1__turn_detected__descriptor =
   "Odin__V1__TurnDetected",
   "odin.v1",
   sizeof(Odin__V1__TurnDetected),
-  1,
+  3,
   odin__v1__turn_detected__field_descriptors,
   odin__v1__turn_detected__field_indices_by_name,
   1,  odin__v1__turn_detected__number_ranges,

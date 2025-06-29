@@ -17,6 +17,7 @@ PROTOBUF_C__BEGIN_DECLS
 #include "odin/v1/common.pb-c.h"
 #include "odin/v1/options.pb-c.h"
 #include "odin/v1/session.pb-c.h"
+#include "odin/v1/text_helper.pb-c.h"
 
 typedef struct Odin__V1__TurnDetected Odin__V1__TurnDetected;
 typedef struct Odin__V1__OdinStartSpeech Odin__V1__OdinStartSpeech;
@@ -34,11 +35,14 @@ typedef struct Odin__V1__OdinEndSpeech Odin__V1__OdinEndSpeech;
 struct  Odin__V1__TurnDetected
 {
   ProtobufCMessage base;
+  size_t n_segments;
+  Odin__V1__Segment **segments;
+  char *text;
   Odin__V1__MessageInfo *info;
 };
 #define ODIN__V1__TURN_DETECTED__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&odin__v1__turn_detected__descriptor) \
-    , NULL }
+    , 0,NULL, (char *)protobuf_c_empty_string, NULL }
 
 
 struct  Odin__V1__OdinStartSpeech
