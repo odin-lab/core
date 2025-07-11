@@ -7,6 +7,10 @@ import "odin/v1/options.proto";
 import "odin/v1/session.proto";
 import "odin/v1/text_helper.proto";
 
+// enum for state
+
+
+
 // Flow information with role and content
 message TurnDetected {
   option (odin.v1.nats_subject) = "flow.{session_id}.{instance_id}.turn_detected";
