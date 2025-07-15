@@ -21,6 +21,7 @@ class ModuleType(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
     AGENT: _ClassVar[ModuleType]
     TURN: _ClassVar[ModuleType]
     RECORDER: _ClassVar[ModuleType]
+    STATE: _ClassVar[ModuleType]
 INITIALIZING: ModuleStatus
 RUNNING: ModuleStatus
 FAILED: ModuleStatus
@@ -30,6 +31,7 @@ TTS: ModuleType
 AGENT: ModuleType
 TURN: ModuleType
 RECORDER: ModuleType
+STATE: ModuleType
 
 class Init(_message.Message):
     __slots__ = ("session_id", "config")

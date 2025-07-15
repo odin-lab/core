@@ -417,10 +417,10 @@ export const protoMetadata = {
     "sourceCodeInfo": {
       "location": [{
         "path": [4, 0],
-        "span": [10, 0, 16, 1],
+        "span": [14, 0, 20, 1],
         "leadingComments": " Flow information with role and content\n",
         "trailingComments": "",
-        "leadingDetachedComments": [],
+        "leadingDetachedComments": [" enum for state\n"],
       }],
     },
     "syntax": "proto3",

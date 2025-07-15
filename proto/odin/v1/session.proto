@@ -17,6 +17,7 @@ enum ModuleType {
   AGENT = 2;
   TURN = 3;
   RECORDER = 4;
+  STATE = 5;
 }
 
 message Init {

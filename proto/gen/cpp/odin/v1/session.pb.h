@@ -147,6 +147,7 @@ enum ModuleType : int {
   AGENT = 2,
   TURN = 3,
   RECORDER = 4,
+  STATE = 5,
   ModuleType_INT_MIN_SENTINEL_DO_NOT_USE_ =
       ::std::numeric_limits<::int32_t>::min(),
   ModuleType_INT_MAX_SENTINEL_DO_NOT_USE_ =
@@ -157,11 +158,11 @@ extern const uint32_t ModuleType_internal_data_[];
 inline constexpr ModuleType ModuleType_MIN =
     static_cast<ModuleType>(0);
 inline constexpr ModuleType ModuleType_MAX =
-    static_cast<ModuleType>(4);
+    static_cast<ModuleType>(5);
 inline bool ModuleType_IsValid(int value) {
-  return 0 <= value && value <= 4;
+  return 0 <= value && value <= 5;
 }
-inline constexpr int ModuleType_ARRAYSIZE = 4 + 1;
+inline constexpr int ModuleType_ARRAYSIZE = 5 + 1;
 const ::google::protobuf::EnumDescriptor* PROTOBUF_NONNULL ModuleType_descriptor();
 template <typename T>
 const ::std::string& ModuleType_Name(T value) {
@@ -172,7 +173,7 @@ const ::std::string& ModuleType_Name(T value) {
 }
 template <>
 inline const ::std::string& ModuleType_Name(ModuleType value) {
-  return ::google::protobuf::internal::NameOfDenseEnum<ModuleType_descriptor, 0, 4>(
+  return ::google::protobuf::internal::NameOfDenseEnum<ModuleType_descriptor, 0, 5>(
       static_cast<int>(value));
 }
 inline bool ModuleType_Parse(

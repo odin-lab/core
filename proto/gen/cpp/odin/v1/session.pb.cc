@@ -360,11 +360,12 @@ const char descriptor_table_protodef_odin_2fv1_2fsession_2eproto[] ABSL_ATTRIBUT
     "s\030\001 \003(\0132\025.odin.v1.ModuleBootupR\007modules\022"
     "!\n\014last_updated\030\002 \001(\003R\013lastUpdated*K\n\014Mo"
     "duleStatus\022\020\n\014INITIALIZING\020\000\022\013\n\007RUNNING\020"
-    "\001\022\n\n\006FAILED\020\002\022\020\n\014DISCONNECTED\020\003*A\n\nModul"
+    "\001\022\n\n\006FAILED\020\002\022\020\n\014DISCONNECTED\020\003*L\n\nModul"
     "eType\022\007\n\003STT\020\000\022\007\n\003TTS\020\001\022\t\n\005AGENT\020\002\022\010\n\004TU"
-    "RN\020\003\022\014\n\010RECORDER\020\004BX\n\013com.odin.v1B\014Sessi"
-    "onProtoP\001\242\002\003OXX\252\002\007Odin.V1\312\002\007Odin\\V1\342\002\023Od"
-    "in\\V1\\GPBMetadata\352\002\010Odin::V1b\006proto3"
+    "RN\020\003\022\014\n\010RECORDER\020\004\022\t\n\005STATE\020\005BX\n\013com.odi"
+    "n.v1B\014SessionProtoP\001\242\002\003OXX\252\002\007Odin.V1\312\002\007O"
+    "din\\V1\342\002\023Odin\\V1\\GPBMetadata\352\002\010Odin::V1b"
+    "\006proto3"
 };
 static const ::_pbi::DescriptorTable* PROTOBUF_NONNULL const
     descriptor_table_odin_2fv1_2fsession_2eproto_deps[1] = {
@@ -374,7 +375,7 @@ static ::absl::once_flag descriptor_table_odin_2fv1_2fsession_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_odin_2fv1_2fsession_2eproto = {
     false,
     false,
-    1196,
+    1207,
     descriptor_table_protodef_odin_2fv1_2fsession_2eproto,
     "odin/v1/session.proto",
     &descriptor_table_odin_2fv1_2fsession_2eproto_once,
@@ -400,7 +401,7 @@ const ::google::protobuf::EnumDescriptor* PROTOBUF_NONNULL ModuleType_descriptor
   return file_level_enum_descriptors_odin_2fv1_2fsession_2eproto[1];
 }
 PROTOBUF_CONSTINIT const uint32_t ModuleType_internal_data_[] = {
-    327680u, 0u, };
+    393216u, 0u, };
 // ===================================================================
 
 class Init::_Internal {

@@ -78,6 +78,7 @@ export enum ModuleType {
   AGENT = "AGENT",
   TURN = "TURN",
   RECORDER = "RECORDER",
+  STATE = "STATE",
   UNRECOGNIZED = "UNRECOGNIZED",
 }
 
@@ -98,6 +99,9 @@ export function moduleTypeFromJSON(object: any): ModuleType {
     case 4:
     case "RECORDER":
       return ModuleType.RECORDER;
+    case 5:
+    case "STATE":
+      return ModuleType.STATE;
     case -1:
     case "UNRECOGNIZED":
     default:
@@ -117,6 +121,8 @@ export function moduleTypeToJSON(object: ModuleType): string {
       return "TURN";
     case ModuleType.RECORDER:
       return "RECORDER";
+    case ModuleType.STATE:
+      return "STATE";
     case ModuleType.UNRECOGNIZED:
     default:
       return "UNRECOGNIZED";
@@ -135,6 +141,8 @@ export function moduleTypeToNumber(object: ModuleType): number {
       return 3;
     case ModuleType.RECORDER:
       return 4;
+    case ModuleType.STATE:
+      return 5;
     case ModuleType.UNRECOGNIZED:
     default:
       return -1;
@@ -1251,6 +1259,7 @@ export const protoMetadata = {
         { "name": "AGENT", "number": 2, "options": undefined },
         { "name": "TURN", "number": 3, "options": undefined },
         { "name": "RECORDER", "number": 4, "options": undefined },
+        { "name": "STATE", "number": 5, "options": undefined },
       ],
       "options": undefined,
       "reservedRange": [],
@@ -1284,61 +1293,61 @@ export const protoMetadata = {
     "sourceCodeInfo": {
       "location": [{
         "path": [4, 3, 2, 3],
-        "span": [43, 2, 30],
+        "span": [44, 2, 30],
         "leadingComments": "",
         "trailingComments": " error text if FAILED\n",
         "leadingDetachedComments": [],
       }, {
         "path": [4, 4],
-        "span": [47, 0, 55, 1],
+        "span": [48, 0, 56, 1],
         "leadingComments": " New messages for module bootup tracking\n",
         "trailingComments": "",
         "leadingDetachedComments": [],
       }, {
         "path": [4, 4, 2, 1],
-        "span": [49, 2, 18],
+        "span": [50, 2, 18],
         "leadingComments": "",
         "trailingComments": " name of the module (eg. whisper-live for stt)\n",
         "leadingDetachedComments": [],
       }, {
         "path": [4, 4, 2, 2],
-        "span": [50, 2, 25],
+        "span": [51, 2, 25],
         "leadingComments": "",
         "trailingComments": " semi random id\n",
         "leadingDetachedComments": [],
       }, {
         "path": [4, 4, 2, 3],
-        "span": [51, 2, 25],
+        "span": [52, 2, 25],
         "leadingComments": "",
         "trailingComments": " Unix timestamp\n",
         "leadingDetachedComments": [],
       }, {
         "path": [4, 4, 2, 4],
-        "span": [52, 2, 25],
+        "span": [53, 2, 25],
         "leadingComments": "",
         "trailingComments": " module version\n",
         "leadingDetachedComments": [],
       }, {
         "path": [4, 4, 2, 5],
-        "span": [53, 2, 25],
+        "span": [54, 2, 25],
         "leadingComments": "",
         "trailingComments": " hostname/IP where module is running\n",
         "leadingDetachedComments": [],
       }, {
         "path": [4, 4, 2, 6],
-        "span": [54, 2, 27],
+        "span": [55, 2, 27],
         "leadingComments": "",
         "trailingComments": " JSON schema for module config\n",
         "leadingDetachedComments": [],
       }, {
         "path": [4, 5, 2, 1],
-        "span": [59, 2, 25],
+        "span": [60, 2, 25],
         "leadingComments": "",
         "trailingComments": " Unix timestamp of heartbeat\n",
         "leadingDetachedComments": [],
       }, {
         "path": [4, 5, 2, 3],
-        "span": [61, 2, 29],
+        "span": [62, 2, 29],
         "leadingComments": "",
         "trailingComments": " number of active sessions\n",
         "leadingDetachedComments": [],
