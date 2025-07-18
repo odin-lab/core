@@ -40,11 +40,7 @@ typedef enum _Odin__V1__State {
   /*
    * text output is ready and converted to audio
    */
-  ODIN__V1__STATE__SPEAKING = 3,
-  /*
-   * waiting state -> interrupted
-   */
-  ODIN__V1__STATE__ON_HOLD = 4
+  ODIN__V1__STATE__SPEAKING = 3
     PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(ODIN__V1__STATE)
 } Odin__V1__State;
 

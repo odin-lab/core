@@ -85,11 +85,11 @@ const char descriptor_table_protodef_odin_2fv1_2fstate_2eproto[] ABSL_ATTRIBUTE_
     "proto\"\212\001\n\013StateUpdate\022$\n\005state\030\001 \001(\0162\016.o"
     "din.v1.StateR\005state\022(\n\004info\030\002 \001(\0132\024.odin"
     ".v1.MessageInfoR\004info:+\212\265\030\'state.{sessio"
-    "n_id}.{instance_id}.update*E\n\005State\022\010\n\004I"
+    "n_id}.{instance_id}.update*8\n\005State\022\010\n\004I"
     "DLE\020\000\022\t\n\005AWAKE\020\001\022\014\n\010THINKING\020\002\022\014\n\010SPEAKI"
-    "NG\020\003\022\013\n\007ON_HOLD\020\004BV\n\013com.odin.v1B\nStateP"
-    "rotoP\001\242\002\003OXX\252\002\007Odin.V1\312\002\007Odin\\V1\342\002\023Odin\\"
-    "V1\\GPBMetadata\352\002\010Odin::V1b\006proto3"
+    "NG\020\003BV\n\013com.odin.v1B\nStateProtoP\001\242\002\003OXX\252"
+    "\002\007Odin.V1\312\002\007Odin\\V1\342\002\023Odin\\V1\\GPBMetadat"
+    "a\352\002\010Odin::V1b\006proto3"
 };
 static const ::_pbi::DescriptorTable* PROTOBUF_NONNULL const
     descriptor_table_odin_2fv1_2fstate_2eproto_deps[4] = {
@@ -102,7 +102,7 @@ static ::absl::once_flag descriptor_table_odin_2fv1_2fstate_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_odin_2fv1_2fstate_2eproto = {
     false,
     false,
-    433,
+    420,
     descriptor_table_protodef_odin_2fv1_2fstate_2eproto,
     "odin/v1/state.proto",
     &descriptor_table_odin_2fv1_2fstate_2eproto_once,
@@ -122,7 +122,7 @@ const ::google::protobuf::EnumDescriptor* PROTOBUF_NONNULL State_descriptor() {
   return file_level_enum_descriptors_odin_2fv1_2fstate_2eproto[0];
 }
 PROTOBUF_CONSTINIT const uint32_t State_internal_data_[] = {
-    327680u, 0u, };
+    262144u, 0u, };
 // ===================================================================
 
 class StateUpdate::_Internal {

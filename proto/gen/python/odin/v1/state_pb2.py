@@ -28,7 +28,7 @@ from odin.v1 import session_pb2 as odin_dot_v1_dot_session__pb2
 from odin.v1 import text_helper_pb2 as odin_dot_v1_dot_text__helper__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x13odin/v1/state.proto\x12\x07odin.v1\x1a\x14odin/v1/common.proto\x1a\x15odin/v1/options.proto\x1a\x15odin/v1/session.proto\x1a\x19odin/v1/text_helper.proto\"\x8a\x01\n\x0bStateUpdate\x12$\n\x05state\x18\x01 \x01(\x0e\x32\x0e.odin.v1.StateR\x05state\x12(\n\x04info\x18\x02 \x01(\x0b\x32\x14.odin.v1.MessageInfoR\x04info:+\x8a\xb5\x18\'state.{session_id}.{instance_id}.update*E\n\x05State\x12\x08\n\x04IDLE\x10\x00\x12\t\n\x05\x41WAKE\x10\x01\x12\x0c\n\x08THINKING\x10\x02\x12\x0c\n\x08SPEAKING\x10\x03\x12\x0b\n\x07ON_HOLD\x10\x04\x42V\n\x0b\x63om.odin.v1B\nStateProtoP\x01\xa2\x02\x03OXX\xaa\x02\x07Odin.V1\xca\x02\x07Odin\\V1\xe2\x02\x13Odin\\V1\\GPBMetadata\xea\x02\x08Odin::V1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x13odin/v1/state.proto\x12\x07odin.v1\x1a\x14odin/v1/common.proto\x1a\x15odin/v1/options.proto\x1a\x15odin/v1/session.proto\x1a\x19odin/v1/text_helper.proto\"\x8a\x01\n\x0bStateUpdate\x12$\n\x05state\x18\x01 \x01(\x0e\x32\x0e.odin.v1.StateR\x05state\x12(\n\x04info\x18\x02 \x01(\x0b\x32\x14.odin.v1.MessageInfoR\x04info:+\x8a\xb5\x18\'state.{session_id}.{instance_id}.update*8\n\x05State\x12\x08\n\x04IDLE\x10\x00\x12\t\n\x05\x41WAKE\x10\x01\x12\x0c\n\x08THINKING\x10\x02\x12\x0c\n\x08SPEAKING\x10\x03\x42V\n\x0b\x63om.odin.v1B\nStateProtoP\x01\xa2\x02\x03OXX\xaa\x02\x07Odin.V1\xca\x02\x07Odin\\V1\xe2\x02\x13Odin\\V1\\GPBMetadata\xea\x02\x08Odin::V1b\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -39,7 +39,7 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_STATEUPDATE']._loaded_options = None
   _globals['_STATEUPDATE']._serialized_options = b'\212\265\030\'state.{session_id}.{instance_id}.update'
   _globals['_STATE']._serialized_start=268
-  _globals['_STATE']._serialized_end=337
+  _globals['_STATE']._serialized_end=324
   _globals['_STATEUPDATE']._serialized_start=128
   _globals['_STATEUPDATE']._serialized_end=266
 # @@protoc_insertion_point(module_scope)

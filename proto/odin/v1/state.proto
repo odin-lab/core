@@ -14,7 +14,6 @@ enum State {
     AWAKE = 1; // awake mode (active -> implies listening
     THINKING = 2; // llm is working -> no audio out
     SPEAKING = 3; // text output is ready and converted to audio
-    ON_HOLD = 4; // waiting state -> interrupted
 }
 
 message StateUpdate {

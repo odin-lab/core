@@ -28,6 +28,7 @@
 #include "google/protobuf/message_lite.h"
 #include "google/protobuf/repeated_field.h"  // IWYU pragma: export
 #include "google/protobuf/extension_set.h"  // IWYU pragma: export
+#include "google/protobuf/generated_enum_reflection.h"
 #include "google/protobuf/unknown_field_set.h"
 #include "odin/v1/common.pb.h"
 #include "odin/v1/options.pb.h"
@@ -58,14 +59,16 @@ extern const ::google::protobuf::internal::DescriptorTable descriptor_table_odin
 }  // extern "C"
 namespace odin {
 namespace v1 {
-class OdinEndSpeech;
-struct OdinEndSpeechDefaultTypeInternal;
-extern OdinEndSpeechDefaultTypeInternal _OdinEndSpeech_default_instance_;
-extern const ::google::protobuf::internal::ClassDataFull OdinEndSpeech_class_data_;
-class OdinStartSpeech;
-struct OdinStartSpeechDefaultTypeInternal;
-extern OdinStartSpeechDefaultTypeInternal _OdinStartSpeech_default_instance_;
-extern const ::google::protobuf::internal::ClassDataFull OdinStartSpeech_class_data_;
+enum FlowType : int;
+extern const uint32_t FlowType_internal_data_[];
+class Start;
+struct StartDefaultTypeInternal;
+extern StartDefaultTypeInternal _Start_default_instance_;
+extern const ::google::protobuf::internal::ClassDataFull Start_class_data_;
+class Stop;
+struct StopDefaultTypeInternal;
+extern StopDefaultTypeInternal _Stop_default_instance_;
+extern const ::google::protobuf::internal::ClassDataFull Stop_class_data_;
 class TurnDetected;
 struct TurnDetectedDefaultTypeInternal;
 extern TurnDetectedDefaultTypeInternal _TurnDetected_default_instance_;
@@ -74,11 +77,50 @@ extern const ::google::protobuf::internal::ClassDataFull TurnDetected_class_data
 }  // namespace odin
 namespace google {
 namespace protobuf {
+template <>
+internal::EnumTraitsT<::odin::v1::FlowType_internal_data_>
+    internal::EnumTraitsImpl::value<::odin::v1::FlowType>;
 }  // namespace protobuf
 }  // namespace google
 
 namespace odin {
 namespace v1 {
+enum FlowType : int {
+  LLM = 0,
+  SPEECH = 1,
+  FlowType_INT_MIN_SENTINEL_DO_NOT_USE_ =
+      ::std::numeric_limits<::int32_t>::min(),
+  FlowType_INT_MAX_SENTINEL_DO_NOT_USE_ =
+      ::std::numeric_limits<::int32_t>::max(),
+};
+
+extern const uint32_t FlowType_internal_data_[];
+inline constexpr FlowType FlowType_MIN =
+    static_cast<FlowType>(0);
+inline constexpr FlowType FlowType_MAX =
+    static_cast<FlowType>(1);
+inline bool FlowType_IsValid(int value) {
+  return 0 <= value && value <= 1;
+}
+inline constexpr int FlowType_ARRAYSIZE = 1 + 1;
+const ::google::protobuf::EnumDescriptor* PROTOBUF_NONNULL FlowType_descriptor();
+template <typename T>
+const ::std::string& FlowType_Name(T value) {
+  static_assert(::std::is_same<T, FlowType>::value ||
+                    ::std::is_integral<T>::value,
+                "Incorrect type passed to FlowType_Name().");
+  return FlowType_Name(static_cast<FlowType>(value));
+}
+template <>
+inline const ::std::string& FlowType_Name(FlowType value) {
+  return ::google::protobuf::internal::NameOfDenseEnum<FlowType_descriptor, 0, 1>(
+      static_cast<int>(value));
+}
+inline bool FlowType_Parse(
+    ::absl::string_view name, FlowType* PROTOBUF_NONNULL value) {
+  return ::google::protobuf::internal::ParseNamedEnum<FlowType>(FlowType_descriptor(), name,
+                                           value);
+}
 
 // ===================================================================
 
@@ -140,7 +182,7 @@ class TurnDetected final : public ::google::protobuf::Message
     return *reinterpret_cast<const TurnDetected*>(
         &_TurnDetected_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 0;
+  static constexpr int kIndexInFileMessages = 2;
   friend void swap(TurnDetected& a, TurnDetected& b) { a.Swap(&b); }
   inline void Swap(TurnDetected* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -317,30 +359,30 @@ class TurnDetected final : public ::google::protobuf::Message
 extern const ::google::protobuf::internal::ClassDataFull TurnDetected_class_data_;
 // -------------------------------------------------------------------
 
-class OdinStartSpeech final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:odin.v1.OdinStartSpeech) */ {
+class Stop final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:odin.v1.Stop) */ {
  public:
-  inline OdinStartSpeech() : OdinStartSpeech(nullptr) {}
-  ~OdinStartSpeech() PROTOBUF_FINAL;
+  inline Stop() : Stop(nullptr) {}
+  ~Stop() PROTOBUF_FINAL;
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(OdinStartSpeech* PROTOBUF_NONNULL msg, std::destroying_delete_t) {
+  void operator delete(Stop* PROTOBUF_NONNULL msg, std::destroying_delete_t) {
     SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(OdinStartSpeech));
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(Stop));
   }
 #endif
 
   template <typename = void>
-  explicit PROTOBUF_CONSTEXPR OdinStartSpeech(::google::protobuf::internal::ConstantInitialized);
+  explicit PROTOBUF_CONSTEXPR Stop(::google::protobuf::internal::ConstantInitialized);
 
-  inline OdinStartSpeech(const OdinStartSpeech& from) : OdinStartSpeech(nullptr, from) {}
-  inline OdinStartSpeech(OdinStartSpeech&& from) noexcept
-      : OdinStartSpeech(nullptr, ::std::move(from)) {}
-  inline OdinStartSpeech& operator=(const OdinStartSpeech& from) {
+  inline Stop(const Stop& from) : Stop(nullptr, from) {}
+  inline Stop(Stop&& from) noexcept
+      : Stop(nullptr, ::std::move(from)) {}
+  inline Stop& operator=(const Stop& from) {
     CopyFrom(from);
     return *this;
   }
-  inline OdinStartSpeech& operator=(OdinStartSpeech&& from) noexcept {
+  inline Stop& operator=(Stop&& from) noexcept {
     if (this == &from) return *this;
     if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
       InternalSwap(&from);
@@ -368,13 +410,13 @@ class OdinStartSpeech final : public ::google::protobuf::Message
   static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const OdinStartSpeech& default_instance() {
-    return *reinterpret_cast<const OdinStartSpeech*>(
-        &_OdinStartSpeech_default_instance_);
+  static const Stop& default_instance() {
+    return *reinterpret_cast<const Stop*>(
+        &_Stop_default_instance_);
   }
   static constexpr int kIndexInFileMessages = 1;
-  friend void swap(OdinStartSpeech& a, OdinStartSpeech& b) { a.Swap(&b); }
-  inline void Swap(OdinStartSpeech* PROTOBUF_NONNULL other) {
+  friend void swap(Stop& a, Stop& b) { a.Swap(&b); }
+  inline void Swap(Stop* PROTOBUF_NONNULL other) {
     if (other == this) return;
     if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
       InternalSwap(other);
@@ -382,7 +424,7 @@ class OdinStartSpeech final : public ::google::protobuf::Message
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(OdinStartSpeech* PROTOBUF_NONNULL other) {
+  void UnsafeArenaSwap(Stop* PROTOBUF_NONNULL other) {
     if (other == this) return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -390,13 +432,13 @@ class OdinStartSpeech final : public ::google::protobuf::Message
 
   // implements Message ----------------------------------------------
 
-  OdinStartSpeech* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<OdinStartSpeech>(arena);
+  Stop* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<Stop>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const OdinStartSpeech& from);
+  void CopyFrom(const Stop& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const OdinStartSpeech& from) { OdinStartSpeech::MergeImpl(*this, from); }
+  void MergeFrom(const Stop& from) { Stop::MergeImpl(*this, from); }
 
   private:
   static void MergeImpl(::google::protobuf::MessageLite& to_msg,
@@ -432,18 +474,18 @@ class OdinStartSpeech final : public ::google::protobuf::Message
   private:
   void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
   static void SharedDtor(MessageLite& self);
-  void InternalSwap(OdinStartSpeech* PROTOBUF_NONNULL other);
+  void InternalSwap(Stop* PROTOBUF_NONNULL other);
  private:
   template <typename T>
   friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "odin.v1.OdinStartSpeech"; }
+  static ::absl::string_view FullMessageName() { return "odin.v1.Stop"; }
 
  protected:
-  explicit OdinStartSpeech(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-  OdinStartSpeech(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const OdinStartSpeech& from);
-  OdinStartSpeech(
-      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, OdinStartSpeech&& from) noexcept
-      : OdinStartSpeech(arena) {
+  explicit Stop(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  Stop(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Stop& from);
+  Stop(
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, Stop&& from) noexcept
+      : Stop(arena) {
     *this = ::std::move(from);
   }
   const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
@@ -460,9 +502,10 @@ class OdinStartSpeech final : public ::google::protobuf::Message
 
   // accessors -------------------------------------------------------
   enum : int {
-    kInfoFieldNumber = 1,
+    kInfoFieldNumber = 2,
+    kFlowTypeFieldNumber = 1,
   };
-  // .odin.v1.MessageInfo info = 1 [json_name = "info"];
+  // .odin.v1.MessageInfo info = 2 [json_name = "info"];
   bool has_info() const;
   void clear_info() ;
   const ::odin::v1::MessageInfo& info() const;
@@ -477,11 +520,21 @@ class OdinStartSpeech final : public ::google::protobuf::Message
   ::odin::v1::MessageInfo* PROTOBUF_NONNULL _internal_mutable_info();
 
   public:
-  // @@protoc_insertion_point(class_scope:odin.v1.OdinStartSpeech)
+  // .odin.v1.FlowType flow_type = 1 [json_name = "flowType"];
+  void clear_flow_type() ;
+  ::odin::v1::FlowType flow_type() const;
+  void set_flow_type(::odin::v1::FlowType value);
+
+  private:
+  ::odin::v1::FlowType _internal_flow_type() const;
+  void _internal_set_flow_type(::odin::v1::FlowType value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:odin.v1.Stop)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<0, 1,
+  static const ::google::protobuf::internal::TcParseTable<1, 2,
                                    1, 0,
                                    2>
       _table_;
@@ -500,43 +553,44 @@ class OdinStartSpeech final : public ::google::protobuf::Message
     inline explicit Impl_(
         ::google::protobuf::internal::InternalVisibility visibility,
         ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
-        const OdinStartSpeech& from_msg);
+        const Stop& from_msg);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     ::odin::v1::MessageInfo* PROTOBUF_NULLABLE info_;
+    int flow_type_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
   friend struct ::TableStruct_odin_2fv1_2fflow_2eproto;
 };
 
-extern const ::google::protobuf::internal::ClassDataFull OdinStartSpeech_class_data_;
+extern const ::google::protobuf::internal::ClassDataFull Stop_class_data_;
 // -------------------------------------------------------------------
 
-class OdinEndSpeech final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:odin.v1.OdinEndSpeech) */ {
+class Start final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:odin.v1.Start) */ {
  public:
-  inline OdinEndSpeech() : OdinEndSpeech(nullptr) {}
-  ~OdinEndSpeech() PROTOBUF_FINAL;
+  inline Start() : Start(nullptr) {}
+  ~Start() PROTOBUF_FINAL;
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(OdinEndSpeech* PROTOBUF_NONNULL msg, std::destroying_delete_t) {
+  void operator delete(Start* PROTOBUF_NONNULL msg, std::destroying_delete_t) {
     SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(OdinEndSpeech));
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(Start));
   }
 #endif
 
   template <typename = void>
-  explicit PROTOBUF_CONSTEXPR OdinEndSpeech(::google::protobuf::internal::ConstantInitialized);
+  explicit PROTOBUF_CONSTEXPR Start(::google::protobuf::internal::ConstantInitialized);
 
-  inline OdinEndSpeech(const OdinEndSpeech& from) : OdinEndSpeech(nullptr, from) {}
-  inline OdinEndSpeech(OdinEndSpeech&& from) noexcept
-      : OdinEndSpeech(nullptr, ::std::move(from)) {}
-  inline OdinEndSpeech& operator=(const OdinEndSpeech& from) {
+  inline Start(const Start& from) : Start(nullptr, from) {}
+  inline Start(Start&& from) noexcept
+      : Start(nullptr, ::std::move(from)) {}
+  inline Start& operator=(const Start& from) {
     CopyFrom(from);
     return *this;
   }
-  inline OdinEndSpeech& operator=(OdinEndSpeech&& from) noexcept {
+  inline Start& operator=(Start&& from) noexcept {
     if (this == &from) return *this;
     if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
       InternalSwap(&from);
@@ -564,13 +618,13 @@ class OdinEndSpeech final : public ::google::protobuf::Message
   static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const OdinEndSpeech& default_instance() {
-    return *reinterpret_cast<const OdinEndSpeech*>(
-        &_OdinEndSpeech_default_instance_);
+  static const Start& default_instance() {
+    return *reinterpret_cast<const Start*>(
+        &_Start_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 2;
-  friend void swap(OdinEndSpeech& a, OdinEndSpeech& b) { a.Swap(&b); }
-  inline void Swap(OdinEndSpeech* PROTOBUF_NONNULL other) {
+  static constexpr int kIndexInFileMessages = 0;
+  friend void swap(Start& a, Start& b) { a.Swap(&b); }
+  inline void Swap(Start* PROTOBUF_NONNULL other) {
     if (other == this) return;
     if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
       InternalSwap(other);
@@ -578,7 +632,7 @@ class OdinEndSpeech final : public ::google::protobuf::Message
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(OdinEndSpeech* PROTOBUF_NONNULL other) {
+  void UnsafeArenaSwap(Start* PROTOBUF_NONNULL other) {
     if (other == this) return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -586,13 +640,13 @@ class OdinEndSpeech final : public ::google::protobuf::Message
 
   // implements Message ----------------------------------------------
 
-  OdinEndSpeech* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<OdinEndSpeech>(arena);
+  Start* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<Start>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const OdinEndSpeech& from);
+  void CopyFrom(const Start& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const OdinEndSpeech& from) { OdinEndSpeech::MergeImpl(*this, from); }
+  void MergeFrom(const Start& from) { Start::MergeImpl(*this, from); }
 
   private:
   static void MergeImpl(::google::protobuf::MessageLite& to_msg,
@@ -628,18 +682,18 @@ class OdinEndSpeech final : public ::google::protobuf::Message
   private:
   void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
   static void SharedDtor(MessageLite& self);
-  void InternalSwap(OdinEndSpeech* PROTOBUF_NONNULL other);
+  void InternalSwap(Start* PROTOBUF_NONNULL other);
  private:
   template <typename T>
   friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "odin.v1.OdinEndSpeech"; }
+  static ::absl::string_view FullMessageName() { return "odin.v1.Start"; }
 
  protected:
-  explicit OdinEndSpeech(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-  OdinEndSpeech(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const OdinEndSpeech& from);
-  OdinEndSpeech(
-      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, OdinEndSpeech&& from) noexcept
-      : OdinEndSpeech(arena) {
+  explicit Start(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  Start(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Start& from);
+  Start(
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, Start&& from) noexcept
+      : Start(arena) {
     *this = ::std::move(from);
   }
   const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
@@ -656,9 +710,10 @@ class OdinEndSpeech final : public ::google::protobuf::Message
 
   // accessors -------------------------------------------------------
   enum : int {
-    kInfoFieldNumber = 1,
+    kInfoFieldNumber = 2,
+    kFlowTypeFieldNumber = 1,
   };
-  // .odin.v1.MessageInfo info = 1 [json_name = "info"];
+  // .odin.v1.MessageInfo info = 2 [json_name = "info"];
   bool has_info() const;
   void clear_info() ;
   const ::odin::v1::MessageInfo& info() const;
@@ -673,11 +728,21 @@ class OdinEndSpeech final : public ::google::protobuf::Message
   ::odin::v1::MessageInfo* PROTOBUF_NONNULL _internal_mutable_info();
 
   public:
-  // @@protoc_insertion_point(class_scope:odin.v1.OdinEndSpeech)
+  // .odin.v1.FlowType flow_type = 1 [json_name = "flowType"];
+  void clear_flow_type() ;
+  ::odin::v1::FlowType flow_type() const;
+  void set_flow_type(::odin::v1::FlowType value);
+
+  private:
+  ::odin::v1::FlowType _internal_flow_type() const;
+  void _internal_set_flow_type(::odin::v1::FlowType value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:odin.v1.Start)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<0, 1,
+  static const ::google::protobuf::internal::TcParseTable<1, 2,
                                    1, 0,
                                    2>
       _table_;
@@ -696,17 +761,18 @@ class OdinEndSpeech final : public ::google::protobuf::Message
     inline explicit Impl_(
         ::google::protobuf::internal::InternalVisibility visibility,
         ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
-        const OdinEndSpeech& from_msg);
+        const Start& from_msg);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     ::odin::v1::MessageInfo* PROTOBUF_NULLABLE info_;
+    int flow_type_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
   friend struct ::TableStruct_odin_2fv1_2fflow_2eproto;
 };
 
-extern const ::google::protobuf::internal::ClassDataFull OdinEndSpeech_class_data_;
+extern const ::google::protobuf::internal::ClassDataFull Start_class_data_;
 
 // ===================================================================
 
@@ -720,6 +786,248 @@ extern const ::google::protobuf::internal::ClassDataFull OdinEndSpeech_class_dat
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// Start
+
+// .odin.v1.FlowType flow_type = 1 [json_name = "flowType"];
+inline void Start::clear_flow_type() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.flow_type_ = 0;
+  _impl_._has_bits_[0] &= ~0x00000002u;
+}
+inline ::odin::v1::FlowType Start::flow_type() const {
+  // @@protoc_insertion_point(field_get:odin.v1.Start.flow_type)
+  return _internal_flow_type();
+}
+inline void Start::set_flow_type(::odin::v1::FlowType value) {
+  _internal_set_flow_type(value);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  // @@protoc_insertion_point(field_set:odin.v1.Start.flow_type)
+}
+inline ::odin::v1::FlowType Start::_internal_flow_type() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return static_cast<::odin::v1::FlowType>(_impl_.flow_type_);
+}
+inline void Start::_internal_set_flow_type(::odin::v1::FlowType value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.flow_type_ = value;
+}
+
+// .odin.v1.MessageInfo info = 2 [json_name = "info"];
+inline bool Start::has_info() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.info_ != nullptr);
+  return value;
+}
+inline const ::odin::v1::MessageInfo& Start::_internal_info() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::odin::v1::MessageInfo* p = _impl_.info_;
+  return p != nullptr ? *p : reinterpret_cast<const ::odin::v1::MessageInfo&>(::odin::v1::_MessageInfo_default_instance_);
+}
+inline const ::odin::v1::MessageInfo& Start::info() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:odin.v1.Start.info)
+  return _internal_info();
+}
+inline void Start::unsafe_arena_set_allocated_info(
+    ::odin::v1::MessageInfo* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.info_);
+  }
+  _impl_.info_ = reinterpret_cast<::odin::v1::MessageInfo*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:odin.v1.Start.info)
+}
+inline ::odin::v1::MessageInfo* PROTOBUF_NULLABLE Start::release_info() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::odin::v1::MessageInfo* released = _impl_.info_;
+  _impl_.info_ = nullptr;
+  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
+    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    if (GetArena() == nullptr) {
+      delete old;
+    }
+  } else {
+    if (GetArena() != nullptr) {
+      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    }
+  }
+  return released;
+}
+inline ::odin::v1::MessageInfo* PROTOBUF_NULLABLE Start::unsafe_arena_release_info() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:odin.v1.Start.info)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::odin::v1::MessageInfo* temp = _impl_.info_;
+  _impl_.info_ = nullptr;
+  return temp;
+}
+inline ::odin::v1::MessageInfo* PROTOBUF_NONNULL Start::_internal_mutable_info() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.info_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::odin::v1::MessageInfo>(GetArena());
+    _impl_.info_ = reinterpret_cast<::odin::v1::MessageInfo*>(p);
+  }
+  return _impl_.info_;
+}
+inline ::odin::v1::MessageInfo* PROTOBUF_NONNULL Start::mutable_info()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  ::odin::v1::MessageInfo* _msg = _internal_mutable_info();
+  // @@protoc_insertion_point(field_mutable:odin.v1.Start.info)
+  return _msg;
+}
+inline void Start::set_allocated_info(::odin::v1::MessageInfo* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.info_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::google::protobuf::Message*>(value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.info_ = reinterpret_cast<::odin::v1::MessageInfo*>(value);
+  // @@protoc_insertion_point(field_set_allocated:odin.v1.Start.info)
+}
+
+// -------------------------------------------------------------------
+
+// Stop
+
+// .odin.v1.FlowType flow_type = 1 [json_name = "flowType"];
+inline void Stop::clear_flow_type() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.flow_type_ = 0;
+  _impl_._has_bits_[0] &= ~0x00000002u;
+}
+inline ::odin::v1::FlowType Stop::flow_type() const {
+  // @@protoc_insertion_point(field_get:odin.v1.Stop.flow_type)
+  return _internal_flow_type();
+}
+inline void Stop::set_flow_type(::odin::v1::FlowType value) {
+  _internal_set_flow_type(value);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  // @@protoc_insertion_point(field_set:odin.v1.Stop.flow_type)
+}
+inline ::odin::v1::FlowType Stop::_internal_flow_type() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return static_cast<::odin::v1::FlowType>(_impl_.flow_type_);
+}
+inline void Stop::_internal_set_flow_type(::odin::v1::FlowType value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.flow_type_ = value;
+}
+
+// .odin.v1.MessageInfo info = 2 [json_name = "info"];
+inline bool Stop::has_info() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.info_ != nullptr);
+  return value;
+}
+inline const ::odin::v1::MessageInfo& Stop::_internal_info() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::odin::v1::MessageInfo* p = _impl_.info_;
+  return p != nullptr ? *p : reinterpret_cast<const ::odin::v1::MessageInfo&>(::odin::v1::_MessageInfo_default_instance_);
+}
+inline const ::odin::v1::MessageInfo& Stop::info() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:odin.v1.Stop.info)
+  return _internal_info();
+}
+inline void Stop::unsafe_arena_set_allocated_info(
+    ::odin::v1::MessageInfo* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.info_);
+  }
+  _impl_.info_ = reinterpret_cast<::odin::v1::MessageInfo*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:odin.v1.Stop.info)
+}
+inline ::odin::v1::MessageInfo* PROTOBUF_NULLABLE Stop::release_info() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::odin::v1::MessageInfo* released = _impl_.info_;
+  _impl_.info_ = nullptr;
+  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
+    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    if (GetArena() == nullptr) {
+      delete old;
+    }
+  } else {
+    if (GetArena() != nullptr) {
+      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    }
+  }
+  return released;
+}
+inline ::odin::v1::MessageInfo* PROTOBUF_NULLABLE Stop::unsafe_arena_release_info() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:odin.v1.Stop.info)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::odin::v1::MessageInfo* temp = _impl_.info_;
+  _impl_.info_ = nullptr;
+  return temp;
+}
+inline ::odin::v1::MessageInfo* PROTOBUF_NONNULL Stop::_internal_mutable_info() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.info_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::odin::v1::MessageInfo>(GetArena());
+    _impl_.info_ = reinterpret_cast<::odin::v1::MessageInfo*>(p);
+  }
+  return _impl_.info_;
+}
+inline ::odin::v1::MessageInfo* PROTOBUF_NONNULL Stop::mutable_info()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  ::odin::v1::MessageInfo* _msg = _internal_mutable_info();
+  // @@protoc_insertion_point(field_mutable:odin.v1.Stop.info)
+  return _msg;
+}
+inline void Stop::set_allocated_info(::odin::v1::MessageInfo* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.info_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::google::protobuf::Message*>(value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.info_ = reinterpret_cast<::odin::v1::MessageInfo*>(value);
+  // @@protoc_insertion_point(field_set_allocated:odin.v1.Stop.info)
+}
+
 // -------------------------------------------------------------------
 
 // TurnDetected
@@ -928,200 +1236,6 @@ inline void TurnDetected::set_allocated_info(::odin::v1::MessageInfo* PROTOBUF_N
   // @@protoc_insertion_point(field_set_allocated:odin.v1.TurnDetected.info)
 }
 
-// -------------------------------------------------------------------
-
-// OdinStartSpeech
-
-// .odin.v1.MessageInfo info = 1 [json_name = "info"];
-inline bool OdinStartSpeech::has_info() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
-  PROTOBUF_ASSUME(!value || _impl_.info_ != nullptr);
-  return value;
-}
-inline const ::odin::v1::MessageInfo& OdinStartSpeech::_internal_info() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  const ::odin::v1::MessageInfo* p = _impl_.info_;
-  return p != nullptr ? *p : reinterpret_cast<const ::odin::v1::MessageInfo&>(::odin::v1::_MessageInfo_default_instance_);
-}
-inline const ::odin::v1::MessageInfo& OdinStartSpeech::info() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:odin.v1.OdinStartSpeech.info)
-  return _internal_info();
-}
-inline void OdinStartSpeech::unsafe_arena_set_allocated_info(
-    ::odin::v1::MessageInfo* PROTOBUF_NULLABLE value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (GetArena() == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.info_);
-  }
-  _impl_.info_ = reinterpret_cast<::odin::v1::MessageInfo*>(value);
-  if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000001u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000001u;
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:odin.v1.OdinStartSpeech.info)
-}
-inline ::odin::v1::MessageInfo* PROTOBUF_NULLABLE OdinStartSpeech::release_info() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-
-  _impl_._has_bits_[0] &= ~0x00000001u;
-  ::odin::v1::MessageInfo* released = _impl_.info_;
-  _impl_.info_ = nullptr;
-  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
-    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
-    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-    if (GetArena() == nullptr) {
-      delete old;
-    }
-  } else {
-    if (GetArena() != nullptr) {
-      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-    }
-  }
-  return released;
-}
-inline ::odin::v1::MessageInfo* PROTOBUF_NULLABLE OdinStartSpeech::unsafe_arena_release_info() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:odin.v1.OdinStartSpeech.info)
-
-  _impl_._has_bits_[0] &= ~0x00000001u;
-  ::odin::v1::MessageInfo* temp = _impl_.info_;
-  _impl_.info_ = nullptr;
-  return temp;
-}
-inline ::odin::v1::MessageInfo* PROTOBUF_NONNULL OdinStartSpeech::_internal_mutable_info() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.info_ == nullptr) {
-    auto* p = ::google::protobuf::Message::DefaultConstruct<::odin::v1::MessageInfo>(GetArena());
-    _impl_.info_ = reinterpret_cast<::odin::v1::MessageInfo*>(p);
-  }
-  return _impl_.info_;
-}
-inline ::odin::v1::MessageInfo* PROTOBUF_NONNULL OdinStartSpeech::mutable_info()
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  _impl_._has_bits_[0] |= 0x00000001u;
-  ::odin::v1::MessageInfo* _msg = _internal_mutable_info();
-  // @@protoc_insertion_point(field_mutable:odin.v1.OdinStartSpeech.info)
-  return _msg;
-}
-inline void OdinStartSpeech::set_allocated_info(::odin::v1::MessageInfo* PROTOBUF_NULLABLE value) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (message_arena == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.info_);
-  }
-
-  if (value != nullptr) {
-    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::google::protobuf::Message*>(value)->GetArena();
-    if (message_arena != submessage_arena) {
-      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
-    }
-    _impl_._has_bits_[0] |= 0x00000001u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000001u;
-  }
-
-  _impl_.info_ = reinterpret_cast<::odin::v1::MessageInfo*>(value);
-  // @@protoc_insertion_point(field_set_allocated:odin.v1.OdinStartSpeech.info)
-}
-
-// -------------------------------------------------------------------
-
-// OdinEndSpeech
-
-// .odin.v1.MessageInfo info = 1 [json_name = "info"];
-inline bool OdinEndSpeech::has_info() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
-  PROTOBUF_ASSUME(!value || _impl_.info_ != nullptr);
-  return value;
-}
-inline const ::odin::v1::MessageInfo& OdinEndSpeech::_internal_info() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  const ::odin::v1::MessageInfo* p = _impl_.info_;
-  return p != nullptr ? *p : reinterpret_cast<const ::odin::v1::MessageInfo&>(::odin::v1::_MessageInfo_default_instance_);
-}
-inline const ::odin::v1::MessageInfo& OdinEndSpeech::info() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:odin.v1.OdinEndSpeech.info)
-  return _internal_info();
-}
-inline void OdinEndSpeech::unsafe_arena_set_allocated_info(
-    ::odin::v1::MessageInfo* PROTOBUF_NULLABLE value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (GetArena() == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.info_);
-  }
-  _impl_.info_ = reinterpret_cast<::odin::v1::MessageInfo*>(value);
-  if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000001u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000001u;
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:odin.v1.OdinEndSpeech.info)
-}
-inline ::odin::v1::MessageInfo* PROTOBUF_NULLABLE OdinEndSpeech::release_info() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-
-  _impl_._has_bits_[0] &= ~0x00000001u;
-  ::odin::v1::MessageInfo* released = _impl_.info_;
-  _impl_.info_ = nullptr;
-  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
-    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
-    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-    if (GetArena() == nullptr) {
-      delete old;
-    }
-  } else {
-    if (GetArena() != nullptr) {
-      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-    }
-  }
-  return released;
-}
-inline ::odin::v1::MessageInfo* PROTOBUF_NULLABLE OdinEndSpeech::unsafe_arena_release_info() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:odin.v1.OdinEndSpeech.info)
-
-  _impl_._has_bits_[0] &= ~0x00000001u;
-  ::odin::v1::MessageInfo* temp = _impl_.info_;
-  _impl_.info_ = nullptr;
-  return temp;
-}
-inline ::odin::v1::MessageInfo* PROTOBUF_NONNULL OdinEndSpeech::_internal_mutable_info() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.info_ == nullptr) {
-    auto* p = ::google::protobuf::Message::DefaultConstruct<::odin::v1::MessageInfo>(GetArena());
-    _impl_.info_ = reinterpret_cast<::odin::v1::MessageInfo*>(p);
-  }
-  return _impl_.info_;
-}
-inline ::odin::v1::MessageInfo* PROTOBUF_NONNULL OdinEndSpeech::mutable_info()
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  _impl_._has_bits_[0] |= 0x00000001u;
-  ::odin::v1::MessageInfo* _msg = _internal_mutable_info();
-  // @@protoc_insertion_point(field_mutable:odin.v1.OdinEndSpeech.info)
-  return _msg;
-}
-inline void OdinEndSpeech::set_allocated_info(::odin::v1::MessageInfo* PROTOBUF_NULLABLE value) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (message_arena == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.info_);
-  }
-
-  if (value != nullptr) {
-    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::google::protobuf::Message*>(value)->GetArena();
-    if (message_arena != submessage_arena) {
-      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
-    }
-    _impl_._has_bits_[0] |= 0x00000001u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000001u;
-  }
-
-  _impl_.info_ = reinterpret_cast<::odin::v1::MessageInfo*>(value);
-  // @@protoc_insertion_point(field_set_allocated:odin.v1.OdinEndSpeech.info)
-}
-
 #ifdef __GNUC__
 #pragma GCC diagnostic pop
 #endif  // __GNUC__
@@ -1130,6 +1244,19 @@ inline void OdinEndSpeech::set_allocated_info(::odin::v1::MessageInfo* PROTOBUF_
 }  // namespace v1
 }  // namespace odin
 
+
+namespace google {
+namespace protobuf {
+
+template <>
+struct is_proto_enum<::odin::v1::FlowType> : std::true_type {};
+template <>
+inline const EnumDescriptor* PROTOBUF_NONNULL GetEnumDescriptor<::odin::v1::FlowType>() {
+  return ::odin::v1::FlowType_descriptor();
+}
+
+}  // namespace protobuf
+}  // namespace google
 
 // @@protoc_insertion_point(global_scope)
 

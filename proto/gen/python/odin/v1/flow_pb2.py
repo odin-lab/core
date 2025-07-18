@@ -28,7 +28,7 @@ from odin.v1 import session_pb2 as odin_dot_v1_dot_session__pb2
 from odin.v1 import text_helper_pb2 as odin_dot_v1_dot_text__helper__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x12odin/v1/flow.proto\x12\x07odin.v1\x1a\x14odin/v1/common.proto\x1a\x15odin/v1/options.proto\x1a\x15odin/v1/session.proto\x1a\x19odin/v1/text_helper.proto\"\xad\x01\n\x0cTurnDetected\x12,\n\x08segments\x18\x01 \x03(\x0b\x32\x10.odin.v1.SegmentR\x08segments\x12\x12\n\x04text\x18\x02 \x01(\tR\x04text\x12(\n\x04info\x18\x03 \x01(\x0b\x32\x14.odin.v1.MessageInfoR\x04info:1\x8a\xb5\x18-flow.{session_id}.{instance_id}.turn_detected\"r\n\x0fOdinStartSpeech\x12(\n\x04info\x18\x01 \x01(\x0b\x32\x14.odin.v1.MessageInfoR\x04info:5\x8a\xb5\x18\x31\x66low.{session_id}.{instance_id}.odin_start_speech\"n\n\rOdinEndSpeech\x12(\n\x04info\x18\x01 \x01(\x0b\x32\x14.odin.v1.MessageInfoR\x04info:3\x8a\xb5\x18/flow.{session_id}.{instance_id}.odin_end_speechBU\n\x0b\x63om.odin.v1B\tFlowProtoP\x01\xa2\x02\x03OXX\xaa\x02\x07Odin.V1\xca\x02\x07Odin\\V1\xe2\x02\x13Odin\\V1\\GPBMetadata\xea\x02\x08Odin::V1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x12odin/v1/flow.proto\x12\x07odin.v1\x1a\x14odin/v1/common.proto\x1a\x15odin/v1/options.proto\x1a\x15odin/v1/session.proto\x1a\x19odin/v1/text_helper.proto\"\x8c\x01\n\x05Start\x12.\n\tflow_type\x18\x01 \x01(\x0e\x32\x11.odin.v1.FlowTypeR\x08\x66lowType\x12(\n\x04info\x18\x02 \x01(\x0b\x32\x14.odin.v1.MessageInfoR\x04info:)\x8a\xb5\x18%flow.{session_id}.{instance_id}.start\"\x8a\x01\n\x04Stop\x12.\n\tflow_type\x18\x01 \x01(\x0e\x32\x11.odin.v1.FlowTypeR\x08\x66lowType\x12(\n\x04info\x18\x02 \x01(\x0b\x32\x14.odin.v1.MessageInfoR\x04info:(\x8a\xb5\x18$flow.{session_id}.{instance_id}.stop\"\xad\x01\n\x0cTurnDetected\x12,\n\x08segments\x18\x01 \x03(\x0b\x32\x10.odin.v1.SegmentR\x08segments\x12\x12\n\x04text\x18\x02 \x01(\tR\x04text\x12(\n\x04info\x18\x03 \x01(\x0b\x32\x14.odin.v1.MessageInfoR\x04info:1\x8a\xb5\x18-flow.{session_id}.{instance_id}.turn_detected*\x1f\n\x08\x46lowType\x12\x07\n\x03LLM\x10\x00\x12\n\n\x06SPEECH\x10\x01\x42U\n\x0b\x63om.odin.v1B\tFlowProtoP\x01\xa2\x02\x03OXX\xaa\x02\x07Odin.V1\xca\x02\x07Odin\\V1\xe2\x02\x13Odin\\V1\\GPBMetadata\xea\x02\x08Odin::V1b\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -36,16 +36,18 @@ _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'odin.v1.flow_pb2', _globals
 if not _descriptor._USE_C_DESCRIPTORS:
   _globals['DESCRIPTOR']._loaded_options = None
   _globals['DESCRIPTOR']._serialized_options = b'\n\013com.odin.v1B\tFlowProtoP\001\242\002\003OXX\252\002\007Odin.V1\312\002\007Odin\\V1\342\002\023Odin\\V1\\GPBMetadata\352\002\010Odin::V1'
+  _globals['_START']._loaded_options = None
+  _globals['_START']._serialized_options = b'\212\265\030%flow.{session_id}.{instance_id}.start'
+  _globals['_STOP']._loaded_options = None
+  _globals['_STOP']._serialized_options = b'\212\265\030$flow.{session_id}.{instance_id}.stop'
   _globals['_TURNDETECTED']._loaded_options = None
   _globals['_TURNDETECTED']._serialized_options = b'\212\265\030-flow.{session_id}.{instance_id}.turn_detected'
-  _globals['_ODINSTARTSPEECH']._loaded_options = None
-  _globals['_ODINSTARTSPEECH']._serialized_options = b'\212\265\0301flow.{session_id}.{instance_id}.odin_start_speech'
-  _globals['_ODINENDSPEECH']._loaded_options = None
-  _globals['_ODINENDSPEECH']._serialized_options = b'\212\265\030/flow.{session_id}.{instance_id}.odin_end_speech'
-  _globals['_TURNDETECTED']._serialized_start=127
-  _globals['_TURNDETECTED']._serialized_end=300
-  _globals['_ODINSTARTSPEECH']._serialized_start=302
-  _globals['_ODINSTARTSPEECH']._serialized_end=416
-  _globals['_ODINENDSPEECH']._serialized_start=418
-  _globals['_ODINENDSPEECH']._serialized_end=528
+  _globals['_FLOWTYPE']._serialized_start=586
+  _globals['_FLOWTYPE']._serialized_end=617
+  _globals['_START']._serialized_start=127
+  _globals['_START']._serialized_end=267
+  _globals['_STOP']._serialized_start=270
+  _globals['_STOP']._serialized_end=408
+  _globals['_TURNDETECTED']._serialized_start=411
+  _globals['_TURNDETECTED']._serialized_end=584
 # @@protoc_insertion_point(module_scope)

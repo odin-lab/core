@@ -103,22 +103,20 @@ const ProtobufCMessageDescriptor odin__v1__state_update__descriptor =
   (ProtobufCMessageInit) odin__v1__state_update__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCEnumValue odin__v1__state__enum_values_by_number[5] =
+static const ProtobufCEnumValue odin__v1__state__enum_values_by_number[4] =
 {
   { "IDLE", "ODIN__V1__STATE__IDLE", 0 },
   { "AWAKE", "ODIN__V1__STATE__AWAKE", 1 },
   { "THINKING", "ODIN__V1__STATE__THINKING", 2 },
   { "SPEAKING", "ODIN__V1__STATE__SPEAKING", 3 },
-  { "ON_HOLD", "ODIN__V1__STATE__ON_HOLD", 4 },
 };
 static const ProtobufCIntRange odin__v1__state__value_ranges[] = {
-{0, 0},{0, 5}
+{0, 0},{0, 4}
 };
-static const ProtobufCEnumValueIndex odin__v1__state__enum_values_by_name[5] =
+static const ProtobufCEnumValueIndex odin__v1__state__enum_values_by_name[4] =
 {
   { "AWAKE", 1 },
   { "IDLE", 0 },
-  { "ON_HOLD", 4 },
   { "SPEAKING", 3 },
   { "THINKING", 2 },
 };
@@ -129,9 +127,9 @@ const ProtobufCEnumDescriptor odin__v1__state__descriptor =
   "State",
   "Odin__V1__State",
   "odin.v1",
-  5,
+  4,
   odin__v1__state__enum_values_by_number,
-  5,
+  4,
   odin__v1__state__enum_values_by_name,
   1,
   odin__v1__state__value_ranges,

@@ -14,6 +14,61 @@ import { protoMetadata as protoMetadata4, Segment } from "./text_helper";
 
 export const protobufPackage = "odin.v1";
 
+export enum FlowType {
+  LLM = "LLM",
+  SPEECH = "SPEECH",
+  UNRECOGNIZED = "UNRECOGNIZED",
+}
+
+export function flowTypeFromJSON(object: any): FlowType {
+  switch (object) {
+    case 0:
+    case "LLM":
+      return FlowType.LLM;
+    case 1:
+    case "SPEECH":
+      return FlowType.SPEECH;
+    case -1:
+    case "UNRECOGNIZED":
+    default:
+      return FlowType.UNRECOGNIZED;
+  }
+}
+
+export function flowTypeToJSON(object: FlowType): string {
+  switch (object) {
+    case FlowType.LLM:
+      return "LLM";
+    case FlowType.SPEECH:
+      return "SPEECH";
+    case FlowType.UNRECOGNIZED:
+    default:
+      return "UNRECOGNIZED";
+  }
+}
+
+export function flowTypeToNumber(object: FlowType): number {
+  switch (object) {
+    case FlowType.LLM:
+      return 0;
+    case FlowType.SPEECH:
+      return 1;
+    case FlowType.UNRECOGNIZED:
+    default:
+      return -1;
+  }
+}
+
+export interface Start {
+  flowType: FlowType;
+  info: MessageInfo | undefined;
+}
+
+export interface Stop {
+  flowType: FlowType;
+  info: MessageInfo | undefined;
+}
+
 /** Flow information with role and content */
 export interface TurnDetected {
   segments: Segment[];
@@ -21,13 +76,161 @@ export interface TurnDetected {
   info: MessageInfo | undefined;
 }
 
-export interface OdinStartSpeech {
-  info: MessageInfo | undefined;
+function createBaseStart(): Start {
+  return { flowType: FlowType.LLM, info: undefined };
 }
 
-export interface OdinEndSpeech {
-  info: MessageInfo | undefined;
+export const Start: MessageFns<Start> = {
+  encode(message: Start, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.flowType !== FlowType.LLM) {
+      writer.uint32(8).int32(flowTypeToNumber(message.flowType));
+    }
+    if (message.info !== undefined) {
+      MessageInfo.encode(message.info, writer.uint32(18).fork()).join();
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): Start {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseStart();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 8) {
+            break;
+          }
+
+          message.flowType = flowTypeFromJSON(reader.int32());
+          continue;
+        }
+        case 2: {
+          if (tag !== 18) {
+            break;
+          }
+
+          message.info = MessageInfo.decode(reader, reader.uint32());
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): Start {
+    return {
+      flowType: isSet(object.flowType) ? flowTypeFromJSON(object.flowType) : FlowType.LLM,
+      info: isSet(object.info) ? MessageInfo.fromJSON(object.info) : undefined,
+    };
+  },
+
+  toJSON(message: Start): unknown {
+    const obj: any = {};
+    if (message.flowType !== FlowType.LLM) {
+      obj.flowType = flowTypeToJSON(message.flowType);
+    }
+    if (message.info !== undefined) {
+      obj.info = MessageInfo.toJSON(message.info);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<Start>, I>>(base?: I): Start {
+    return Start.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<Start>, I>>(object: I): Start {
+    const message = createBaseStart();
+    message.flowType = object.flowType ?? FlowType.LLM;
+    message.info = (object.info !== undefined && object.info !== null)
+      ? MessageInfo.fromPartial(object.info)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseStop(): Stop {
+  return { flowType: FlowType.LLM, info: undefined };
 }
+
+export const Stop: MessageFns<Stop> = {
+  encode(message: Stop, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.flowType !== FlowType.LLM) {
+      writer.uint32(8).int32(flowTypeToNumber(message.flowType));
+    }
+    if (message.info !== undefined) {
+      MessageInfo.encode(message.info, writer.uint32(18).fork()).join();
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): Stop {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseStop();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 8) {
+            break;
+          }
+
+          message.flowType = flowTypeFromJSON(reader.int32());
+          continue;
+        }
+        case 2: {
+          if (tag !== 18) {
+            break;
+          }
+
+          message.info = MessageInfo.decode(reader, reader.uint32());
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): Stop {
+    return {
+      flowType: isSet(object.flowType) ? flowTypeFromJSON(object.flowType) : FlowType.LLM,
+      info: isSet(object.info) ? MessageInfo.fromJSON(object.info) : undefined,
+    };
+  },
+
+  toJSON(message: Stop): unknown {
+    const obj: any = {};
+    if (message.flowType !== FlowType.LLM) {
+      obj.flowType = flowTypeToJSON(message.flowType);
+    }
+    if (message.info !== undefined) {
+      obj.info = MessageInfo.toJSON(message.info);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<Stop>, I>>(base?: I): Stop {
+    return Stop.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<Stop>, I>>(object: I): Stop {
+    const message = createBaseStop();
+    message.flowType = object.flowType ?? FlowType.LLM;
+    message.info = (object.info !== undefined && object.info !== null)
+      ? MessageInfo.fromPartial(object.info)
+      : undefined;
+    return message;
+  },
+};
 
 function createBaseTurnDetected(): TurnDetected {
   return { segments: [], text: "", info: undefined };
@@ -123,126 +326,6 @@ export const TurnDetected: MessageFns<TurnDetected> = {
   },
 };
 
-function createBaseOdinStartSpeech(): OdinStartSpeech {
-  return { info: undefined };
-}
-
-export const OdinStartSpeech: MessageFns<OdinStartSpeech> = {
-  encode(message: OdinStartSpeech, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.info !== undefined) {
-      MessageInfo.encode(message.info, writer.uint32(10).fork()).join();
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): OdinStartSpeech {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseOdinStartSpeech();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1: {
-          if (tag !== 10) {
-            break;
-          }
-
-          message.info = MessageInfo.decode(reader, reader.uint32());
-          continue;
-        }
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skip(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): OdinStartSpeech {
-    return { info: isSet(object.info) ? MessageInfo.fromJSON(object.info) : undefined };
-  },
-
-  toJSON(message: OdinStartSpeech): unknown {
-    const obj: any = {};
-    if (message.info !== undefined) {
-      obj.info = MessageInfo.toJSON(message.info);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<OdinStartSpeech>, I>>(base?: I): OdinStartSpeech {
-    return OdinStartSpeech.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<OdinStartSpeech>, I>>(object: I): OdinStartSpeech {
-    const message = createBaseOdinStartSpeech();
-    message.info = (object.info !== undefined && object.info !== null)
-      ? MessageInfo.fromPartial(object.info)
-      : undefined;
-    return message;
-  },
-};
-
-function createBaseOdinEndSpeech(): OdinEndSpeech {
-  return { info: undefined };
-}
-
-export const OdinEndSpeech: MessageFns<OdinEndSpeech> = {
-  encode(message: OdinEndSpeech, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.info !== undefined) {
-      MessageInfo.encode(message.info, writer.uint32(10).fork()).join();
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): OdinEndSpeech {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseOdinEndSpeech();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1: {
-          if (tag !== 10) {
-            break;
-          }
-
-          message.info = MessageInfo.decode(reader, reader.uint32());
-          continue;
-        }
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skip(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): OdinEndSpeech {
-    return { info: isSet(object.info) ? MessageInfo.fromJSON(object.info) : undefined };
-  },
-
-  toJSON(message: OdinEndSpeech): unknown {
-    const obj: any = {};
-    if (message.info !== undefined) {
-      obj.info = MessageInfo.toJSON(message.info);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<OdinEndSpeech>, I>>(base?: I): OdinEndSpeech {
-    return OdinEndSpeech.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<OdinEndSpeech>, I>>(object: I): OdinEndSpeech {
-    const message = createBaseOdinEndSpeech();
-    message.info = (object.info !== undefined && object.info !== null)
-      ? MessageInfo.fromPartial(object.info)
-      : undefined;
-    return message;
-  },
-};
-
 type ProtoMetaMessageOptions = {
   options?: { [key: string]: any };
   fields?: { [key: string]: { [key: string]: any } };
@@ -277,6 +360,88 @@ export const protoMetadata = {
     "publicDependency": [],
     "weakDependency": [],
     "messageType": [{
+      "name": "Start",
+      "field": [{
+        "name": "flow_type",
+        "number": 1,
+        "label": 1,
+        "type": 14,
+        "typeName": ".odin.v1.FlowType",
+        "extendee": "",
+        "defaultValue": "",
+        "oneofIndex": 0,
+        "jsonName": "flowType",
+        "options": undefined,
+        "proto3Optional": false,
+      }, {
+        "name": "info",
+        "number": 2,
+        "label": 1,
+        "type": 11,
+        "typeName": ".odin.v1.MessageInfo",
+        "extendee": "",
+        "defaultValue": "",
+        "oneofIndex": 0,
+        "jsonName": "info",
+        "options": undefined,
+        "proto3Optional": false,
+      }],
+      "extension": [],
+      "nestedType": [],
+      "enumType": [],
+      "extensionRange": [],
+      "oneofDecl": [],
+      "options": {
+        "messageSetWireFormat": false,
+        "noStandardDescriptorAccessor": false,
+        "deprecated": false,
+        "mapEntry": false,
+        "uninterpretedOption": [],
+      },
+      "reservedRange": [],
+      "reservedName": [],
+    }, {
+      "name": "Stop",
+      "field": [{
+        "name": "flow_type",
+        "number": 1,
+        "label": 1,
+        "type": 14,
+        "typeName": ".odin.v1.FlowType",
+        "extendee": "",
+        "defaultValue": "",
+        "oneofIndex": 0,
+        "jsonName": "flowType",
+        "options": undefined,
+        "proto3Optional": false,
+      }, {
+        "name": "info",
+        "number": 2,
+        "label": 1,
+        "type": 11,
+        "typeName": ".odin.v1.MessageInfo",
+        "extendee": "",
+        "defaultValue": "",
+        "oneofIndex": 0,
+        "jsonName": "info",
+        "options": undefined,
+        "proto3Optional": false,
+      }],
+      "extension": [],
+      "nestedType": [],
+      "enumType": [],
+      "extensionRange": [],
+      "oneofDecl": [],
+      "options": {
+        "messageSetWireFormat": false,
+        "noStandardDescriptorAccessor": false,
+        "deprecated": false,
+        "mapEntry": false,
+        "uninterpretedOption": [],
+      },
+      "reservedRange": [],
+      "reservedName": [],
+    }, {
       "name": "TurnDetected",
       "field": [{
         "name": "segments",
@@ -329,66 +494,18 @@ export const protoMetadata = {
       },
       "reservedRange": [],
       "reservedName": [],
-    }, {
-      "name": "OdinStartSpeech",
-      "field": [{
-        "name": "info",
+    }],
+    "enumType": [{
+      "name": "FlowType",
+      "value": [{ "name": "LLM", "number": 0, "options": undefined }, {
+        "name": "SPEECH",
         "number": 1,
-        "label": 1,
-        "type": 11,
-        "typeName": ".odin.v1.MessageInfo",
-        "extendee": "",
-        "defaultValue": "",
-        "oneofIndex": 0,
-        "jsonName": "info",
         "options": undefined,
-        "proto3Optional": false,
       }],
-      "extension": [],
-      "nestedType": [],
-      "enumType": [],
-      "extensionRange": [],
-      "oneofDecl": [],
-      "options": {
-        "messageSetWireFormat": false,
-        "noStandardDescriptorAccessor": false,
-        "deprecated": false,
-        "mapEntry": false,
-        "uninterpretedOption": [],
-      },
-      "reservedRange": [],
-      "reservedName": [],
-    }, {
-      "name": "OdinEndSpeech",
-      "field": [{
-        "name": "info",
-        "number": 1,
-        "label": 1,
-        "type": 11,
-        "typeName": ".odin.v1.MessageInfo",
-        "extendee": "",
-        "defaultValue": "",
-        "oneofIndex": 0,
-        "jsonName": "info",
-        "options": undefined,
-        "proto3Optional": false,
-      }],
-      "extension": [],
-      "nestedType": [],
-      "enumType": [],
-      "extensionRange": [],
-      "oneofDecl": [],
-      "options": {
-        "messageSetWireFormat": false,
-        "noStandardDescriptorAccessor": false,
-        "deprecated": false,
-        "mapEntry": false,
-        "uninterpretedOption": [],
-      },
+      "options": undefined,
       "reservedRange": [],
       "reservedName": [],
     }],
-    "enumType": [],
     "service": [],
     "extension": [],
     "options": {
@@ -416,26 +533,27 @@ export const protoMetadata = {
     },
     "sourceCodeInfo": {
       "location": [{
-        "path": [4, 0],
-        "span": [14, 0, 20, 1],
+        "path": [4, 2],
+        "span": [29, 0, 35, 1],
         "leadingComments": " Flow information with role and content\n",
         "trailingComments": "",
-        "leadingDetachedComments": [" enum for state\n"],
+        "leadingDetachedComments": [],
       }],
     },
     "syntax": "proto3",
   },
   references: {
+    ".odin.v1.FlowType": FlowType,
+    ".odin.v1.Start": Start,
+    ".odin.v1.Stop": Stop,
     ".odin.v1.TurnDetected": TurnDetected,
-    ".odin.v1.OdinStartSpeech": OdinStartSpeech,
-    ".odin.v1.OdinEndSpeech": OdinEndSpeech,
   },
   dependencies: [protoMetadata1, protoMetadata2, protoMetadata3, protoMetadata4],
   options: {
     messages: {
+      "Start": { options: { "nats_subject": "flow.{session_id}.{instance_id}.start" } },
+      "Stop": { options: { "nats_subject": "flow.{session_id}.{instance_id}.stop" } },
       "TurnDetected": { options: { "nats_subject": "flow.{session_id}.{instance_id}.turn_detected" } },
-      "OdinStartSpeech": { options: { "nats_subject": "flow.{session_id}.{instance_id}.odin_start_speech" } },
-      "OdinEndSpeech": { options: { "nats_subject": "flow.{session_id}.{instance_id}.odin_end_speech" } },
     },
   },
 } as const satisfies ProtoMetadata;

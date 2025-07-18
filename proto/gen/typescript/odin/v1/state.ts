@@ -23,8 +23,6 @@ export enum State {
   THINKING = "THINKING",
   /** SPEAKING - text output is ready and converted to audio */
   SPEAKING = "SPEAKING",
-  /** ON_HOLD - waiting state -> interrupted */
-  ON_HOLD = "ON_HOLD",
   UNRECOGNIZED = "UNRECOGNIZED",
 }
 
@@ -42,9 +40,6 @@ export function stateFromJSON(object: any): State {
     case 3:
     case "SPEAKING":
       return State.SPEAKING;
-    case 4:
-    case "ON_HOLD":
-      return State.ON_HOLD;
     case -1:
     case "UNRECOGNIZED":
     default:
@@ -62,8 +57,6 @@ export function stateToJSON(object: State): string {
       return "THINKING";
     case State.SPEAKING:
       return "SPEAKING";
-    case State.ON_HOLD:
-      return "ON_HOLD";
     case State.UNRECOGNIZED:
     default:
       return "UNRECOGNIZED";
@@ -80,8 +73,6 @@ export function stateToNumber(object: State): number {
       return 2;
     case State.SPEAKING:
       return 3;
-    case State.ON_HOLD:
-      return 4;
     case State.UNRECOGNIZED:
     default:
       return -1;
@@ -253,7 +244,6 @@ export const protoMetadata = {
         { "name": "AWAKE", "number": 1, "options": undefined },
         { "name": "THINKING", "number": 2, "options": undefined },
         { "name": "SPEAKING", "number": 3, "options": undefined },
-        { "name": "ON_HOLD", "number": 4, "options": undefined },
       ],
       "options": undefined,
       "reservedRange": [],
@@ -308,12 +298,6 @@ export const protoMetadata = {
         "span": [15, 4, 17],
         "leadingComments": "",
         "trailingComments": " text output is ready and converted to audio\n",
-        "leadingDetachedComments": [],
-      }, {
-        "path": [5, 0, 2, 4],
-        "span": [16, 4, 16],
-        "leadingComments": "",
-        "trailingComments": " waiting state -> interrupted\n",
         "leadingDetachedComments": [],
       }],
     },

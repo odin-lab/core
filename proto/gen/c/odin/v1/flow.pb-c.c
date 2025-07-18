@@ -7,6 +7,96 @@
 #endif
 
 #include "odin/v1/flow.pb-c.h"
+void   odin__v1__start__init
+                     (Odin__V1__Start         *message)
+{
+  static const Odin__V1__Start init_value = ODIN__V1__START__INIT;
+  *message = init_value;
+}
+size_t odin__v1__start__get_packed_size
+                     (const Odin__V1__Start *message)
+{
+  assert(message->base.descriptor == &odin__v1__start__descriptor);
+  return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
+}
+size_t odin__v1__start__pack
+                     (const Odin__V1__Start *message,
+                      uint8_t       *out)
+{
+  assert(message->base.descriptor == &odin__v1__start__descriptor);
+  return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
+}
+size_t odin__v1__start__pack_to_buffer
+                     (const Odin__V1__Start *message,
+                      ProtobufCBuffer *buffer)
+{
+  assert(message->base.descriptor == &odin__v1__start__descriptor);
+  return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
+}
+Odin__V1__Start *
+       odin__v1__start__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data)
+{
+  return (Odin__V1__Start *)
+     protobuf_c_message_unpack (&odin__v1__start__descriptor,
+                                allocator, len, data);
+}
+void   odin__v1__start__free_unpacked
+                     (Odin__V1__Start *message,
+                      ProtobufCAllocator *allocator)
+{
+  if(!message)
+    return;
+  assert(message->base.descriptor == &odin__v1__start__descriptor);
+  protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
+}
+void   odin__v1__stop__init
+                     (Odin__V1__Stop         *message)
+{
+  static const Odin__V1__Stop init_value = ODIN__V1__STOP__INIT;
+  *message = init_value;
+}
+size_t odin__v1__stop__get_packed_size
+                     (const Odin__V1__Stop *message)
+{
+  assert(message->base.descriptor == &odin__v1__stop__descriptor);
+  return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
+}
+size_t odin__v1__stop__pack
+                     (const Odin__V1__Stop *message,
+                      uint8_t       *out)
+{
+  assert(message->base.descriptor == &odin__v1__stop__descriptor);
+  return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
+}
+size_t odin__v1__stop__pack_to_buffer
+                     (const Odin__V1__Stop *message,
+                      ProtobufCBuffer *buffer)
+{
+  assert(message->base.descriptor == &odin__v1__stop__descriptor);
+  return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
+}
+Odin__V1__Stop *
+       odin__v1__stop__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data)
+{
+  return (Odin__V1__Stop *)
+     protobuf_c_message_unpack (&odin__v1__stop__descriptor,
+                                allocator, len, data);
+}
+void   odin__v1__stop__free_unpacked
+                     (Odin__V1__Stop *message,
+                      ProtobufCAllocator *allocator)
+{
+  if(!message)
+    return;
+  assert(message->base.descriptor == &odin__v1__stop__descriptor);
+  protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
+}
 void   odin__v1__turn_detected__init
                      (Odin__V1__TurnDetected         *message)
 {
@@ -52,96 +142,108 @@ void   odin__v1__turn_detected__free_unpacked
   assert(message->base.descriptor == &odin__v1__turn_detected__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-void   odin__v1__odin_start_speech__init
-                     (Odin__V1__OdinStartSpeech         *message)
+static const ProtobufCFieldDescriptor odin__v1__start__field_descriptors[2] =
 {
-  static const Odin__V1__OdinStartSpeech init_value = ODIN__V1__ODIN_START_SPEECH__INIT;
-  *message = init_value;
-}
-size_t odin__v1__odin_start_speech__get_packed_size
-                     (const Odin__V1__OdinStartSpeech *message)
+  {
+    "flow_type",
+    1,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_ENUM,
+    0,   /* quantifier_offset */
+    offsetof(Odin__V1__Start, flow_type),
+    &odin__v1__flow_type__descriptor,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "info",
+    2,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_MESSAGE,
+    0,   /* quantifier_offset */
+    offsetof(Odin__V1__Start, info),
+    &odin__v1__message_info__descriptor,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+};
+static const unsigned odin__v1__start__field_indices_by_name[] = {
+  0,   /* field[0] = flow_type */
+  1,   /* field[1] = info */
+};
+static const ProtobufCIntRange odin__v1__start__number_ranges[1 + 1] =
 {
-  assert(message->base.descriptor == &odin__v1__odin_start_speech__descriptor);
-  return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
-}
-size_t odin__v1__odin_start_speech__pack
-                     (const Odin__V1__OdinStartSpeech *message,
-                      uint8_t       *out)
+  { 1, 0 },
+  { 0, 2 }
+};
+const ProtobufCMessageDescriptor odin__v1__start__descriptor =
 {
-  assert(message->base.descriptor == &odin__v1__odin_start_speech__descriptor);
-  return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
-}
-size_t odin__v1__odin_start_speech__pack_to_buffer
-                     (const Odin__V1__OdinStartSpeech *message,
-                      ProtobufCBuffer *buffer)
+  PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
+  "odin.v1.Start",
+  "Start",
+  "Odin__V1__Start",
+  "odin.v1",
+  sizeof(Odin__V1__Start),
+  2,
+  odin__v1__start__field_descriptors,
+  odin__v1__start__field_indices_by_name,
+  1,  odin__v1__start__number_ranges,
+  (ProtobufCMessageInit) odin__v1__start__init,
+  NULL,NULL,NULL    /* reserved[123] */
+};
+static const ProtobufCFieldDescriptor odin__v1__stop__field_descriptors[2] =
 {
-  assert(message->base.descriptor == &odin__v1__odin_start_speech__descriptor);
-  return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
-}
-Odin__V1__OdinStartSpeech *
-       odin__v1__odin_start_speech__unpack
-                     (ProtobufCAllocator  *allocator,
-                      size_t               len,
-                      const uint8_t       *data)
+  {
+    "flow_type",
+    1,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_ENUM,
+    0,   /* quantifier_offset */
+    offsetof(Odin__V1__Stop, flow_type),
+    &odin__v1__flow_type__descriptor,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "info",
+    2,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_MESSAGE,
+    0,   /* quantifier_offset */
+    offsetof(Odin__V1__Stop, info),
+    &odin__v1__message_info__descriptor,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+};
+static const unsigned odin__v1__stop__field_indices_by_name[] = {
+  0,   /* field[0] = flow_type */
+  1,   /* field[1] = info */
+};
+static const ProtobufCIntRange odin__v1__stop__number_ranges[1 + 1] =
 {
-  return (Odin__V1__OdinStartSpeech *)
-     protobuf_c_message_unpack (&odin__v1__odin_start_speech__descriptor,
-                                allocator, len, data);
-}
-void   odin__v1__odin_start_speech__free_unpacked
-                     (Odin__V1__OdinStartSpeech *message,
-                      ProtobufCAllocator *allocator)
+  { 1, 0 },
+  { 0, 2 }
+};
+const ProtobufCMessageDescriptor odin__v1__stop__descriptor =
 {
-  if(!message)
-    return;
-  assert(message->base.descriptor == &odin__v1__odin_start_speech__descriptor);
-  protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
-}
-void   odin__v1__odin_end_speech__init
-                     (Odin__V1__OdinEndSpeech         *message)
-{
-  static const Odin__V1__OdinEndSpeech init_value = ODIN__V1__ODIN_END_SPEECH__INIT;
-  *message = init_value;
-}
-size_t odin__v1__odin_end_speech__get_packed_size
-                     (const Odin__V1__OdinEndSpeech *message)
-{
-  assert(message->base.descriptor == &odin__v1__odin_end_speech__descriptor);
-  return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
-}
-size_t odin__v1__odin_end_speech__pack
-                     (const Odin__V1__OdinEndSpeech *message,
-                      uint8_t       *out)
-{
-  assert(message->base.descriptor == &odin__v1__odin_end_speech__descriptor);
-  return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
-}
-size_t odin__v1__odin_end_speech__pack_to_buffer
-                     (const Odin__V1__OdinEndSpeech *message,
-                      ProtobufCBuffer *buffer)
-{
-  assert(message->base.descriptor == &odin__v1__odin_end_speech__descriptor);
-  return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
-}
-Odin__V1__OdinEndSpeech *
-       odin__v1__odin_end_speech__unpack
-                     (ProtobufCAllocator  *allocator,
-                      size_t               len,
-                      const uint8_t       *data)
-{
-  return (Odin__V1__OdinEndSpeech *)
-     protobuf_c_message_unpack (&odin__v1__odin_end_speech__descriptor,
-                                allocator, len, data);
-}
-void   odin__v1__odin_end_speech__free_unpacked
-                     (Odin__V1__OdinEndSpeech *message,
-                      ProtobufCAllocator *allocator)
-{
-  if(!message)
-    return;
-  assert(message->base.descriptor == &odin__v1__odin_end_speech__descriptor);
-  protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
-}
+  PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
+  "odin.v1.Stop",
+  "Stop",
+  "Odin__V1__Stop",
+  "odin.v1",
+  sizeof(Odin__V1__Stop),
+  2,
+  odin__v1__stop__field_descriptors,
+  odin__v1__stop__field_indices_by_name,
+  1,  odin__v1__stop__number_ranges,
+  (ProtobufCMessageInit) odin__v1__stop__init,
+  NULL,NULL,NULL    /* reserved[123] */
+};
 static const ProtobufCFieldDescriptor odin__v1__turn_detected__field_descriptors[3] =
 {
   {
@@ -206,79 +308,31 @@ const ProtobufCMessageDescriptor odin__v1__turn_detected__descriptor =
   (ProtobufCMessageInit) odin__v1__turn_detected__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor odin__v1__odin_start_speech__field_descriptors[1] =
+static const ProtobufCEnumValue odin__v1__flow_type__enum_values_by_number[2] =
 {
-  {
-    "info",
-    1,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_MESSAGE,
-    0,   /* quantifier_offset */
-    offsetof(Odin__V1__OdinStartSpeech, info),
-    &odin__v1__message_info__descriptor,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
+  { "LLM", "ODIN__V1__FLOW_TYPE__LLM", 0 },
+  { "SPEECH", "ODIN__V1__FLOW_TYPE__SPEECH", 1 },
 };
-static const unsigned odin__v1__odin_start_speech__field_indices_by_name[] = {
-  0,   /* field[0] = info */
+static const ProtobufCIntRange odin__v1__flow_type__value_ranges[] = {
+{0, 0},{0, 2}
 };
-static const ProtobufCIntRange odin__v1__odin_start_speech__number_ranges[1 + 1] =
+static const ProtobufCEnumValueIndex odin__v1__flow_type__enum_values_by_name[2] =
 {
-  { 1, 0 },
-  { 0, 1 }
+  { "LLM", 0 },
+  { "SPEECH", 1 },
 };
-const ProtobufCMessageDescriptor odin__v1__odin_start_speech__descriptor =
+const ProtobufCEnumDescriptor odin__v1__flow_type__descriptor =
 {
-  PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "odin.v1.OdinStartSpeech",
-  "OdinStartSpeech",
-  "Odin__V1__OdinStartSpeech",
+  PROTOBUF_C__ENUM_DESCRIPTOR_MAGIC,
+  "odin.v1.FlowType",
+  "FlowType",
+  "Odin__V1__FlowType",
   "odin.v1",
-  sizeof(Odin__V1__OdinStartSpeech),
+  2,
+  odin__v1__flow_type__enum_values_by_number,
+  2,
+  odin__v1__flow_type__enum_values_by_name,
   1,
-  odin__v1__odin_start_speech__field_descriptors,
-  odin__v1__odin_start_speech__field_indices_by_name,
-  1,  odin__v1__odin_start_speech__number_ranges,
-  (ProtobufCMessageInit) odin__v1__odin_start_speech__init,
-  NULL,NULL,NULL    /* reserved[123] */
-};
-static const ProtobufCFieldDescriptor odin__v1__odin_end_speech__field_descriptors[1] =
-{
-  {
-    "info",
-    1,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_MESSAGE,
-    0,   /* quantifier_offset */
-    offsetof(Odin__V1__OdinEndSpeech, info),
-    &odin__v1__message_info__descriptor,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-};
-static const unsigned odin__v1__odin_end_speech__field_indices_by_name[] = {
-  0,   /* field[0] = info */
-};
-static const ProtobufCIntRange odin__v1__odin_end_speech__number_ranges[1 + 1] =
-{
-  { 1, 0 },
-  { 0, 1 }
-};
-const ProtobufCMessageDescriptor odin__v1__odin_end_speech__descriptor =
-{
-  PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "odin.v1.OdinEndSpeech",
-  "OdinEndSpeech",
-  "Odin__V1__OdinEndSpeech",
-  "odin.v1",
-  sizeof(Odin__V1__OdinEndSpeech),
-  1,
-  odin__v1__odin_end_speech__field_descriptors,
-  odin__v1__odin_end_speech__field_indices_by_name,
-  1,  odin__v1__odin_end_speech__number_ranges,
-  (ProtobufCMessageInit) odin__v1__odin_end_speech__init,
-  NULL,NULL,NULL    /* reserved[123] */
+  odin__v1__flow_type__value_ranges,
+  NULL,NULL,NULL,NULL   /* reserved[1234] */
 };

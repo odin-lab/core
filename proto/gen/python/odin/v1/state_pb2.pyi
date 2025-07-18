@@ -15,12 +15,10 @@ class State(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
     AWAKE: _ClassVar[State]
     THINKING: _ClassVar[State]
     SPEAKING: _ClassVar[State]
-    ON_HOLD: _ClassVar[State]
 IDLE: State
 AWAKE: State
 THINKING: State
 SPEAKING: State
-ON_HOLD: State
 
 class StateUpdate(_message.Message):
     __slots__ = ("state", "info")

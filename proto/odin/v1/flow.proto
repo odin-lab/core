@@ -7,9 +7,24 @@ import "odin/v1/options.proto";
 import "odin/v1/session.proto";
 import "odin/v1/text_helper.proto";
 
-// enum for state
+enum FlowType {
+  LLM = 0;
+  SPEECH = 1;
+}
 
+message Start {
+  option (odin.v1.nats_subject) = "flow.{session_id}.{instance_id}.start";
 
+  FlowType flow_type = 1;
+  MessageInfo info = 2;
+}
+
+message Stop {
+  option (odin.v1.nats_subject) = "flow.{session_id}.{instance_id}.stop";
+
+  FlowType flow_type = 1;
+  MessageInfo info = 2;
+}
 
 // Flow information with role and content
 message TurnDetected {
@@ -18,16 +33,4 @@ message TurnDetected {
   repeated Segment segments = 1;
   string text = 2;
   MessageInfo info = 3;
-}
-
-message OdinStartSpeech {
-  option (odin.v1.nats_subject) = "flow.{session_id}.{instance_id}.odin_start_speech";
-
-  MessageInfo info = 1;
-}
-
-message OdinEndSpeech {
-  option (odin.v1.nats_subject) = "flow.{session_id}.{instance_id}.odin_end_speech";
-
-  MessageInfo info = 1;
 }
