@@ -133,23 +133,17 @@ class BaseModule(ABC):
             raise RuntimeError(
                 "Failed to open module registry KV bucket! Is the server running and the bucket created?"
             )
-
+           
         # Publish bootup message
         await self._publish_bootup()
 
+        # Start bucket watch task
+        self.kv_loop_task = asyncio.create_task(self._kv_loop())
         # Start heartbeat task
         self.heartbeat_task = asyncio.create_task(self._heartbeat_loop())
 
-        # Subscribe to commands
-        subj = f"session.*.{self.instance_id}.cmd"
-        await self.nc.subscribe(subj, queue=self.queue_group, cb=self._on_command)
-        log.info("%s subscribed on %s (q=%s)", self.instance_id, subj, self.queue_group)
-
     async def stop(self) -> None:
         """Graceful shutdown - remove from registry"""
-
-        for sess_id, session in self.sessions.items():
-            await self._handle_shutdown(sess_id, f"session.{sess_id}.{self.instance_id}.cmd")
 
         if self.heartbeat_task:
             self.heartbeat_task.cancel()
@@ -158,11 +152,19 @@ class BaseModule(ABC):
             except asyncio.CancelledError:
                 pass
 
-        # Remove from KV store
         if self.kv:
             await self.kv.purge(f"{self.instance_id}.bootup")
             await self.kv.purge(f"{self.instance_id}.heartbeat")
+            await self.kv.purge(f"{self.instance_id}.sessions.>")
             log.info(f"Removed {self.instance_id} from registry")
+
+        if self.kv_loop_task:
+            self.kv_loop_task.cancel()
+            try:
+                await self.kv_loop_task
+            except asyncio.CancelledError:
+                pass
+    
 
     # ---- KV store operations --------------------------------------------
     async def _publish_bootup(self) -> None:
@@ -180,6 +182,39 @@ class BaseModule(ABC):
         key = f"{self.instance_id}.bootup"
         await self.kv.put(key, bootup.SerializeToString())
         log.info(f"Published bootup for {self.instance_id}")
+
+
+    async def _kv_loop(self) -> None:
+        log.info(f"Starting KV loop for {self.instance_id}")
+
+        watcher = await self.kv.watch(f"{self.instance_id}.sessions.>")
+        shutdown = False
+
+        while True:
+            try:
+                async for event in watcher:
+                    log.info(f"Received event: \n {event}")
+                    session_id = event.key.split(".")[2]
+
+                    if event.operation is None:
+                        log.info(f"Handling init for session {session_id}")
+                        cmd = session_dec.Command.FromString(event.value)
+                        await self._handle_init(session_id, cmd.init.config)
+                    if event.operation == "PURGE":
+                        await self._handle_shutdown(session_id)
+                    if event.operation == "DEL":
+                        if session_id in self.sessions:
+                            await self._handle_shutdown(session_id)
+
+                    if shutdown:
+                        watcher.close()
+                        log.info(f"Shutting down KV loop for {self.instance_id}")
+                        break
+                    
+            except asyncio.CancelledError:
+                shutdown = True
+            except Exception as e:
+                log.error(f"Error handling KV event: {e}")
 
     async def _heartbeat_loop(self) -> None:
         """Periodically update heartbeat in KV store"""
@@ -203,53 +238,21 @@ class BaseModule(ABC):
             except Exception as e:
                 log.error(f"Heartbeat error for {self.name}: {e}")
 
-    # ---- NATS message callback ------------------------------------------
-    async def _on_command(self, msg):  # noqa: ANN001 – nats.Msg
-        """Handle Init / Shutdown commands coming from the SessionManager."""
-        log.info(f"{self.name} received command on subject: {msg.subject}")
-
-        try:
-            cmd = session_dec.Command.FromString(msg.data)
-            log.info(f"{self.name} parsed command successfully")
-        except Exception as e:
-            log.error(f"{self.name} failed to parse command: {e}")
-            return
-
-        if cmd.HasField("init"):
-            sess_id = cmd.init.session_id
-            cfg = cmd.init.config
-            log.info(f"{self.name} handling init command for session {sess_id}")
-            await self._handle_init(sess_id, cfg, msg.reply)
-        elif cmd.HasField("shutdown"):
-            sess_id = cmd.shutdown.session_id
-            log.info(f"{self.name} handling shutdown command for session {sess_id}")
-            await self._handle_shutdown(sess_id, msg.reply)
-        else:
-            log.warning("Unknown command received by %s", self.name)
-
     # ---- command handlers ----------------------------------------------
-    async def _handle_init(self, sess_id: str, cfg: bytes, reply: str) -> None:
+    async def _handle_init(self, sess_id: str, cfg: bytes) -> None:
         try:
-            log.info(f"Handling init for session {sess_id}, reply subject: {reply}")
+            log.info(f"Handling init for session {sess_id}")
 
-            # Quick ACK so requester can unblock - use regular NATS, not JetStream
-            await self.nc.publish(
-                reply,
-                session_dec.Status(
-                    session_id=sess_id,
-                    instance_id=self.instance_id,
-                    status=ModuleStatus.INITIALIZING,
-                ).SerializeToString(),
-            )
-            log.info(f"Sent INITIALIZING status for {self.name}")
+            if not sess_id in self.sessions:
+                log.info(f"Sent INITIALIZING status for {self.name}")
 
-            session = await self.create_session(sess_id, cfg)
-            log.info(f"Created session object for {self.name}")
-            self.sessions[sess_id] = session
+                session = await self.create_session(sess_id, cfg)
+                log.info(f"Created session object for {self.name}")
+                self.sessions[sess_id] = session
 
-            log.info(f"Starting initialization for {self.name}")
-            await session.initialize()
-            log.info(f"Completed initialization for {self.name}")
+                log.info(f"Starting initialization for {self.name}")
+                await session.initialize()
+                log.info(f"Completed initialization for {self.name}")
 
             # This one uses regular NATS for status updates
             await session.publish_status(ModuleStatus.RUNNING)
@@ -258,47 +261,17 @@ class BaseModule(ABC):
         except Exception as exc:  # noqa: BLE001
             err = str(exc)
             log.error(f"Exception during init for {self.name}: {err}", exc_info=True)
-            # Error reply via regular NATS (only if we haven't already replied)
-            try:
-                await self.nc.publish(
-                    reply,
-                    session_dec.Status(
-                        session_id=sess_id,
-                        instance_id=self.instance_id,
-                        status=ModuleStatus.FAILED,
-                        detail=err,
-                    ).SerializeToString(),
-                )
-            except:
-                pass  # Already replied
             log.exception("%s – session %s FAILED: %s", self.name, sess_id, err)
 
-    async def _handle_shutdown(self, sess_id: str, reply: str) -> None:
+    async def _handle_shutdown(self, sess_id: str) -> None:
         session = self.sessions.pop(sess_id, None)
         if session is None:
-            # Nothing to clean, but still respond so SessionManager unblocks.
-            await self.nc.publish(
-                reply,
-                session_dec.Status(
-                    session_id=sess_id,
-                    instance_id=self.instance_id,
-                    status=ModuleStatus.DISCONNECTED,
-                    detail="unknown session",
-                ).SerializeToString(),
-            )
+            log.warning(f"Session {sess_id} not found for {self.name}")
             return
 
         await session.cleanup()
         await session.publish_status(ModuleStatus.DISCONNECTED)
-        await self.nc.publish(
-            reply,
-            session_dec.Status(
-                session_id=sess_id,
-                instance_id=self.instance_id,
-                status=ModuleStatus.DISCONNECTED,
-            ).SerializeToString(),
-        )
-        log.info("%s – session %s disconnected", self.name, sess_id)
+        log.info(f"Session {sess_id} disconnected")
 
     # ---- factory for concrete Session objects ---------------------------
     @abstractmethod
@@ -308,6 +281,8 @@ class BaseModule(ABC):
 
 # ---------------------------------------------------------------------------
 # 4) SessionManager – orchestration layer used by your application backend
+
+# THIS IS CURRENTLY NOT USED
 # ---------------------------------------------------------------------------
 class SessionManager:
     """Start / stop multi‑module sessions and wait for them to become RUNNING."""
